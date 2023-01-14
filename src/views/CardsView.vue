@@ -2,10 +2,15 @@
 import GameHead from '@components/GameHead.vue'
 import { ref, watch, onMounted, computed, reactive } from 'vue'
 
-const numCards = ref(6)
 const isWidthXS = ref(false)
 
-const cards = Array.from({ length: numCards.value }).map(() => {
+const props = defineProps<{
+  amount: number
+}>()
+
+const cardsAmount = Math.min(props.amount, 6)
+
+const cards = reactive(Array.from({ length: cardsAmount }).map(() => {
   return Array.from({ length: 3 }).map(() => {
     const row = new Array<number>(9).fill(0)
     let times = 0
@@ -18,11 +23,11 @@ const cards = Array.from({ length: numCards.value }).map(() => {
     }
     return row
   })
-}).map(c => c.flat())
+}).map(c => c.flat()))
 
 const filteredCards = computed(() => isWidthXS.value ? cards.map(c => c.filter(r => r != 0)) : cards)
 
-const signedNumbers = reactive<number[][]>(JSON.parse(JSON.stringify(new Array<number[]>(numCards.value).fill([]))))
+const signedNumbers = reactive<number[][]>(JSON.parse(JSON.stringify(new Array<number[]>(cardsAmount).fill([]))))
 
 watch(signedNumbers, () => {
   console.log(signedNumbers)

@@ -18,6 +18,7 @@ const router = createRouter({
     {
       path: '/cartelle',
       name: 'cartelle',
+      props: route => ({ amount: parseInt(route.hash.replace("#", "")) }),
       component: CardsView
     },
     {
