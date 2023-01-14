@@ -1,34 +1,14 @@
 {
-  "$schema": "https://json.schemastore.org/tsconfig",
-  "compilerOptions": {
-    "target": "ESNext",
-    "module": "ESNext",
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "isolatedModules": false,
-    "noEmit": true,
-    "allowJs": true,
-    "forceConsistentCasingInFileNames": true,
-    "esModuleInterop": true,
-    "strict": true,
-    "importsNotUsedAsValues": "error",
-    "types": [
-      "@astrojs/image/client",
-      "node",
-      "jquery"
-    ],
-    "allowSyntheticDefaultImports": true,
-    "baseUrl": ".",
-    "paths": {
-      "@/*": ["./*"],
-      "@assets/*": ["src/assets/*"],
-      "@components/*": ["src/components/*"],
-      "@layouts/*": ["src/layouts/*"]
+  "files": [],
+  "references": [
+    {
+      "path": "./tsconfig.config.json"
     },
-    "jsx": "preserve"
-  },
-  "extends": "astro/tsconfigs/strict",
-  "vueCompilerOptions": {
-    "experimentalDisableTemplateSupport": true
-  }
+    {
+      "path": "./tsconfig.app.json"
+    },
+    {
+      "path": "./tsconfig.vitest.json"
+    }
+  ]
 }

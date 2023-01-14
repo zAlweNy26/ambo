@@ -3,7 +3,7 @@
 const defaultTheme = require('tailwindcss/defaultTheme')
 
 module.exports = {
-	content: ['./src/**/*.{astro,html,js,jsx,md,mdx,ts,tsx,vue}'],
+	content: ['./src/**/*.{html,js,ts,vue}'],
 	theme: {
 		screens: {
 			'xs': '475px',
@@ -63,7 +63,6 @@ module.exports = {
 	plugins: [
 		require('@tailwindcss/forms'),
 		require('@tailwindcss/typography'),
-		require('@headlessui/tailwindcss'),
 		require('tailwindcss-gradients'),
 		require('tailwind-children'),
 		require('daisyui'),
@@ -100,3 +99,4 @@ module.exports = {
 		],
 	},
 }
+

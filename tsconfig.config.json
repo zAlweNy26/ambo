@@ -1,0 +1,14 @@
+{
+  "extends": "@vue/tsconfig/tsconfig.node.json",
+  "include": ["vite.config.*", "vitest.config.*", "cypress.config.*", "playwright.config.*"],
+  "compilerOptions": {
+    "target": "ES2019",
+    "module": "ESNext",
+    "lib": [
+      "es2019",
+      "DOM"
+    ],
+    "composite": true,
+    "types": ["node"]
+  }
+}

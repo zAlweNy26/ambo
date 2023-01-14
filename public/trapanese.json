@@ -1,0 +1,452 @@
+[
+    {
+        "number": 1,
+        "original": "Pippineddu / Pippineddru",
+        "translated": "Pippinello"
+    },
+    {
+        "number": 2,
+        "original": "Vasuni",
+        "translated": "Grande bacio"
+    },
+    {
+        "number": 3,
+        "original": "U attu",
+        "translated": "Il gatto"
+    },
+    {
+        "number": 4,
+        "original": "U porcu",
+        "translated": "Il maiale"
+    },
+    {
+        "number": 5,
+        "original": "A manu / 'nd manu",
+        "translated": "La mano"
+    },
+    {
+        "number": 6,
+        "original": "U cani",
+        "translated": "Il cane"
+    },
+    {
+        "number": 7,
+        "original": "U libbru",
+        "translated": "Il libro"
+    },
+    {
+        "number": 8,
+        "original": "A 'mmaculata",
+        "translated": "L'Immacolata Concezione"
+    },
+    {
+        "number": 9,
+        "original": "A mmerda",
+        "translated": "La merda"
+    },
+    {
+        "number": 10,
+        "original": "L'aneddu / L'aneddru",
+        "translated": "L'anello"
+    },
+    {
+        "number": 11,
+        "original": "Cosci logni / Cosci longhe",
+        "translated": "Cosce lunghe"
+    },
+    {
+        "number": 12,
+        "original": "Campanedda / Campaneddra",
+        "translated": "Campanella"
+    },
+    {
+        "number": 13,
+        "original": "Santa Lucia",
+        "translated": "Santa Lucia"
+    },
+    {
+        "number": 14,
+        "original": "U 'mbriacu / U 'mmiaco",
+        "translated": "L'ubriaco"
+    },
+    {
+        "number": 15,
+        "original": "A strata",
+        "translated": "La strada"
+    },
+    {
+        "number": 16,
+        "original": "Si rici ma nun si fa",
+        "translated": "Si dice ma non si fa"
+    },
+    {
+        "number": 17,
+        "original": "A disgrazia",
+        "translated": "La disgrazia"
+    },
+    {
+        "number": 18,
+        "original": "U sangu",
+        "translated": "Il sangue"
+    },
+    {
+        "number": 19,
+        "original": "San Giuseppi",
+        "translated": "San Giuseppe"
+    },
+    {
+        "number": 20,
+        "original": "U picciriddu / U picciriddru",
+        "translated": "Il bambino"
+    },
+    {
+        "number": 21,
+        "original": "A fimmina nura",
+        "translated": "La femmina nuda"
+    },
+    {
+        "number": 22,
+        "original": "U foddi / U foddri",
+        "translated": "Il folle"
+    },
+    {
+        "number": 23,
+        "original": "U culu",
+        "translated": "Il culo"
+    },
+    {
+        "number": 24,
+        "original": "Cavaddu e carrettu / Cavaddru e carrettu",
+        "translated": "Cavallo e carretto"
+    },
+    {
+        "number": 25,
+        "original": "Natali",
+        "translated": "Natale"
+    },
+    {
+        "number": 26,
+        "original": "A vecchia",
+        "translated": "L'anziana"
+    },
+    {
+        "number": 27,
+        "original": "U cantaru / U cantaro",
+        "translated": "Gabinetto di terracotta"
+    },
+    {
+        "number": 28,
+        "original": "A sciarra",
+        "translated": "La rissa"
+    },
+    {
+        "number": 29,
+        "original": "San Petru e Paulu",
+        "translated": "San Pietro e San Paolo"
+    },
+    {
+        "number": 30,
+        "original": "L'omu / L'omo",
+        "translated": "L'uomo"
+    },
+    {
+        "number": 31,
+        "original": "Stu misi",
+        "translated": "Questo mese"
+    },
+    {
+        "number": 32,
+        "original": "U poveru / U povero",
+        "translated": "Il povero"
+    },
+    {
+        "number": 33,
+        "original": "L'anni ru Signuri",
+        "translated": "Gli anni del Signore"
+    },
+    {
+        "number": 34,
+        "original": "Carnilivari",
+        "translated": "Carnevale"
+    },
+    {
+        "number": 35,
+        "original": "U lampu",
+        "translated": "Il lampo"
+    },
+    {
+        "number": 36,
+        "original": "L'aceddru",
+        "translated": "L'uccello"
+    },
+    {
+        "number": 37,
+        "original": "A scupitta / A scupetta",
+        "translated": "Un'arma da fuoco a canna lunga"
+    },
+    {
+        "number": 38,
+        "original": "U strummalu / A strummula",
+        "translated": "La trottola"
+    },
+    {
+        "number": 39,
+        "original": "U chiacchiaruni",
+        "translated": "Il chiaccherone"
+    },
+    {
+        "number": 40,
+        "original": "L'ammusciatu",
+        "translated": "L'ammosciato"
+    },
+    {
+        "number": 41,
+        "original": "U cuteddu",
+        "translated": "Il coltello"
+    },
+    {
+        "number": 42,
+        "original": "L'avvisatu",
+        "translated": "L'avvisato"
+    },
+    {
+        "number": 43,
+        "original": "U addu",
+        "translated": "Il gallo"
+    },
+    {
+        "number": 44,
+        "original": "Ricotta caura",
+        "translated": "Ricotta calda"
+    },
+    {
+        "number": 45,
+        "original": "A befana",
+        "translated": "La befana"
+    },
+    {
+        "number": 46,
+        "original": "A scarpa",
+        "translated": "La scarpa"
+    },
+    {
+        "number": 47,
+        "original": "Mortu chi parla",
+        "translated": "Morto che parla"
+    },
+    {
+        "number": 48,
+        "original": "U sbirru",
+        "translated": "Il poliziotto"
+    },
+    {
+        "number": 49,
+        "original": "U pisciaru",
+        "translated": "Il pescivendolo"
+    },
+    {
+        "number": 50,
+        "original": "A nassa",
+        "translated": "La rete da pesca"
+    },
+    {
+        "number": 51,
+        "original": "U lupu",
+        "translated": "Il lupo"
+    },
+    {
+        "number": 52,
+        "original": "U reggimentu",
+        "translated": "Il reggimento"
+    },
+    {
+        "number": 53,
+        "original": "U pani",
+        "translated": "Il pane"
+    },
+    {
+        "number": 54,
+        "original": "U alofaru",
+        "translated": "Il garofano"
+    },
+    {
+        "number": 55,
+        "original": "U vecchiu",
+        "translated": "L'anziano"
+    },
+    {
+        "number": 56,
+        "original": "A rosa",
+        "translated": "La rosa"
+    },
+    {
+        "number": 57,
+        "original": "U giuvini",
+        "translated": "Il giovane"
+    },
+    {
+        "number": 58,
+        "original": "A cacocciola",
+        "translated": "Il carciofo"
+    },
+    {
+        "number": 59,
+        "original": "A casa",
+        "translated": "La casa"
+    },
+    {
+        "number": 60,
+        "original": "U babbaluciu",
+        "translated": "La piccola lumaca"
+    },
+    {
+        "number": 61,
+        "original": "U scarparu",
+        "translated": "Il calzolaio"
+    },
+    {
+        "number": 62,
+        "original": "U mortu ammazzatu",
+        "translated": "Il morto ucciso"
+    },
+    {
+        "number": 63,
+        "original": "A zita",
+        "translated": "La fidanzata"
+    },
+    {
+        "number": 64,
+        "original": "U purpu",
+        "translated": "Il polipo"
+    },
+    {
+        "number": 65,
+        "original": "U cuntu",
+        "translated": "Il racconto"
+    },
+    {
+        "number": 66,
+        "original": "I corna",
+        "translated": "Le corna"
+    },
+    {
+        "number": 67,
+        "original": "A filinia",
+        "translated": "La ragnatela"
+    },
+    {
+        "number": 68,
+        "original": "A pasta",
+        "translated": "La pasta"
+    },
+    {
+        "number": 69,
+        "original": "Comu ti metti metti",
+        "translated": "Posizione del Kamasutra"
+    },
+    {
+        "number": 70,
+        "original": "U viddanu",
+        "translated": "L'agricoltore"
+    },
+    {
+        "number": 71,
+        "original": "U tirrenu",
+        "translated": "Il terreno"
+    },
+    {
+        "number": 72,
+        "original": "A rota",
+        "translated": "La ruota"
+    },
+    {
+        "number": 73,
+        "original": "A bussola",
+        "translated": "La bussola"
+    },
+    {
+        "number": 74,
+        "original": "A rutta",
+        "translated": "La grotta"
+    },
+    {
+        "number": 75,
+        "original": "U bisognu",
+        "translated": "Il bisogno"
+    },
+    {
+        "number": 76,
+        "original": "A scala",
+        "translated": "La scala"
+    },
+    {
+        "number": 77,
+        "original": "U riavulu",
+        "translated": "Il diavolo"
+    },
+    {
+        "number": 78,
+        "original": "A buttana",
+        "translated": "La prostituta"
+    },
+    {
+        "number": 79,
+        "original": "A musca",
+        "translated": "La mosca"
+    },
+    {
+        "number": 80,
+        "original": "U pacchiu",
+        "translated": "L'organo sessuale femminile"
+    },
+    {
+        "number": 81,
+        "original": "A ciolla",
+        "translated": "L'organo sessuale maschile"
+    },
+    {
+        "number": 82,
+        "original": "A rota ri mulinu",
+        "translated": "La ruota del mulino"
+    },
+    {
+        "number": 83,
+        "original": "A cuccia",
+        "translated": "Il grano lesso"
+    },
+    {
+        "number": 84,
+        "original": "U casciuni",
+        "translated": "Il cassettone"
+    },
+    {
+        "number": 85,
+        "original": "L'armi du priatoriu",
+        "translated": "Le anime del Purgatorio"
+    },
+    {
+        "number": 86,
+        "original": "A putia",
+        "translated": "La bottega"
+    },
+    {
+        "number": 87,
+        "original": "Piscari",
+        "translated": "Pescare"
+    },
+    {
+        "number": 88,
+        "original": "I cugghiuna",
+        "translated": "I testicoli"
+    },
+    {
+        "number": 89,
+        "original": "U succi / U surci",
+        "translated": "Il ratto"
+    },
+    {
+        "number": 90,
+        "original": "Spaventu",
+        "translated": "Spavento"
+    }
+]

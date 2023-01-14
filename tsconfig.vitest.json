@@ -1,0 +1,14 @@
+{
+  "extends": "./tsconfig.app.json",
+  "exclude": [],
+  "compilerOptions": {
+    "target": "ES2019",
+    "module": "ESNext",
+    "composite": true,
+    "lib": [
+      "es2019",
+      "DOM"
+    ],
+    "types": ["node", "jsdom"]
+  }
+}

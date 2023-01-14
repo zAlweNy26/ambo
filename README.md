@@ -1,50 +1,77 @@
-# Welcome to [Astro](https://astro.build)
+# Ambo!
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/basics)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/s/github/withastro/astro/tree/latest/examples/basics)
+## 📝 Descrizione
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+Gioco della tombola digitale, per quando non hai voglia di portarti la scatola!
 
-![basics](https://user-images.githubusercontent.com/4677417/186188965-73453154-fdec-4d6b-9c34-cb35c248ae5b.png)
+## 🚀 Strumenti utilizzati
 
+- Firebase
+- TypeScript
+- Vue
+- Vite
 
-## 🚀 Project Structure
+## 📚 Librerie Tailwind CSS che ho utilizzato
 
-Inside of your Astro project, you'll see the following folders and files:
+[Myna UI](https://mynaui.com)
 
+[Daisy UI](https://daisyui.com/components)
+
+[Meraki UI](https://merakiui.com/components)
+
+[Kitwind](https://kitwind.io/products/kometa/components)
+
+[Tailwind UI](https://tailwindui.com/components)
+
+## ✨ Funzionalità
+
+- [x] Creazione automatica delle puntate
+- [ ] Annuncio in caso di ambo, terna, ecc... per i giocatori
+- [x] Modalità scura
+- [x] Modalità schermo intero
+- [x] Sintetizzatore vocale che annuncia i numeri per il banco
+- [x] Scelta tra le varie versioni di tombola esistenti
+- [x] Protezione dalla ricarica indesiderata
+
+### Compile and Hot-Reload for Development
+
+```sh
+npm run dev
 ```
-/
-├── public/
-│   └── favicon.svg
-├── src/
-│   ├── components/
-│   │   └── Card.astro
-│   ├── layouts/
-│   │   └── Layout.astro
-│   └── pages/
-│       └── index.astro
-└── package.json
+
+### Type-Check, Compile and Minify for Production
+
+```sh
+npm run build
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+### Run Unit Tests with [Vitest](https://vitest.dev/)
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+```sh
+npm run test:unit
+```
 
-Any static assets, like images, can be placed in the `public/` directory.
+### Run End-to-End Tests with [Playwright](https://playwright.dev)
 
-## 🧞 Commands
+```sh
+# Install browsers for the first run
+npx playwright install
 
-All commands are run from the root of the project, from a terminal:
+# When testing on CI, must build the project first
+npm run build
 
-| Command                | Action                                             |
-| :--------------------- | :------------------------------------------------- |
-| `npm install`          | Installs dependencies                              |
-| `npm run dev`          | Starts local dev server at `localhost:3000`        |
-| `npm run build`        | Build your production site to `./dist/`            |
-| `npm run preview`      | Preview your build locally, before deploying       |
-| `npm run astro ...`    | Run CLI commands like `astro add`, `astro preview` |
-| `npm run astro --help` | Get help using the Astro CLI                       |
+# Runs the end-to-end tests
+npm run test:e2e
+# Runs the tests only on Chromium
+npm run test:e2e -- --project=chromium
+# Runs the tests of a specific file
+npm run test:e2e -- tests/example.spec.ts
+# Runs the tests in debug mode
+npm run test:e2e -- --debug
+```
 
-## 👀 Want to learn more?
+### Lint with [ESLint](https://eslint.org/)
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+```sh
+npm run lint
+```

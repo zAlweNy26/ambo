@@ -20,21 +20,16 @@
 			</svg>
 		</div>
 	</div>
-	<footer class="text-base-100 footer footer-center bg-gradient-r-ube-purple dark:bg-gradient-r-amber-orange gap-y-4  p-4">
+	<footer class="p-4 text-base-100 footer footer-center bg-gradient-r-ube-purple dark:bg-gradient-r-amber-orange gap-y-4">
 		<div class="grid grid-flow-col gap-4">
-			<a class="link link-hover" href="/info/terms">Termini & Condizioni</a>
-			<a class="link link-hover" href="/info/attributions">Attributions</a>
+			<a class="link link-hover" href="/termini">Termini & Condizioni</a>
+			<a class="link link-hover" href="/attribuzioni">Attribuzioni</a>
+			<a class="link link-hover" href="/riguardo">Chi siamo</a>
 		</div>
 		<div>
 			<div class="grid grid-flow-col gap-4">
-				<a href="https://github.com/zAlweNy26/explorershandbook" aria-label="GitHub Link">
-					<Icon icon="bxl:github" class="h-8 w-8" />
-				</a>
-				<a href="#" aria-label="Discord Link">
-					<Icon icon="bxl:discord-alt" class="h-8 w-8" />
-				</a>
-				<a href="#" aria-label="Twitter Link">
-					<Icon icon="bxl:twitter" class="h-8 w-8" />
+				<a href="https://github.com/zAlweNy26/ambo" aria-label="GitHub Link">
+					<Icon icon="bxl:github" class="w-8 h-8" />
 				</a>
 			</div>
 		</div>
