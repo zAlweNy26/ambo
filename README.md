@@ -26,14 +26,13 @@ Gioco della tombola digitale, per quando non hai voglia di portarti la scatola!
 ## ✨ Funzionalità
 
 - [x] Creazione automatica delle puntate
-- [ ] Annuncio in caso di ambo, terna, ecc... per i giocatori
 - [x] Modalità scura
 - [x] Modalità schermo intero
 - [x] Sintetizzatore vocale che annuncia i numeri per il banco
 - [x] Scelta tra le varie versioni di tombola esistenti
 - [x] Protezione dalla ricarica indesiderata
 
--| Comando               | Azione                                             |
+| Comando               | Azione                                             |
 | :--------------------- | :------------------------------------------------- |
 | `npm install`          | Installa le dipendenze                             |
 | `npm run dev`          | Avvia il dev server `localhost:5173`               |
