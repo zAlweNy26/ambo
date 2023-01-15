@@ -6,10 +6,11 @@
   "license": "GPL-3.0-only",
   "scripts": {
     "dev": "vite",
-    "build": "run-p check vite build",
+    "build": "run-p check build-only",
     "preview": "vite preview",
     "unit": "vitest --environment jsdom --root src/",
     "e2e": "playwright test",
+    "build-only": "vite build",
     "check": "vue-tsc --noEmit -p tsconfig.vitest.json --composite false",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore"
   },
