@@ -34,7 +34,7 @@ const devTeam: Member[] = [
 	{
 		name: 'Daniele Molinari',
 		avatar: "",
-		description: 'Analista funzionale',
+		description: 'Architetto IT',
 		links: [
 			{
 				icon: 'bxl:linkedin',

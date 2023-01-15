@@ -16,13 +16,13 @@ const packages: Package[] = [
 		color: "#38BDF8"
 	},
 	{
-		name: "daisyUI",
+		name: "DaisyUI",
 		icon: "https://daisyui.com/favicon.ico",
 		url: "https://daisyui.com/",
 		color: "#F2DB43"
 	},
 	{
-		name: "unDraw",
+		name: "UnDraw",
 		icon: "https://undraw.co/favicon-32x32.png",
 		url: "https://undraw.co/",
 		color: "#544AF4"
@@ -50,6 +50,12 @@ const packages: Package[] = [
 		icon: "https://www.typescriptlang.org/favicon-32x32.png",
 		url: "https://www.typescriptlang.org",
 		color: "#3178C6"
+	},
+	{
+		name: "Vite",
+		icon: "https://vitejs.dev/logo.svg",
+		url: "https://vitejs.dev",
+		color: "#8779FE"
 	},
 	{
 		name: "PlayWright",

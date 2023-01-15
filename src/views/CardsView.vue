@@ -8,30 +8,27 @@ const props = defineProps<{
   amount: number
 }>()
 
-const cardsAmount = Math.min(props.amount, 6)
+const cardsAmount = Math.min(isNaN(props.amount) ? 1 : props.amount, 6)
 
-const cards = reactive(Array.from({ length: cardsAmount }).map(() => {
-  return Array.from({ length: 3 }).map(() => {
-    const row = new Array<number>(9).fill(0)
+const cards = Array.from({ length: cardsAmount }).map(() => {
+  const card = JSON.parse(JSON.stringify(new Array<number[]>(3).fill(new Array<number>(9).fill(0)))) as number[][]
+  return card.map((v, i, r) => {
     let times = 0
     while (times < 5) {
-      const randomIndex = Math.floor(Math.random() * 10)
-      if (row[randomIndex] == 0) {
-        row[randomIndex] = Math.floor(Math.random() * 91) + 1
+      const randIndex = Math.floor(Math.random() * 10)
+      const randNum = Math.floor(Math.random() * 90) + 1
+      if (v[randIndex] == 0 && !v.includes(randNum) && r.findIndex(v => v.find(s => s == randNum)) == -1) {
+        v[randIndex] = randNum
         times++
       }
     }
-    return row
+    return v
   })
-}).map(c => c.flat()))
+}).map(c => c.flat())
 
 const filteredCards = computed(() => isWidthXS.value ? cards.map(c => c.filter(r => r != 0)) : cards)
 
 const signedNumbers = reactive<number[][]>(JSON.parse(JSON.stringify(new Array<number[]>(cardsAmount).fill([]))))
-
-watch(signedNumbers, () => {
-  console.log(signedNumbers)
-}, { deep: true })
 
 const toggleNumber = (card: number, num: number) => {
   if (num != 0) {
@@ -57,7 +54,7 @@ onMounted(() => {
           <div class="grid grid-rows-3 select-none" :class="[isWidthXS ? 'grid-cols-5' : 'grid-cols-9']">
             <div v-for="(number, ni) in card" :key="`${ci}-${ni}`"
               :class="{ '!bg-error': signedNumbers[ci].includes(number) }"
-              class="flex items-center justify-center w-12 h-12 cursor-pointer xs:p-2 outline-neutral bg-neutral-content outline outline-2"
+              class="flex items-center justify-center w-12 h-12 transition-colors cursor-pointer xs:p-2 outline-neutral bg-neutral-content outline outline-2"
               @click="toggleNumber(ci, number)">
               <p class="text-xl font-medium">
                 {{ number != 0 ? number : " " }}

@@ -3,7 +3,7 @@
 		<div class="navbar-start">
 			<img v-if="showLogo" alt="Ambo! Logo" class="w-6 h-6" src="/favicon.ico" />
 			<a v-else href="/" class="btn btn-sm btn-ghost btn-square">
-				<Icon icon="eva:home-fill" class="w-6 h-6" aria-hidden="true" />
+				<Icon icon="fluent:home-20-filled" class="w-6 h-6" aria-hidden="true" />
 			</a>
 		</div>
 		<div class="gap-2 navbar-center">

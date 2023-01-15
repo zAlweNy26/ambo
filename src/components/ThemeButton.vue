@@ -2,8 +2,8 @@
 	<button class="btn btn-sm btn-ghost btn-square" title="Change theme" data-toggle-theme="dark,light" @click="toggleTheme">
 		<div class="indicator mt-0.5">
 			<span class="sr-only">Change theme mode</span>
-			<Icon v-if="!isDark" icon="eva:moon-fill" class="h-6 w-6" aria-hidden="true" />
-			<Icon v-else icon="eva:sun-fill" class="h-6 w-6" aria-hidden="true" />
+			<Icon v-if="!isDark" icon="eva:moon-fill" class="w-6 h-6" aria-hidden="true" />
+			<Icon v-else icon="eva:sun-fill" class="w-6 h-6" aria-hidden="true" />
 		</div>
 	</button>
 </template>
