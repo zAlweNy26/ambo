@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import GameHead from '@components/GameHead.vue'
-import { ref, watch, onMounted, computed, reactive } from 'vue'
+import { ref, onMounted, computed, reactive } from 'vue'
 
 const isWidthXS = ref(false)
 
@@ -10,14 +10,19 @@ const props = defineProps<{
 
 const cardsAmount = Math.min(isNaN(props.amount) ? 1 : props.amount, 6)
 
+const randomNumber = (min: number, max: number) => {
+    return Math.floor(Math.random() * (max - min + 1) + min)
+}
+
 const cards = Array.from({ length: cardsAmount }).map(() => {
   const card = JSON.parse(JSON.stringify(new Array<number[]>(3).fill(new Array<number>(9).fill(0)))) as number[][]
   return card.map((v, i, r) => {
     let times = 0
     while (times < 5) {
-      const randIndex = Math.floor(Math.random() * 10)
-      const randNum = Math.floor(Math.random() * 90) + 1
-      if (v[randIndex] == 0 && !v.includes(randNum) && r.findIndex(v => v.find(s => s == randNum)) == -1) {
+      //TODO: Ordinare in modo crescente le colonne
+      const randIndex = randomNumber(0, 8)
+      const randNum = randomNumber(randIndex == 0 ? 1 : randIndex * 10, (randIndex * 10) + (randIndex == 8 ? 10 : 9))
+      if (v[randIndex] == 0 && r.findIndex(v => v.find(s => s == randNum)) == -1 && r.filter(v => v[randIndex] == 0).length > 1) {
         v[randIndex] = randNum
         times++
       }

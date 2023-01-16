@@ -32,7 +32,14 @@ Gioco della tombola digitale, per quando non hai voglia di portarti la scatola!
 - [x] Scelta tra le varie versioni di tombola esistenti
 - [x] Protezione dalla ricarica indesiderata
 
-| Comando               | Azione                                             |
+## Cose da fare
+
+- Finire smorfie
+- Creare logo
+- Finire homepage
+- Mettere immagine e link a Daniele
+
+| Comando                | Azione                                             |
 | :--------------------- | :------------------------------------------------- |
 | `npm install`          | Installa le dipendenze                             |
 | `npm run dev`          | Avvia il dev server `localhost:5173`               |

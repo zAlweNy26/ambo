@@ -12,7 +12,7 @@ type Smorfia = {
 	translated: string
 }
 
-const smorfieOptions = ["Napoletana", "Trapanese", "Romana", "Piemontese", "Toscana"]
+const smorfieOptions = ["Napoletana", "Trapanese", "Romana", "Piemontese", "Livornese"]
 const selectSmorfia = ref("Scegli la smorfia"), totalPrize = ref(0)
 const useVocal = ref(false), prizeMethod = ref("half")
 const smorfieList = ref<Smorfia[]>([])
