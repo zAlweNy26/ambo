@@ -73,7 +73,7 @@ const extractNumber = () => {
 
 const speechText = (smorfia: Smorfia | undefined) => {
 	if (smorfia == undefined) return
-	const speechSynthesis = new SpeechSynthesisUtterance(`${smorfia.number}, ${smorfia.translated}`)
+	const speechSynthesis = new SpeechSynthesisUtterance(`${smorfia.number}. ${smorfia.translated}`)
 	speechSynthesis.lang = "it"
 	speechSynthesis.volume = 1
 	//TODO: Capire perchè taglia il testo la prima volta che si avvia la funzione o sostituire con libreria esterna

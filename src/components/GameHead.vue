@@ -1,20 +1,20 @@
 <template>
-	<div class="flex w-full items-center justify-between gap-4">
-		<button class="btn btn-square btn-ghost" @click="toggleFullscreen">
-			<Icon icon="fluent:full-screen-maximize-16-filled" class="text-primary h-8 w-8" aria-hidden="true" />
+	<div class="flex items-center justify-between w-full gap-4">
+		<button class="btn btn-square btn-ghost" title="Abilita o disabilita lo schermo intero" @click="toggleFullscreen">
+			<Icon icon="fluent:full-screen-maximize-16-filled" class="w-8 h-8 text-primary" aria-hidden="true" />
 		</button>
 		<h1>Ambo!</h1>
-		<label for="closeModal" class="btn btn-square btn-ghost">
-			<Icon icon="fluent:dismiss-12-filled" class="text-primary h-8 w-8" aria-hidden="true" />
+		<label for="closeModal" title="Esci" class="btn btn-square btn-ghost">
+			<Icon icon="fluent:dismiss-12-filled" class="w-8 h-8 text-primary" aria-hidden="true" />
 		</label>
 		<input id="closeModal" type="checkbox" class="modal-toggle">
-		<label for="closeModal" class="modal cursor-pointer">
-			<label class="modal-box relative flex w-fit flex-col items-center justify-center gap-2 p-4" for="">
-				<h3 class="text-center text-lg font-bold">Sei sicuro di voler uscire?</h3>
+		<label for="closeModal" class="cursor-pointer modal">
+			<label class="relative flex flex-col items-center justify-center gap-2 p-4 modal-box w-fit" for="">
+				<h3 class="text-lg font-bold text-center">Sei sicuro di voler uscire?</h3>
 				<p class="text-center">Così facendo, perderai i progressi fatti.</p>
-				<div class="mt-2 flex gap-4">
-					<label for="closeModal" class="btn btn-primary w-16 rounded-xl text-lg capitalize" @click="goHome">Sì</label>
-					<label for="closeModal" class="btn btn-primary w-16 rounded-xl text-lg capitalize">No</label>
+				<div class="flex gap-4 mt-2">
+					<label for="closeModal" class="w-16 text-lg capitalize btn btn-primary rounded-xl" @click="goHome">Sì</label>
+					<label for="closeModal" class="w-16 text-lg capitalize btn btn-primary rounded-xl">No</label>
 				</div>
 			</label>
 		</label>

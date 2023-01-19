@@ -16,10 +16,9 @@ const randomNumber = (min: number, max: number) => {
 
 const cards = Array.from({ length: cardsAmount }).map(() => {
   const card = JSON.parse(JSON.stringify(new Array<number[]>(3).fill(new Array<number>(9).fill(0)))) as number[][]
-  return card.map((v, i, r) => {
+  card.map((v, i, r) => {
     let times = 0
     while (times < 5) {
-      //TODO: Ordinare in modo crescente le colonne
       const randIndex = randomNumber(0, 8)
       const randNum = randomNumber(randIndex == 0 ? 1 : randIndex * 10, (randIndex * 10) + (randIndex == 8 ? 10 : 9))
       if (v[randIndex] == 0 && r.findIndex(v => v.find(s => s == randNum)) == -1 && r.filter(v => v[randIndex] == 0).length > 1) {
@@ -29,6 +28,18 @@ const cards = Array.from({ length: cardsAmount }).map(() => {
     }
     return v
   })
+  for (let i = 0; i < card.length; i++) {
+    for (let j = 0; j < card[i].length; j++) {
+      if (card[i][j] != 0) {
+        if (card[i+1] != undefined && card[i+1][j] != 0 && card[i][j] > card[i+1][j]) {
+          [card[i][j], card[i+1][j]] = [card[i+1][j], card[i][j]]
+        } else if (card[i+2] != undefined && card[i+2][j] != 0 && card[i][j] > card[i+2][j]) {
+          [card[i][j], card[i+2][j]] = [card[i+2][j], card[i][j]]
+        }
+      }
+    }
+  }
+  return card
 }).map(c => c.flat())
 
 const filteredCards = computed(() => isWidthXS.value ? cards.map(c => c.filter(r => r != 0)) : cards)

@@ -12,7 +12,8 @@
 				<span class="font-semibold text-primary">Ambo!</span>
 				<span class="hidden ml-1 sm:inline">Dona con</span>
 			</p>
-			<a class="btn btn-sm btn-square btn-info btn-outline gap-2 sm:!w-auto sm:!px-3" href="https://paypal.me/danyalwe">
+			<a class="btn btn-sm btn-square btn-info btn-outline gap-2 sm:!w-auto sm:!px-3" 
+				target="_blank" href="https://paypal.me/danyalwe" aria-label="Dona con PayPal">
 				<Icon icon="logos:paypal" class="w-5 h-5" aria-hidden="true" />
 				<span class="hidden sm:inline-block">PayPal</span>
 			</a>

@@ -14,7 +14,7 @@ interface Member {
 const devTeam: Member[] = [
 	{
 		name: 'Daniele Nicosia',
-		avatar: "/main_dev.jpg",
+		avatar: "/main_dev.png",
 		description: 'Direttore del progetto\nSviluppatore Full-Stack',
 		links: [
 			{
@@ -33,16 +33,16 @@ const devTeam: Member[] = [
 	},
 	{
 		name: 'Daniele Molinari',
-		avatar: "",
+		avatar: "https://avatars.githubusercontent.com/u/86741125?v=4",
 		description: 'Architetto IT',
 		links: [
 			{
 				icon: 'bxl:linkedin',
-				url: ''
+				url: 'https://www.linkedin.com/in/daniele-molinari-b62533204'
 			},
 			{
 				icon: 'bxl:github',
-				url: ''
+				url: 'https://github.com/osryde'
 			}
 		]
 	}
