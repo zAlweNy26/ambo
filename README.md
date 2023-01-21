@@ -29,7 +29,7 @@ Gioco della tombola digitale, per quando non hai voglia di portarti la scatola!
 - [x] Modalità scura
 - [x] Modalità schermo intero
 - [x] Sintetizzatore vocale che annuncia i numeri per il banco
-- [x] Scelta tra le varie versioni di tombola esistenti
+- [x] Scelta tra le varie smorfie conosciute
 - [x] Protezione dalla ricarica indesiderata
 
 ## Cose da fare
@@ -37,7 +37,6 @@ Gioco della tombola digitale, per quando non hai voglia di portarti la scatola!
 - Finire smorfie
 - Creare logo
 - Finire homepage
-- Mettere immagine e link a Daniele
 
 | Comando                | Azione                                             |
 | :--------------------- | :------------------------------------------------- |
