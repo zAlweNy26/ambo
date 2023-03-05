@@ -4,7 +4,7 @@ require('@rushstack/eslint-patch/modern-module-resolution')
 module.exports = {
   root: true,
   extends: [
-  "plugin:astro/recommended",
+    "plugin:astro/recommended",
     'eslint:recommended',
     'plugin:vue/vue3-recommended',
     "plugin:@typescript-eslint/recommended",
