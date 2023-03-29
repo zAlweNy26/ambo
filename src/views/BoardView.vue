@@ -2,7 +2,7 @@
 import GameHead from '@components/GameHead.vue'
 import { Icon } from '@iconify/vue'
 import Dinero from 'dinero.js'
-import { ref, reactive, computed, onMounted } from 'vue'
+import { ref, reactive, computed } from 'vue'
 
 Dinero.defaultCurrency = "EUR"
 
