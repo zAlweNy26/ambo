@@ -45,3 +45,4 @@ Gioco della tombola digitale, per quando non hai voglia di portarti la scatola!
 | `npm run unit`         | Avvia gli Unit Test fatti con Vitest               |
 | `npm run e2e`          | Avvia gli End-to-End Test fatti con PlayWright     |
 | `npm run lint`         | Controlla il codice con ESLint                     |
+| `firebase deploy`      | Distribuisce la build su Firebase                  |
