@@ -35,7 +35,6 @@ Gioco della tombola digitale, per quando non hai voglia di portarti la scatola!
 ## Cose da fare
 
 - Finire smorfie
-- Creare logo
 - Finire homepage
 
 | Comando                | Azione                                             |

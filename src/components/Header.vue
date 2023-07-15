@@ -1,7 +1,7 @@
 <template>
 	<div class="navbar bg-base-200 min-h-fit">
 		<div class="navbar-start">
-			<img v-if="showLogo" alt="Ambo! Logo" class="w-6 h-6" src="/favicon.ico" />
+			<img v-if="showLogo" alt="Ambo! Logo" class="w-6 h-6" src="@assets/logo.svg" />
 			<a v-else href="/" class="btn btn-sm btn-ghost btn-square">
 				<Icon icon="fluent:home-20-filled" class="w-6 h-6" aria-hidden="true" />
 			</a>
