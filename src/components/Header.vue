@@ -1,3 +1,15 @@
+<script setup lang="ts">
+import { Icon } from '@iconify/vue'
+
+const showLogo = ref(true)
+
+const route = useRoute()
+
+onMounted(() => {
+	showLogo.value = !['/tabellone', '/cartelle'].includes(route.path)
+})
+</script>
+
 <template>
 	<div class="navbar bg-base-200 min-h-fit">
 		<div class="navbar-start">
@@ -23,15 +35,3 @@
 		</div>
 	</div>
 </template>
-
-<script setup lang="ts">
-import ThemeButton from '@components/ThemeButton.vue'
-import { Icon } from '@iconify/vue'
-import { onMounted, ref } from 'vue'
-
-const showLogo = ref(true)
-
-onMounted(() => {
-	showLogo.value = ['/', '/tabellone', '/cartelle'].includes(window.location.pathname)
-})
-</script>

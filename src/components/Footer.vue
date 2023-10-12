@@ -1,3 +1,7 @@
+<script setup lang="ts">
+import { Icon } from '@iconify/vue'
+</script>
+
 <template>
 	<div class="relative mt-24">
 		<div class="wave-shape">
@@ -39,11 +43,7 @@
 	</footer>
 </template>
 
-<script setup lang="ts">
-import { Icon } from '@iconify/vue'
-</script>
-
-<style>
+<style scoped>
 	#stop0 {
 		stop-color: #5B06D6;
 		stop-opacity: 1;

@@ -1,16 +1,5 @@
-<template>
-	<button class="btn btn-sm btn-ghost btn-square" title="Change theme" data-toggle-theme="dark,light" @click="toggleTheme">
-		<div class="indicator mt-0.5">
-			<span class="sr-only">Change theme mode</span>
-			<Icon v-if="!isDark" icon="eva:moon-fill" class="w-6 h-6" aria-hidden="true" />
-			<Icon v-else icon="eva:sun-fill" class="w-6 h-6" aria-hidden="true" />
-		</div>
-	</button>
-</template>
-
 <script setup lang="ts">
 import { Icon } from '@iconify/vue'
-import { ref, onMounted } from 'vue'
 
 const isDark = ref(false)
 
@@ -30,3 +19,13 @@ onMounted(() => {
 	setTheme(isDark.value)
 })
 </script>
+
+<template>
+	<button class="btn btn-sm btn-ghost btn-square" title="Change theme" data-toggle-theme="dark,light" @click="toggleTheme">
+		<div class="indicator mt-0.5">
+			<span class="sr-only">Change theme mode</span>
+			<Icon v-if="!isDark" icon="eva:moon-fill" class="w-6 h-6" aria-hidden="true" />
+			<Icon v-else icon="eva:sun-fill" class="w-6 h-6" aria-hidden="true" />
+		</div>
+	</button>
+</template>

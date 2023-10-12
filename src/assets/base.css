@@ -1,5 +1,21 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap");
 @tailwind base;
+
+body {
+	scrollbar-width: 10px;
+	scrollbar-color: hsl(var(--b1)) hsl(var(--n));
+}
+
+::-webkit-scrollbar {
+	width: 10px;
+	height: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+	background: hsl(var(--n));
+	border-radius: 10px;
+}
+
 @tailwind components;
 @tailwind utilities;
 
@@ -41,36 +57,6 @@
   .toggle {
     @apply !bg-none !border-2;
   }
-}
-
-body {
-  scrollbar-color: #27272a #f4f4f5;
-}
-
-[data-theme="dark"] body {
-  scrollbar-color: #f4f4f5 #27272a;
-}
-
-::-webkit-scrollbar {
-  width: 12px;
-  height: 12px;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #27272a;
-  border-radius: 10px;
-}
-
-[data-theme="dark"] ::-webkit-scrollbar-thumb {
-  background: #f4f4f5;
-}
-
-::-webkit-scrollbar-track {
-  background: #f4f4f5;
-}
-
-[data-theme="dark"] ::-webkit-scrollbar-track {
-  background: #27272a;
 }
 
 .wave-shape {

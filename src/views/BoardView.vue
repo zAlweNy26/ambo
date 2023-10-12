@@ -13,15 +13,15 @@ type Smorfia = {
 }
 
 const smorfieOptions = ["Napoletana", "Trapanese", "Romana", "Piemontese", "Livornese"]
-const selectSmorfia = ref("Scegli la smorfia"), totalPrize = ref(0)
+const selectSmorfia = ref("Scegli la smorfia"), totalPrize = ref(0), speakText = ref('')
 const useVocal = ref(false), prizeMethod = ref("half")
 const smorfieList = ref<Smorfia[]>([])
 const extractedNumbers = reactive<number[]>([])
 
-const smorfiaExtracted = computed(() => {
-	const smorfia = smorfieList.value.find(v => v.number == extractedNumbers[extractedNumbers.length - 1])
-	if (useVocal.value && smorfia != undefined) speechText(smorfia)
-	return smorfia
+const smorfiaExtracted = computed(() => smorfieList.value.find(v => v.number == extractedNumbers[extractedNumbers.length - 1]))
+
+watch(smorfiaExtracted, () => {
+	if (useVocal.value && smorfiaExtracted.value != undefined) speechText(smorfiaExtracted.value)
 })
 
 const splittedPrize = computed(() => {
@@ -71,16 +71,12 @@ const extractNumber = () => {
 	extractedNumbers.push(random)
 }
 
-const speechText = (smorfia: Smorfia | undefined) => {
-	if (smorfia == undefined) return
-	const speechSynthesis = new SpeechSynthesisUtterance(`${smorfia.number}. ${smorfia.translated}`)
-	speechSynthesis.lang = "it"
-	speechSynthesis.volume = 1
-	//TODO: Capire perchè taglia il testo la prima volta che si avvia la funzione o sostituire con libreria esterna
-	if (window.speechSynthesis.speaking) {
-		window.speechSynthesis.cancel()
-		setTimeout(() => window.speechSynthesis.speak(speechSynthesis), 250)
-	} else window.speechSynthesis.speak(speechSynthesis)
+const { isPlaying, isSupported, speak, stop } = useSpeechSynthesis(speakText, { lang: "it", pitch: 1, rate: 1, volume: 1 })
+
+const speechText = (smorfia: Smorfia) => {
+	speakText.value = `${smorfia.number}. ${smorfia.translated}`
+	if (isPlaying.value) stop()
+	setTimeout(() => speak(), 250)
 }
 </script>
 
@@ -154,7 +150,7 @@ const speechText = (smorfia: Smorfia | undefined) => {
 							{{ smorfiaExtracted?.translated }}
 						</p>
 					</div>
-					<div class="flex items-center justify-center w-10 h-10 p-2 text-lg font-bold">
+					<div v-if="isSupported" class="flex items-center justify-center w-10 h-10 p-2 text-lg font-bold">
 						<button @click="speechText(smorfiaExtracted)"
 							class="btn btn-outline btn-sm btn-square btn-neutral hover:bg-secondary-focus hover:border-secondary-focus">
 							<Icon icon="fluent:speaker-2-20-filled" class="w-6 h-6" aria-hidden="true" />

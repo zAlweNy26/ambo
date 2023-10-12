@@ -1,7 +1,31 @@
+<script setup lang="ts">
+import { Icon } from '@iconify/vue'
+
+const router = useRouter()
+
+const safeExit = ref(false)
+
+const { toggle, isFullscreen } = useFullscreen()
+
+const goHome = () => {
+	safeExit.value = true
+	router.back()
+}
+
+onMounted(() => {
+    window.onbeforeunload = (event) => {
+		if (!safeExit.value) {
+			event.preventDefault()
+			return event.returnValue = ""
+		}
+    }
+})
+</script>
+
 <template>
 	<div class="flex items-center justify-between w-full gap-4">
-		<button class="btn btn-square btn-ghost" title="Abilita o disabilita lo schermo intero" @click="toggleFullscreen">
-			<Icon icon="fluent:full-screen-maximize-16-filled" class="w-8 h-8 text-primary" aria-hidden="true" />
+		<button class="btn btn-square btn-ghost" title="Abilita o disabilita lo schermo intero" @click="toggle()">
+			<Icon :icon="isFullscreen ? 'fluent:full-screen-minimize-16-filled' : 'fluent:full-screen-maximize-16-filled'" class="w-8 h-8 text-primary" aria-hidden="true" />
 		</button>
 		<h1>Ambo!</h1>
 		<label for="closeModal" title="Esci" class="btn btn-square btn-ghost">
@@ -20,35 +44,3 @@
 		</label>
 	</div>
 </template>
-
-<script setup lang="ts">
-import { Icon } from '@iconify/vue'
-import { ref, onMounted } from 'vue'
-
-const isFullscreen = ref(false)
-const safeExit = ref(false)
-
-const toggleFullscreen = () => {
-    isFullscreen.value = !isFullscreen.value
-
-    const root = document.documentElement
-    if (!document.fullscreenEnabled) return
-
-    if (isFullscreen.value) root.requestFullscreen()
-    else document.exitFullscreen()
-}
-
-const goHome = () => {
-	safeExit.value = true
-	window.location.href = "/"
-}
-
-onMounted(() => {
-    window.onbeforeunload = (event) => {
-		if (!safeExit.value) {
-			event.preventDefault()
-			return event.returnValue = ""
-		}
-    }
-})
-</script>
