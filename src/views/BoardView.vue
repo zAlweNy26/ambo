@@ -175,7 +175,7 @@ const speechText = (smorfia: Smorfia) => {
 				</div>
 			</div>
 		</div>
-		<div class="flex flex-col items-center">
+		<div class="flex flex-col items-center text-center">
 			<p>Notato qualche errore grammaticale?</p>
 			<p>
 				Avvisaci via email a 

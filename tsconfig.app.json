@@ -1,7 +1,6 @@
 {
   "extends": "@vue/tsconfig/tsconfig.dom.json",
   "include": [
-    "env.d.ts", 
     "src/**/*", 
     "src/**/*.vue",
     "src/**/*.ts",
@@ -15,6 +14,10 @@
     "lib": [
       "es2019",
       "DOM"
+    ],
+    "types": [
+      "vite/client",
+      "vite-plugin-pwa/client"
     ],
     "moduleResolution": "node",
     "resolveJsonModule": true,

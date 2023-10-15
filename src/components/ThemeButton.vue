@@ -6,6 +6,15 @@ const isDark = ref(false)
 function setTheme(dark: boolean) {
 	document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light')
 	localStorage.setItem('theme', dark ? 'dark' : 'light')
+	let meta = document.querySelector('meta[name="theme-color"]')
+	if (!meta) {
+		const head = document.querySelector('head')
+		meta = document.createElement('meta')
+		meta.setAttribute('name', 'theme-color')
+		meta.setAttribute('content', dark ? '#F97316' : '#5B06D6')
+		head?.appendChild(meta)
+	}
+	meta?.setAttribute('content', dark ? '#F97316' : '#5B06D6')
 }
 
 function toggleTheme() {

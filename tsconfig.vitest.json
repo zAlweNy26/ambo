@@ -9,6 +9,11 @@
       "es2019",
       "DOM"
     ],
-    "types": ["node", "jsdom"]
+    "types": [
+      "node", 
+      "jsdom", 
+      "vite/client",
+      "vite-plugin-pwa/client"
+    ]
   }
 }
