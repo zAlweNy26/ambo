@@ -1,8 +1,7 @@
 <script setup lang="ts">
-import GameHead from '@components/GameHead.vue'
 import { Icon } from '@iconify/vue'
 import Dinero from 'dinero.js'
-import { ref, reactive, computed } from 'vue'
+import { randomNumber } from '@helpers/utils'
 
 Dinero.defaultCurrency = "EUR"
 
@@ -12,11 +11,21 @@ type Smorfia = {
 	translated: string
 }
 
+const cards = Array.from({ length: 6 }).map((_, i) => {
+	let up = -5
+	const card = Array.from({ length: 15 }).map((_, j) => {
+		up += j % 5 ? 0 : 5
+		return (j + 1) + (i * 15) + up - (i % 2 ? 10 : 0)
+	})
+	return card
+})
+
 const smorfieOptions = ["Napoletana", "Trapanese", "Romana", "Piemontese", "Livornese"]
 const selectSmorfia = ref("Scegli la smorfia"), totalPrize = ref(0), speakText = ref('')
 const useVocal = ref(false), prizeMethod = ref("half")
 const smorfieList = ref<Smorfia[]>([])
 const extractedNumbers = reactive<number[]>([])
+const totalNumbers = reactive(cards.flat())
 
 const smorfiaExtracted = computed(() => smorfieList.value.find(v => v.number == extractedNumbers[extractedNumbers.length - 1]))
 
@@ -55,23 +64,19 @@ async function importSmorfie() {
 	smorfieList.value = jsonFile as Smorfia[]
 }
 
-const cards = Array.from({ length: 6 }).map((_, i) => {
-	let up = -5
-	const card = Array.from({ length: 15 }).map((_, j) => {
-		up += j % 5 ? 0 : 5
-		return (j + 1) + (i * 15) + up - (i % 2 ? 10 : 0)
-	})
-	return card
-})
-
 const extractNumber = () => {
-	if (extractedNumbers.length == 90) return
-	let random = Math.floor(Math.random() * 90) + 1
-	while (extractedNumbers.includes(random)) random = Math.floor(Math.random() * 90) + 1
-	extractedNumbers.push(random)
+	if (totalNumbers.length == 0) return
+	const random = totalNumbers.length == 1 ? 0 : randomNumber(0, totalNumbers.length - 1)
+	const removed = totalNumbers.splice(random, 1)[0]
+	extractedNumbers.push(removed)
 }
 
-const { isPlaying, isSupported, speak, stop } = useSpeechSynthesis(speakText, { lang: "it", pitch: 1, rate: 1, volume: 1 })
+const { isPlaying, isSupported, speak, stop } = useSpeechSynthesis(speakText, { 
+	lang: "it", 
+	pitch: 1, 
+	rate: 1, 
+	volume: 1 
+})
 
 const speechText = (smorfia: Smorfia) => {
 	speakText.value = `${smorfia.number}. ${smorfia.translated}`
@@ -82,7 +87,7 @@ const speechText = (smorfia: Smorfia) => {
 
 <template>
 	<div class="flex flex-col items-center justify-between w-full gap-8 grow">
-		<GameHead />
+		<GameHead :title="`Tabellone - ${totalNumbers.length} numeri rimanenti`" />
 		<div class="flex flex-col items-center w-full gap-8 justify-evenly grow md:flex-row">
 			<div class="flex flex-col items-center justify-center order-1 gap-8 max-w-fit md:order-2">
 				<div class="flex flex-col gap-2">
@@ -162,13 +167,23 @@ const speechText = (smorfia: Smorfia) => {
 				<div v-for="(card, index) in cards" :key="index" class="grid grid-cols-5 grid-rows-3 gap-2 select-none">
 					<div v-for="number in card" :key="number"
 						:class="{ '!bg-error !border-none': extractedNumbers.includes(number) }"
-						class="flex items-center justify-center w-6 h-6 transition-colors border-2 rounded-full bg-base-300 border-neutral-focus xs:h-10 xs:w-10 xs:p-2">
-						<p class="text-xs font-medium xs:text-lg">
+						class="flex items-center justify-center w-8 h-8 transition-colors border-2 rounded-full bg-base-200 border-neutral-focus xs:h-10 xs:w-10 md:h-12 md:w-12 xs:p-2">
+						<p class="text-sm font-medium xs:text-lg">
 							{{ number }}
 						</p>
 					</div>
 				</div>
 			</div>
+		</div>
+		<div class="flex flex-col items-center">
+			<p>Notato qualche errore grammaticale?</p>
+			<p>
+				Avvisaci via email a 
+				<span class="text-primary font-medium">alwe.dev@gmail.com</span>,
+				oppure prova a correggerlo tu
+				<a target="_blank" href="https://github.com/zAlweNy26/ambo/tree/main/public" 
+					class="link link-primary font-medium">qui</a>!
+			</p>
 		</div>
 	</div>
 </template>

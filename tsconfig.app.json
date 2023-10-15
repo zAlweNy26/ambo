@@ -4,6 +4,7 @@
     "env.d.ts", 
     "src/**/*", 
     "src/**/*.vue",
+    "src/**/*.ts",
     "components.d.ts",
 		"auto-imports.d.ts"
   ],
@@ -29,6 +30,7 @@
     "paths": {
       "@/*": ["src/*"],
       "@assets/*": ["src/assets/*"],
+      "@helpers/*": ["src/helpers/*"],
       "@components/*": ["src/components/*"],
       "@views/*": ["src/views/*"]
     }

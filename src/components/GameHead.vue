@@ -1,6 +1,12 @@
 <script setup lang="ts">
 import { Icon } from '@iconify/vue'
 
+withDefaults(defineProps<{
+	title?: string
+}>(), {
+	title: 'Ambo!'
+})
+
 const router = useRouter()
 
 const safeExit = ref(false)
@@ -9,7 +15,7 @@ const { toggle, isFullscreen } = useFullscreen()
 
 const goHome = () => {
 	safeExit.value = true
-	router.back()
+	router.push('/')
 }
 
 onMounted(() => {
@@ -27,7 +33,7 @@ onMounted(() => {
 		<button class="btn btn-square btn-ghost" title="Abilita o disabilita lo schermo intero" @click="toggle()">
 			<Icon :icon="isFullscreen ? 'fluent:full-screen-minimize-16-filled' : 'fluent:full-screen-maximize-16-filled'" class="w-8 h-8 text-primary" aria-hidden="true" />
 		</button>
-		<h1>Ambo!</h1>
+		<h1 class="font-semibold text-2xl">{{ title }}</h1>
 		<label for="closeModal" title="Esci" class="btn btn-square btn-ghost">
 			<Icon icon="fluent:dismiss-12-filled" class="w-8 h-8 text-primary" aria-hidden="true" />
 		</label>

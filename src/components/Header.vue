@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import { Icon } from '@iconify/vue'
 
-const showLogo = ref(true)
+const showLogo = ref(false)
 
-const route = useRoute()
+const router = useRouter()
 
-onMounted(() => {
-	showLogo.value = !['/tabellone', '/cartelle'].includes(route.path)
+router.beforeEach((to) => {
+	showLogo.value = ['/tabellone', '/cartelle', '/'].includes(to.path)
 })
 </script>
 
