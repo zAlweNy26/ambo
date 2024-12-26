@@ -1,48 +1,42 @@
 # Ambo!
 
-## 📝 Descrizione
+Digital bingo game, for when you don't feel like carrying the box!
 
-Gioco della tombola digitale, per quando non hai voglia di portarti la scatola!
+## To-Dos
 
-## 🚀 Strumenti utilizzati
+- [ ] Add terms and conditions translation
+- [ ] Add support for other languages
+- [ ] Add support for other bingo types (sinco, zubbio, etc...)
+- [ ] Add sort of online multiplayer
 
-- Firebase
-- TypeScript
-- Vue
-- Vite
+## Setup
 
-## 📚 Librerie Tailwind CSS che ho utilizzato
+Make sure to install the dependencies:
 
-[Myna UI](https://mynaui.com)
+```bash
+bun install
+```
 
-[Daisy UI](https://daisyui.com/components)
+## Development Server
 
-[Meraki UI](https://merakiui.com/components)
+Start the development server on `http://localhost:3000`:
 
-[Kitwind](https://kitwind.io/products/kometa/components)
+```bash
+bun run dev
+```
 
-[Tailwind UI](https://tailwindui.com/components)
+## Production
 
-## ✨ Funzionalità
+Build the application for production:
 
-- [x] Creazione automatica delle puntate
-- [x] Modalità scura
-- [x] Modalità schermo intero
-- [x] Sintetizzatore vocale che annuncia i numeri per il banco
-- [x] Scelta tra le varie smorfie conosciute
-- [x] Protezione dalla ricarica indesiderata
+```bash
+bun run build
+```
 
-## Cose da fare
+Locally preview production build:
 
-- Finire smorfie
-- Finire homepage
+```bash
+bun run preview
+```
 
-| Comando                | Azione                                             |
-| :--------------------- | :------------------------------------------------- |
-| `npm install`          | Installa le dipendenze                             |
-| `npm run dev`          | Avvia il dev server `localhost:5173`               |
-| `npm run build`        | Compila e minimizza per la produzione              |
-| `npm run unit`         | Avvia gli Unit Test fatti con Vitest               |
-| `npm run e2e`          | Avvia gli End-to-End Test fatti con PlayWright     |
-| `npm run lint`         | Controlla il codice con ESLint                     |
-| `firebase deploy`      | Distribuisce la build su Firebase                  |
+Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
