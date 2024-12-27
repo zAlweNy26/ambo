@@ -1,6 +1,29 @@
 # Changelog
 
 
+## v0.1.1
+
+[compare changes](https://github.com/zAlweNy26/ambo/compare/v0.1.0...v0.1.1)
+
+### 🚀 Enhancements
+
+- Use KV storage ([39f78fa](https://github.com/zAlweNy26/ambo/commit/39f78fa))
+
+### 🏡 Chore
+
+- Fix linting ([6ad882b](https://github.com/zAlweNy26/ambo/commit/6ad882b))
+- Improve lighthouse score ([b70225a](https://github.com/zAlweNy26/ambo/commit/b70225a))
+- Update assets ([54e9800](https://github.com/zAlweNy26/ambo/commit/54e9800))
+- Improve UX ([f325c07](https://github.com/zAlweNy26/ambo/commit/f325c07))
+
+### 🤖 CI
+
+- Update package script ([dd4156c](https://github.com/zAlweNy26/ambo/commit/dd4156c))
+
+### ❤️ Contributors
+
+- Dany <zdanymc@gmail.com>
+
 ## v0.1.0
 
 
