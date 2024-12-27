@@ -12,7 +12,7 @@ interface Member {
 const devTeam: Member[] = [
   {
     name: 'Daniele Nicosia',
-    avatar: '/main_dev.png',
+    avatar: '/main_dev.webp',
     description: 'Project Manager\nFull-Stack Developer',
     links: [
       {

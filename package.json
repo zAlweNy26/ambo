@@ -12,6 +12,7 @@
     "clean": "nuxi cleanup && nuxi prepare",
     "typecheck": "nuxi typecheck",
     "changelog": "changelogen",
+    "lighthouse": "unlighthouse --site ambo.nuxt.dev",
     "ci": "bun run lint && bun run typecheck && bun run test",
     "test": "vitest --run",
     "lint": "eslint --cache .",
@@ -47,6 +48,7 @@
     "changelogen": "^0.5.7",
     "eslint": "^9.17.0",
     "typescript": "^5.7.2",
+    "unlighthouse": "^0.14.1",
     "vitest": "^2.1.8",
     "vue-tsc": "^2.2.0",
     "wrangler": "^3.99.0"
