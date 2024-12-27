@@ -63,6 +63,7 @@ export default defineNuxtConfig({
   },
 
   i18n: {
+    baseUrl: '',
     experimental: {
       typedOptionsAndMessages: 'all',
       typedPages: true,
@@ -118,6 +119,11 @@ export default defineNuxtConfig({
       alwaysRedirect: true,
       redirectOn: 'root',
     },
+  },
+
+  hub: {
+    analytics: true,
+    kv: true,
   },
 
   vite: {
