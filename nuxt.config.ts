@@ -18,6 +18,7 @@ export default defineNuxtConfig({
     "@nuxtjs/seo",
     "@nuxt/image",
     '@vite-pwa/nuxt',
+    '@nuxthub/core'
   ],
 
   css: ['~/assets/main.css'],
@@ -29,15 +30,15 @@ export default defineNuxtConfig({
   compatibilityDate: "2024-11-27",
 
   app: {
-		pageTransition: {
-			name: 'page',
-			mode: 'out-in',
-		},
-		layoutTransition: {
-			name: 'layout',
-			mode: 'out-in',
-		},
-	},
+    pageTransition: {
+      name: 'page',
+      mode: 'out-in',
+    },
+    layoutTransition: {
+      name: 'layout',
+      mode: 'out-in',
+    },
+  },
 
   ui: {
     prefix: 'Nu',
