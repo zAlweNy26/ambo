@@ -1,0 +1,92 @@
+{
+	"aria": {
+		"toggle": "Toggle",
+		"goTop": "Go to the top",
+		"more": "More"
+	},
+	"theme": {
+		"light": "Light",
+		"dark": "Dark",
+		"toggle": "@:aria.toggle theme"
+	},
+	"language": {
+		"toggle": "@:aria.toggle language"
+	},
+	"header": {
+		"home": "Home",
+		"board": "Board",
+		"cards": "Cards",
+		"terms":"Terms",
+		"contacts": "Contacts"
+	},
+	"donate": {
+		"title": "Help us keep {0} free. {1}",
+		"with": "Donate with"
+	},
+	"footer": {
+		"privacy": "Privacy Policy",
+		"terms": "Terms & Conditions",
+		"attributions": "Attributions",
+		"contacts": "Contact Us",
+		"copyright": "Copyright © 2023-2025 {0} - All Rights Reserved."
+	},
+	"error": {
+		"routes": {
+			"title": "Error - {0}",
+			"notAccessible": "Page not accessible",
+			"fallback": "An error occurred while trying to access this page.\nPlease try again later.",
+			"401": "You are not authenticated, so you cannot access this page.",
+			"403": "You are not authorized to access this page.",
+			"404": "The page you are looking for does not exist.",
+			"500": "Something went wrong. Please try again later."
+		}
+	},
+	"button": {
+		"backHome": "Go back to @:header.home",
+		"exit": "Exit",
+		"cancel": "Cancel",
+		"reset": "Reset",
+		"minimize": "Minimize",
+		"maximize": "Maximize"
+	},
+	"exit": {
+		"title": "Are you sure you want to exit?",
+		"description": "You will lose all your progress if you exit now."
+	},
+	"home": {
+		"welcome": "Welcome on {0}",
+		"subtitle": "An application to play online bingo quickly and easily."
+	},
+	"contacts": {
+		"title": "Development team",
+		"description": "Those who developed \"{0}\", putting their hearts into completing it and making it available to all."
+	},
+	"game": {
+		"title": "{0} - {1} remaining numbers",
+		"id": "Game ID",
+		"end": {
+			"title": "Game ended",
+			"description": "The game was terminated by the player who created it."
+		}
+	},
+	"board": {
+		"prize": "Prize distribution",
+		"smirk": "Choose a smirk",
+		"announcer": "Automatic announcer",
+		"draw": "Draw a number",
+		"extractions": "Last extraction | Last {0} extractions"
+	},
+	"cards": {
+		"title": "How many cards do you want to play with?",
+		"quantity": "{0} card | {0} cards",
+		"search": "Search the number",
+		"found": "Number {0} found and added",
+		"notFound": "Number {0} not found"
+	},
+	"pwa": {
+		"installTitle": "Do you want to install it as an app?",
+		"updateTitle": "Update found. Do you want to update?",
+		"install": "Install",
+		"update": "Update"
+	}
+}
