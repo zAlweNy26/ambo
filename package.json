@@ -11,7 +11,7 @@
     "postinstall": "nuxi prepare",
     "clean": "nuxi cleanup && nuxi prepare",
     "typecheck": "nuxi typecheck",
-    "changelog": "changelogen",
+    "changelog": "changelogen --release",
     "lighthouse": "unlighthouse --site ambo.nuxt.dev",
     "ci": "bun run lint && bun run typecheck && bun run test",
     "test": "vitest --run",
