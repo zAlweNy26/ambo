@@ -72,7 +72,7 @@ const checkNumber = (num: number, check = true) => {
 </script>
 
 <template>
-	<section class="flex max-w-6xl gap-8 text-center items-stretch grow flex-col">
+	<section class="flex max-w-6xl mx-auto gap-8 text-center items-stretch grow flex-col">
 		<GameHeader :remaining>
 			<template #title>
 				<i18n-t keypath="cards.quantity" tag="span" :plural="amount">
@@ -100,20 +100,19 @@ const checkNumber = (num: number, check = true) => {
 			:keypath="`cards.${numberFound ? 'found' : 'notFound'}`" tag="p">
 			<strong>{{ searchNumber }}</strong>
 		</i18n-t>
-		<div class="flex flex-wrap items-center justify-center gap-8">
-			<template v-for="(card, ci) in cards" :key="ci">
-				<div class="grid select-none grid-cols-[repeat(9,minmax(2rem,3rem))] bg-[var(--ui-bg-accented)] p-2 rounded-lg">
-					<div v-for="(number, ni) in card" :key="`${ci}-${ni}`" class="grid place-content-center border p-2 bg-[var(--ui-bg)]"
-						:class="{ 
-							'bg-[var(--ui-primary)] text-[var(--ui-bg)]': signedNumbers[ci]?.includes(number),
-							'cursor-pointer transition-colors': number != 0
-						}" @click="checkNumber(number, false)">
-						<p class="text-xl font-medium">
-							{{ number !== 0 ? number : '' }}
-						</p>
-					</div>
+		<div class="grid place-content-center grid-cols-2 gap-8">
+			<div v-for="(card, ci) in cards" :key="ci"
+				class="grid select-none grid-cols-[repeat(9,minmax(2rem,3rem))] bg-[var(--ui-bg-accented)] p-2 rounded-lg">
+				<div v-for="(number, ni) in card" :key="`${ci}-${ni}`" class="grid place-content-center border p-2 bg-[var(--ui-bg)]"
+					:class="{ 
+						'bg-[var(--ui-primary)] text-[var(--ui-bg)]': signedNumbers[ci]?.includes(number),
+						'cursor-pointer transition-colors': number != 0
+					}" @click="checkNumber(number, false)">
+					<p class="text-xl font-medium">
+						{{ number !== 0 ? number : '' }}
+					</p>
 				</div>
-			</template>
+			</div>
 		</div>
 	</section>
 </template>

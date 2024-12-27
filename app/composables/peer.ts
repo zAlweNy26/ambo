@@ -3,6 +3,9 @@ interface Message {
 }
 
 export function usePeer(id: MaybeRefOrGetter<string>, type: 'host' | 'client') {
+  const router = useRouter()
+  const route = useRoute()
+
   const protocol = computed(() => location.protocol.includes('s') ? 's' : '')
 
   const wsUrl = computed(() => `ws${protocol.value}://${location.host}/_ws?id=${toValue(id)}&type=${type}`)
@@ -10,6 +13,9 @@ export function usePeer(id: MaybeRefOrGetter<string>, type: 'host' | 'client') {
   const extractions = ref<number[]>([])
 
   const { status, data: wsData, send, open } = useWebSocket(wsUrl, {
+    onConnected() {
+      router.replace({ query: { id: toValue(id), ...route.query } })
+    },
     onError(_ws, event) {
       console.error('WebSocket error:', event)
     },

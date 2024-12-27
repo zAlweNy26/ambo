@@ -104,7 +104,7 @@ const extractNumber = () => {
 </script>
 
 <template>
-	<section class="flex max-w-6xl gap-8 text-center items-stretch grow flex-col">
+	<section class="flex max-w-6xl mx-auto gap-8 text-center items-stretch grow flex-col">
 		<GameHeader :remaining />
 		<div class="flex flex-col items-center w-full gap-8 justify-evenly grow md:flex-row">
 			<div class="flex flex-col items-center justify-center gap-8">
