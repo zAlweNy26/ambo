@@ -9,16 +9,17 @@ export default defineNuxtConfig({
   },
 
   modules: [
+    "nuxt-lodash",
+    '@nuxthub/core',
+    '@formkit/auto-animate/nuxt',
+    "@vueuse/nuxt",
+    '@vite-pwa/nuxt',
+    "@pinia/nuxt",
     "@nuxt/ui",
     "@nuxt/eslint",
-    "@vueuse/nuxt",
-    "nuxt-lodash",
-    "@pinia/nuxt",
+    "@nuxt/image",
     "@nuxtjs/i18n",
     "@nuxtjs/seo",
-    "@nuxt/image",
-    '@vite-pwa/nuxt',
-    '@nuxthub/core'
   ],
 
   css: ['~/assets/main.css'],

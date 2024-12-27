@@ -72,7 +72,7 @@ const checkNumber = (num: number, check = true) => {
 </script>
 
 <template>
-	<section class="flex max-w-6xl mx-auto gap-8 text-center items-stretch grow flex-col">
+	<section v-auto-animate class="flex max-w-6xl mx-auto gap-8 text-center items-stretch grow flex-col">
 		<GameHeader :remaining>
 			<template #title>
 				<i18n-t keypath="cards.quantity" tag="span" :plural="amount">
@@ -82,7 +82,7 @@ const checkNumber = (num: number, check = true) => {
 		</GameHeader>
 		<div v-if="lastExtractions.length > 0" class="space-y-2">
 			<p>{{ $t('board.extractions', [lastExtractions.length]) }}</p>
-			<div class="flex flex-wrap gap-4 items-center justify-center">
+			<div v-auto-animate class="flex flex-wrap gap-4 items-center justify-center">
 				<div v-for="num in lastExtractions" :key="num"
 					class="grid place-content-center size-8 transition-colors border-2 bg-[var(--ui-primary)] border-none text-[var(--ui-bg)] rounded-full sm:size-10 md:size-12">
 					<p class="text-sm font-bold sm:text-lg">

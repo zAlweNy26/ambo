@@ -107,7 +107,7 @@ const extractNumber = () => {
 	<section class="flex max-w-6xl mx-auto gap-8 text-center items-stretch grow flex-col">
 		<GameHeader :remaining />
 		<div class="flex flex-col items-center w-full gap-8 justify-evenly grow md:flex-row">
-			<div class="flex flex-col items-center justify-center gap-8">
+			<div v-auto-animate class="flex flex-col items-center justify-center gap-8">
 				<NuFormField :label="$t('board.prize')" size="xl" :ui="{ label: 'space-x-1' }">
 					<NuInputNumber v-model="totalPrize" :min="0.1" :step="0.1" />
 					<template #label="{ label }">

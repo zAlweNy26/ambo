@@ -17,6 +17,7 @@
     "lint:fix": "eslint --cache --fix ."
   },
   "dependencies": {
+    "@formkit/auto-animate": "^0.8.2",
     "@iconify-json/lucide": "^1.2.16",
     "@nuxt/image": "1.8.1",
     "@nuxt/ui": "3.0.0-alpha.9",
