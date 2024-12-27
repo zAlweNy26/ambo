@@ -1,452 +1,452 @@
 [
-    {
-        "number": 1,
-        "original": "L’Italia",
-        "translated": "l'Italia"
-    },
-    {
-        "number": 2,
-        "original": "'A piccerella",
-        "translated": "La bambina"
-    },
-    {
-        "number": 3,
-        "original": "'A gatta",
-        "translated": "La gatta"
-    },
-    {
-        "number": 4,
-        "original": "'O puorco",
-        "translated": "Il maiale"
-    },
-    {
-        "number": 5,
-        "original": "'A mano",
-        "translated": "La mano"
-    },
-    {
-        "number": 6,
-        "original": "Chella ca guarda 'nterra",
-        "translated": "L'organo riproduttivo femminile"
-    },
-    {
-        "number": 7,
-        "original": "'O vaso",
-        "translated": "Il vaso"
-    },
-    {
-        "number": 8,
-        "original": "'A Maronna",
-        "translated": "La Madonna"
-    },
-    {
-        "number": 9,
-        "original": "'A figliata",
-        "translated": "Il gruppo di figli"
-    },
-    {
-        "number": 10,
-        "original": "'E fasule",
-        "translated": "I fagioli"
-    },
-    {
-        "number": 11,
-        "original": "'E suricille",
-        "translated": "I topolini"
-    },
-    {
-        "number": 12,
-        "original": "'E surdate",
-        "translated": "I soldati"
-    },
-    {
-        "number": 13,
-        "original": "Sant'Antonio",
-        "translated": "Sant'Antonio"
-    },
-    {
-        "number": 14,
-        "original": "'O mbriaco",
-        "translated": "L'ubriaco"
-    },
-    {
-        "number": 15,
-        "original": "'O guaglione",
-        "translated": "Il ragazzo"
-    },
-    {
-        "number": 16,
-        "original": "'O culo",
-        "translated": "Il deretano"
-    },
-    {
-        "number": 17,
-        "original": "'A disgrazia",
-        "translated": "La disgrazia"
-    },
-    {
-        "number": 18,
-        "original": "'O sanghe",
-        "translated": "Il sangue"
-    },
-    {
-        "number": 19,
-        "original": "'A resata",
-        "translated": "La risata"
-    },
-    {
-        "number": 20,
-        "original": "'A festa",
-        "translated": "La festa"
-    },
-    {
-        "number": 21,
-        "original": "'A femmena annure",
-        "translated": "La donna nuda"
-    },
-    {
-        "number": 22,
-        "original": "'O pazzo",
-        "translated": "Il folle"
-    },
-    {
-        "number": 23,
-        "original": "'O scemo",
-        "translated": "Lo stupido"
-    },
-    {
-        "number": 24,
-        "original": "'E gguardie",
-        "translated": "Le guardie"
-    },
-    {
-        "number": 25,
-        "original": "Natale",
-        "translated": "Natale"
-    },
-    {
-        "number": 26,
-        "original": "Nanninella",
-        "translated": "Anna"
-    },
-    {
-        "number": 27,
-        "original": "'O Cantero",
-        "translated": "Il vaso da notte"
-    },
-    {
-        "number": 28,
-        "original": "'E zizze",
-        "translated": "Il seno femminile"
-    },
-    {
-        "number": 29,
-        "original": "'O pate d'e criature",
-        "translated": "L'organo riproduttivo maschile"
-    },
-    {
-        "number": 30,
-        "original": "'E palle d'o tenente",
-        "translated": "Le munizioni"
-    },
-    {
-        "number": 31,
-        "original": "'O padrone e casa",
-        "translated": "Il proprietario di casa"
-    },
-    {
-        "number": 32,
-        "original": "'O capitone",
-        "translated": "L'anguilla femmina"
-    },
-    {
-        "number": 33,
-        "original": "L'anne 'e Cristo",
-        "translated": "Gli anni di Gesù Cristo"
-    },
-    {
-        "number": 34,
-        "original": "'A capa",
-        "translated": "La testa"
-    },
-    {
-        "number": 35,
-        "original": "L'aucelluzzo",
-        "translated": "L'uccellino"
-    },
-    {
-        "number": 36,
-        "original": "'E castagnelle",
-        "translated": "Le nacchere spagnole"
-    },
-    {
-        "number": 37,
-        "original": "'O monaco",
-        "translated": "Il monaco, il frate"
-    },
-    {
-        "number": 38,
-        "original": "'E mmazzate",
-        "translated": "Le percosse, le botte"
-    },
-    {
-        "number": 39,
-        "original": "'A funa nganna",
-        "translated": "La corda al collo, l'impiccagione"
-    },
-    {
-        "number": 40,
-        "original": "'A paposcia",
-        "translated": "L'ernia inguinale"
-    },
-    {
-        "number": 41,
-        "original": "'O curtiello",
-        "translated": "Il coltello"
-    },
-    {
-        "number": 42,
-        "original": "'O cafè",
-        "translated": "Il caffe"
-    },
-    {
-        "number": 43,
-        "original": "'Onna pereta for 'o barcone",
-        "translated": "La donna pettegola"
-    },
-    {
-        "number": 44,
-        "original": "'E ccancelle",
-        "translated": "Le carceri"
-    },
-    {
-        "number": 45,
-        "original": "'O vino buono",
-        "translated": "Il vino gustoso"
-    },
-    {
-        "number": 46,
-        "original": "'E denare",
-        "translated": "I soldi"
-    },
-    {
-        "number": 47,
-        "original": "'O muorto",
-        "translated": "La persona defunta"
-    },
-    {
-        "number": 48,
-        "original": "'O muorto che parla",
-        "translated": "Il defunto che parla"
-    },
-    {
-        "number": 49,
-        "original": "'O piezz e carne",
-        "translated": "La donna prosperosa"
-    },
-    {
-        "number": 50,
-        "original": "'O ppane",
-        "translated": "Il pane"
-    },
-    {
-        "number": 51,
-        "original": "'O ciardino",
-        "translated": "Il giardino"
-    },
-    {
-        "number": 52,
-        "original": "'A mamma",
-        "translated": "La madre"
-    },
-    {
-        "number": 53,
-        "original": "'O viecchio",
-        "translated": "L'anziano"
-    },
-    {
-        "number": 54,
-        "original": "'O cappiello",
-        "translated": "Il cappello"
-    },
-    {
-        "number": 55,
-        "original": "'A museca",
-        "translated": "La musica"
-    },
-    {
-        "number": 56,
-        "original": "'A caruta",
-        "translated": "La caduta"
-    },
-    {
-        "number": 57,
-        "original": "'O scartellato",
-        "translated": "Il gobbo"
-    },
-    {
-        "number": 58,
-        "original": "'O paccotto",
-        "translated": "Il pacchetto"
-    },
-    {
-        "number": 59,
-        "original": "'E pile",
-        "translated": "I peli"
-    },
-    {
-        "number": 60,
-        "original": "'O lamiento",
-        "translated": "Il lamentarsi"
-    },
-    {
-        "number": 61,
-        "original": "'O cacciatore",
-        "translated": "Il cacciatore"
-    },
-    {
-        "number": 62,
-        "original": "'O muorto acciso",
-        "translated": "Il morto assassinato"
-    },
-    {
-        "number": 63,
-        "original": "'A sposa",
-        "translated": "La sposa"
-    },
-    {
-        "number": 64,
-        "original": "'A sciammeria",
-        "translated": "La giacca per cerimonie"
-    },
-    {
-        "number": 65,
-        "original": "'O chianto",
-        "translated": "Il pianto"
-    },
-    {
-        "number": 66,
-        "original": "'E ddoje zetelle",
-        "translated": "Le due donne nubili"
-    },
-    {
-        "number": 67,
-        "original": "'O totaro int'a chitarra",
-        "translated": "Il totano nella chitarra"
-    },
-    {
-        "number": 68,
-        "original": "'A zuppa cotta",
-        "translated": "La zuppa cotta"
-    },
-    {
-        "number": 69,
-        "original": "Sott'e 'ncoppa",
-        "translated": "Il sottosopra"
-    },
-    {
-        "number": 70,
-        "original": "'O palazzo",
-        "translated": "Il palazzo"
-    },
-    {
-        "number": 71,
-        "original": "L'omme 'e merda",
-        "translated": "L'uomo meschino"
-    },
-    {
-        "number": 72,
-        "original": "'A maraviglia",
-        "translated": "La meraviglia"
-    },
-    {
-        "number": 73,
-        "original": "'O spitale",
-        "translated": "L'ospedale"
-    },
-    {
-        "number": 74,
-        "original": "'A rotta",
-        "translated": "La grotta"
-    },
-    {
-        "number": 75,
-        "original": "Pulcinella",
-        "translated": "Pulcinella"
-    },
-    {
-        "number": 76,
-        "original": "'A funtana",
-        "translated": "La fontana"
-    },
-    {
-        "number": 77,
-        "original": "'E riavulille",
-        "translated": "I diavoletti, il diavolo"
-    },
-    {
-        "number": 78,
-        "original": "'A bella figliola",
-        "translated": "La prostituta"
-    },
-    {
-        "number": 79,
-        "original": "'O mariuolo",
-        "translated": "Il ladro"
-    },
-    {
-        "number": 80,
-        "original": "'A vocca",
-        "translated": "La bocca"
-    },
-    {
-        "number": 81,
-        "original": "'E sciure",
-        "translated": "I fiori"
-    },
-    {
-        "number": 82,
-        "original": "'A tavula 'mbandita",
-        "translated": "Il banchetto"
-    },
-    {
-        "number": 83,
-        "original": "'O maletiempo",
-        "translated": "Il mal tempo"
-    },
-    {
-        "number": 84,
-        "original": "'A cchiesa",
-        "translated": "La Chiesa"
-    },
-    {
-        "number": 85,
-        "original": "Ll'aneme 'o priatorio",
-        "translated": "Il purgatorio"
-    },
-    {
-        "number": 86,
-        "original": "'A puteca",
-        "translated": "Il negozio"
-    },
-    {
-        "number": 87,
-        "original": "'E perucchie",
-        "translated": "I pidocchi"
-    },
-    {
-        "number": 88,
-        "original": "'E casecavalle",
-        "translated": "I caciocavalli"
-    },
-    {
-        "number": 89,
-        "original": "'A vecchia",
-        "translated": "La donna anziana"
-    },
-    {
-        "number": 90,
-        "original": "'A paura",
-        "translated": "La paura"
-    }
+  {
+    "number": 1,
+    "original": "L’Italia",
+    "translated": "l'Italia"
+  },
+  {
+    "number": 2,
+    "original": "'A piccerella",
+    "translated": "La bambina"
+  },
+  {
+    "number": 3,
+    "original": "'A gatta",
+    "translated": "La gatta"
+  },
+  {
+    "number": 4,
+    "original": "'O puorco",
+    "translated": "Il maiale"
+  },
+  {
+    "number": 5,
+    "original": "'A mano",
+    "translated": "La mano"
+  },
+  {
+    "number": 6,
+    "original": "Chella ca guarda 'nterra",
+    "translated": "L'organo riproduttivo femminile"
+  },
+  {
+    "number": 7,
+    "original": "'O vaso",
+    "translated": "Il vaso"
+  },
+  {
+    "number": 8,
+    "original": "'A Maronna",
+    "translated": "La Madonna"
+  },
+  {
+    "number": 9,
+    "original": "'A figliata",
+    "translated": "Il gruppo di figli"
+  },
+  {
+    "number": 10,
+    "original": "'E fasule",
+    "translated": "I fagioli"
+  },
+  {
+    "number": 11,
+    "original": "'E suricille",
+    "translated": "I topolini"
+  },
+  {
+    "number": 12,
+    "original": "'E surdate",
+    "translated": "I soldati"
+  },
+  {
+    "number": 13,
+    "original": "Sant'Antonio",
+    "translated": "Sant'Antonio"
+  },
+  {
+    "number": 14,
+    "original": "'O mbriaco",
+    "translated": "L'ubriaco"
+  },
+  {
+    "number": 15,
+    "original": "'O guaglione",
+    "translated": "Il ragazzo"
+  },
+  {
+    "number": 16,
+    "original": "'O culo",
+    "translated": "Il deretano"
+  },
+  {
+    "number": 17,
+    "original": "'A disgrazia",
+    "translated": "La disgrazia"
+  },
+  {
+    "number": 18,
+    "original": "'O sanghe",
+    "translated": "Il sangue"
+  },
+  {
+    "number": 19,
+    "original": "'A resata",
+    "translated": "La risata"
+  },
+  {
+    "number": 20,
+    "original": "'A festa",
+    "translated": "La festa"
+  },
+  {
+    "number": 21,
+    "original": "'A femmena annure",
+    "translated": "La donna nuda"
+  },
+  {
+    "number": 22,
+    "original": "'O pazzo",
+    "translated": "Il folle"
+  },
+  {
+    "number": 23,
+    "original": "'O scemo",
+    "translated": "Lo stupido"
+  },
+  {
+    "number": 24,
+    "original": "'E gguardie",
+    "translated": "Le guardie"
+  },
+  {
+    "number": 25,
+    "original": "Natale",
+    "translated": "Natale"
+  },
+  {
+    "number": 26,
+    "original": "Nanninella",
+    "translated": "Anna"
+  },
+  {
+    "number": 27,
+    "original": "'O Cantero",
+    "translated": "Il vaso da notte"
+  },
+  {
+    "number": 28,
+    "original": "'E zizze",
+    "translated": "Il seno femminile"
+  },
+  {
+    "number": 29,
+    "original": "'O pate d'e criature",
+    "translated": "L'organo riproduttivo maschile"
+  },
+  {
+    "number": 30,
+    "original": "'E palle d'o tenente",
+    "translated": "Le munizioni"
+  },
+  {
+    "number": 31,
+    "original": "'O padrone e casa",
+    "translated": "Il proprietario di casa"
+  },
+  {
+    "number": 32,
+    "original": "'O capitone",
+    "translated": "L'anguilla femmina"
+  },
+  {
+    "number": 33,
+    "original": "L'anne 'e Cristo",
+    "translated": "Gli anni di Gesù Cristo"
+  },
+  {
+    "number": 34,
+    "original": "'A capa",
+    "translated": "La testa"
+  },
+  {
+    "number": 35,
+    "original": "L'aucelluzzo",
+    "translated": "L'uccellino"
+  },
+  {
+    "number": 36,
+    "original": "'E castagnelle",
+    "translated": "Le nacchere spagnole"
+  },
+  {
+    "number": 37,
+    "original": "'O monaco",
+    "translated": "Il monaco, il frate"
+  },
+  {
+    "number": 38,
+    "original": "'E mmazzate",
+    "translated": "Le percosse, le botte"
+  },
+  {
+    "number": 39,
+    "original": "'A funa nganna",
+    "translated": "La corda al collo, l'impiccagione"
+  },
+  {
+    "number": 40,
+    "original": "'A paposcia",
+    "translated": "L'ernia inguinale"
+  },
+  {
+    "number": 41,
+    "original": "'O curtiello",
+    "translated": "Il coltello"
+  },
+  {
+    "number": 42,
+    "original": "'O cafè",
+    "translated": "Il caffe"
+  },
+  {
+    "number": 43,
+    "original": "'Onna pereta for 'o barcone",
+    "translated": "La donna pettegola"
+  },
+  {
+    "number": 44,
+    "original": "'E ccancelle",
+    "translated": "Le carceri"
+  },
+  {
+    "number": 45,
+    "original": "'O vino buono",
+    "translated": "Il vino gustoso"
+  },
+  {
+    "number": 46,
+    "original": "'E denare",
+    "translated": "I soldi"
+  },
+  {
+    "number": 47,
+    "original": "'O muorto",
+    "translated": "La persona defunta"
+  },
+  {
+    "number": 48,
+    "original": "'O muorto che parla",
+    "translated": "Il defunto che parla"
+  },
+  {
+    "number": 49,
+    "original": "'O piezz e carne",
+    "translated": "La donna prosperosa"
+  },
+  {
+    "number": 50,
+    "original": "'O ppane",
+    "translated": "Il pane"
+  },
+  {
+    "number": 51,
+    "original": "'O ciardino",
+    "translated": "Il giardino"
+  },
+  {
+    "number": 52,
+    "original": "'A mamma",
+    "translated": "La madre"
+  },
+  {
+    "number": 53,
+    "original": "'O viecchio",
+    "translated": "L'anziano"
+  },
+  {
+    "number": 54,
+    "original": "'O cappiello",
+    "translated": "Il cappello"
+  },
+  {
+    "number": 55,
+    "original": "'A museca",
+    "translated": "La musica"
+  },
+  {
+    "number": 56,
+    "original": "'A caruta",
+    "translated": "La caduta"
+  },
+  {
+    "number": 57,
+    "original": "'O scartellato",
+    "translated": "Il gobbo"
+  },
+  {
+    "number": 58,
+    "original": "'O paccotto",
+    "translated": "Il pacchetto"
+  },
+  {
+    "number": 59,
+    "original": "'E pile",
+    "translated": "I peli"
+  },
+  {
+    "number": 60,
+    "original": "'O lamiento",
+    "translated": "Il lamentarsi"
+  },
+  {
+    "number": 61,
+    "original": "'O cacciatore",
+    "translated": "Il cacciatore"
+  },
+  {
+    "number": 62,
+    "original": "'O muorto acciso",
+    "translated": "Il morto assassinato"
+  },
+  {
+    "number": 63,
+    "original": "'A sposa",
+    "translated": "La sposa"
+  },
+  {
+    "number": 64,
+    "original": "'A sciammeria",
+    "translated": "La giacca per cerimonie"
+  },
+  {
+    "number": 65,
+    "original": "'O chianto",
+    "translated": "Il pianto"
+  },
+  {
+    "number": 66,
+    "original": "'E ddoje zetelle",
+    "translated": "Le due donne nubili"
+  },
+  {
+    "number": 67,
+    "original": "'O totaro int'a chitarra",
+    "translated": "Il totano nella chitarra"
+  },
+  {
+    "number": 68,
+    "original": "'A zuppa cotta",
+    "translated": "La zuppa cotta"
+  },
+  {
+    "number": 69,
+    "original": "Sott'e 'ncoppa",
+    "translated": "Il sottosopra"
+  },
+  {
+    "number": 70,
+    "original": "'O palazzo",
+    "translated": "Il palazzo"
+  },
+  {
+    "number": 71,
+    "original": "L'omme 'e merda",
+    "translated": "L'uomo meschino"
+  },
+  {
+    "number": 72,
+    "original": "'A maraviglia",
+    "translated": "La meraviglia"
+  },
+  {
+    "number": 73,
+    "original": "'O spitale",
+    "translated": "L'ospedale"
+  },
+  {
+    "number": 74,
+    "original": "'A rotta",
+    "translated": "La grotta"
+  },
+  {
+    "number": 75,
+    "original": "Pulcinella",
+    "translated": "Pulcinella"
+  },
+  {
+    "number": 76,
+    "original": "'A funtana",
+    "translated": "La fontana"
+  },
+  {
+    "number": 77,
+    "original": "'E riavulille",
+    "translated": "I diavoletti, il diavolo"
+  },
+  {
+    "number": 78,
+    "original": "'A bella figliola",
+    "translated": "La prostituta"
+  },
+  {
+    "number": 79,
+    "original": "'O mariuolo",
+    "translated": "Il ladro"
+  },
+  {
+    "number": 80,
+    "original": "'A vocca",
+    "translated": "La bocca"
+  },
+  {
+    "number": 81,
+    "original": "'E sciure",
+    "translated": "I fiori"
+  },
+  {
+    "number": 82,
+    "original": "'A tavula 'mbandita",
+    "translated": "Il banchetto"
+  },
+  {
+    "number": 83,
+    "original": "'O maletiempo",
+    "translated": "Il mal tempo"
+  },
+  {
+    "number": 84,
+    "original": "'A cchiesa",
+    "translated": "La Chiesa"
+  },
+  {
+    "number": 85,
+    "original": "Ll'aneme 'o priatorio",
+    "translated": "Il purgatorio"
+  },
+  {
+    "number": 86,
+    "original": "'A puteca",
+    "translated": "Il negozio"
+  },
+  {
+    "number": 87,
+    "original": "'E perucchie",
+    "translated": "I pidocchi"
+  },
+  {
+    "number": 88,
+    "original": "'E casecavalle",
+    "translated": "I caciocavalli"
+  },
+  {
+    "number": 89,
+    "original": "'A vecchia",
+    "translated": "La donna anziana"
+  },
+  {
+    "number": 90,
+    "original": "'A paura",
+    "translated": "La paura"
+  }
 ]

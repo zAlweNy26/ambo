@@ -1,452 +1,452 @@
 [
-    {
-        "number": 1,
-        "original": "Niccolino 'r bimbo",
-        "translated": "Il bambino di nome Niccolino"
-    },
-    {
-        "number": 2,
-        "original": "La bimba",
-        "translated": "La bambina"
-    },
-    {
-        "number": 3,
-        "original": "'r grillo",
-        "translated": "Il grillo"
-    },
-    {
-        "number": 4,
-        "original": "'r casino",
-        "translated": "La bara"
-    },
-    {
-        "number": 5,
-        "original": "La mano",
-        "translated": "La mano"
-    },
-    {
-        "number": 6,
-        "original": "L'omo",
-        "translated": "L'uomo"
-    },
-    {
-        "number": 7,
-        "original": "'r cane",
-        "translated": "Il cane"
-    },
-    {
-        "number": 8,
-        "original": "L'occhiali",
-        "translated": "Gli occhiali"
-    },
-    {
-        "number": 9,
-        "original": "La merda",
-        "translated": "Gli escrementi"
-    },
-    {
-        "number": 10,
-        "original": "L",
-        "translated": ""
-    },
-    {
-        "number": 11,
-        "original": "Le 'andele",
-        "translated": "Le candele"
-    },
-    {
-        "number": 12,
-        "original": "I sordati",
-        "translated": "I soldati"
-    },
-    {
-        "number": 13,
-        "original": "La morte",
-        "translated": "La morte"
-    },
-    {
-        "number": 14,
-        "original": "'r briao",
-        "translated": "L'ubriaco"
-    },
-    {
-        "number": 15,
-        "original": "La zia",
-        "translated": "La zia"
-    },
-    {
-        "number": 16,
-        "original": "Giannino",
-        "translated": ""
-    },
-    {
-        "number": 17,
-        "original": "Disgrazia",
-        "translated": "Disgrazia"
-    },
-    {
-        "number": 18,
-        "original": "Sangue",
-        "translated": ""
-    },
-    {
-        "number": 19,
-        "original": "La maschera",
-        "translated": "La maschera"
-    },
-    {
-        "number": 20,
-        "original": "Montinero",
-        "translated": "Montinero"
-    },
-    {
-        "number": 21,
-        "original": "Vino bono",
-        "translated": "Vino buono"
-    },
-    {
-        "number": 22,
-        "original": "Le 'arrozzine",
-        "translated": "Le carrozzine"
-    },
-    {
-        "number": 23,
-        "original": "buo di 'ulo",
-        "translated": "Orifizio anale"
-    },
-    {
-        "number": 24,
-        "original": "La vigilia",
-        "translated": "La vigilia"
-    },
-    {
-        "number": 25,
-        "original": "Natale",
-        "translated": "Natale"
-    },
-    {
-        "number": 26,
-        "original": "i 'vaini",
-        "translated": ""
-    },
-    {
-        "number": 27,
-        "original": "'r bischero",
-        "translated": ""
-    },
-    {
-        "number": 28,
-        "original": "Becca",
-        "translated": ""
-    },
-    {
-        "number": 29,
-        "original": "L",
-        "translated": ""
-    },
-    {
-        "number": 30,
-        "original": "'r ",
-        "translated": ""
-    },
-    {
-        "number": 31,
-        "original": "'r ballo",
-        "translated": "Il ballo"
-    },
-    {
-        "number": 32,
-        "original": "'r vescuvo",
-        "translated": "Il vescovo"
-    },
-    {
-        "number": 33,
-        "original": "L'anni di Gesù",
-        "translated": "Gli anni di Gesù Cristo"
-    },
-    {
-        "number": 34,
-        "original": "'r gobbo",
-        "translated": "Il gobbo"
-    },
-    {
-        "number": 35,
-        "original": "La bottega",
-        "translated": "La bottega"
-    },
-    {
-        "number": 36,
-        "original": "'r chiorbone",
-        "translated": ""
-    },
-    {
-        "number": 37,
-        "original": "'r frate",
-        "translated": "Il frate"
-    },
-    {
-        "number": 38,
-        "original": "Le bandiere",
-        "translated": "Le bandiere"
-    },
-    {
-        "number": 39,
-        "original": "'r bersagliere",
-        "translated": "Il bersagliere"
-    },
-    {
-        "number": 40,
-        "original": "I fiori",
-        "translated": "I fiori"
-    },
-    {
-        "number": 41,
-        "original": "La sega",
-        "translated": "La sega"
-    },
-    {
-        "number": 42,
-        "original": "I pidocchi",
-        "translated": "I pidocchi"
-    },
-    {
-        "number": 43,
-        "original": "La befana",
-        "translated": "La befana"
-    },
-    {
-        "number": 44,
-        "original": "Tavola apparecchiata",
-        "translated": "Tavola apparecchiata"
-    },
-    {
-        "number": 45,
-        "original": "L'ebreo",
-        "translated": "L'ebreo"
-    },
-    {
-        "number": 46,
-        "original": "'r grano",
-        "translated": "Il grano"
-    },
-    {
-        "number": 47,
-        "original": "Morto 'e parla",
-        "translated": "Morto che parla"
-    },
-    {
-        "number": 48,
-        "original": "Si stava meglio",
-        "translated": "Si stava meglio"
-    },
-    {
-        "number": 49,
-        "original": "I ruffiani",
-        "translated": "I ruffiani"
-    },
-    {
-        "number": 50,
-        "original": "Livorno",
-        "translated": "Livorno"
-    },
-    {
-        "number": 51,
-        "original": "L'ombrello",
-        "translated": "L'ombrello"
-    },
-    {
-        "number": 52,
-        "original": "La mamma",
-        "translated": "La mamma"
-    },
-    {
-        "number": 53,
-        "original": "Acqua vite e menta",
-        "translated": ""
-    },
-    {
-        "number": 54,
-        "original": "'r Monte (di Pietà)",
-        "translated": ""
-    },
-    {
-        "number": 55,
-        "original": "I riccioli",
-        "translated": "I riccioli"
-    },
-    {
-        "number": 56,
-        "original": "La 'ascata",
-        "translated": "La caduta"
-    },
-    {
-        "number": 57,
-        "original": "Le galline",
-        "translated": "Le galline"
-    },
-    {
-        "number": 58,
-        "original": "'r ganzo",
-        "translated": "Il furbo"
-    },
-    {
-        "number": 59,
-        "original": "La 'asa",
-        "translated": "La casa"
-    },
-    {
-        "number": 60,
-        "original": "La Madonna",
-        "translated": "La Madonna"
-    },
-    {
-        "number": 61,
-        "original": "C'è chi l'ha ritto 'ome un fuso",
-        "translated": ""
-    },
-    {
-        "number": 62,
-        "original": "Le 'accole",
-        "translated": ""
-    },
-    {
-        "number": 63,
-        "original": "'li sposi",
-        "translated": "Gli sposi"
-    },
-    {
-        "number": 64,
-        "original": "Le guardie",
-        "translated": "Le guardie"
-    },
-    {
-        "number": 65,
-        "original": "Santa Lucia",
-        "translated": "Santa Lucia"
-    },
-    {
-        "number": 66,
-        "original": "'li scemi",
-        "translated": "Gli scemi"
-    },
-    {
-        "number": 67,
-        "original": "La spalletta",
-        "translated": ""
-    },
-    {
-        "number": 68,
-        "original": "I ladri",
-        "translated": "I ladri"
-    },
-    {
-        "number": 69,
-        "original": "Sù e giù",
-        "translated": "Sù e giù"
-    },
-    {
-        "number": 70,
-        "original": "'r ",
-        "translated": ""
-    },
-    {
-        "number": 71,
-        "original": "I piedi diacci",
-        "translated": "I piedi freddi"
-    },
-    {
-        "number": 72,
-        "original": "La piazza",
-        "translated": "La piazza"
-    },
-    {
-        "number": 73,
-        "original": "L'ospitale",
-        "translated": "L'ospedale"
-    },
-    {
-        "number": 74,
-        "original": "'r cardano",
-        "translated": ""
-    },
-    {
-        "number": 75,
-        "original": "I baci",
-        "translated": "I baci"
-    },
-    {
-        "number": 76,
-        "original": "Italo",
-        "translated": "Italo"
-    },
-    {
-        "number": 77,
-        "original": "Le gambacce",
-        "translated": "Le gambe"
-    },
-    {
-        "number": 78,
-        "original": "La fava",
-        "translated": "L'organo riproduttivo maschile"
-    },
-    {
-        "number": 79,
-        "original": "Le puttane",
-        "translated": "Le prostitute"
-    },
-    {
-        "number": 80,
-        "original": "La topa",
-        "translated": "L'organo riproduttivo femminile"
-    },
-    {
-        "number": 81,
-        "original": "I peli",
-        "translated": "I peli"
-    },
-    {
-        "number": 82,
-        "original": "'r brodo",
-        "translated": "Il brodo"
-    },
-    {
-        "number": 83,
-        "original": "Le scorregge",
-        "translated": "Le flatulenze"
-    },
-    {
-        "number": 84,
-        "original": "La 'hiesa",
-        "translated": "La chiesa"
-    },
-    {
-        "number": 85,
-        "original": "'r marchese",
-        "translated": "Il marchese"
-    },
-    {
-        "number": 86,
-        "original": "Ha caato Ida",
-        "translated": "Ida ha defecato"
-    },
-    {
-        "number": 87,
-        "original": "'r marito",
-        "translated": "Il marito"
-    },
-    {
-        "number": 88,
-        "original": "Le pallacce",
-        "translated": "I grossi testicoli"
-    },
-    {
-        "number": 89,
-        "original": "'r ",
-        "translated": ""
-    },
-    {
-        "number": 90,
-        "original": "La paura",
-        "translated": "La paura"
-    }
+  {
+    "number": 1,
+    "original": "Niccolino 'r bimbo",
+    "translated": "Il bambino di nome Niccolino"
+  },
+  {
+    "number": 2,
+    "original": "La bimba",
+    "translated": "La bambina"
+  },
+  {
+    "number": 3,
+    "original": "'r grillo",
+    "translated": "Il grillo"
+  },
+  {
+    "number": 4,
+    "original": "'r casino",
+    "translated": "La bara"
+  },
+  {
+    "number": 5,
+    "original": "La mano",
+    "translated": "La mano"
+  },
+  {
+    "number": 6,
+    "original": "L'omo",
+    "translated": "L'uomo"
+  },
+  {
+    "number": 7,
+    "original": "'r cane",
+    "translated": "Il cane"
+  },
+  {
+    "number": 8,
+    "original": "L'occhiali",
+    "translated": "Gli occhiali"
+  },
+  {
+    "number": 9,
+    "original": "La merda",
+    "translated": "Gli escrementi"
+  },
+  {
+    "number": 10,
+    "original": "L",
+    "translated": ""
+  },
+  {
+    "number": 11,
+    "original": "Le 'andele",
+    "translated": "Le candele"
+  },
+  {
+    "number": 12,
+    "original": "I sordati",
+    "translated": "I soldati"
+  },
+  {
+    "number": 13,
+    "original": "La morte",
+    "translated": "La morte"
+  },
+  {
+    "number": 14,
+    "original": "'r briao",
+    "translated": "L'ubriaco"
+  },
+  {
+    "number": 15,
+    "original": "La zia",
+    "translated": "La zia"
+  },
+  {
+    "number": 16,
+    "original": "Giannino",
+    "translated": ""
+  },
+  {
+    "number": 17,
+    "original": "Disgrazia",
+    "translated": "Disgrazia"
+  },
+  {
+    "number": 18,
+    "original": "Sangue",
+    "translated": ""
+  },
+  {
+    "number": 19,
+    "original": "La maschera",
+    "translated": "La maschera"
+  },
+  {
+    "number": 20,
+    "original": "Montinero",
+    "translated": "Montinero"
+  },
+  {
+    "number": 21,
+    "original": "Vino bono",
+    "translated": "Vino buono"
+  },
+  {
+    "number": 22,
+    "original": "Le 'arrozzine",
+    "translated": "Le carrozzine"
+  },
+  {
+    "number": 23,
+    "original": "buo di 'ulo",
+    "translated": "Orifizio anale"
+  },
+  {
+    "number": 24,
+    "original": "La vigilia",
+    "translated": "La vigilia"
+  },
+  {
+    "number": 25,
+    "original": "Natale",
+    "translated": "Natale"
+  },
+  {
+    "number": 26,
+    "original": "i 'vaini",
+    "translated": ""
+  },
+  {
+    "number": 27,
+    "original": "'r bischero",
+    "translated": ""
+  },
+  {
+    "number": 28,
+    "original": "Becca",
+    "translated": ""
+  },
+  {
+    "number": 29,
+    "original": "L",
+    "translated": ""
+  },
+  {
+    "number": 30,
+    "original": "'r ",
+    "translated": ""
+  },
+  {
+    "number": 31,
+    "original": "'r ballo",
+    "translated": "Il ballo"
+  },
+  {
+    "number": 32,
+    "original": "'r vescuvo",
+    "translated": "Il vescovo"
+  },
+  {
+    "number": 33,
+    "original": "L'anni di Gesù",
+    "translated": "Gli anni di Gesù Cristo"
+  },
+  {
+    "number": 34,
+    "original": "'r gobbo",
+    "translated": "Il gobbo"
+  },
+  {
+    "number": 35,
+    "original": "La bottega",
+    "translated": "La bottega"
+  },
+  {
+    "number": 36,
+    "original": "'r chiorbone",
+    "translated": ""
+  },
+  {
+    "number": 37,
+    "original": "'r frate",
+    "translated": "Il frate"
+  },
+  {
+    "number": 38,
+    "original": "Le bandiere",
+    "translated": "Le bandiere"
+  },
+  {
+    "number": 39,
+    "original": "'r bersagliere",
+    "translated": "Il bersagliere"
+  },
+  {
+    "number": 40,
+    "original": "I fiori",
+    "translated": "I fiori"
+  },
+  {
+    "number": 41,
+    "original": "La sega",
+    "translated": "La sega"
+  },
+  {
+    "number": 42,
+    "original": "I pidocchi",
+    "translated": "I pidocchi"
+  },
+  {
+    "number": 43,
+    "original": "La befana",
+    "translated": "La befana"
+  },
+  {
+    "number": 44,
+    "original": "Tavola apparecchiata",
+    "translated": "Tavola apparecchiata"
+  },
+  {
+    "number": 45,
+    "original": "L'ebreo",
+    "translated": "L'ebreo"
+  },
+  {
+    "number": 46,
+    "original": "'r grano",
+    "translated": "Il grano"
+  },
+  {
+    "number": 47,
+    "original": "Morto 'e parla",
+    "translated": "Morto che parla"
+  },
+  {
+    "number": 48,
+    "original": "Si stava meglio",
+    "translated": "Si stava meglio"
+  },
+  {
+    "number": 49,
+    "original": "I ruffiani",
+    "translated": "I ruffiani"
+  },
+  {
+    "number": 50,
+    "original": "Livorno",
+    "translated": "Livorno"
+  },
+  {
+    "number": 51,
+    "original": "L'ombrello",
+    "translated": "L'ombrello"
+  },
+  {
+    "number": 52,
+    "original": "La mamma",
+    "translated": "La mamma"
+  },
+  {
+    "number": 53,
+    "original": "Acqua vite e menta",
+    "translated": ""
+  },
+  {
+    "number": 54,
+    "original": "'r Monte (di Pietà)",
+    "translated": ""
+  },
+  {
+    "number": 55,
+    "original": "I riccioli",
+    "translated": "I riccioli"
+  },
+  {
+    "number": 56,
+    "original": "La 'ascata",
+    "translated": "La caduta"
+  },
+  {
+    "number": 57,
+    "original": "Le galline",
+    "translated": "Le galline"
+  },
+  {
+    "number": 58,
+    "original": "'r ganzo",
+    "translated": "Il furbo"
+  },
+  {
+    "number": 59,
+    "original": "La 'asa",
+    "translated": "La casa"
+  },
+  {
+    "number": 60,
+    "original": "La Madonna",
+    "translated": "La Madonna"
+  },
+  {
+    "number": 61,
+    "original": "C'è chi l'ha ritto 'ome un fuso",
+    "translated": ""
+  },
+  {
+    "number": 62,
+    "original": "Le 'accole",
+    "translated": ""
+  },
+  {
+    "number": 63,
+    "original": "'li sposi",
+    "translated": "Gli sposi"
+  },
+  {
+    "number": 64,
+    "original": "Le guardie",
+    "translated": "Le guardie"
+  },
+  {
+    "number": 65,
+    "original": "Santa Lucia",
+    "translated": "Santa Lucia"
+  },
+  {
+    "number": 66,
+    "original": "'li scemi",
+    "translated": "Gli scemi"
+  },
+  {
+    "number": 67,
+    "original": "La spalletta",
+    "translated": ""
+  },
+  {
+    "number": 68,
+    "original": "I ladri",
+    "translated": "I ladri"
+  },
+  {
+    "number": 69,
+    "original": "Sù e giù",
+    "translated": "Sù e giù"
+  },
+  {
+    "number": 70,
+    "original": "'r ",
+    "translated": ""
+  },
+  {
+    "number": 71,
+    "original": "I piedi diacci",
+    "translated": "I piedi freddi"
+  },
+  {
+    "number": 72,
+    "original": "La piazza",
+    "translated": "La piazza"
+  },
+  {
+    "number": 73,
+    "original": "L'ospitale",
+    "translated": "L'ospedale"
+  },
+  {
+    "number": 74,
+    "original": "'r cardano",
+    "translated": ""
+  },
+  {
+    "number": 75,
+    "original": "I baci",
+    "translated": "I baci"
+  },
+  {
+    "number": 76,
+    "original": "Italo",
+    "translated": "Italo"
+  },
+  {
+    "number": 77,
+    "original": "Le gambacce",
+    "translated": "Le gambe"
+  },
+  {
+    "number": 78,
+    "original": "La fava",
+    "translated": "L'organo riproduttivo maschile"
+  },
+  {
+    "number": 79,
+    "original": "Le puttane",
+    "translated": "Le prostitute"
+  },
+  {
+    "number": 80,
+    "original": "La topa",
+    "translated": "L'organo riproduttivo femminile"
+  },
+  {
+    "number": 81,
+    "original": "I peli",
+    "translated": "I peli"
+  },
+  {
+    "number": 82,
+    "original": "'r brodo",
+    "translated": "Il brodo"
+  },
+  {
+    "number": 83,
+    "original": "Le scorregge",
+    "translated": "Le flatulenze"
+  },
+  {
+    "number": 84,
+    "original": "La 'hiesa",
+    "translated": "La chiesa"
+  },
+  {
+    "number": 85,
+    "original": "'r marchese",
+    "translated": "Il marchese"
+  },
+  {
+    "number": 86,
+    "original": "Ha caato Ida",
+    "translated": "Ida ha defecato"
+  },
+  {
+    "number": 87,
+    "original": "'r marito",
+    "translated": "Il marito"
+  },
+  {
+    "number": 88,
+    "original": "Le pallacce",
+    "translated": "I grossi testicoli"
+  },
+  {
+    "number": 89,
+    "original": "'r ",
+    "translated": ""
+  },
+  {
+    "number": 90,
+    "original": "La paura",
+    "translated": "La paura"
+  }
 ]

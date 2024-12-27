@@ -4,31 +4,31 @@ export default defineNuxtConfig({
 
   nitro: {
     experimental: {
-      websocket: true
-    }
+      websocket: true,
+    },
   },
 
   modules: [
-    "nuxt-lodash",
+    'nuxt-lodash',
     '@nuxthub/core',
     '@formkit/auto-animate/nuxt',
-    "@vueuse/nuxt",
+    '@vueuse/nuxt',
     '@vite-pwa/nuxt',
-    "@pinia/nuxt",
-    "@nuxt/ui",
-    "@nuxt/eslint",
-    "@nuxt/image",
-    "@nuxtjs/i18n",
-    "@nuxtjs/seo",
+    '@pinia/nuxt',
+    '@nuxt/ui',
+    '@nuxt/eslint',
+    '@nuxt/image',
+    '@nuxtjs/i18n',
+    '@nuxtjs/seo',
   ],
 
   css: ['~/assets/main.css'],
 
   future: {
-    compatibilityVersion: 4
+    compatibilityVersion: 4,
   },
 
-  compatibilityDate: "2024-11-27",
+  compatibilityDate: '2024-11-27',
 
   app: {
     pageTransition: {
@@ -54,7 +54,7 @@ export default defineNuxtConfig({
   },
 
   icon: {
-    serverBundle: 'local'
+    serverBundle: 'local',
   },
 
   seo: {
@@ -158,7 +158,7 @@ export default defineNuxtConfig({
       globPatterns: ['**/*.{js,css,html,png,svg,ico}'],
     },
     client: {
-      installPrompt: true
+      installPrompt: true,
     },
     devOptions: {
       enabled: true,
@@ -175,5 +175,5 @@ export default defineNuxtConfig({
     '/cards': { ssr: false },
     '/contacts': { prerender: true },
     '/terms': { prerender: true },
-  }
+  },
 })

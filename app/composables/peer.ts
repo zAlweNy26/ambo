@@ -24,16 +24,16 @@ export function usePeer(id: MaybeRefOrGetter<string>, type: 'host' | 'client') {
 
   watch(wsData, (data) => {
     if (data === null) return
-		let content: Message
+    let content: Message
 
-		try {
-			content = JSON.parse(data)
-		}
-		catch (error) {
-			console.error(error)
-			console.error('Failed to parse WebSocket data:', data)
-			return
-		}
+    try {
+      content = JSON.parse(data)
+    }
+    catch (error) {
+      console.error(error)
+      console.error('Failed to parse WebSocket data:', data)
+      return
+    }
 
     extractions.value = content.extractions
 
@@ -42,7 +42,7 @@ export function usePeer(id: MaybeRefOrGetter<string>, type: 'host' | 'client') {
       toast.add({
         title: t('game.end.title'),
         description: t('game.end.description'),
-        color: 'info'
+        color: 'info',
       })
     }
   })

@@ -1,452 +1,452 @@
 [
-    {
-        "number": 1,
-        "original": "Lu più rossu o pippetto",
-        "translated": "Il più rosso o il piccolo"
-    },
-    {
-        "number": 2,
-        "original": "Luddù",
-        "translated": "Ladro"
-    },
-    {
-        "number": 3,
-        "original": "Baciu oppure Cazzetta",
-        "translated": "Bacio o Cazzetta"
-    },
-    {
-        "number": 4,
-        "original": "Bara o beccamorti",
-        "translated": "Bara o becchini"
-    },
-    {
-        "number": 5,
-        "original": "La mano",
-        "translated": "La mano"
-    },
-    {
-        "number": 6,
-        "original": "La befana o stupido che sei",
-        "translated": "La Befana o stupido che sei"
-    },
-    {
-        "number": 7,
-        "original": "I dolori o er padre",
-        "translated": "I dolori o il padre"
-    },
-    {
-        "number": 8,
-        "original": "L’occhiali o chinotto",
-        "translated": "Gli occhiali o il chinotto"
-    },
-    {
-        "number": 9,
-        "original": "Le scarpe o le commari",
-        "translated": "Le scarpe o le commari"
-    },
-    {
-        "number": 10,
-        "original": "Merluzzo e baccalà o pasta e ceci",
-        "translated": "Merluzzo e baccalà o pasta e ceci"
-    },
-    {
-        "number": 11,
-        "original": "I zeppetti",
-        "translated": "Gli zeppetti"
-    },
-    {
-        "number": 12,
-        "original": "La dozzina",
-        "translated": "La dozzina"
-    },
-    {
-        "number": 13,
-        "original": "Fortuna o il diavol",
-        "translated": "Fortuna o il diavolo"
-    },
-    {
-        "number": 14,
-        "original": "San Valentino",
-        "translated": "San Valentino"
-    },
-    {
-        "number": 15,
-        "original": "I belli",
-        "translated": "I belli"
-    },
-    {
-        "number": 16,
-        "original": "Se dice ma nun se fa",
-        "translated": "Se dice ma non si fa"
-    },
-    {
-        "number": 17,
-        "original": "La desgrazzia",
-        "translated": "La disgrazia"
-    },
-    {
-        "number": 18,
-        "original": "Er sangue",
-        "translated": "Il sangue"
-    },
-    {
-        "number": 19,
-        "original": "Mbriacò",
-        "translated": "Ubriaco"
-    },
-    {
-        "number": 20,
-        "original": "La festa",
-        "translated": "La festa"
-    },
-    {
-        "number": 21,
-        "original": "La primavera",
-        "translated": "La primavera"
-    },
-    {
-        "number": 22,
-        "original": "Le carrozzelle",
-        "translated": "Le carrozzelle"
-    },
-    {
-        "number": 23,
-        "original": "Bucio de’ culo",
-        "translated": "Buco di culo"
-    },
-    {
-        "number": 24,
-        "original": "La vigilia",
-        "translated": "La vigilia"
-    },
-    {
-        "number": 25,
-        "original": "Natale",
-        "translated": "Natale"
-    },
-    {
-        "number": 26,
-        "original": "S. Stefano",
-        "translated": "Santo Stefano"
-    },
-    {
-        "number": 27,
-        "original": "Co’ l’innocenti so’ finite le feste e li quattrini",
-        "translated": "Con l'Epifania si concludono le feste e i soldi"
-    },
-    {
-        "number": 28,
-        "original": "Er prete",
-        "translated": "Il prete"
-    },
-    {
-        "number": 29,
-        "original": "Pozzi cascà",
-        "translated": "Cadere nei pozzi"
-    },
-    {
-        "number": 30,
-        "original": "Spigni che c’entra",
-        "translated": "Esci che cosa c'entra"
-    },
-    {
-        "number": 31,
-        "original": "Ogni giorno ne capita uno",
-        "translated": "Ogni giorno ne capita uno"
-    },
-    {
-        "number": 32,
-        "original": "Er pesciarolo",
-        "translated": "Il pescatore"
-    },
-    {
-        "number": 33,
-        "original": "L’anni de Cristo",
-        "translated": "Gli anni di Gesù Cristo"
-    },
-    {
-        "number": 34,
-        "original": "La coccia",
-        "translated": "La testa"
-    },
-    {
-        "number": 35,
-        "original": "Gabbia de matti",
-        "translated": "Gabbia dei matti"
-    },
-    {
-        "number": 36,
-        "original": "Er ballo",
-        "translated": "Il ballo"
-    },
-    {
-        "number": 37,
-        "original": "Er frate",
-        "translated": "Il frate"
-    },
-    {
-        "number": 38,
-        "original": "La battilonda",
-        "translated": "La confusione"
-    },
-    {
-        "number": 39,
-        "original": "Er cappio ar collo",
-        "translated": "Il cappio al collo"
-    },
-    {
-        "number": 40,
-        "original": "La gallina canta",
-        "translated": "La gallina canta"
-    },
-    {
-        "number": 41,
-        "original": "Er cortello",
-        "translated": "Il coltello"
-    },
-    {
-        "number": 42,
-        "original": "Er caffè",
-        "translated": "Il caffè"
-    },
-    {
-        "number": 43,
-        "original": "Le campanelle",
-        "translated": "Le campanelle"
-    },
-    {
-        "number": 44,
-        "original": "Le ricottelle",
-        "translated": "Le ricottelle"
-    },
-    {
-        "number": 45,
-        "original": "Er vino bono",
-        "translated": "Il vino buono"
-    },
-    {
-        "number": 46,
-        "original": "I sordi",
-        "translated": "I soldi"
-    },
-    {
-        "number": 47,
-        "original": "Morto che parla",
-        "translated": "Morto che parla"
-    },
-    {
-        "number": 48,
-        "original": "Oggi li conto e domani te li porto",
-        "translated": "Oggi li conto e domani te li porto"
-    },
-    {
-        "number": 49,
-        "original": "La ciccia",
-        "translated": "La carne"
-    },
-    {
-        "number": 50,
-        "original": "Mezzo quintale",
-        "translated": "Mezzo quintale"
-    },
-    {
-        "number": 51,
-        "original": "Er giardino",
-        "translated": "Il giardino"
-    },
-    {
-        "number": 52,
-        "original": "Tu’ madre",
-        "translated": "Tua madre"
-    },
-    {
-        "number": 53,
-        "original": "Er vecchio",
-        "translated": "Il vecchio"
-    },
-    {
-        "number": 54,
-        "original": "Er cappello",
-        "translated": "Il cappello"
-    },
-    {
-        "number": 55,
-        "original": "Le spie der colle",
-        "translated": "Le spie del colle"
-    },
-    {
-        "number": 56,
-        "original": "Colui che cade rotolando",
-        "translated": "Colui che cade rotolando"
-    },
-    {
-        "number": 57,
-        "original": "Er gobbo",
-        "translated": "Il gobbo"
-    },
-    {
-        "number": 58,
-        "original": "Zi’ Checca",
-        "translated": "Zia Checca"
-    },
-    {
-        "number": 59,
-        "original": "I peli",
-        "translated": "I peli"
-    },
-    {
-        "number": 60,
-        "original": "La madonna",
-        "translated": "La Madonna"
-    },
-    {
-        "number": 61,
-        "original": "Er cacciatore",
-        "translated": "Il cacciatore"
-    },
-    {
-        "number": 62,
-        "original": "L’ammazzato",
-        "translated": "L'ucciso"
-    },
-    {
-        "number": 63,
-        "original": "La sposa",
-        "translated": "La sposa"
-    },
-    {
-        "number": 64,
-        "original": "Er vestito bono",
-        "translated": "Il vestito buono"
-    },
-    {
-        "number": 65,
-        "original": "Er piagnone",
-        "translated": "Il piagnone"
-    },
-    {
-        "number": 66,
-        "original": "Le du’ zitelle",
-        "translated": "Le due zitelle"
-    },
-    {
-        "number": 67,
-        "original": "La chitarra",
-        "translated": "La chitarra"
-    },
-    {
-        "number": 68,
-        "original": "La contestazione",
-        "translated": "La contestazione"
-    },
-    {
-        "number": 69,
-        "original": "Su e giù",
-        "translated": "Su e giù"
-    },
-    {
-        "number": 70,
-        "original": "Nessuno la picchia",
-        "translated": "Nessuno la picchia"
-    },
-    {
-        "number": 71,
-        "original": "Peppulitto",
-        "translated": "Peppolino"
-    },
-    {
-        "number": 72,
-        "original": "La morra",
-        "translated": "La morra"
-    },
-    {
-        "number": 73,
-        "original": "L’ospedale",
-        "translated": "L'ospedale"
-    },
-    {
-        "number": 74,
-        "original": "La grotta",
-        "translated": "La grotta"
-    },
-    {
-        "number": 75,
-        "original": "La purce",
-        "translated": "La porca"
-    },
-    {
-        "number": 76,
-        "original": "La fontana",
-        "translated": "La fontana"
-    },
-    {
-        "number": 77,
-        "original": "Le gambe delle vecchie",
-        "translated": "Le gambe delle vecchie"
-    },
-    {
-        "number": 78,
-        "original": "Er quadretto",
-        "translated": "Il quadretto"
-    },
-    {
-        "number": 79,
-        "original": "Er ladro",
-        "translated": "Il ladro"
-    },
-    {
-        "number": 80,
-        "original": "La pelosa",
-        "translated": "La pelosa"
-    },
-    {
-        "number": 81,
-        "original": "I fiori",
-        "translated": "I fiori"
-    },
-    {
-        "number": 82,
-        "original": "Er pranzo",
-        "translated": "Il pranzo"
-    },
-    {
-        "number": 83,
-        "original": "Er tempaccio",
-        "translated": "Il tempo cattivo"
-    },
-    {
-        "number": 84,
-        "original": "La Chiesa",
-        "translated": "La Chiesa"
-    },
-    {
-        "number": 85,
-        "original": "Le anime der purgatorio",
-        "translated": "Le anime del purgatorio"
-    },
-    {
-        "number": 86,
-        "original": "La bottega",
-        "translated": "La bottega"
-    },
-    {
-        "number": 87,
-        "original": "I pidocchi",
-        "translated": "I pidocchi"
-    },
-    {
-        "number": 88,
-        "original": "L’occhialoni",
-        "translated": "Gli occhialoni"
-    },
-    {
-        "number": 89,
-        "original": "La vecchia",
-        "translated": "La vecchia"
-    },
-    {
-        "number": 90,
-        "original": "La paura",
-        "translated": "La paura"
-    }
+  {
+    "number": 1,
+    "original": "Lu più rossu o pippetto",
+    "translated": "Il più rosso o il piccolo"
+  },
+  {
+    "number": 2,
+    "original": "Luddù",
+    "translated": "Ladro"
+  },
+  {
+    "number": 3,
+    "original": "Baciu oppure Cazzetta",
+    "translated": "Bacio o Cazzetta"
+  },
+  {
+    "number": 4,
+    "original": "Bara o beccamorti",
+    "translated": "Bara o becchini"
+  },
+  {
+    "number": 5,
+    "original": "La mano",
+    "translated": "La mano"
+  },
+  {
+    "number": 6,
+    "original": "La befana o stupido che sei",
+    "translated": "La Befana o stupido che sei"
+  },
+  {
+    "number": 7,
+    "original": "I dolori o er padre",
+    "translated": "I dolori o il padre"
+  },
+  {
+    "number": 8,
+    "original": "L’occhiali o chinotto",
+    "translated": "Gli occhiali o il chinotto"
+  },
+  {
+    "number": 9,
+    "original": "Le scarpe o le commari",
+    "translated": "Le scarpe o le commari"
+  },
+  {
+    "number": 10,
+    "original": "Merluzzo e baccalà o pasta e ceci",
+    "translated": "Merluzzo e baccalà o pasta e ceci"
+  },
+  {
+    "number": 11,
+    "original": "I zeppetti",
+    "translated": "Gli zeppetti"
+  },
+  {
+    "number": 12,
+    "original": "La dozzina",
+    "translated": "La dozzina"
+  },
+  {
+    "number": 13,
+    "original": "Fortuna o il diavol",
+    "translated": "Fortuna o il diavolo"
+  },
+  {
+    "number": 14,
+    "original": "San Valentino",
+    "translated": "San Valentino"
+  },
+  {
+    "number": 15,
+    "original": "I belli",
+    "translated": "I belli"
+  },
+  {
+    "number": 16,
+    "original": "Se dice ma nun se fa",
+    "translated": "Se dice ma non si fa"
+  },
+  {
+    "number": 17,
+    "original": "La desgrazzia",
+    "translated": "La disgrazia"
+  },
+  {
+    "number": 18,
+    "original": "Er sangue",
+    "translated": "Il sangue"
+  },
+  {
+    "number": 19,
+    "original": "Mbriacò",
+    "translated": "Ubriaco"
+  },
+  {
+    "number": 20,
+    "original": "La festa",
+    "translated": "La festa"
+  },
+  {
+    "number": 21,
+    "original": "La primavera",
+    "translated": "La primavera"
+  },
+  {
+    "number": 22,
+    "original": "Le carrozzelle",
+    "translated": "Le carrozzelle"
+  },
+  {
+    "number": 23,
+    "original": "Bucio de’ culo",
+    "translated": "Buco di culo"
+  },
+  {
+    "number": 24,
+    "original": "La vigilia",
+    "translated": "La vigilia"
+  },
+  {
+    "number": 25,
+    "original": "Natale",
+    "translated": "Natale"
+  },
+  {
+    "number": 26,
+    "original": "S. Stefano",
+    "translated": "Santo Stefano"
+  },
+  {
+    "number": 27,
+    "original": "Co’ l’innocenti so’ finite le feste e li quattrini",
+    "translated": "Con l'Epifania si concludono le feste e i soldi"
+  },
+  {
+    "number": 28,
+    "original": "Er prete",
+    "translated": "Il prete"
+  },
+  {
+    "number": 29,
+    "original": "Pozzi cascà",
+    "translated": "Cadere nei pozzi"
+  },
+  {
+    "number": 30,
+    "original": "Spigni che c’entra",
+    "translated": "Esci che cosa c'entra"
+  },
+  {
+    "number": 31,
+    "original": "Ogni giorno ne capita uno",
+    "translated": "Ogni giorno ne capita uno"
+  },
+  {
+    "number": 32,
+    "original": "Er pesciarolo",
+    "translated": "Il pescatore"
+  },
+  {
+    "number": 33,
+    "original": "L’anni de Cristo",
+    "translated": "Gli anni di Gesù Cristo"
+  },
+  {
+    "number": 34,
+    "original": "La coccia",
+    "translated": "La testa"
+  },
+  {
+    "number": 35,
+    "original": "Gabbia de matti",
+    "translated": "Gabbia dei matti"
+  },
+  {
+    "number": 36,
+    "original": "Er ballo",
+    "translated": "Il ballo"
+  },
+  {
+    "number": 37,
+    "original": "Er frate",
+    "translated": "Il frate"
+  },
+  {
+    "number": 38,
+    "original": "La battilonda",
+    "translated": "La confusione"
+  },
+  {
+    "number": 39,
+    "original": "Er cappio ar collo",
+    "translated": "Il cappio al collo"
+  },
+  {
+    "number": 40,
+    "original": "La gallina canta",
+    "translated": "La gallina canta"
+  },
+  {
+    "number": 41,
+    "original": "Er cortello",
+    "translated": "Il coltello"
+  },
+  {
+    "number": 42,
+    "original": "Er caffè",
+    "translated": "Il caffè"
+  },
+  {
+    "number": 43,
+    "original": "Le campanelle",
+    "translated": "Le campanelle"
+  },
+  {
+    "number": 44,
+    "original": "Le ricottelle",
+    "translated": "Le ricottelle"
+  },
+  {
+    "number": 45,
+    "original": "Er vino bono",
+    "translated": "Il vino buono"
+  },
+  {
+    "number": 46,
+    "original": "I sordi",
+    "translated": "I soldi"
+  },
+  {
+    "number": 47,
+    "original": "Morto che parla",
+    "translated": "Morto che parla"
+  },
+  {
+    "number": 48,
+    "original": "Oggi li conto e domani te li porto",
+    "translated": "Oggi li conto e domani te li porto"
+  },
+  {
+    "number": 49,
+    "original": "La ciccia",
+    "translated": "La carne"
+  },
+  {
+    "number": 50,
+    "original": "Mezzo quintale",
+    "translated": "Mezzo quintale"
+  },
+  {
+    "number": 51,
+    "original": "Er giardino",
+    "translated": "Il giardino"
+  },
+  {
+    "number": 52,
+    "original": "Tu’ madre",
+    "translated": "Tua madre"
+  },
+  {
+    "number": 53,
+    "original": "Er vecchio",
+    "translated": "Il vecchio"
+  },
+  {
+    "number": 54,
+    "original": "Er cappello",
+    "translated": "Il cappello"
+  },
+  {
+    "number": 55,
+    "original": "Le spie der colle",
+    "translated": "Le spie del colle"
+  },
+  {
+    "number": 56,
+    "original": "Colui che cade rotolando",
+    "translated": "Colui che cade rotolando"
+  },
+  {
+    "number": 57,
+    "original": "Er gobbo",
+    "translated": "Il gobbo"
+  },
+  {
+    "number": 58,
+    "original": "Zi’ Checca",
+    "translated": "Zia Checca"
+  },
+  {
+    "number": 59,
+    "original": "I peli",
+    "translated": "I peli"
+  },
+  {
+    "number": 60,
+    "original": "La madonna",
+    "translated": "La Madonna"
+  },
+  {
+    "number": 61,
+    "original": "Er cacciatore",
+    "translated": "Il cacciatore"
+  },
+  {
+    "number": 62,
+    "original": "L’ammazzato",
+    "translated": "L'ucciso"
+  },
+  {
+    "number": 63,
+    "original": "La sposa",
+    "translated": "La sposa"
+  },
+  {
+    "number": 64,
+    "original": "Er vestito bono",
+    "translated": "Il vestito buono"
+  },
+  {
+    "number": 65,
+    "original": "Er piagnone",
+    "translated": "Il piagnone"
+  },
+  {
+    "number": 66,
+    "original": "Le du’ zitelle",
+    "translated": "Le due zitelle"
+  },
+  {
+    "number": 67,
+    "original": "La chitarra",
+    "translated": "La chitarra"
+  },
+  {
+    "number": 68,
+    "original": "La contestazione",
+    "translated": "La contestazione"
+  },
+  {
+    "number": 69,
+    "original": "Su e giù",
+    "translated": "Su e giù"
+  },
+  {
+    "number": 70,
+    "original": "Nessuno la picchia",
+    "translated": "Nessuno la picchia"
+  },
+  {
+    "number": 71,
+    "original": "Peppulitto",
+    "translated": "Peppolino"
+  },
+  {
+    "number": 72,
+    "original": "La morra",
+    "translated": "La morra"
+  },
+  {
+    "number": 73,
+    "original": "L’ospedale",
+    "translated": "L'ospedale"
+  },
+  {
+    "number": 74,
+    "original": "La grotta",
+    "translated": "La grotta"
+  },
+  {
+    "number": 75,
+    "original": "La purce",
+    "translated": "La porca"
+  },
+  {
+    "number": 76,
+    "original": "La fontana",
+    "translated": "La fontana"
+  },
+  {
+    "number": 77,
+    "original": "Le gambe delle vecchie",
+    "translated": "Le gambe delle vecchie"
+  },
+  {
+    "number": 78,
+    "original": "Er quadretto",
+    "translated": "Il quadretto"
+  },
+  {
+    "number": 79,
+    "original": "Er ladro",
+    "translated": "Il ladro"
+  },
+  {
+    "number": 80,
+    "original": "La pelosa",
+    "translated": "La pelosa"
+  },
+  {
+    "number": 81,
+    "original": "I fiori",
+    "translated": "I fiori"
+  },
+  {
+    "number": 82,
+    "original": "Er pranzo",
+    "translated": "Il pranzo"
+  },
+  {
+    "number": 83,
+    "original": "Er tempaccio",
+    "translated": "Il tempo cattivo"
+  },
+  {
+    "number": 84,
+    "original": "La Chiesa",
+    "translated": "La Chiesa"
+  },
+  {
+    "number": 85,
+    "original": "Le anime der purgatorio",
+    "translated": "Le anime del purgatorio"
+  },
+  {
+    "number": 86,
+    "original": "La bottega",
+    "translated": "La bottega"
+  },
+  {
+    "number": 87,
+    "original": "I pidocchi",
+    "translated": "I pidocchi"
+  },
+  {
+    "number": 88,
+    "original": "L’occhialoni",
+    "translated": "Gli occhialoni"
+  },
+  {
+    "number": 89,
+    "original": "La vecchia",
+    "translated": "La vecchia"
+  },
+  {
+    "number": 90,
+    "original": "La paura",
+    "translated": "La paura"
+  }
 ]

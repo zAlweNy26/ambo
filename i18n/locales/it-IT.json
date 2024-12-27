@@ -1,93 +1,93 @@
 {
-	"aria": {
-		"toggle": "Cambia",
-		"goTop": "Vai in alto",
-		"more": "Altro"
-	},
-	"theme": {
-		"light": "Chiaro",
-		"dark": "Scuro",
-		"toggle": "@:aria.toggle tema"
-	},
-	"language": {
-		"toggle": "@:aria.toggle lingua"
-	},
-	"header": {
-		"home": "Home",
-		"board": "Tabellone",
-		"cards": "Cartelle",
-		"terms":"Termini",
-		"contacts": "Contattaci"
-	},
-	"donate": {
-		"title": "Aiutaci a mantenere gratis {0}. {1}",
-		"with": "Dona con"
-	},
-	"footer": {
-		"privacy": "Informativa sulla Privacy",
-		"terms": "Termini di Servizio",
-		"attributions": "Attribuzioni",
-		"contacts": "Contattaci",
-		"copyright": "Copyright © 2023-2025 {0} - Tutti i diritti riservati."
-	},
-	"error": {
-		"routes": {
-			"title": "Errore - {0}",
-			"notAccessible": "Pagina non accessibile",
-			"fallback": "Si è verificato un errore durante il tentativo di accesso a questa pagina.\nRiprova più tardi.",
-			"401": "Non sei autenticato, quindi non puoi accedere a questa pagina.",
-			"403": "Non sei autorizzato ad accedere a questa pagina.",
-			"404": "La pagina che stai cercando non è stata trovata.",
-			"500": "Qualcosa è andato storto. Riprova più tardi."
-		}
-	},
-	"button": {
-		"backHome": "Torna alla @:header.home",
-		"exit": "Esci",
-		"cancel": "Annulla",
-		"reset": "Azzera",
-		"minimize": "Minimizza",
-		"maximize": "Massimizza"
-	},
-	"exit": {
-		"title": "Sei sicuro di voler uscire?",
-		"description": "Perderai tutti i tuoi progressi se esci ora."
-	},
-	"home": {
-		"welcome": "Benvenuto su {0}",
-		"subtitle": "Un'applicazione per giocare a tombola online in modo semplice e veloce."
-	},
-	"contacts": {
-		"title": "Team di sviluppo",
-		"description": "Coloro che hanno sviluppato \"{0}\", mettendoci il cuore per completarlo e renderlo disponibile a tutti."
-	},
-	"game": {
-		"id": "ID partita",
-		"title": "{0} - {1} numeri rimanenti",
-		"description": "Condividi questo ID con i tuoi amici per permettere loro di partecipare a questa partita!",
-		"end": {
-			"title": "Partita terminata",
-			"description": "La partita è stata terminata dal giocatore che l'ha creata."
-		}
-	},
-	"board": {
-		"prize": "Partizione del premio",
-		"smirk": "Scegli una smorfia",
-		"announcer": "Annunciatore automatico",
-		"draw": "Estrai un numero",
-		"extractions": "Ultima estrazione | Ultime {0} estrazioni"
-	},
-	"cards": {
-		"title": "Con quante cartelle vuoi giocare?",
-		"quantity": "{0} cartella | {0} cartelle",
-		"search": "Cerca il numero",
-		"found": "Numero {0} trovato e aggiunto",
-		"notFound": "Numero {0} non trovato"
-	},
-	"pwa": {
-		"installTitle": "Vuoi installarla come app?",
-		"updateTitle": "Aggiornamento trovato. Vuoi aggiornare?",
-		"install": "Installa",
-		"update": "Aggiorna"
-	}
+  "aria": {
+    "toggle": "Cambia",
+    "goTop": "Vai in alto",
+    "more": "Altro"
+  },
+  "theme": {
+    "light": "Chiaro",
+    "dark": "Scuro",
+    "toggle": "@:aria.toggle tema"
+  },
+  "language": {
+    "toggle": "@:aria.toggle lingua"
+  },
+  "header": {
+    "home": "Home",
+    "board": "Tabellone",
+    "cards": "Cartelle",
+    "terms": "Termini",
+    "contacts": "Contattaci"
+  },
+  "donate": {
+    "title": "Aiutaci a mantenere gratis {0}. {1}",
+    "with": "Dona con"
+  },
+  "footer": {
+    "privacy": "Informativa sulla Privacy",
+    "terms": "Termini di Servizio",
+    "attributions": "Attribuzioni",
+    "contacts": "Contattaci",
+    "copyright": "Copyright © 2023-2025 {0} - Tutti i diritti riservati."
+  },
+  "error": {
+    "routes": {
+      "title": "Errore - {0}",
+      "notAccessible": "Pagina non accessibile",
+      "fallback": "Si è verificato un errore durante il tentativo di accesso a questa pagina.\nRiprova più tardi.",
+      "401": "Non sei autenticato, quindi non puoi accedere a questa pagina.",
+      "403": "Non sei autorizzato ad accedere a questa pagina.",
+      "404": "La pagina che stai cercando non è stata trovata.",
+      "500": "Qualcosa è andato storto. Riprova più tardi."
+    }
+  },
+  "button": {
+    "backHome": "Torna alla @:header.home",
+    "exit": "Esci",
+    "cancel": "Annulla",
+    "reset": "Azzera",
+    "minimize": "Minimizza",
+    "maximize": "Massimizza"
+  },
+  "exit": {
+    "title": "Sei sicuro di voler uscire?",
+    "description": "Perderai tutti i tuoi progressi se esci ora."
+  },
+  "home": {
+    "welcome": "Benvenuto su {0}",
+    "subtitle": "Un'applicazione per giocare a tombola online in modo semplice e veloce."
+  },
+  "contacts": {
+    "title": "Team di sviluppo",
+    "description": "Coloro che hanno sviluppato \"{0}\", mettendoci il cuore per completarlo e renderlo disponibile a tutti."
+  },
+  "game": {
+    "id": "ID partita",
+    "title": "{0} - {1} numeri rimanenti",
+    "description": "Condividi questo ID con i tuoi amici per permettere loro di partecipare a questa partita!",
+    "end": {
+      "title": "Partita terminata",
+      "description": "La partita è stata terminata dal giocatore che l'ha creata."
+    }
+  },
+  "board": {
+    "prize": "Partizione del premio",
+    "smirk": "Scegli una smorfia",
+    "announcer": "Annunciatore automatico",
+    "draw": "Estrai un numero",
+    "extractions": "Ultima estrazione | Ultime {0} estrazioni"
+  },
+  "cards": {
+    "title": "Con quante cartelle vuoi giocare?",
+    "quantity": "{0} cartella | {0} cartelle",
+    "search": "Cerca il numero",
+    "found": "Numero {0} trovato e aggiunto",
+    "notFound": "Numero {0} non trovato"
+  },
+  "pwa": {
+    "installTitle": "Vuoi installarla come app?",
+    "updateTitle": "Aggiornamento trovato. Vuoi aggiornare?",
+    "install": "Installa",
+    "update": "Aggiorna"
+  }
 }
