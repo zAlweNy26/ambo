@@ -1,6 +1,7 @@
 {
   "name": "ambo",
   "type": "module",
+  "version": "0.1.0",
   "private": true,
   "scripts": {
     "build": "nuxi build",
@@ -49,6 +50,5 @@
     "vitest": "^2.1.8",
     "vue-tsc": "^2.2.0",
     "wrangler": "^3.99.0"
-  },
-  "version": "0.1.0"
+  }
 }
