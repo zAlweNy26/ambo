@@ -53,6 +53,10 @@ export default defineNuxtConfig({
     quality: 100,
   },
 
+  icon: {
+    serverBundle: 'local'
+  },
+
   seo: {
     redirectToCanonicalSiteUrl: true,
     debug: process.env.NODE_ENV === 'development',
