@@ -36,7 +36,7 @@ export default defineWebSocketHandler({
     open(peer) {
         const game = getGame(peer)
         if (!game) peer.terminate()
-        else peer.publish(game.id, JSON.stringify({ extractions: game.extractions }))
+        else peer.send( JSON.stringify({ status: 'opened', extractions: game.extractions }))
     },
     message(peer, message) {
         const { extracted } = message.json<{ extracted: number }>()
@@ -46,7 +46,7 @@ export default defineWebSocketHandler({
 
         if (game.host.id === peer.id) {
             game.extractions.push(extracted)
-            peer.publish(game.id, JSON.stringify({ extractions: game.extractions }))
+            peer.publish(game.id, JSON.stringify({ status: 'started', extractions: game.extractions }))
         }
     },
     close(peer) {
@@ -56,7 +56,11 @@ export default defineWebSocketHandler({
         if (!game) return
         peer.unsubscribe(game.id)
 
-        if (peer.id === game.host.id) activeGames.delete(game.id)
+        if (peer.id === game.host.id) {
+            activeGames.delete(game.id)
+            console.log(`[Peer] Host ${peer.id} deleted game ${game.id}`)
+            peer.publish(game.id, JSON.stringify({ status: 'closed', extractions: game.extractions }))
+        }
 
         console.log(`[Peer] Active games: ${activeGames.size}`)
     }

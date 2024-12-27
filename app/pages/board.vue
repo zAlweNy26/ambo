@@ -106,6 +106,13 @@ const extractNumber = () => {
 <template>
 	<section class="flex max-w-6xl mx-auto gap-8 text-center items-stretch grow flex-col">
 		<GameHeader :remaining />
+		<div>
+			<p class="text-xl space-x-2">
+				<span class="font-semibold">{{ $t('game.id') }}:</span>
+				<span>{{ gameId }}</span>
+			</p>
+			<p class="italic">{{ $t('game.description') }}</p>
+		</div>
 		<div class="flex flex-col items-center w-full gap-8 justify-evenly grow md:flex-row">
 			<div v-auto-animate class="flex flex-col items-center justify-center gap-8">
 				<NuFormField :label="$t('board.prize')" size="xl" :ui="{ label: 'space-x-1' }">

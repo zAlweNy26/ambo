@@ -81,7 +81,7 @@ const checkNumber = (num: number, check = true) => {
 			</template>
 		</GameHeader>
 		<div v-if="lastExtractions.length > 0" class="space-y-2">
-			<p>{{ $t('board.extractions', [lastExtractions.length]) }}</p>
+			<p>{{ $t('board.extractions', [lastExtractions.length], lastExtractions.length) }}</p>
 			<div v-auto-animate class="flex flex-wrap gap-4 items-center justify-center">
 				<div v-for="num in lastExtractions" :key="num"
 					class="grid place-content-center size-8 transition-colors border-2 bg-[var(--ui-primary)] border-none text-[var(--ui-bg)] rounded-full sm:size-10 md:size-12">

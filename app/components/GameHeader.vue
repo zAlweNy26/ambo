@@ -34,7 +34,7 @@ useEventListener('beforeunload', (event) => {
     <NuButton :aria-label="isFullscreen ? $t('button.minimize') : $t('button.maximize')"
       :icon="isFullscreen ? 'i-tabler-minimize' : 'i-tabler-maximize'" size="xl" variant="ghost"
       @click="toggle()" />
-    <i18n-t keypath="game.title" tag="h3" class="text-xl">
+    <i18n-t keypath="game.title" tag="h3" class="text-2xl">
       <slot name="title">
         <span>{{ $t(`header.${String($route.name)}`) }}</span>
       </slot>

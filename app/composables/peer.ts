@@ -1,10 +1,11 @@
 interface Message {
+  status: 'opened' | 'started' | 'closed'
   extractions: number[]
 }
 
 export function usePeer(id: MaybeRefOrGetter<string>, type: 'host' | 'client') {
-  const router = useRouter()
-  const route = useRoute()
+  const router = useRouter(), route = useRoute(), toast = useToast()
+  const { t } = useI18n()
 
   const protocol = computed(() => location.protocol.includes('s') ? 's' : '')
 
@@ -35,6 +36,15 @@ export function usePeer(id: MaybeRefOrGetter<string>, type: 'host' | 'client') {
 		}
 
     extractions.value = content.extractions
+
+    if (content.status === 'closed') {
+      navigateTo('/')
+      toast.add({
+        title: t('game.end.title'),
+        description: t('game.end.description'),
+        color: 'info'
+      })
+    }
   })
 
   function sendExtraction(extracted: number) {

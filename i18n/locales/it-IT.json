@@ -62,15 +62,20 @@
 		"description": "Coloro che hanno sviluppato \"{0}\", mettendoci il cuore per completarlo e renderlo disponibile a tutti."
 	},
 	"game": {
+		"id": "ID partita",
 		"title": "{0} - {1} numeri rimanenti",
-		"id": "ID partita"
+		"description": "Condividi questo ID con i tuoi amici per permettere loro di partecipare a questa partita!",
+		"end": {
+			"title": "Partita terminata",
+			"description": "La partita è stata terminata dal giocatore che l'ha creata."
+		}
 	},
 	"board": {
 		"prize": "Partizione del premio",
 		"smirk": "Scegli una smorfia",
 		"announcer": "Annunciatore automatico",
 		"draw": "Estrai un numero",
-		"extractions": "Ultime {0} estrazioni"
+		"extractions": "Ultima estrazione | Ultime {0} estrazioni"
 	},
 	"cards": {
 		"title": "Con quante cartelle vuoi giocare?",
