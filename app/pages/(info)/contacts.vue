@@ -45,7 +45,8 @@ const { title } = useAppConfig()
     <div class="flex flex-wrap gap-8 w-full items-center justify-evenly">
       <NuCard v-for="member in devTeam" :key="member.name" class="text-center" :ui="{ header: 'grid place-content-center' }">
         <template v-if="member.avatar" #header>
-          <NuxtImg :alt="member.name" class="rounded-2xl size-32" size="2xl" :src="member.avatar" />
+          <NuxtImg :alt="member.name" :src="member.avatar" class="rounded-2xl"
+                   width="128" height="128" quality="100" format="webp" loading="eager" />
         </template>
         <h3 class="font-bold">
           {{ member.name }}

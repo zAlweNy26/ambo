@@ -111,7 +111,7 @@ function extractNumber() {
         <span class="font-semibold">{{ $t('game.id') }}:</span>
         <span>{{ gameId }}</span>
       </p>
-      <p class="italic">
+      <p class="italic text-sm">
         {{ $t('game.description') }}
       </p>
     </div>
@@ -148,7 +148,8 @@ function extractNumber() {
             </div>
           </div>
         </div>
-        <NuSelect v-model="smirk" :placeholder="$t('board.smirk')" size="xl" :items="smirkOptions" />
+        <NuSelect v-model="smirk" :placeholder="$t('board.smirk')" color="primary" variant="subtle"
+                  size="xl" :aria-label="$t('board.smirk')" :items="smirkOptions" />
         <NuSwitch v-model="autoAnnounce" :disabled="!smirk" size="xl" :label="$t('board.announcer')"
                   uncheckedIcon="i-tabler-x" checkedIcon="i-tabler-check" defaultValue />
         <NuButton icon="i-tabler-numbers" :disabled="remaining === 0 || !smirk" size="xl" :label="$t('board.draw')" @click="extractNumber()" />

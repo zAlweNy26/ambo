@@ -10,7 +10,7 @@ const { $pwa } = useNuxtApp()
       <NuButton size="sm" color="success" @click="$pwa.updateServiceWorker()">
         {{ $t('pwa.update') }}
       </NuButton>
-      <NuButton size="sm" variant="subtle" color="error" @click="$pwa.cancelPrompt()">
+      <NuButton size="sm" variant="outline" color="error" @click="$pwa.cancelPrompt()">
         {{ $t('button.cancel') }}
       </NuButton>
     </div>
@@ -20,7 +20,7 @@ const { $pwa } = useNuxtApp()
       <NuButton size="sm" color="success" @click="$pwa.install()">
         {{ $t('pwa.install') }}
       </NuButton>
-      <NuButton size="sm" variant="subtle" color="error" @click="$pwa.cancelInstall()">
+      <NuButton size="sm" variant="outline" color="error" @click="$pwa.cancelInstall()">
         {{ $t('button.cancel') }}
       </NuButton>
     </div>
