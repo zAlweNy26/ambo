@@ -9,13 +9,27 @@ const name = computed(() => route.name)
 const lang = computed(() => locales[locale.value].code)
 const dir = computed(() => locales[locale.value].dir)
 
+const seoTitle = computed(() => name.value && name.value !== 'index' ? t(`header.${String(name.value)}`) : '')
+
 useHead({
 	titleTemplate: t => t ? `${t} - ${title}` : title,
-	title: () => name.value && name.value !== 'index' ? t(`header.${String(name.value)}`) : '',
+	title: seoTitle,
 	htmlAttrs: {
 		lang,
 		dir,
 	},
+})
+
+useSeoMeta({
+	title: seoTitle,
+	description: () => t('home.subtitle'),
+	ogTitle: seoTitle,
+	ogImage: '/maskable-icon-512x512.png',
+	ogDescription: () => t('home.subtitle'),
+	twitterTitle: seoTitle,
+	twitterDescription: () => t('home.subtitle'),
+	twitterImage: '/maskable-icon-512x512.png',
+	twitterCard: 'app',
 })
 
 const head = useLocaleHead({
