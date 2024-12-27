@@ -68,6 +68,10 @@
     "end": {
       "title": "Partita terminata",
       "description": "La partita è stata terminata dal giocatore che l'ha creata."
+    },
+    "error": {
+      "title": "Partita non trovata",
+      "description": "La partita a cui stai cercando di accedere non esiste."
     }
   },
   "board": {
@@ -79,6 +83,7 @@
   },
   "cards": {
     "title": "Con quante cartelle vuoi giocare?",
+    "description": "Inserisci un ID partita e seleziona il numero di cartelle con cui vuoi giocare.",
     "quantity": "{0} cartella | {0} cartelle",
     "search": "Cerca il numero",
     "found": "Numero {0} trovato e aggiunto",

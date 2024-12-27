@@ -15,14 +15,15 @@ const gameId = ref('')
     <div class="space-y-8 mt-8">
       <NuButton :label="$t('header.board')" block icon="i-tabler-grid-dots" size="xl"
                 :to="$localePath('board')" />
-      <NuModal :title="$t('cards.title')" :ui="{
+      <NuModal :title="$t('cards.title')" :description="$t('cards.description')" :ui="{
         content: 'sm:max-w-md',
         body: 'grid grid-cols-2 place-content-center gap-4',
       }">
         <NuButton :label="$t('header.cards')" block icon="i-tabler-cards-filled" size="xl" />
         <template #body>
           <NuFormField class="col-span-2" size="xl" :label="$t('game.id')" required>
-            <NuInput v-model="gameId" icon="i-tabler-lock-password" class="w-full" :ui="{ leadingIcon: 'text-[var(--ui-primary)]' }" />
+            <NuInput v-model="gameId" :placeholder="$t('game.id')" icon="i-tabler-lock-password" class="w-full"
+                     :ui="{ leadingIcon: 'text-[var(--ui-primary)]' }" />
           </NuFormField>
           <NuButton v-for="n in 6" :key="n" :disabled="gameId.length !== 8" :variant="gameId.length !== 8 ? 'outline' : 'solid'"
                     :label="$t('cards.quantity', [n], n)" block size="xl"

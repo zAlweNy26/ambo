@@ -13,7 +13,7 @@ const { title } = useAppConfig()
         <span class="hidden sm:inline-block">{{ $t('donate.with') }}</span>
       </i18n-t>
       <NuButton variant="subtle" size="sm" color="info" class="px-1.5 sm:px-2.5" aria-label="PayPal"
-                target="_blank" to="https://paypal.me/danyalwe" external icon="i-tabler-brand-paypal-filled">
+                target="_blank" to="https://www.paypal.com/donate/?hosted_button_id=39KEMRPM67FB6" external icon="i-tabler-brand-paypal-filled">
         <span class="hidden sm:inline-block">PayPal</span>
       </NuButton>
     </div>
