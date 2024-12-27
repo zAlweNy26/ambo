@@ -1,10 +1,22 @@
 <script lang="ts" setup>
+definePageMeta({
+	middleware: [(to) => {
+		if (!to.query.id) return navigateTo('/')
+	}]
+})
+
+const gameId = useRouteQuery<string>('id')
+const { extractions } = usePeer(gameId, 'client')
+
+const lastExtractions = computed(() => extractions.value.slice(-5))
+
 const amount = useRouteQuery('n', 1, { transform: (v) => Math.min(Number(v), 6) })
 
 const searchNumber = ref(1), numberFound = ref<boolean>()
 const signedNumbers = ref(Array.from({ length: amount.value }).map<number[]>(() => []))
 
 const cards = computed(() => {
+	// TODO: Improve card generation algorithm
 	return Array.from({ length: amount.value }, () => {
 		const card = Array.from({ length: 3 }, () => Array.from<number>({ length: 9 }).fill(0))
 		card.forEach(v => {
@@ -68,6 +80,17 @@ const checkNumber = (num: number, check = true) => {
 				</i18n-t>
 			</template>
 		</GameHeader>
+		<div v-if="lastExtractions.length > 0" class="space-y-2">
+			<p>{{ $t('board.extractions', [lastExtractions.length]) }}</p>
+			<div class="flex flex-wrap gap-4 items-center justify-center">
+				<div v-for="num in lastExtractions" :key="num"
+					class="grid place-content-center size-8 transition-colors border-2 bg-[var(--ui-primary)] border-none text-[var(--ui-bg)] rounded-full sm:size-10 md:size-12">
+					<p class="text-sm font-bold sm:text-lg">
+						{{ num }}
+					</p>
+				</div>
+			</div>
+		</div>
 		<NuButtonGroup orientation="vertical">
 			<NuInputNumber v-model="searchNumber" size="xl" :min="1" :step="1" :max="90"
 				:ui="{ base: ['rounded-b-none'] }" @change="() => numberFound = undefined" />

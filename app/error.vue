@@ -14,6 +14,10 @@ useHead({
 	title: () => t('error.routes.title', [error.statusCode]),
 })
 
+watchDeep(() => error, (err) => {
+	console.log(err)
+}, { immediate: true })
+
 const handleError = () => clearError({ redirect: localePath('index') })
 </script>
 

@@ -1,10 +1,15 @@
 <script lang="ts" setup>
+import { randomUUID } from 'uncrypto'
 import Dinero from 'dinero.js'
 import smorfiaLivornese from 'assets/livornese.json'
 import smorfiaNapoletana from 'assets/napoletana.json'
 import smorfiaPiemontese from 'assets/piemontese.json'
 import smorfiaRomana from 'assets/romana.json'
 import smorfiaTrapanese from 'assets/trapanese.json'
+
+const gameId = useRouteQuery('id', randomUUID().split('-')[0]!)
+
+const { sendExtraction } = usePeer(gameId, 'host')
 
 const smirks = {
 	napoletana: smorfiaNapoletana,
@@ -94,6 +99,7 @@ const extractNumber = () => {
 	if (!random) return
 	currentNumber.value = random
 	extractedNumbers.value.push(random)
+	sendExtraction(random)
 }
 </script>
 

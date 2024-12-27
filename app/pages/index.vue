@@ -1,5 +1,7 @@
 <script lang="ts" setup>
 const { title } = useAppConfig()
+
+const gameId = ref('')
 </script>
 
 <template>
@@ -19,9 +21,12 @@ const { title } = useAppConfig()
 			}">
 				<NuButton :label="$t('header.cards')" block icon="i-tabler-cards-filled" size="xl" />
 				<template #body>
-					<NuButton v-for="n in 6" :key="n"
+					<NuFormField class="col-span-2" :label="$t('game.id')" required>
+						<NuInput v-model="gameId" icon="i-tabler-lock-password" class="w-full" />
+					</NuFormField>
+					<NuButton v-for="n in 6" :key="n" :disabled="gameId.length !== 8" :variant="gameId.length !== 8 ? 'outline' : 'solid'"
 						:label="$t('cards.quantity', [n], n)" block size="xl"
-						:to="$localePath({ name: 'cards', query: { n } })" />
+						:to="$localePath({ name: 'cards', query: { id: gameId, n } })" />
 				</template>
 			</NuModal>
 		</div>

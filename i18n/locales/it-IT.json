@@ -62,13 +62,15 @@
 		"description": "Coloro che hanno sviluppato \"{0}\", mettendoci il cuore per completarlo e renderlo disponibile a tutti."
 	},
 	"game": {
-		"title": "{0} - {1} numeri rimanenti"
+		"title": "{0} - {1} numeri rimanenti",
+		"id": "ID partita"
 	},
 	"board": {
 		"prize": "Partizione del premio",
 		"smirk": "Scegli una smorfia",
 		"announcer": "Annunciatore automatico",
-		"draw": "Estrai un numero"
+		"draw": "Estrai un numero",
+		"extractions": "Ultime {0} estrazioni"
 	},
 	"cards": {
 		"title": "Con quante cartelle vuoi giocare?",

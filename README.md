@@ -7,7 +7,6 @@ Digital bingo game, for when you don't feel like carrying the box!
 - [ ] Add terms and conditions translation
 - [ ] Add support for other languages
 - [ ] Add support for other bingo types (sinco, zubbio, etc...)
-- [ ] Add sort of online multiplayer
 
 ## Setup
 
