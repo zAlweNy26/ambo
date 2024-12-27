@@ -100,7 +100,7 @@ const checkNumber = (num: number, check = true) => {
 			:keypath="`cards.${numberFound ? 'found' : 'notFound'}`" tag="p">
 			<strong>{{ searchNumber }}</strong>
 		</i18n-t>
-		<div class="grid place-content-center grid-cols-2 gap-8">
+		<div class="flex flex-wrap items-center justify-center gap-8">
 			<div v-for="(card, ci) in cards" :key="ci"
 				class="grid select-none grid-cols-[repeat(9,minmax(2rem,3rem))] bg-[var(--ui-bg-accented)] p-2 rounded-lg">
 				<div v-for="(number, ni) in card" :key="`${ci}-${ni}`" class="grid place-content-center border p-2 bg-[var(--ui-bg)]"

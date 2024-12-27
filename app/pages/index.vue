@@ -21,8 +21,8 @@ const gameId = ref('')
 			}">
 				<NuButton :label="$t('header.cards')" block icon="i-tabler-cards-filled" size="xl" />
 				<template #body>
-					<NuFormField class="col-span-2" :label="$t('game.id')" required>
-						<NuInput v-model="gameId" icon="i-tabler-lock-password" class="w-full" />
+					<NuFormField class="col-span-2" size="xl" :label="$t('game.id')" required>
+						<NuInput v-model="gameId" icon="i-tabler-lock-password" class="w-full" :ui="{ leadingIcon: 'text-[var(--ui-primary)]' }" />
 					</NuFormField>
 					<NuButton v-for="n in 6" :key="n" :disabled="gameId.length !== 8" :variant="gameId.length !== 8 ? 'outline' : 'solid'"
 						:label="$t('cards.quantity', [n], n)" block size="xl"
