@@ -26,7 +26,7 @@ export default defineAppConfig({
     },
     button: {
       slots: {
-        base: ['cursor-pointer transition-all'],
+        base: 'cursor-pointer transition-all',
       },
     },
     card: {

@@ -22,7 +22,7 @@
     "@formkit/auto-animate": "^0.8.2",
     "@iconify-json/lucide": "^1.2.20",
     "@nuxt/image": "1.8.1",
-    "@nuxt/ui": "3.0.0-alpha.9",
+    "@nuxt/ui": "3.0.0-alpha.10",
     "@nuxthub/core": "0.8.10",
     "@nuxtjs/i18n": "9.1.1",
     "@nuxtjs/seo": "2.0.2",
