@@ -14,19 +14,20 @@ export function usePeer(id: MaybeRefOrGetter<string>, type: 'host' | 'client') {
   const extractions = ref<number[]>([])
 
   const { status, data: wsData, send, open, close } = useWebSocket(wsUrl, {
+    heartbeat: {
+      interval: 5000,
+      pongTimeout: 5000,
+      message: 'ping',
+      responseMessage: 'pong',
+    },
     onConnected() {
       router.replace({ query: { id: toValue(id), ...route.query } })
+      console.warn('WebSocket connected')
     },
     onDisconnected(ws, e) {
+      console.warn('WebSocket disconnected:', e)
       navigateTo({ path: '/', query: {} }, { redirectCode: 302 })
-      if (type === 'client' && e.wasClean) {
-        toast.add({
-          title: t('game.end.title'),
-          description: t('game.end.description'),
-          color: 'info',
-        })
-      }
-      else if (type === 'client' && !e.wasClean) {
+      if (type === 'client' && !e.wasClean) {
         toast.add({
           title: t('game.error.title'),
           description: t('game.error.description'),
@@ -54,7 +55,14 @@ export function usePeer(id: MaybeRefOrGetter<string>, type: 'host' | 'client') {
 
     extractions.value = content.extractions
 
-    if (content.status === 'closed') close()
+    if (content.status === 'closed' && type === 'client') {
+      toast.add({
+        title: t('game.end.title'),
+        description: t('game.end.description'),
+        color: 'info',
+      })
+      close()
+    }
   })
 
   function sendExtraction(extracted: number) {
