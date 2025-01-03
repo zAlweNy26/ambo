@@ -10,6 +10,7 @@ import { randomUUID } from 'uncrypto'
 const gameId = useRouteQuery('id', randomUUID().split('-')[0]!)
 
 const { sendExtraction } = usePeer(gameId, 'host')
+const { copy } = useClipboard()
 
 const smirks = {
   napoletana: smorfiaNapoletana,
@@ -106,10 +107,12 @@ function extractNumber() {
 <template>
   <section class="flex max-w-6xl mx-auto gap-8 text-center items-stretch grow flex-col">
     <GameHeader :remaining />
-    <div>
+    <div class="space-y-2">
       <p class="text-xl space-x-2">
         <span class="font-semibold">{{ $t('game.id') }}:</span>
         <span>{{ gameId }}</span>
+        <NuButton class="align-sub" icon="i-tabler-clipboard" square color="neutral"
+                  variant="soft" size="xl" @click="copy(gameId)" />
       </p>
       <p class="italic text-sm">
         {{ $t('game.description') }}
@@ -152,7 +155,8 @@ function extractNumber() {
                   size="xl" :aria-label="$t('board.smirk')" :items="smirkOptions" />
         <NuSwitch v-model="autoAnnounce" :disabled="!smirk" size="xl" :label="$t('board.announcer')"
                   uncheckedIcon="i-tabler-x" checkedIcon="i-tabler-check" defaultValue />
-        <NuButton icon="i-tabler-numbers" :disabled="remaining === 0 || !smirk" size="xl" :label="$t('board.draw')" @click="extractNumber()" />
+        <NuButton icon="i-tabler-numbers" :disabled="remaining === 0 || !smirk" size="xl"
+                  :label="$t('board.draw')" @click="extractNumber()" />
         <NuCard v-if="currentSmirk" :ui="{ body: 'inline-flex items-center justify-center gap-4 !px-4 !py-2' }">
           <span class="font-bold">{{ currentSmirk.number }}</span>
           <div>
