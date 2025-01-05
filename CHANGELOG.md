@@ -1,6 +1,24 @@
 # Changelog
 
 
+## v0.1.2
+
+[compare changes](https://github.com/zAlweNy26/ambo/compare/v0.1.1...v0.1.2)
+
+### 🚀 Enhancements
+
+- Add heartbeat in websocket ([f6115a6](https://github.com/zAlweNy26/ambo/commit/f6115a6))
+- Add copy button in board ([9a56e6a](https://github.com/zAlweNy26/ambo/commit/9a56e6a))
+
+### 🏡 Chore
+
+- Update `nuxt/ui` ([3941be0](https://github.com/zAlweNy26/ambo/commit/3941be0))
+- Update ws route ([7a4c4e1](https://github.com/zAlweNy26/ambo/commit/7a4c4e1))
+
+### ❤️ Contributors
+
+- Dany <zdanymc@gmail.com>
+
 ## v0.1.1
 
 [compare changes](https://github.com/zAlweNy26/ambo/compare/v0.1.0...v0.1.1)
