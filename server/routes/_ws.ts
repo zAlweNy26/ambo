@@ -18,10 +18,8 @@ async function getGame(peer: Peer) {
   const type = params.get('type')!
   if (game) {
     if (type === 'host' && game.host === peer.id) return game
-    if (type === 'client' && game.clients.includes(peer.id)) return game
-
     peer.subscribe(id)
-    game.clients = [...game.clients, peer.id]
+    game.clients = [...new Set([...game.clients, peer.id])]
     await setGame(id, game)
     console.log(`[Peer] Client ${peer.id} connected to game ${id}`)
     return game
@@ -63,16 +61,19 @@ export default defineWebSocketHandler({
 
     if (peer.id === game.host) {
       await hubKV().del(`game:${game.id}`)
-      console.log(`[Peer] Host ${peer.id} deleted game ${game.id}`)
+      console.warn(`[Peer] Host ${peer.id} deleted game ${game.id}`)
       peer.publish(game.id, JSON.stringify({ status: 'closed', extractions: game.extractions }))
     }
     else {
       peer.unsubscribe(game.id)
       game.clients = game.clients.filter(client => client !== peer.id)
       await setGame(game.id, game)
-      console.log(`[Peer] Client ${peer.id} disconnected from game ${game.id}`)
+      console.warn(`[Peer] Client ${peer.id} disconnected from game ${game.id}`)
     }
 
     console.log(`[Peer] Active games: ${await getActiveGames()}`)
+  },
+  error(peer, error) {
+    console.error(`[Peer] Error: ${error.message}`)
   },
 })
