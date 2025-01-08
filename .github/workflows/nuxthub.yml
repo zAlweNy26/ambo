@@ -29,3 +29,16 @@ jobs:
         id: deploy
         with:
           project-key: ambo-ux20
+
+  report:
+    name: PageSpeed Insights metrics
+    runs-on: ubuntu-latest
+    steps:
+      - uses: lowlighter/metrics@latest
+        with:
+          filename: pagespeed.svg
+          token: NOT_NEEDED
+          base: ''
+          plugin_pagespeed: yes
+          plugin_pagespeed_token: ${{ secrets.PAGESPEED_TOKEN }}
+          plugin_pagespeed_url: https://ambo.nuxt.dev

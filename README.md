@@ -2,6 +2,8 @@
 
 Digital bingo game, for when you don't feel like carrying the box!
 
+![Score](./pagespeed.svg)
+
 ## To-Dos
 
 - [ ] Add terms and conditions translation
