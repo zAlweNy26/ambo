@@ -5,6 +5,7 @@ interface Member {
   description: string
   links: {
     icon: string
+    name: string
     url: string
   }[]
 }
@@ -17,14 +18,17 @@ const devTeam: Member[] = [
     links: [
       {
         icon: 'i-tabler-world',
+        name: 'Website',
         url: 'https://zalweny26.github.io',
       },
       {
         icon: 'i-tabler-brand-linkedin',
+        name: 'LinkedIn',
         url: 'https://www.linkedin.com/in/daniele-nicosia',
       },
       {
         icon: 'i-tabler-brand-github',
+        name: 'GitHub',
         url: 'https://github.com/zAlweNy26',
       },
     ],
@@ -45,7 +49,7 @@ const { title } = useAppConfig()
     <div class="flex flex-wrap gap-8 w-full items-center justify-evenly">
       <NuCard v-for="member in devTeam" :key="member.name" class="text-center" :ui="{ header: 'grid place-content-center' }">
         <template v-if="member.avatar" #header>
-          <NuxtImg :alt="member.name" :src="member.avatar" class="rounded-2xl" width="128" height="128" loading="eager" />
+          <NuxtImg :alt="member.name" :src="member.avatar" class="rounded-2xl" sizes="96px md:128px" loading="eager" />
         </template>
         <h3 class="font-bold">
           {{ member.name }}
@@ -55,7 +59,7 @@ const { title } = useAppConfig()
         </p>
         <template #footer>
           <NuButtonGroup>
-            <NuButton v-for="link in member.links" :key="link.icon" size="xl" variant="subtle"
+            <NuButton v-for="link in member.links" :key="link.icon" size="xl" variant="subtle" :aria-label="`${link.name} - ${member.name}`"
                       :icon="link.icon" square external :to="link.url" target="_blank" />
           </NuButtonGroup>
         </template>

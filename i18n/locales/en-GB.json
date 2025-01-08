@@ -1,6 +1,7 @@
 {
   "aria": {
     "toggle": "Toggle",
+    "copy": "Copy",
     "goTop": "Go to the top",
     "more": "More"
   },
@@ -28,7 +29,7 @@
     "terms": "Terms & Conditions",
     "attributions": "Attributions",
     "contacts": "Contact Us",
-    "copyright": "Copyright © 2023-2025 {0} - All Rights Reserved."
+    "copyright": "Copyright © 2023-{0} {1} - All Rights Reserved."
   },
   "error": {
     "routes": {

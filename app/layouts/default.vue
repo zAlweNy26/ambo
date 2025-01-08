@@ -18,6 +18,10 @@ useHead({
     lang,
     dir,
   },
+  link: [{
+    rel: 'canonical',
+    href: () => route.path,
+  }],
 })
 
 useSeoMeta({

@@ -1,6 +1,7 @@
 {
   "aria": {
     "toggle": "Cambia",
+    "copy": "Copia",
     "goTop": "Vai in alto",
     "more": "Altro"
   },
@@ -28,7 +29,7 @@
     "terms": "Termini di Servizio",
     "attributions": "Attribuzioni",
     "contacts": "Contattaci",
-    "copyright": "Copyright © 2023-2025 {0} - Tutti i diritti riservati."
+    "copyright": "Copyright © 2023-{0} {1} - Tutti i diritti riservati."
   },
   "error": {
     "routes": {

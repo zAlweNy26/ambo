@@ -7,7 +7,7 @@ const error = useError()
 <template>
   <div class="relative mt-12 md:mt-24">
     <div class="absolute bottom-0 left-0 w-full overflow-hidden leading-0 rotate-180">
-      <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120"
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120"
            preserveAspectRatio="none" class="relative block w-full h-12 md:h-24">
         <defs>
           <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -38,13 +38,14 @@ const error = useError()
     </div>
     <div class="grid grid-flow-col gap-4">
       <NuLink class="!text-[var(--ui-bg)] hover:scale-110 transition-transform" to="https://github.com/zAlweNy26/LivingDexTracker"
-              external target="_blank" aria-label="GitHub Link">
+              external target="_blank" aria-label="GitHub Repository">
         <NuIcon name="i-tabler-brand-github" class="size-8" />
       </NuLink>
     </div>
     <div class="text-sm flex justify-between items-center gap-4 w-full">
       <div class="size-8" />
       <i18n-t keypath="footer.copyright" tag="p">
+        <span>{{ new Date().getFullYear() }}</span>
         <strong>{{ title }}</strong>
       </i18n-t>
       <LanguageSwitch />

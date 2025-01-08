@@ -6,7 +6,7 @@ const gameId = ref('')
 
 <template>
   <section class="mx-auto flex max-w-6xl gap-2 text-center justify-center items-center grow flex-col">
-    <h1 class="text-4xl font-bold">
+    <h1 class="text-3xl font-bold">
       {{ $t('home.welcome', [title]) }}
     </h1>
     <p class="text-sm font-medium text-base-content">
