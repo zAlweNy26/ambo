@@ -1,6 +1,31 @@
 # Changelog
 
 
+## v0.1.3
+
+[compare changes](https://github.com/zAlweNy26/ambo/compare/v0.1.2...v0.1.3)
+
+### 🩹 Fixes
+
+- Small tweaks ([10b403d](https://github.com/zAlweNy26/ambo/commit/10b403d))
+
+### 💅 Refactors
+
+- Switch from websocket to api and sse endpoints ([17348c3](https://github.com/zAlweNy26/ambo/commit/17348c3))
+
+### 📖 Documentation
+
+- Add pagespeed stats ([3d987bc](https://github.com/zAlweNy26/ambo/commit/3d987bc))
+
+### 🏡 Chore
+
+- Improve lighthouse score ([7b782ea](https://github.com/zAlweNy26/ambo/commit/7b782ea))
+- Update logo images ([7892e37](https://github.com/zAlweNy26/ambo/commit/7892e37))
+
+### ❤️ Contributors
+
+- Dany <zdanymc@gmail.com>
+
 ## v0.1.2
 
 [compare changes](https://github.com/zAlweNy26/ambo/compare/v0.1.1...v0.1.2)
