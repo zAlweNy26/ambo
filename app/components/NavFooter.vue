@@ -37,10 +37,8 @@ const error = useError()
       </NuLink>
     </div>
     <div class="grid grid-flow-col gap-4">
-      <NuLink class="!text-[var(--ui-bg)] hover:scale-110 transition-transform" to="https://github.com/zAlweNy26/LivingDexTracker"
-              external target="_blank" aria-label="GitHub Repository">
-        <NuIcon name="i-tabler-brand-github" class="size-8" />
-      </NuLink>
+      <NuButton icon="i-tabler-brand-github" class="text-[var(--ui-bg)] p-0" square variant="ghost" size="xl" :ui="{ leadingIcon: 'size-8' }"
+                to="https://github.com/zAlweNy26/ambo" external target="_blank" aria-label="GitHub Repository" />
     </div>
     <div class="text-sm flex justify-between items-center gap-4 w-full">
       <div class="size-8" />

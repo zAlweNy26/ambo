@@ -177,8 +177,6 @@ export default defineNuxtConfig({
 
   routeRules: {
     '/': { prerender: true },
-    '/board': { ssr: false },
-    '/cards': { ssr: false },
     '/contacts': { prerender: true },
     '/terms': { prerender: true },
   },
