@@ -1,24 +1,25 @@
 <script lang="ts" setup>
-import smorfiaLivornese from 'assets/livornese.json'
-import smorfiaNapoletana from 'assets/napoletana.json'
-import smorfiaPiemontese from 'assets/piemontese.json'
-import smorfiaRomana from 'assets/romana.json'
-import smorfiaTrapanese from 'assets/trapanese.json'
+import livornese from 'assets/livornese.json'
+import napoletana from 'assets/napoletana.json'
+import piemontese from 'assets/piemontese.json'
+import romana from 'assets/romana.json'
+import trapanese from 'assets/trapanese.json'
 import Dinero from 'dinero.js'
-import { randomUUID } from 'uncrypto'
 
-const gameId = useRouteQuery('id', randomUUID().split('-')[0]!)
+const smirks = { napoletana, trapanese, romana, piemontese, livornese }
 
-const { sendExtraction } = usePeer(gameId, 'host')
-const { copy } = useClipboard()
+const { data: gameId } = useFetch('/api/game/create', {
+  method: 'POST',
+  lazy: true,
+  transform: data => data.gameId!,
+  default: () => '',
+})
 
-const smirks = {
-  napoletana: smorfiaNapoletana,
-  trapanese: smorfiaTrapanese,
-  romana: smorfiaRomana,
-  piemontese: smorfiaPiemontese,
-  livornese: smorfiaLivornese,
-}
+const router = useRouter()
+
+onMounted(() => {
+  router.push({ query: { id: gameId.value } })
+})
 
 const cards = Array.from({ length: 6 }).map((_, i) => {
   let up = -5
@@ -30,7 +31,7 @@ const cards = Array.from({ length: 6 }).map((_, i) => {
 })
 
 const { currentLocale } = storeToRefs(useSettingsStore())
-
+const { copy } = useClipboard()
 const extractedNumbers = ref<number[]>([]), autoAnnounce = ref(false), currentNumber = ref<number>()
 const totalPrize = ref(0.1), smirk = ref<keyof typeof smirks>(), speakText = ref<string>('')
 
@@ -95,12 +96,18 @@ function speechText() {
   setTimeout(() => speak(), 250)
 }
 
-function extractNumber() {
+async function extractNumber() {
   const random = useSample([...remainingNumbers.value])
   if (!random) return
   currentNumber.value = random
-  extractedNumbers.value.push(random)
-  sendExtraction(random)
+  const { extractions } = await $fetch('/api/game/extract', {
+    method: 'POST',
+    body: {
+      gameId: gameId.value,
+      number: random,
+    },
+  })
+  extractedNumbers.value = extractions
 }
 </script>
 
@@ -155,8 +162,8 @@ function extractNumber() {
                   size="xl" highlight :aria-label="$t('board.smirk')" :items="smirkOptions" />
         <NuSwitch v-model="autoAnnounce" :disabled="!smirk" size="xl" :label="$t('board.announcer')"
                   uncheckedIcon="i-tabler-x" checkedIcon="i-tabler-check" defaultValue />
-        <NuButton icon="i-tabler-numbers" :disabled="remaining === 0 || !smirk" size="xl"
-                  :label="$t('board.draw')" @click="extractNumber()" />
+        <NuButton icon="i-tabler-numbers" :disabled="remaining === 0 || !smirk" size="xl" loadingAuto
+                  :label="$t('board.draw')" @click="extractNumber" />
         <NuCard v-if="currentSmirk" :ui="{ body: 'inline-flex items-center justify-center gap-4 !px-4 !py-2' }">
           <span class="font-bold">{{ currentSmirk.number }}</span>
           <div>

@@ -1,7 +1,22 @@
 <script lang="ts" setup>
 const { title } = useAppConfig()
 
+const { t } = useI18n(), toast = useToast()
+
 const gameId = ref('')
+
+async function checkGame(cards: number) {
+  const { found } = await $fetch('/api/game/join', { query: { id: gameId.value } })
+  if (!found) {
+    toast.add({
+      title: t('game.error.title'),
+      description: t('game.error.description'),
+      color: 'error',
+    })
+    return
+  }
+  await navigateTo({ name: 'cards', query: { id: gameId.value, n: cards } })
+}
 </script>
 
 <template>
@@ -26,8 +41,7 @@ const gameId = ref('')
                      :ui="{ leadingIcon: 'text-[var(--ui-primary)]' }" />
           </NuFormField>
           <NuButton v-for="n in 6" :key="n" :disabled="gameId.length !== 8" :variant="gameId.length !== 8 ? 'outline' : 'solid'"
-                    :label="$t('cards.quantity', [n], n)" block size="xl"
-                    :to="$localePath({ name: 'cards', query: { id: gameId, n } })" />
+                    :label="$t('cards.quantity', [n], n)" block size="xl" @click="checkGame(n)" />
         </template>
       </NuModal>
     </div>

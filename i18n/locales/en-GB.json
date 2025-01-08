@@ -65,10 +65,6 @@
   "game": {
     "title": "{0} - {1} remaining numbers",
     "id": "Game ID",
-    "end": {
-      "title": "Game ended",
-      "description": "The game was terminated by the player who created it."
-    },
     "error": {
       "title": "Game not found",
       "description": "The game you are trying to access does not exist."

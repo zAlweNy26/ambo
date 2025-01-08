@@ -6,7 +6,37 @@ definePageMeta({
 })
 
 const gameId = useRouteQuery<string>('id')
-const { extractions } = usePeer(gameId, 'client')
+const { t } = useI18n(), toast = useToast()
+const extractions = ref<number[]>([])
+const { data, error } = useEventSource(() => `/game?id=${gameId.value}`)
+
+watchImmediate(error, (err) => {
+  if (err) {
+    navigateTo({ path: '/', query: {} }, { redirectCode: 302 })
+    toast.add({
+      title: t('game.error.title'),
+      description: t('game.error.description'),
+      color: 'error',
+    })
+  }
+})
+
+watch(data, (val) => {
+  if (val === null) return
+
+  let content: number[]
+
+  try {
+    content = JSON.parse(val)
+  }
+  catch (error) {
+    console.error(error)
+    console.error('Failed to parse WebSocket data:', data)
+    return
+  }
+
+  extractions.value = content
+})
 
 const lastExtractions = computed(() => extractions.value.slice(-5))
 
