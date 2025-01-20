@@ -9,11 +9,12 @@ export default defineNuxtConfig({
     '@vueuse/nuxt',
     '@vite-pwa/nuxt',
     '@pinia/nuxt',
-    '@nuxt/ui',
-    '@nuxt/eslint',
-    '@nuxt/image',
     '@nuxtjs/i18n',
     '@nuxtjs/seo',
+    '@nuxt/ui',
+    '@nuxt/image',
+    '@nuxt/eslint',
+    '@nuxt/content',
   ],
 
   css: ['~/assets/main.css'],
@@ -37,6 +38,12 @@ export default defineNuxtConfig({
 
   ui: {
     prefix: 'Nu',
+  },
+
+  content: {
+    renderer: {
+      anchorLinks: false,
+    },
   },
 
   colorMode: {
