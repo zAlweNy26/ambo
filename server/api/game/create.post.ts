@@ -1,13 +1,14 @@
 import { randomUUID } from 'uncrypto'
 
 export default defineEventHandler(async () => {
-  const [id, ...hostId] = randomUUID().split('-')
+  const hostId = randomUUID()
+  const [id] = hostId.split('-')
 
   const game = await setGame(id, {
     id,
     extractions: [],
     clients: [],
-    host: [id, ...hostId].join('-'),
+    host: hostId,
   })
 
   console.info(`[Game: ${game.id}] Host ${game.host} created game`)
