@@ -1,6 +1,22 @@
 # Changelog
 
 
+## v0.1.4
+
+[compare changes](https://github.com/zAlweNy26/ambo/compare/v0.1.3...v0.1.4)
+
+### 🚀 Enhancements
+
+- Add translation of terms and conditions ([5d59211](https://github.com/zAlweNy26/ambo/commit/5d59211))
+
+### 🏡 Chore
+
+- Update deps ([2fe9c6d](https://github.com/zAlweNy26/ambo/commit/2fe9c6d))
+
+### ❤️ Contributors
+
+- Dany <zdanymc@gmail.com>
+
 ## v0.1.3
 
 [compare changes](https://github.com/zAlweNy26/ambo/compare/v0.1.2...v0.1.3)
