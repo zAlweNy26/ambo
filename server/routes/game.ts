@@ -1,45 +1,68 @@
-import { randomUUID } from 'uncrypto'
-import { z } from 'zod'
+import type { Peer } from 'crossws'
 
-const gameSchema = z.object({
-  id: z.string().length(8),
-})
-
-export default defineEventHandler(async (event) => {
-  const { id } = await getValidatedQuery(event, data => gameSchema.parse(data))
-
-  let game = await getGame(id)
-
-  if (!game) {
-    throw createError({
-      statusCode: 400,
-      statusMessage: 'Game not found',
-    })
+async function getGame(peer: Peer) {
+  const params = new URL(peer.websocket.url!).searchParams
+  const id = params.get('id')!
+  const game = await hubKV().get<Game>(`game:${id}`)
+  const type = params.get('type')!
+  if (game) {
+    if (type === 'host' && game.host === peer.id) return game
+    peer.subscribe(id)
+    game.clients = [...new Set([...game.clients, peer.id])]
+    await setGame(id, game)
+    console.log(`[Peer] Client ${peer.id} connected to game ${id}`)
+    return game
   }
+  else if (type === 'host') {
+    const newGame = { id, extractions: [], host: peer.id, clients: [] }
+    await setGame(id, newGame)
+    console.log(`[Peer] Host ${peer.id} created game ${id}`)
+    console.log(`[Peer] Active games: ${await getActiveGames()}`)
+    return newGame
+  }
+  else return null
+}
 
-  const clientId = randomUUID()
+export default defineWebSocketHandler({
+  async open(peer) {
+    const game = await getGame(peer)
+    if (!game) peer.terminate()
+    else peer.send(JSON.stringify({ status: 'opened', extractions: game.extractions }))
+  },
+  async message(peer, message) {
+    if (message.text().includes('ping')) peer.send('pong')
+    else {
+      const game = await getGame(peer)
+      if (!game) return peer.close(1011, 'Game not found')
 
-  game.clients.push(clientId)
-  game = await setGame(id, game)
+      const { extracted } = message.json<{ extracted: number }>()
 
-  console.info(`[Game: ${game.id}] Client ${clientId} joined game`)
-
-  const eventStream = createEventStream(event)
-
-  const interval = setInterval(async () => {
-    const game = await getGame(id)
-    if (!game) {
-      clearInterval(interval)
-      await eventStream.close()
-      return
+      if (game.host === peer.id) {
+        game.extractions = [...game.extractions, extracted]
+        await setGame(game.id, game)
+        peer.publish(game.id, JSON.stringify({ status: 'started', extractions: game.extractions }))
+      }
     }
-    await eventStream.push(JSON.stringify(game.extractions))
-  }, 1000)
+  },
+  async close(peer) {
+    const game = await getGame(peer)
+    if (!game) return
 
-  eventStream.onClosed(async () => {
-    clearInterval(interval)
-    await eventStream.close()
-  })
+    if (peer.id === game.host) {
+      await hubKV().del(`game:${game.id}`)
+      console.warn(`[Peer] Host ${peer.id} deleted game ${game.id}`)
+      peer.publish(game.id, JSON.stringify({ status: 'closed', extractions: game.extractions }))
+    }
+    else {
+      peer.unsubscribe(game.id)
+      game.clients = game.clients.filter(client => client !== peer.id)
+      await setGame(game.id, game)
+      console.warn(`[Peer] Client ${peer.id} disconnected from game ${game.id}`)
+    }
 
-  return eventStream.send()
+    console.log(`[Peer] Active games: ${await getActiveGames()}`)
+  },
+  error(peer, error) {
+    console.error(`[Peer] Error: ${error.message}`)
+  },
 })

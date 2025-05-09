@@ -5,16 +5,13 @@ import piemontese from 'assets/piemontese.json'
 import romana from 'assets/romana.json'
 import trapanese from 'assets/trapanese.json'
 import Dinero from 'dinero.js'
+import { randomUUID } from 'uncrypto'
 
 const smirks = { napoletana, trapanese, romana, piemontese, livornese }
 
-const { data: gameId } = useFetch('/api/game/create', {
-  method: 'POST',
-  lazy: true,
-  transform: data => data.gameId!,
-  default: () => '',
-})
-
+const gameId = useRouteQuery('id', randomUUID().split('-')[0]!)
+const { sendExtraction } = usePeer(gameId, 'host')
+const { copy } = useClipboard()
 const router = useRouter()
 
 onMounted(() => {
@@ -31,7 +28,6 @@ const cards = Array.from({ length: 6 }).map((_, i) => {
 })
 
 const { currentLocale } = storeToRefs(useSettingsStore())
-const { copy } = useClipboard()
 const extractedNumbers = ref<number[]>([]), autoAnnounce = ref(false), currentNumber = ref<number>()
 const totalPrize = ref(0.1), smirk = ref<keyof typeof smirks>(), speakText = ref<string>('')
 
@@ -96,18 +92,12 @@ function speechText() {
   setTimeout(() => speak(), 250)
 }
 
-async function extractNumber() {
+function extractNumber() {
   const random = useSample([...remainingNumbers.value])
   if (!random) return
   currentNumber.value = random
-  const { extractions } = await $fetch('/api/game/extract', {
-    method: 'POST',
-    body: {
-      gameId: gameId.value,
-      number: random,
-    },
-  })
-  extractedNumbers.value = extractions
+  extractedNumbers.value.push(random)
+  sendExtraction(random)
 }
 </script>
 

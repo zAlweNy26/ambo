@@ -124,7 +124,14 @@ export default defineNuxtConfig({
 
   hub: {
     analytics: true,
+    workers: true,
     kv: true,
+  },
+
+  nitro: {
+    experimental: {
+      websocket: true,
+    },
   },
 
   vite: {

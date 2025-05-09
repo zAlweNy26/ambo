@@ -63,8 +63,13 @@
     "description": "Those who developed \"{0}\", putting their hearts into completing it and making it available to all."
   },
   "game": {
-    "title": "{0} - {1} remaining numbers",
     "id": "Game ID",
+    "title": "{0} - {1} remaining numbers",
+    "description": "Share this ID with your friends to enable them to participate in this game!",
+    "end": {
+      "title": "Game ended",
+      "description": "The game was terminated by the player who created it."
+    },
     "error": {
       "title": "Game not found",
       "description": "The game you are trying to access does not exist."

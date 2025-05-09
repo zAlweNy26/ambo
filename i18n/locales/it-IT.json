@@ -66,6 +66,10 @@
     "id": "ID partita",
     "title": "{0} - {1} numeri rimanenti",
     "description": "Condividi questo ID con i tuoi amici per permettere loro di partecipare a questa partita!",
+    "end": {
+      "title": "Partita terminata",
+      "description": "La partita è stata terminata dal giocatore che l'ha creata."
+    },
     "error": {
       "title": "Partita non trovata",
       "description": "La partita a cui stai cercando di accedere non esiste."

@@ -6,7 +6,7 @@ const { t } = useI18n(), toast = useToast()
 const gameId = ref('')
 
 async function checkGame(cards: number) {
-  const { found } = await $fetch('/api/game/join', { query: { id: gameId.value } })
+  const { found } = await $fetch('/api/game/check', { query: { id: gameId.value } })
   if (!found) {
     toast.add({
       title: t('game.error.title'),
