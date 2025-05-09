@@ -31,6 +31,7 @@ jobs:
           project-key: ambo-ux20
 
   report:
+    needs: deploy
     name: PageSpeed Insights metrics
     runs-on: ubuntu-latest
     steps:
