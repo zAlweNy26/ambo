@@ -1,57 +1,131 @@
-@import "tailwindcss";
+@import "tailwindcss" theme(static);
 @import "@nuxt/ui";
 
 @plugin "@tailwindcss/typography";
 
 @variant dark (&:where(.dark, .dark *));
 
-@theme {
-    --color-primary-50: var(--ui-color-primary-50);
-    --color-primary-100: var(--ui-color-primary-100);
-    --color-primary-200: var(--ui-color-primary-200);
-    --color-primary-300: var(--ui-color-primary-300);
-    --color-primary-400: var(--ui-color-primary-400);
-    --color-primary-500: var(--ui-color-primary-500);
-    --color-primary-600: var(--ui-color-primary-600);
-    --color-primary-700: var(--ui-color-primary-700);
-    --color-primary-800: var(--ui-color-primary-800);
-    --color-primary-900: var(--ui-color-primary-900);
-    --color-primary-950: var(--ui-color-primary-950);
+@theme static {
+  --font-sans: 'Plus Jakarta Sans', sans-serif;
 
-    --color-neutral-50: var(--ui-color-neutral-50);
-    --color-neutral-100: var(--ui-color-neutral-100);
-    --color-neutral-200: var(--ui-color-neutral-200);
-    --color-neutral-300: var(--ui-color-neutral-300);
-    --color-neutral-400: var(--ui-color-neutral-400);
-    --color-neutral-500: var(--ui-color-neutral-500);
-    --color-neutral-600: var(--ui-color-neutral-600);
-    --color-neutral-700: var(--ui-color-neutral-700);
-    --color-neutral-800: var(--ui-color-neutral-800);
-    --color-neutral-900: var(--ui-color-neutral-900);
-    --color-neutral-950: var(--ui-color-neutral-950);
+  --color-primary-50: var(--ui-color-primary-50);
+  --color-primary-100: var(--ui-color-primary-100);
+  --color-primary-200: var(--ui-color-primary-200);
+  --color-primary-300: var(--ui-color-primary-300);
+  --color-primary-400: var(--ui-color-primary-400);
+  --color-primary: var(--ui-color-primary-500);
+  --color-primary-600: var(--ui-color-primary-600);
+  --color-primary-700: var(--ui-color-primary-700);
+  --color-primary-800: var(--ui-color-primary-800);
+  --color-primary-900: var(--ui-color-primary-900);
+  --color-primary-950: var(--ui-color-primary-950);
 
-    --text-2xs: 0.625rem;
-    --text-2xs--line-height: 0.75rem;
+  --color-neutral-50: var(--ui-color-neutral-50);
+  --color-neutral-100: var(--ui-color-neutral-100);
+  --color-neutral-200: var(--ui-color-neutral-200);
+  --color-neutral-300: var(--ui-color-neutral-300);
+  --color-neutral-400: var(--ui-color-neutral-400);
+  --color-neutral: var(--ui-color-neutral-500);
+  --color-neutral-600: var(--ui-color-neutral-600);
+  --color-neutral-700: var(--ui-color-neutral-700);
+  --color-neutral-800: var(--ui-color-neutral-800);
+  --color-neutral-900: var(--ui-color-neutral-900);
+  --color-neutral-950: var(--ui-color-neutral-950);
 
-    --font-sans: 'Public Sans', sans-serif;
+  --text-2xs: 0.625rem;
+  --text-2xs--line-height: 0.75rem;
+
+  --breakpoint-3xl: 120rem;
 }
 
 :root {
-    --ui-radius: var(--radius-md);
+  /* Least prominent text */
+  --ui-text-dimmed: var(--ui-color-neutral-400);
+  /* Slightly muted text */
+  --ui-text-muted: var(--ui-color-neutral-500);
+  /* Moderately prominent text */
+  --ui-text-toned: var(--ui-color-neutral-600);
+  /* Default text color */
+  --ui-text: var(--ui-color-neutral-700);
+  /* Most prominent text */
+  --ui-text-highlighted: var(--ui-color-neutral-900);
+
+  /* Main background color */
+  --ui-bg: var(--ui-color-neutral-50);
+  /* Slightly elevated background */
+  --ui-bg-elevated: var(--ui-color-neutral-100);
+  /* Subtle background */
+  --ui-bg-muted: var(--ui-color-neutral-200);
+  /* More prominent background */
+  --ui-bg-accented: var(--ui-color-neutral-300);
+  /* Inverted background color */
+  --ui-bg-inverted: var(--ui-color-neutral-900);
+
+  /* Default border color */
+  --ui-border: var(--ui-color-neutral-200);
+  /* More prominent border */
+  --ui-border-accented: var(--ui-color-neutral-300);
+  /* Subtle border */
+  --ui-border-muted: var(--ui-color-neutral-400);
+  /* Inverted border color */
+  --ui-border-inverted: var(--ui-color-neutral-900);
+
+  --ui-radius: 0.375rem;
 }
 
-body {
-  @apply bg-neutral-100 dark:bg-neutral-900;
+.dark {
+  /* Least prominent text */
+  --ui-text-dimmed: var(--ui-color-neutral-500);
+  /* Slightly muted text */
+  --ui-text-muted: var(--ui-color-neutral-400);
+  /* Moderately prominent text */
+  --ui-text-toned: var(--ui-color-neutral-300);
+  /* Default text color */
+  --ui-text: var(--ui-color-neutral-200);
+  /* Most prominent text */
+  --ui-text-highlighted: var(--ui-color-neutral-50);
+
+  /* Main background color */
+  --ui-bg: var(--ui-color-neutral-900);
+  /* Slightly elevated background */
+  --ui-bg-elevated: var(--ui-color-neutral-800);
+  /* Subtle background */
+  --ui-bg-muted: var(--ui-color-neutral-700);
+  /* More prominent background */
+  --ui-bg-accented: var(--ui-color-neutral-600);
+  /* Inverted background color */
+  --ui-bg-inverted: var(--ui-color-neutral-50);
+
+  /* Default border color */
+  --ui-border: var(--ui-color-neutral-800);
+  /* More prominent border */
+  --ui-border-accented: var(--ui-color-neutral-700);
+  /* Subtle border */
+  --ui-border-muted: var(--ui-color-neutral-600);
+  /* Inverted border color */
+  --ui-border-inverted: var(--ui-color-neutral-50);
 }
 
 ::-webkit-scrollbar {
-  @apply size-2;
+  @apply size-1;
 }
 
 ::-webkit-scrollbar-track {
-  @apply bg-[var(--ui-bg)];
+  @apply bg-(--ui-bg);
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-[var(--ui-primary)] rounded-md;
+  @apply bg-(--ui-primary) rounded-md;
+}
+
+::selection {
+  @apply text-(--ui-bg) bg-(--ui-primary)/50;
+}
+
+[contenteditable="true"], [contenteditable=""] {
+  @apply outline outline-(--ui-border-muted) rounded-lg text-(--ui-text-toned) bg-(--ui-bg-muted) p-1;
+}
+
+[contenteditable="true"]:focus, [contenteditable=""]:focus {
+  @apply outline-2;
 }
