@@ -23,7 +23,15 @@ export default defineNuxtConfig({
     compatibilityVersion: 4,
   },
 
-  compatibilityDate: '2024-11-27',
+  compatibilityDate: '2025-12-10',
+
+  nitro: {
+    preset: 'cloudflare_module',
+    cloudflare: {
+      deployConfig: true,
+      nodeCompat: true,
+    },
+  },
 
   app: {
     pageTransition: {
