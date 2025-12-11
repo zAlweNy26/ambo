@@ -3,7 +3,7 @@ const { title } = useAppConfig()
 </script>
 
 <template>
-  <header class="flex items-center justify-between bg-[var(--ui-bg-elevated)] p-2 shadow-lg">
+  <header class="flex items-center justify-between bg-elevated p-2 shadow-lg">
     <NuLink :to="$localePath('index')">
       <NuAvatar alt="App Logo" src="/logo.svg" />
     </NuLink>

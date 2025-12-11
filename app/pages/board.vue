@@ -33,6 +33,7 @@ const cards = Array.from({ length: 6 }).map((_, i) => {
 const { currentLocale } = storeToRefs(useSettingsStore())
 const toast = useToast()
 const { t } = useI18n()
+const { title } = useAppConfig()
 const { copy, copied } = useClipboard()
 const { share, isSupported: isShareSupported } = useShare()
 const extractedNumbers = ref<number[]>([]), autoAnnounce = ref(false), currentNumber = ref<number>()
@@ -106,7 +107,7 @@ async function shareGameId() {
   if (isShareSupported.value) {
     try {
       await share({
-        title: 'Ambo!',
+        title,
         text: `${$t('game.id')}: ${gameId.value}`,
         url: `${window.location.origin}?id=${gameId.value}`,
       })

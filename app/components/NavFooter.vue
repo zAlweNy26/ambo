@@ -26,18 +26,18 @@ const error = useError()
       </svg>
     </div>
   </div>
-  <div class="flex flex-col items-center gap-4 text-sm text-center text-[var(--ui-bg)] p-4 text-base-200 bg-gradient-to-r"
+  <div class="flex flex-col items-center gap-4 text-sm text-center text-inverted p-4 text-base-200 bg-linear-to-r"
        :class="[error ? 'from-red-600 to-red-400' : 'from-primary-600 to-primary-400']">
     <div class="flex flex-wrap justify-center font-medium gap-4">
-      <NuLink class="hover:underline !text-[var(--ui-bg)]" :to="$localePath('terms')">
+      <NuLink class="hover:underline text-inverted hover:text-inverted" :to="$localePath('terms')">
         {{ $t('footer.terms') }}
       </NuLink>
-      <NuLink class="hover:underline !text-[var(--ui-bg)]" :to="$localePath('contacts')">
+      <NuLink class="hover:underline text-inverted hover:text-inverted" :to="$localePath('contacts')">
         {{ $t('footer.contacts') }}
       </NuLink>
     </div>
     <div class="grid grid-flow-col gap-4">
-      <NuButton icon="i-tabler-brand-github" class="text-[var(--ui-bg)] p-0" square variant="ghost" size="xl" :ui="{ leadingIcon: 'size-8' }"
+      <NuButton icon="i-tabler-brand-github" class="p-0 text-inverted" square variant="ghost" size="xl" :ui="{ leadingIcon: 'size-8' }"
                 to="https://github.com/zAlweNy26/ambo" external target="_blank" aria-label="GitHub Repository" />
     </div>
     <div class="text-sm flex justify-between items-center gap-4 w-full">
