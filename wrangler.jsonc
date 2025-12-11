@@ -1,11 +1,10 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "ambo",
-  "main": "./dist/server/index.mjs",
+  "main": "./.output/server/index.mjs",
   "compatibility_date": "2025-12-10",
-  "compatibility_flags": ["nodejs_compat"],
   "assets": {
-    "directory": "./dist/public/",
+    "directory": "./.output/public/",
     "binding": "ASSETS"
   },
   "observability": {
@@ -22,20 +21,5 @@
       "binding": "ANALYTICS"
     }
   ],
-  "vars": {},
-  "env": {
-    "preview": {
-      "kv_namespaces": [
-        {
-          "binding": "KV",
-          "id": "efdba0a419b340ae98a9735d4d26d90f"
-        }
-      ],
-      "analytics_engine_datasets": [
-        {
-          "binding": "ANALYTICS"
-        }
-      ]
-    }
-  }
+  "vars": {}
 }

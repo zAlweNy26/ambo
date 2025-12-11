@@ -30,6 +30,7 @@
     "@vite-pwa/nuxt": "1.1.0",
     "@vueuse/nuxt": "14.1.0",
     "@vueuse/router": "^14.1.0",
+    "better-sqlite3": "^12.5.0",
     "dinero.js": "^1.9.1",
     "lodash-es": "^4.17.21",
     "nuxt": "^4.2.2",
@@ -51,6 +52,6 @@
     "unlighthouse": "^0.17.4",
     "vitest": "^4.0.15",
     "vue-tsc": "^3.1.8",
-    "wrangler": "^4.53.0"
+    "wrangler": "^4.54.0"
   }
 }
