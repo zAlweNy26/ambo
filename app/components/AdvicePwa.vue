@@ -4,7 +4,7 @@ const { $pwa } = useNuxtApp()
 
 <template>
   <ClientOnly>
-    <div v-if="$pwa?.offlineReady || $pwa?.needRefresh"
+    <div v-if="$pwa?.isPWAInstalled && ($pwa?.offlineReady || $pwa?.needRefresh)"
          class="flex justify-center items-center font-medium p-2 bg-accented gap-2">
       <h6>{{ $t('pwa.updateTitle') }}</h6>
       <NuButton size="sm" color="success" @click="$pwa.updateServiceWorker()">

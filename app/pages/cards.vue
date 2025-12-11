@@ -5,7 +5,7 @@ definePageMeta({
   }],
 })
 
-const gameId = useRouteQuery<string>('id')
+const gameId = useRouteQuery<string>('id', '')
 const { t } = useI18n(), toast = useToast()
 const extractions = ref<number[]>([])
 const { data, error } = useEventSource(() => `/game?id=${gameId.value}`)

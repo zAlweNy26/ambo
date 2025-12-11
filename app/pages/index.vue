@@ -3,7 +3,7 @@ const { title } = useAppConfig()
 
 const { t } = useI18n(), toast = useToast()
 
-const gameId = useRouteQuery<string>('id')
+const gameId = useRouteQuery<string>('id', '')
 
 async function checkGame(cards: number) {
   const { found } = await $fetch('/api/game/join', { query: { id: gameId.value } })
