@@ -1,1 +1,98 @@
-{}
+{
+  "toasts": {
+    "copied": "Copiado"
+  },
+  "game": {
+    "description": "¡Comparte esta identificación con tus amigos para permitirles unirse a este juego!",
+    "error": {
+      "description": "El juego al que estás intentando unirte no existe.",
+      "title": "Coincidencia no encontrada"
+    },
+    "id": "ID del juego",
+    "title": "{0} - {1} números restantes"
+  },
+  "aria": {
+    "copy": "Copiar",
+    "goTop": "ir alto",
+    "more": "Otro",
+    "toggle": "Cambiar"
+  },
+  "board": {
+    "announcer": "locutor automático",
+    "draw": "dibuja un numero",
+    "extractions": "Último sorteo | Últimos {0} sorteos",
+    "prize": "Partición del premio",
+    "smirk": "Elige una mueca"
+  },
+  "button": {
+    "backHome": "Volver a @:header.home",
+    "cancel": "Cancelar",
+    "exit": "tu sales",
+    "maximize": "Maximizar",
+    "minimize": "Minimizar",
+    "reset": "Reiniciar"
+  },
+  "cards": {
+    "description": "Ingresa un ID de juego y selecciona la cantidad de cartas con las que deseas jugar.",
+    "found": "Número {0} encontrado y agregado",
+    "notFound": "Número {0} no encontrado",
+    "quantity": "{0} carpeta | {0} carpetas",
+    "search": "busca el numero",
+    "title": "¿Con cuántas cartas quieres jugar?"
+  },
+  "contacts": {
+    "description": "Los que desarrollaron \"{0}\", poniendo su corazón en completarlo y ponerlo a disposición de todos.",
+    "title": "equipo de desarrollo"
+  },
+  "donate": {
+    "title": "Ayúdanos a mantener {0} libre. {1}",
+    "with": "Donar con"
+  },
+  "error": {
+    "routes": {
+      "401": "No está autenticado, por lo que no puede acceder a esta página.",
+      "403": "No estás autorizado a acceder a esta página.",
+      "404": "La página que buscas no fue encontrada.",
+      "500": "Algo salió mal. Inténtelo de nuevo más tarde.",
+      "fallback": "Se produjo un error al intentar acceder a esta página.\nInténtelo de nuevo más tarde.",
+      "notAccessible": "Página no accesible",
+      "title": "Error: {0}"
+    }
+  },
+  "exit": {
+    "description": "Perderás todo tu progreso si abandonas ahora.",
+    "title": "¿Estás seguro de que quieres irte?"
+  },
+  "footer": {
+    "attributions": "Atribuciones",
+    "contacts": "Contáctenos",
+    "copyright": "Copyright © 2023-{0} {1} - Todos los derechos reservados.",
+    "privacy": "política de privacidad",
+    "terms": "Términos de servicio"
+  },
+  "header": {
+    "board": "Marcador",
+    "cards": "Carpetas",
+    "contacts": "Contáctenos",
+    "home": "Hogar",
+    "terms": "Términos"
+  },
+  "home": {
+    "subtitle": "Una aplicación para jugar al bingo online de forma rápida y sencilla.",
+    "welcome": "Bienvenido a {0}"
+  },
+  "language": {
+    "toggle": "@:aria.alternar idioma"
+  },
+  "pwa": {
+    "install": "Instalar",
+    "installTitle": "¿Quieres instalarlo como una aplicación?",
+    "update": "Actualizar",
+    "updateTitle": "Actualización encontrada. ¿Quieres actualizar?"
+  },
+  "theme": {
+    "dark": "Oscuro",
+    "light": "Claro",
+    "toggle": "@:aria.alternar tema"
+  }
+}

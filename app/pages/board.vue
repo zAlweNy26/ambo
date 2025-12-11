@@ -1,10 +1,10 @@
 <script lang="ts" setup>
-import livornese from 'assets/livornese.json'
-import napoletana from 'assets/napoletana.json'
-import piemontese from 'assets/piemontese.json'
-import romana from 'assets/romana.json'
-import trapanese from 'assets/trapanese.json'
 import Dinero from 'dinero.js'
+import livornese from '~/assets/livornese.json'
+import napoletana from '~/assets/napoletana.json'
+import piemontese from '~/assets/piemontese.json'
+import romana from '~/assets/romana.json'
+import trapanese from '~/assets/trapanese.json'
 
 const smirks = { napoletana, trapanese, romana, piemontese, livornese }
 
@@ -17,8 +17,8 @@ const { data: gameId } = useFetch('/api/game/create', {
 
 const router = useRouter()
 
-onMounted(() => {
-  router.push({ query: { id: gameId.value } })
+watch(gameId, (id) => {
+  if (id) router.push({ query: { id }, replace: true })
 })
 
 const cards = Array.from({ length: 6 }).map((_, i) => {
@@ -31,11 +31,14 @@ const cards = Array.from({ length: 6 }).map((_, i) => {
 })
 
 const { currentLocale } = storeToRefs(useSettingsStore())
-const { copy } = useClipboard()
+const toast = useToast()
+const { t } = useI18n()
+const { copy, copied } = useClipboard()
+const { share, isSupported: isShareSupported } = useShare()
 const extractedNumbers = ref<number[]>([]), autoAnnounce = ref(false), currentNumber = ref<number>()
 const totalPrize = ref(0.1), smirk = ref<keyof typeof smirks>(), speakText = ref<string>('')
 
-const { isPlaying, isSupported, speak, stop } = useSpeechSynthesis(speakText, {
+const { isPlaying, isSupported: isSpeechSupported, speak, stop } = useSpeechSynthesis(speakText, {
   lang: () => currentLocale.value.language ?? currentLocale.value.code,
   pitch: 1,
   rate: 1,
@@ -88,6 +91,34 @@ watchDeep(currentSmirk, () => {
   if (autoAnnounce.value) speechText()
 })
 
+async function copyGameId() {
+  copy(gameId.value)
+  toast.add({
+    title: t('toasts.copied'),
+    description: `${$t('game.id')}: ${gameId.value}`,
+    color: 'success',
+    icon: 'i-tabler-copy-check',
+    ui: { description: 'truncate' },
+  })
+}
+
+async function shareGameId() {
+  if (isShareSupported.value) {
+    try {
+      await share({
+        title: 'Ambo!',
+        text: `${$t('game.id')}: ${gameId.value}`,
+        url: window.location.href,
+      })
+    }
+    catch (error) {
+      console.error(error)
+      copyGameId()
+    }
+  }
+  else copyGameId()
+}
+
 function speechText() {
   if (!currentSmirk.value) return
   const { number, original, translated } = currentSmirk.value
@@ -97,7 +128,7 @@ function speechText() {
 }
 
 async function extractNumber() {
-  const random = useSample([...remainingNumbers.value])
+  const random = _Sample([...remainingNumbers.value])
   if (!random) return
   currentNumber.value = random
   const { extractions } = await $fetch('/api/game/extract', {
@@ -118,8 +149,9 @@ async function extractNumber() {
       <p class="text-xl space-x-2">
         <span class="font-semibold">{{ $t('game.id') }}:</span>
         <span>{{ gameId }}</span>
-        <NuButton class="align-sub" icon="i-tabler-clipboard" square color="neutral" :aria-label="$t('aria.copy')"
-                  variant="soft" size="xl" @click="copy(gameId)" />
+        <NuButton class="align-sub" square :aria-label="isShareSupported ? $t('aria.share') : $t('aria.copy')"
+                  :icon="isShareSupported ? 'i-tabler-share' : (copied ? 'i-tabler-copy-check' : 'i-tabler-copy')"
+                  :color="copied ? 'success' : 'neutral'" variant="soft" size="xl" @click="shareGameId()" />
       </p>
       <p class="italic text-sm">
         {{ $t('game.description') }}
@@ -130,7 +162,7 @@ async function extractNumber() {
         <NuFormField :label="$t('board.prize')" size="xl" :ui="{ label: 'space-x-1' }">
           <NuInputNumber v-model="totalPrize" :min="0.1" :step="0.1" />
           <template #label="{ label }">
-            <NuIcon name="i-tabler-moneybag" class="size-5 text-[var(--ui-primary)] align-text-bottom" />
+            <NuIcon name="i-tabler-moneybag" class="size-5 text-primary align-text-bottom" />
             <span>{{ label }}</span>
           </template>
         </NuFormField>
@@ -164,7 +196,7 @@ async function extractNumber() {
                   uncheckedIcon="i-tabler-x" checkedIcon="i-tabler-check" defaultValue />
         <NuButton icon="i-tabler-numbers" :disabled="remaining === 0 || !smirk" size="xl" loadingAuto
                   :label="$t('board.draw')" @click="extractNumber" />
-        <NuCard v-if="currentSmirk" :ui="{ body: 'inline-flex items-center justify-center gap-4 !px-4 !py-2' }">
+        <NuCard v-if="currentSmirk" :ui="{ body: 'inline-flex items-center justify-center gap-4 px-4 py-2' }">
           <span class="font-bold">{{ currentSmirk.number }}</span>
           <div>
             <p class="font-semibold">
@@ -172,13 +204,13 @@ async function extractNumber() {
             </p>
             <p>{{ currentSmirk.translated }}</p>
           </div>
-          <NuButton v-if="isSupported" variant="subtle" icon="i-tabler-volume" size="xl" @click="speechText()" />
+          <NuButton v-if="isSpeechSupported" variant="subtle" icon="i-tabler-volume" size="xl" @click="speechText()" />
         </NuCard>
       </div>
       <div class="grid grid-cols-2 gap-8">
         <div v-for="(card, index) in cards" :key="index" class="grid grid-cols-5 grid-rows-3 gap-2 select-none">
           <div v-for="number in card" :key="number"
-               :class="{ 'bg-[var(--ui-primary)] border-none text-[var(--ui-bg)]': extractedNumbers.includes(number) }"
+               :class="{ 'bg-primary border-none text-default': extractedNumbers.includes(number) }"
                class="grid place-content-center size-8 transition-colors border-2 rounded-full sm:size-10 md:size-12">
             <p class="text-sm font-bold sm:text-lg">
               {{ number }}

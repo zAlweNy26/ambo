@@ -33,13 +33,13 @@
   },
   "error": {
     "routes": {
-      "title": "Errore - {0}",
-      "notAccessible": "Pagina non accessibile",
-      "fallback": "Si è verificato un errore durante il tentativo di accesso a questa pagina.\nRiprova più tardi.",
       "401": "Non sei autenticato, quindi non puoi accedere a questa pagina.",
       "403": "Non sei autorizzato ad accedere a questa pagina.",
       "404": "La pagina che stai cercando non è stata trovata.",
-      "500": "Qualcosa è andato storto. Riprova più tardi."
+      "500": "Qualcosa è andato storto. Riprova più tardi.",
+      "title": "Errore - {0}",
+      "notAccessible": "Pagina non accessibile",
+      "fallback": "Si è verificato un errore durante il tentativo di accesso a questa pagina.\nRiprova più tardi."
     }
   },
   "button": {
@@ -91,5 +91,8 @@
     "updateTitle": "Aggiornamento trovato. Vuoi aggiornare?",
     "install": "Installa",
     "update": "Aggiorna"
+  },
+  "toasts": {
+    "copied": "Copiato"
   }
 }

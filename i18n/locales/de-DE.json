@@ -1,1 +1,98 @@
-{}
+{
+  "toasts": {
+    "copied": "Kopiert"
+  },
+  "game": {
+    "description": "Teilen Sie diese ID mit Ihren Freunden, damit diese an diesem Spiel teilnehmen können!",
+    "error": {
+      "description": "Das Spiel, dem Sie beitreten möchten, existiert nicht.",
+      "title": "Übereinstimmung nicht gefunden"
+    },
+    "id": "Spiel-ID",
+    "title": "{0} – {1} Nummern übrig"
+  },
+  "aria": {
+    "copy": "Kopie",
+    "goTop": "Geh hoch",
+    "more": "Andere",
+    "toggle": "Ändern"
+  },
+  "board": {
+    "announcer": "Automatischer Ansager",
+    "draw": "Zeichne eine Zahl",
+    "extractions": "Letzte Ziehung | Letzte {0} Ziehungen",
+    "prize": "Aufteilung des Preises",
+    "smirk": "Wähle eine Grimasse"
+  },
+  "button": {
+    "backHome": "Kehren Sie zu @:header.home zurück",
+    "cancel": "Stornieren",
+    "exit": "Du gehst raus",
+    "maximize": "Maximieren",
+    "minimize": "Minimieren",
+    "reset": "Zurücksetzen"
+  },
+  "cards": {
+    "description": "Geben Sie eine Spiel-ID ein und wählen Sie die Anzahl der Karten aus, mit denen Sie spielen möchten.",
+    "found": "Nummer {0} gefunden und hinzugefügt",
+    "notFound": "Nummer {0} nicht gefunden",
+    "quantity": "{0} Ordner | {0} Ordner",
+    "search": "Suchen Sie nach der Nummer",
+    "title": "Mit wie vielen Karten möchtest du spielen?"
+  },
+  "contacts": {
+    "description": "Diejenigen, die „{0}“ entwickelt haben und sich mit ganzem Herzen dafür eingesetzt haben, es fertigzustellen und es allen zugänglich zu machen.",
+    "title": "Entwicklungsteam"
+  },
+  "donate": {
+    "title": "Helfen Sie uns, {0} frei zu halten. {1}",
+    "with": "Spenden Sie mit"
+  },
+  "error": {
+    "routes": {
+      "401": "Sie sind nicht authentifiziert und können daher nicht auf diese Seite zugreifen.",
+      "403": "Sie sind nicht berechtigt, auf diese Seite zuzugreifen.",
+      "404": "Die gesuchte Seite wurde nicht gefunden.",
+      "500": "Etwas ist schief gelaufen. Bitte versuchen Sie es später noch einmal.",
+      "fallback": "Beim Versuch, auf diese Seite zuzugreifen, ist ein Fehler aufgetreten.\nBitte versuchen Sie es später noch einmal.",
+      "notAccessible": "Seite nicht zugänglich",
+      "title": "Fehler – {0}"
+    }
+  },
+  "exit": {
+    "description": "Wenn Sie jetzt aufhören, gehen alle Ihre Fortschritte verloren.",
+    "title": "Sind Sie sicher, dass Sie gehen möchten?"
+  },
+  "footer": {
+    "attributions": "Zuschreibungen",
+    "contacts": "Kontaktieren Sie uns",
+    "copyright": "Copyright © 2023-{0} {1} – Alle Rechte vorbehalten.",
+    "privacy": "Datenschutzrichtlinie",
+    "terms": "Nutzungsbedingungen"
+  },
+  "header": {
+    "board": "Anzeigetafel",
+    "cards": "Ordner",
+    "contacts": "Kontaktieren Sie uns",
+    "home": "Heim",
+    "terms": "Bedingungen"
+  },
+  "home": {
+    "subtitle": "Eine Anwendung zum schnellen und einfachen Online-Bingospielen.",
+    "welcome": "Willkommen bei {0}"
+  },
+  "language": {
+    "toggle": "@:aria.Sprache umschalten"
+  },
+  "pwa": {
+    "install": "Installieren",
+    "installTitle": "Möchten Sie es als App installieren?",
+    "update": "Aktualisieren",
+    "updateTitle": "Update gefunden. Möchten Sie ein Upgrade durchführen?"
+  },
+  "theme": {
+    "dark": "Dunkel",
+    "light": "Klar",
+    "toggle": "@:aria.Thema umschalten"
+  }
+}

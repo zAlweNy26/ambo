@@ -40,7 +40,7 @@ const { title } = useAppConfig()
 
 <template>
   <section class="flex flex-col items-center gap-4 grow">
-    <h1 class="text-4xl font-bold text-[var(--ui-primary)]">
+    <h1 class="text-4xl font-bold text-primary">
       {{ $t('contacts.title') }}
     </h1>
     <i18n-t keypath="contacts.description" tag="p" class="font-medium">
@@ -59,10 +59,10 @@ const { title } = useAppConfig()
           {{ member.description }}
         </p>
         <template #footer>
-          <NuButtonGroup>
+          <NuFieldGroup>
             <NuButton v-for="link in member.links" :key="link.icon" size="xl" variant="subtle" :aria-label="`${link.name} - ${member.name}`"
                       :icon="link.icon" square external :to="link.url" target="_blank" />
-          </NuButtonGroup>
+          </NuFieldGroup>
         </template>
       </NuCard>
     </div>

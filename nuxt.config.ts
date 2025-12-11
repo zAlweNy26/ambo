@@ -2,8 +2,9 @@
 export default defineNuxtConfig({
   devtools: { enabled: true },
 
+  ssr: false,
+
   modules: [
-    'nuxt-lodash',
     '@nuxthub/core',
     '@formkit/auto-animate/nuxt',
     '@vueuse/nuxt',
@@ -118,7 +119,6 @@ export default defineNuxtConfig({
         domain: '🇩🇪',
       },
     ],
-    lazy: true,
     defaultLocale: 'en',
     langDir: './locales',
     strategy: 'no_prefix',
@@ -131,12 +131,15 @@ export default defineNuxtConfig({
   },
 
   hub: {
-    analytics: true,
     kv: true,
   },
 
   vite: {
     logLevel: 'info',
+  },
+
+  ogImage: {
+    enabled: false,
   },
 
   pwa: {

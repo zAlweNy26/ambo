@@ -52,8 +52,8 @@ const cards = computed(() => {
     card.forEach((v) => {
       let times = 0
       while (times < 5) {
-        const randIndex = useRandom(0, 8, false)
-        const randNum = useRandom(randIndex === 0 ? 1 : randIndex * 10, (randIndex * 10) + (randIndex === 8 ? 10 : 9), false)
+        const randIndex = _Random(0, 8, false)
+        const randNum = _Random(randIndex === 0 ? 1 : randIndex * 10, (randIndex * 10) + (randIndex === 8 ? 10 : 9), false)
         if (v[randIndex] === 0
           && card.findIndex(v => v.find(s => s === randNum)) === -1
           && card.filter(v => v[randIndex] === 0).length > 1) {
@@ -113,27 +113,27 @@ function checkNumber(num: number, check = true) {
       <p>{{ $t('board.extractions', [lastExtractions.length], lastExtractions.length) }}</p>
       <div v-auto-animate class="flex flex-wrap gap-4 items-center justify-center">
         <div v-for="num in lastExtractions" :key="num"
-             class="grid place-content-center size-8 transition-colors border-2 bg-[var(--ui-primary)] border-none text-[var(--ui-bg)] rounded-full sm:size-10 md:size-12">
+             class="grid place-content-center size-8 transition-colors border-2 bg-primary border-none text-(--ui-bg) rounded-full sm:size-10 md:size-12">
           <p class="text-sm font-bold sm:text-lg">
             {{ num }}
           </p>
         </div>
       </div>
     </div>
-    <NuButtonGroup orientation="vertical">
+    <NuFieldGroup orientation="vertical">
       <NuInputNumber v-model="searchNumber" size="xl" :min="1" :step="1" :max="90"
                      :ui="{ base: ['rounded-b-none'] }" @change="() => numberFound = undefined" />
       <NuButton square icon="i-tabler-search" block size="xl" :label="$t('cards.search')" @click="checkNumber(searchNumber)" />
-    </NuButtonGroup>
-    <i18n-t v-if="numberFound !== undefined" class="-mt-6" :class="[numberFound ? 'text-[var(--ui-success)]' : 'text-[var(--ui-error)]']"
+    </NuFieldGroup>
+    <i18n-t v-if="numberFound !== undefined" class="-mt-6" :class="[numberFound ? 'text-success' : 'text-error']"
             :keypath="`cards.${numberFound ? 'found' : 'notFound'}`" tag="p">
       <strong>{{ searchNumber }}</strong>
     </i18n-t>
     <div class="flex flex-wrap items-center justify-center gap-8">
       <div v-for="(card, ci) in cards" :key="ci"
-           class="grid select-none grid-cols-[repeat(9,minmax(2rem,3rem))] bg-[var(--ui-bg-accented)] p-2 rounded-lg">
-        <div v-for="(number, ni) in card" :key="`${ci}-${ni}`" class="grid place-content-center border p-2 bg-[var(--ui-bg)]" :class="{
-          'bg-[var(--ui-primary)] text-[var(--ui-bg)]': signedNumbers[ci]?.includes(number),
+           class="grid select-none grid-cols-[repeat(9,minmax(2rem,3rem))] bg-accented p-2 rounded-lg">
+        <div v-for="(number, ni) in card" :key="`${ci}-${ni}`" class="grid place-content-center border p-2 bg-default" :class="{
+          'bg-primary text-default': signedNumbers[ci]?.includes(number),
           'cursor-pointer transition-colors': number !== 0,
         }" @click="checkNumber(number, false)">
           <p class="text-xl font-medium">

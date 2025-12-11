@@ -8,30 +8,6 @@
 @theme static {
   --font-sans: 'Plus Jakarta Sans', sans-serif;
 
-  --color-primary-50: var(--ui-color-primary-50);
-  --color-primary-100: var(--ui-color-primary-100);
-  --color-primary-200: var(--ui-color-primary-200);
-  --color-primary-300: var(--ui-color-primary-300);
-  --color-primary-400: var(--ui-color-primary-400);
-  --color-primary: var(--ui-color-primary-500);
-  --color-primary-600: var(--ui-color-primary-600);
-  --color-primary-700: var(--ui-color-primary-700);
-  --color-primary-800: var(--ui-color-primary-800);
-  --color-primary-900: var(--ui-color-primary-900);
-  --color-primary-950: var(--ui-color-primary-950);
-
-  --color-neutral-50: var(--ui-color-neutral-50);
-  --color-neutral-100: var(--ui-color-neutral-100);
-  --color-neutral-200: var(--ui-color-neutral-200);
-  --color-neutral-300: var(--ui-color-neutral-300);
-  --color-neutral-400: var(--ui-color-neutral-400);
-  --color-neutral: var(--ui-color-neutral-500);
-  --color-neutral-600: var(--ui-color-neutral-600);
-  --color-neutral-700: var(--ui-color-neutral-700);
-  --color-neutral-800: var(--ui-color-neutral-800);
-  --color-neutral-900: var(--ui-color-neutral-900);
-  --color-neutral-950: var(--ui-color-neutral-950);
-
   --text-2xs: 0.625rem;
   --text-2xs--line-height: 0.75rem;
 
@@ -111,19 +87,19 @@
 }
 
 ::-webkit-scrollbar-track {
-  @apply bg-(--ui-bg);
+  @apply bg-default;
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-(--ui-primary) rounded-md;
+  @apply bg-primary rounded-md;
 }
 
 ::selection {
-  @apply text-(--ui-bg) bg-(--ui-primary)/50;
+  @apply text-default bg-primary/50;
 }
 
 [contenteditable="true"], [contenteditable=""] {
-  @apply outline outline-(--ui-border-muted) rounded-lg text-(--ui-text-toned) bg-(--ui-bg-muted) p-1;
+  @apply outline outline-default rounded-lg text-toned bg-muted p-1;
 }
 
 [contenteditable="true"]:focus, [contenteditable=""]:focus {

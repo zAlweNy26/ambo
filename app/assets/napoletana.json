@@ -1,8 +1,8 @@
 [
   {
     "number": 1,
-    "original": "L’Italia",
-    "translated": "l'Italia"
+    "original": "L'Italia",
+    "translated": "L'Italia"
   },
   {
     "number": 2,
@@ -182,7 +182,7 @@
   {
     "number": 37,
     "original": "'O monaco",
-    "translated": "Il monaco, il frate"
+    "translated": "Il monaco"
   },
   {
     "number": 38,
@@ -207,7 +207,7 @@
   {
     "number": 42,
     "original": "'O cafè",
-    "translated": "Il caffe"
+    "translated": "Il caffè"
   },
   {
     "number": 43,
@@ -382,7 +382,7 @@
   {
     "number": 77,
     "original": "'E riavulille",
-    "translated": "I diavoletti, il diavolo"
+    "translated": "I diavoletti"
   },
   {
     "number": 78,
