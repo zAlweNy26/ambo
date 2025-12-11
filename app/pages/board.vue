@@ -108,7 +108,7 @@ async function shareGameId() {
       await share({
         title: 'Ambo!',
         text: `${$t('game.id')}: ${gameId.value}`,
-        url: window.location.href,
+        url: `${window.location.origin}?id=${gameId.value}`,
       })
     }
     catch (error) {

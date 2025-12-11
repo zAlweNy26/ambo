@@ -3,7 +3,7 @@ const { title } = useAppConfig()
 
 const { t } = useI18n(), toast = useToast()
 
-const gameId = ref('')
+const gameId = useRouteQuery<string>('id')
 
 async function checkGame(cards: number) {
   const { found } = await $fetch('/api/game/join', { query: { id: gameId.value } })
@@ -33,12 +33,12 @@ async function checkGame(cards: number) {
       <NuModal :title="$t('cards.title')" :description="$t('cards.description')" :ui="{
         content: 'sm:max-w-md',
         body: 'grid grid-cols-2 place-content-center gap-4',
-      }">
+      }" :defaultOpen="!!gameId">
         <NuButton :label="$t('header.cards')" block icon="i-tabler-cards-filled" size="xl" />
         <template #body>
           <NuFormField class="col-span-2" size="xl" :label="$t('game.id')" required>
             <NuInput v-model="gameId" :placeholder="$t('game.id')" icon="i-tabler-lock-password" class="w-full"
-                     :ui="{ leadingIcon: 'text-[var(--ui-primary)]' }" />
+                     :ui="{ leadingIcon: 'text-primary' }" />
           </NuFormField>
           <NuButton v-for="n in 6" :key="n" :disabled="gameId.length !== 8" :variant="gameId.length !== 8 ? 'outline' : 'solid'"
                     :label="$t('cards.quantity', [n], n)" block size="xl" @click="checkGame(n)" />

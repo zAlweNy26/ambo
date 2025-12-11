@@ -76,10 +76,7 @@ const cards = computed(() => {
   }).map(c => c.flat())
 })
 
-const remaining = computed(() =>
-  new Set(cards.value.flat().filter(r => r !== 0)).size
-    - new Set(signedNumbers.value.flat()).size,
-)
+const remaining = computed(() => new Set(cards.value.flat().filter(r => r !== 0)).size - new Set(signedNumbers.value.flat()).size)
 
 function toggleNumber(card: number, num: number, force = false) {
   if (num === 0) return

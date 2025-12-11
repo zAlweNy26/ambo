@@ -17,7 +17,7 @@ const { data: page } = await useAsyncData(
 <template>
   <section class="grow mx-auto">
     <ContentRenderer v-if="page"
-                     class="prose-sm prose max-w-[90ch] md:prose-base dark:prose-invert prose-headings:text-center prose-h1:text-[var(--ui-primary)] prose-li:marker:text-[var(--ui-primary)] prose-li:marker:font-medium"
+                     class="prose-sm prose max-w-[90ch] md:prose-base dark:prose-invert prose-headings:text-center prose-h1:text-primary prose-li:marker:text-primary prose-li:marker:font-medium"
                      :value="page" prose :data="{ owner }" />
   </section>
 </template>
