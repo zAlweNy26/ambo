@@ -1,6 +1,6 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "ambo",
+  "name": "ambo-preview",
   "main": "./.output/server/index.mjs",
   "compatibility_date": "2025-12-10",
   "compatibility_flags": ["nodejs_compat"],
