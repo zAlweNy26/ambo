@@ -132,6 +132,7 @@ export default defineNuxtConfig({
 
   hub: {
     kv: true,
+    db: 'sqlite',
   },
 
   vite: {

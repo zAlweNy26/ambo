@@ -3,6 +3,9 @@
   "name": "ambo",
   "main": "./.output/server/index.mjs",
   "compatibility_date": "2025-12-10",
+  "compatibility_flags": ["nodejs_compat"],
+  "preview_urls": false,
+  "workers_dev": false,
   "assets": {
     "directory": "./.output/public/",
     "binding": "ASSETS"
@@ -21,5 +24,7 @@
       "binding": "ANALYTICS"
     }
   ],
-  "vars": {}
+  "vars": {
+    "NUXT_PUBLIC_I18N_BASE_URL": "https://ambo.danyalwe.me"
+  }
 }

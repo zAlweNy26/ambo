@@ -8,6 +8,10 @@ Digital bingo game, for when you don't feel like carrying the box!
 
 - [ ] Add translations into other languages
 - [ ] Add support for other bingo types (sinco, zubbio, etc...)
+- [ ] Add client-side vibration on winning events (ambo, terna, quaterna, cinquina, tombola)
+- [ ] Add game statistics (games played, top 5 most extracted numbers)
+- [ ] Add real-time chat with other players and quick reactions during the game
+- [ ] Implement game deletion when host leaves
 
 ## Setup
 
@@ -39,4 +43,4 @@ Locally preview production build:
 bun run preview
 ```
 
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+Check out the [deployment documentation](https://hub.nuxt.com/docs/getting-started/deploy) for more information.

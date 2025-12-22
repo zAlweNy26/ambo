@@ -1,34 +1,35 @@
-name: Deploy to NuxtHub
-on: push
+name: Deploy to Cloudflare Worker
+on:
+  push:
+    branches:
+      - main
 
 jobs:
   deploy:
-    name: Deploy to NuxtHub
+    name: Deploy to Cloudflare Worker
     runs-on: ubuntu-latest
-    environment:
-      name: ${{ github.ref == 'refs/heads/main' && 'production' || 'preview' }}
-      url: ${{ steps.deploy.outputs.deployment-url }}
-    permissions:
-      contents: read
-      id-token: write
+    timeout-minutes: 60
 
     steps:
       - uses: actions/checkout@v4
-
-      - name: Install Bun
+      
+      - name: Setup Bun
         uses: oven-sh/setup-bun@v2
-
+        with:
+          bun-version: latest
+      
       - name: Install dependencies
         run: bun install
-
+      
       - name: Build application
         run: bun run build
-
-      - name: Deploy to NuxtHub
-        uses: nuxt-hub/action@v1
-        id: deploy
+      
+      - name: Deploy Worker
+        uses: cloudflare/wrangler-action@v3
         with:
-          project-key: ambo-ux20
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          packageManager: bun
 
   report:
     needs: deploy
@@ -42,4 +43,4 @@ jobs:
           base: ''
           plugin_pagespeed: yes
           plugin_pagespeed_token: ${{ secrets.PAGESPEED_TOKEN }}
-          plugin_pagespeed_url: https://ambo.nuxt.dev
+          plugin_pagespeed_url: https://ambo.danyalwe.me
