@@ -11,5 +11,5 @@ export const games = sqliteTable('games', {
 export const extractions = sqliteTable('extractions', {
   id: integer().primaryKey({ autoIncrement: true }),
   gameId: text('game_id').notNull().references(() => games.gameId),
-  number: integer().notNull(),
+  numbers: text('numbers', { mode: 'json' }).$type<number[]>().notNull(),
 })

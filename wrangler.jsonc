@@ -13,6 +13,14 @@
   "observability": {
     "enabled": true
   },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "ambo",
+      "database_id": "92e21866-4939-4381-84fd-38cbf5ac8d74",
+      "migrations_dir": "server/db/migrations/sqlite"
+    }
+  ],
   "kv_namespaces": [
     {
       "binding": "KV",

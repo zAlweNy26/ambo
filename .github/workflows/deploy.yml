@@ -12,18 +12,31 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-      
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
       - name: Setup Bun
         uses: oven-sh/setup-bun@v2
         with:
           bun-version: latest
-      
+
       - name: Install dependencies
         run: bun install
-      
+
+      - name: Apply D1 migrations
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          packageManager: bun
+          command: d1 migrations apply DB --remote -c wrangler.jsonc
+
       - name: Build application
         run: bun run build
-      
+
       - name: Deploy Worker
         uses: cloudflare/wrangler-action@v3
         with:

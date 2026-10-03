@@ -10,6 +10,10 @@ export default antfu({
   jsonc: true,
   yaml: true,
   markdown: true,
+  ignores: [
+    'server/worker-configuration.d.ts',
+    'server/db/migrations/**',
+  ],
   rules: {
     'node/prefer-global/process': 'off',
     'vue/first-attribute-linebreak': 'off',
@@ -25,5 +29,11 @@ export default antfu({
     'antfu/consistent-list-newline': 'off',
     'brace-style': 'off',
     'vue/html-closing-bracket-newline': 'off',
+  },
+}, {
+  // French typography uses non-breaking spaces before ?, !, : and around dashes
+  files: ['i18n/locales/*.json'],
+  rules: {
+    'no-irregular-whitespace': 'off',
   },
 })

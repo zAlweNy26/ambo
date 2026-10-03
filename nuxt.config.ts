@@ -5,7 +5,6 @@ export default defineNuxtConfig({
   ssr: false,
 
   modules: [
-    '@nuxthub/core',
     '@formkit/auto-animate/nuxt',
     '@vueuse/nuxt',
     '@vite-pwa/nuxt',
@@ -32,6 +31,12 @@ export default defineNuxtConfig({
       deployConfig: true,
       nodeCompat: true,
     },
+    storage: {
+      kv: {
+        driver: 'cloudflare-kv-binding',
+        binding: 'KV',
+      },
+    },
   },
 
   app: {
@@ -50,6 +55,13 @@ export default defineNuxtConfig({
   },
 
   content: {
+    database: {
+      type: 'd1',
+      bindingName: 'DB',
+    },
+    experimental: {
+      sqliteConnector: 'native',
+    },
     renderer: {
       anchorLinks: false,
     },
@@ -128,11 +140,6 @@ export default defineNuxtConfig({
       alwaysRedirect: true,
       redirectOn: 'root',
     },
-  },
-
-  hub: {
-    kv: true,
-    db: 'sqlite',
   },
 
   vite: {
