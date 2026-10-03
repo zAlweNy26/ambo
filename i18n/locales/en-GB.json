@@ -3,7 +3,8 @@
     "toggle": "Toggle",
     "copy": "Copy",
     "goTop": "Go to the top",
-    "more": "More"
+    "more": "More",
+    "share": "Share"
   },
   "theme": {
     "light": "Light",
@@ -69,7 +70,8 @@
       "title": "Game not found",
       "description": "The game you are trying to access does not exist."
     },
-    "description": "Share this ID with your friends to allow them to join this game!"
+    "description": "Share this ID with your friends to allow them to join this game!",
+    "confirmation": "Are you sure you want to leave? You will lose everything."
   },
   "board": {
     "prize": "Prize distribution",

@@ -9,13 +9,15 @@
       "title": "Übereinstimmung nicht gefunden"
     },
     "id": "Spiel-ID",
-    "title": "{0} – {1} Nummern übrig"
+    "title": "{0} – {1} Nummern übrig",
+    "confirmation": "Sind Sie sicher, dass Sie gehen möchten? Du wirst alles verlieren."
   },
   "aria": {
     "copy": "Kopie",
     "goTop": "Geh hoch",
     "more": "Andere",
-    "toggle": "Ändern"
+    "toggle": "Ändern",
+    "share": "Aktie"
   },
   "board": {
     "announcer": "Automatischer Ansager",

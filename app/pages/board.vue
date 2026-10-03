@@ -30,6 +30,18 @@ const cards = Array.from({ length: 6 }).map((_, i) => {
   return card
 })
 
+const smirkOptions = [
+  { label: 'Napoletana', value: 'napoletana' },
+  { label: 'Trapanese', value: 'trapanese' },
+  { label: 'Romana', value: 'romana' },
+  { label: 'Piemontese', value: 'piemontese' },
+  { label: 'Livornese', value: 'livornese' },
+]
+
+onBeforeUnmount(() => {
+  $fetch('/api/game/close', { method: 'POST', body: { gameId: gameId.value } })
+})
+
 const { currentLocale } = storeToRefs(useSettingsStore())
 const toast = useToast()
 const { t } = useI18n()
@@ -45,14 +57,6 @@ const { isPlaying, isSupported: isSpeechSupported, speak, stop } = useSpeechSynt
   rate: 1,
   volume: 1,
 })
-
-const smirkOptions = computed(() => [
-  { label: 'Napoletana', value: 'napoletana' },
-  { label: 'Trapanese', value: 'trapanese' },
-  { label: 'Romana', value: 'romana' },
-  { label: 'Piemontese', value: 'piemontese' },
-  { label: 'Livornese', value: 'livornese' },
-])
 
 const splittedPrize = computed(() => {
   const totPrize = Dinero({ amount: Math.round(totalPrize.value * 10) })
@@ -144,7 +148,7 @@ async function extractNumber() {
 </script>
 
 <template>
-  <section class="flex max-w-6xl mx-auto gap-8 text-center items-stretch grow flex-col">
+  <section class="flex max-w-6xl touch-pan-y overscroll-y-contain mx-auto gap-8 text-center items-stretch grow flex-col">
     <GameHeader :remaining />
     <div class="space-y-2">
       <p class="text-xl space-x-2">
