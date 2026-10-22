@@ -8,7 +8,7 @@ defineProps<{
   <div class="relative grid aspect-square w-full max-w-56 place-content-center rounded-full border border-default bg-elevated shadow-[0_12px_32px_-16px_rgb(28_25_23/0.35)]">
     <Transition name="token" mode="out-in">
       <div v-if="number" :key="number"
-           class="legno absolute inset-[11%] grid place-content-center rounded-full text-tombola-700">
+           class="legno absolute inset-[11%] grid place-content-center rounded-full text-tombola-800">
         <span class="text-6xl font-semibold tabular-nums tracking-tight sm:text-7xl">{{ number }}</span>
       </div>
       <span v-else class="text-2xl text-dimmed">–</span>

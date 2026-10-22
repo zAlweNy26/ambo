@@ -113,7 +113,7 @@ function checkNumber(num: number, check = true) {
       </p>
       <div v-auto-animate class="flex flex-row-reverse items-center justify-center gap-3">
         <span v-for="(num, i) in lastExtractions" :key="num" class="numero"
-              :class="i === lastExtractions.length - 1 ? 'size-16 text-2xl' : 'size-11 text-base opacity-70'"
+              :class="i === lastExtractions.length - 1 ? 'size-16 text-2xl' : 'size-11 text-base'"
               :data-state="i === lastExtractions.length - 1 ? 'latest' : 'on'">
           {{ num }}
         </span>
@@ -136,7 +136,7 @@ function checkNumber(num: number, check = true) {
       <div v-for="(card, ci) in cards" :key="ci" class="panel w-full max-w-xl overflow-hidden border-[var(--print-line)]">
         <div class="flex items-center justify-between bg-primary px-4 py-2 text-xs text-white">
           <span class="font-medium tabular-nums">#{{ ci + 1 }}</span>
-          <span class="tabular-nums text-white/80">{{ signedNumbers[ci]?.length ?? 0 }}/15</span>
+          <span class="tabular-nums text-white">{{ signedNumbers[ci]?.length ?? 0 }}/15</span>
         </div>
         <div class="grid select-none grid-cols-9">
           <button v-for="(number, ni) in card" :key="`${ci}-${ni}`" type="button"

@@ -152,7 +152,7 @@
 
 .numero[data-state="on"],
 .numero[data-state="latest"] {
-  color: var(--color-tombola-700);
+  color: var(--color-tombola-800);
 }
 
 .numero[data-state="latest"]::before {

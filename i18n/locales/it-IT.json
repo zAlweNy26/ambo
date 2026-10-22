@@ -65,7 +65,7 @@
   },
   "game": {
     "id": "ID partita",
-    "title": "{0} – {1} numeri rimanenti",
+    "title": "{0} – {1} numeri rimanenti",
     "description": "Condividi questo ID con i tuoi amici per permettere loro di partecipare a questa partita!",
     "error": {
       "title": "Partita non trovata",
