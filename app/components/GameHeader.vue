@@ -14,10 +14,12 @@ function goHome() {
 }
 
 onMounted(() => {
-  if (isSupported.value) {
-    request('screen')
-    console.warn('Wake Lock requested')
-  }
+  // Keeping the screen on is a nicety: the browser may refuse it (battery saver, hidden tab, no permission)
+  if (isSupported.value) request('screen').catch(() => {})
+})
+
+onBeforeUnmount(() => {
+  if (isSupported.value) release().catch(() => {})
 })
 
 useEventListener('beforeunload', (event) => {
@@ -25,7 +27,6 @@ useEventListener('beforeunload', (event) => {
     event.preventDefault()
     return event.returnValue = t('game.confirmation')
   }
-  if (isSupported.value) release()
 })
 </script>
 
