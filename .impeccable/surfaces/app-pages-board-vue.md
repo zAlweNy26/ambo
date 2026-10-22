@@ -11,14 +11,14 @@ Whole app (home, board, cards, info, error). Mode: Operate (host runs the board 
 
 ## Direction contract
 
-THESIS: Ambo! is painted like a Sicilian carretto: every board and cartella is a framed cart panel in flat saturated paint. Refuses the category default of a neutral page with orange circles.
+THESIS: A calm, contemporary tombola app: the game's own objects (the 3x9 cartella grid, the round number token) are the only theme; everything else is quiet product UI. Refuses both the folk-ornament costume (carretto round, rejected by the user as dated) and a generic bingo app.
 
-OWN-WORLD: Flat paint only, no gradients: giallo carretto orange #ff8904 owns the shell, with vermilion red, emerald green, cobalt blue and chrome yellow as panel frames and column blocks, black keylines 3px, white number fields. Dark theme is the cart's black lacquer band with the same inks. Sancreek tuscan lettering for the wordmark and headings, Alfa Slab One numerals, Figtree for UI. Zigzag "dente di lupo" friezes frame panels.
+OWN-WORLD: Neutral warm-grey ground (#f6f6f4 light, #0f0f0e dark), white or near-black elevated panels with 1px hairlines and 16px radius, one accent: brand orange #ff8904 only for drawn/marked numbers, progress and the primary action. Geist for everything, semibold tabular numerals. Empty cartella cells carry a faint diagonal hatch.
 
-STORY: The host sees the drawn number from across the room, its smorfia line, the prize split and progress; players mark their cartelle and never miss a draw.
+STORY: The host reads the drawn number and its smorfia line from across the room, sees progress and prize split; players mark their cartelle and see the last five draws.
 
-FIRST VIEWPORT: Board: orange header rail with wordmark, game-ID stub with share; left column the painted wheel (hub shows latest number, 9rem slab) above the Estrai button and smorfia caption; right column the six tabellone blocks as framed cart panels; tally "23 / 90" always visible. Signature: pressing Estrai spins the wheel and the number lands in the hub; reduced motion swaps instantly.
+FIRST VIEWPORT: Board: slim header; game-ID strip with copy/share and a thin 9/90 progress bar; left the large orange draw token, smorfia line, Estrai button; centre the tabellone as one panel split into six blocks by hairlines; right the smorfia select, announcer switch and prize split. Signature: the drawn token rolls in (quarter turn, settle); reduced motion fades.
 
-FORM: user-pinned (carretto siciliano card), outside the roll; seed: d08dc0a2ad92fb9a
+FORM: user-steered after rejection of the pinned carretto direction ("tombola feel, but not that much… minimalistic, something actual"); seed: d08dc0a2ad92fb9a
 
 FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance

@@ -26,35 +26,14 @@ export default defineAppConfig({
     },
     button: {
       slots: {
-        base: 'cursor-pointer transition-all font-semibold',
+        base: 'cursor-pointer transition-all font-medium',
       },
       compoundVariants: [{
         color: 'primary',
         variant: 'solid',
-        // Black ink on orange paint: white on orange fails contrast
-        class: 'text-ink border-[3px] border-ink hover:bg-primary-500 disabled:bg-primary-200 aria-disabled:bg-primary-200 dark:border-black',
+        // Dark text on orange: white on orange fails contrast
+        class: 'text-neutral-950 hover:bg-primary-500',
       }],
-    },
-    // Controls carry the same black keyline as the painted panels
-    input: {
-      variants: { variant: { outline: 'bg-elevated ring-2 ring-inset ring-ink dark:ring-default' } },
-    },
-    inputNumber: {
-      variants: { variant: { outline: 'bg-elevated ring-2 ring-inset ring-ink dark:ring-default' } },
-    },
-    select: {
-      variants: { variant: { outline: 'bg-elevated ring-2 ring-inset ring-ink dark:ring-default' } },
-    },
-    switch: {
-      slots: {
-        base: 'border-2 border-ink dark:border-default',
-      },
-    },
-    modal: {
-      slots: {
-        content: 'ring-0 border-[3px] border-ink dark:border-default',
-        title: 'font-display text-2xl font-normal',
-      },
     },
     card: {
       slots: {

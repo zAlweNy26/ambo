@@ -3,14 +3,13 @@ const { title } = useAppConfig()
 </script>
 
 <template>
-  <header class="bg-arancio text-ink">
-    <div class="flex items-center justify-between gap-4 px-3 py-2 sm:px-5">
-      <NuLink :to="$localePath('index')" class="flex items-center gap-2 text-ink hover:text-ink">
-        <NuAvatar alt="" src="/logo.svg" class="size-10 border-2 border-ink" />
-        <span class="font-display text-3xl leading-none">{{ title }}</span>
+  <header class="border-b border-default bg-default">
+    <div class="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3">
+      <NuLink :to="$localePath('index')" class="flex items-center gap-2.5 text-highlighted hover:text-highlighted">
+        <img alt="" src="/logo.svg" class="size-8">
+        <span class="text-lg font-semibold tracking-tight">{{ title }}</span>
       </NuLink>
       <ThemeSwitch />
     </div>
-    <div class="frieze" />
   </header>
 </template>

@@ -38,10 +38,6 @@ watch(data, (val) => {
   extractions.value = content
 })
 
-const frames = ['frame-rosso', 'frame-verde', 'frame-blu']
-// Painted blocks fill the empty cells, one colour per column like a cart panel
-const blocks = ['bg-rosso', 'bg-giallo', 'bg-verde', 'bg-blu']
-
 const lastExtractions = computed(() => extractions.value.slice(-5))
 
 const amount = useRouteQuery('n', 1, { transform: v => Math.min(Number(v), 6) })
@@ -102,49 +98,53 @@ function checkNumber(num: number, check = true) {
 </script>
 
 <template>
-  <section class="mx-auto flex w-full max-w-6xl grow touch-pan-y flex-col items-center gap-6 overscroll-y-contain">
+  <section class="mx-auto flex w-full max-w-5xl grow touch-pan-y flex-col items-center gap-6 overscroll-y-contain">
     <GameHeader :remaining>
       <template #title>
         <i18n-t keypath="cards.quantity" tag="span" :plural="amount">
-          <strong>{{ amount }}</strong>
+          <span>{{ amount }}</span>
         </i18n-t>
       </template>
     </GameHeader>
 
-    <div v-if="lastExtractions.length > 0" class="flex flex-col items-center gap-2" aria-live="polite">
-      <p class="font-semibold">
+    <div v-if="lastExtractions.length > 0" class="flex flex-col items-center gap-3" aria-live="polite">
+      <p class="text-sm text-muted">
         {{ $t('board.extractions', [lastExtractions.length], lastExtractions.length) }}
       </p>
-      <div v-auto-animate class="flex flex-row-reverse items-center justify-center gap-2">
+      <div v-auto-animate class="flex flex-row-reverse items-center justify-center gap-3">
         <span v-for="(num, i) in lastExtractions" :key="num" class="numero"
-              :class="i === lastExtractions.length - 1 ? 'size-16 text-3xl sm:size-20 sm:text-4xl' : 'size-11 text-lg sm:size-14 sm:text-xl'"
+              :class="i === lastExtractions.length - 1 ? 'size-16 text-2xl' : 'size-11 text-base opacity-70'"
               :data-state="i === lastExtractions.length - 1 ? 'latest' : 'on'">
           {{ num }}
         </span>
       </div>
     </div>
 
-    <div class="flex w-full max-w-sm flex-col gap-1">
+    <div class="flex w-full max-w-sm flex-col gap-1.5">
       <NuFieldGroup class="w-full">
-        <NuInputNumber v-model="searchNumber" size="xl" :min="1" :step="1" :max="90" class="grow"
+        <NuInputNumber v-model="searchNumber" size="lg" :min="1" :step="1" :max="90" class="grow"
                        :aria-label="$t('cards.search')" @change="() => numberFound = undefined" />
-        <NuButton icon="i-tabler-search" size="xl" :label="$t('cards.search')" @click="checkNumber(searchNumber)" />
+        <NuButton icon="i-tabler-search" size="lg" color="neutral" :label="$t('cards.search')" @click="checkNumber(searchNumber)" />
       </NuFieldGroup>
-      <i18n-t v-if="numberFound !== undefined" class="text-center font-semibold" :class="[numberFound ? 'text-verde dark:text-[#5fd39a]' : 'text-rosso dark:text-[#ff8a8f]']"
+      <i18n-t v-if="numberFound !== undefined" class="text-center text-sm" :class="[numberFound ? 'text-success' : 'text-error']"
               :keypath="`cards.${numberFound ? 'found' : 'notFound'}`" tag="p" role="status">
         <strong>{{ searchNumber }}</strong>
       </i18n-t>
     </div>
 
-    <div class="flex w-full flex-wrap items-start justify-center gap-6">
-      <div v-for="(card, ci) in cards" :key="ci" class="cart-panel w-full max-w-xl" :class="frames[ci % frames.length]">
-        <div class="cart-field grid select-none grid-cols-9 overflow-hidden">
+    <div class="grid w-full justify-items-center gap-5 lg:grid-cols-2">
+      <div v-for="(card, ci) in cards" :key="ci" class="panel w-full max-w-xl overflow-hidden">
+        <div class="flex items-center justify-between border-b border-default px-4 py-2 text-xs text-muted">
+          <span class="font-medium tabular-nums">#{{ ci + 1 }}</span>
+          <span class="tabular-nums">{{ signedNumbers[ci]?.length ?? 0 }}/15</span>
+        </div>
+        <div class="grid select-none grid-cols-9">
           <button v-for="(number, ni) in card" :key="`${ci}-${ni}`" type="button"
-                  class="numero aspect-square border-ink text-lg sm:text-2xl dark:border-black"
+                  class="numero aspect-square border-default text-lg sm:text-xl"
                   :class="[
-                    number === 0 ? blocks[ni % 9 % blocks.length] : 'cursor-pointer hover:bg-giallo hover:text-ink',
-                    ni % 9 !== 8 && 'border-e-2',
-                    ni < 18 && 'border-b-2',
+                    number === 0 ? 'blank' : 'cursor-pointer hover:bg-muted',
+                    ni % 9 !== 8 && 'border-e',
+                    ni < 18 && 'border-b',
                   ]"
                   :disabled="number === 0" :aria-pressed="number !== 0 ? signedNumbers[ci]?.includes(number) : undefined"
                   :data-state="signedNumbers[ci]?.includes(number) ? 'on' : undefined"

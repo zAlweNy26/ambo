@@ -15,10 +15,10 @@ const { data: page } = await useAsyncData(
 </script>
 
 <template>
-  <section class="grow mx-auto cart-panel frame-verde">
-    <div class="cart-field px-4 py-6 sm:px-10">
+  <section class="panel mx-auto grow">
+    <div class="px-4 py-8 sm:px-10">
       <ContentRenderer v-if="page"
-                       class="prose-sm prose max-w-[90ch] md:prose-base dark:prose-invert prose-headings:text-center prose-headings:text-highlighted prose-h1:font-display prose-h1:font-normal prose-li:marker:text-rosso dark:prose-li:marker:text-arancio prose-li:marker:font-medium"
+                       class="prose-sm prose max-w-[90ch] md:prose-base dark:prose-invert prose-headings:tracking-tight prose-headings:text-highlighted prose-li:marker:text-primary"
                        :value="page" prose :data="{ owner }" />
     </div>
   </section>

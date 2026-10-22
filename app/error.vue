@@ -25,8 +25,8 @@ const handleError = () => clearError({ redirect: localePath('index') })
   <NuxtLayout name="default">
     <div class="flex h-svh w-screen flex-col items-center justify-evenly gap-8 text-center">
       <div class="flex flex-col gap-4 text-4xl font-bold sm:text-5xl">
-        <span class="font-numeral text-8xl font-normal text-rosso dark:text-arancio">{{ error.statusCode }}</span>
-        <span class="font-display font-normal">{{ $t('error.routes.notAccessible') }}</span>
+        <span class="text-8xl font-semibold tracking-tight text-primary tabular-nums">{{ error.statusCode }}</span>
+        <span class="font-semibold tracking-tight text-highlighted">{{ $t('error.routes.notAccessible') }}</span>
         <span class="whitespace-break-spaces text-2xl font-medium text-toned">
           {{ $t($te(errorMsg) ? errorMsg : 'error.routes.fallback') }}
         </span>
