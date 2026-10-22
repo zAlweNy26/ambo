@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <title>Ambo! — Panariello</title>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fbf3e6" />
+      <stop offset="1" stop-color="#f1dfc2" />
+    </linearGradient>
+    <linearGradient id="basket" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#d63a42" />
+      <stop offset="1" stop-color="#8f131d" />
+    </linearGradient>
+    <radialGradient id="wood" cx="38%" cy="32%" r="75%">
+      <stop offset="0" stop-color="#f6e2bf" />
+      <stop offset=".6" stop-color="#d9ad76" />
+      <stop offset="1" stop-color="#ad7c44" />
+    </radialGradient>
+    <clipPath id="weave"><path d="M86 250 h340 l-36 170 a30 30 0 0 1 -29 24 h-210 a30 30 0 0 1 -29 -24 z" /></clipPath>
+  </defs>
+  <rect width="512" height="512" rx="116" fill="url(#bg)" />
+  <!-- tokens peeking over the rim -->
+  <g stroke="#7a4d22" stroke-width="5">
+    <circle cx="190" cy="236" r="58" fill="url(#wood)" />
+    <circle cx="300" cy="226" r="58" fill="url(#wood)" />
+  </g>
+  <g font-family="Geist, sans-serif" font-weight="800" fill="#c41e2a" text-anchor="middle">
+    <text x="190" y="232" font-size="54">33</text>
+    <text x="300" y="222" font-size="54">90</text>
+  </g>
+  <!-- the one that got away -->
+  <g transform="rotate(18 370 118)">
+    <circle cx="370" cy="118" r="62" fill="url(#wood)" stroke="#7a4d22" stroke-width="5" />
+    <text x="370" y="140" text-anchor="middle" font-family="Geist, sans-serif" font-weight="800" font-size="64" fill="#c41e2a">2</text>
+  </g>
+  <g fill="none" stroke="#c41e2a" stroke-width="12" stroke-linecap="round" opacity=".7">
+    <path d="M276 150 q30 -40 26 -82" />
+    <path d="M252 176 q18 -26 16 -52" />
+  </g>
+  <!-- wicker basket -->
+  <path d="M86 250 h340 l-36 170 a30 30 0 0 1 -29 24 h-210 a30 30 0 0 1 -29 -24 z" fill="url(#basket)" />
+  <g clip-path="url(#weave)" stroke="#6e161d" stroke-width="6" stroke-opacity=".55">
+    <path d="M60 300 h400 M60 350 h400 M60 400 h400" />
+    <path d="M140 250 l-10 200 M200 250 l-5 200 M256 250 v200 M312 250 l5 200 M372 250 l10 200" stroke-dasharray="26 24" />
+  </g>
+  <rect x="70" y="236" width="372" height="34" rx="17" fill="#a31621" />
+  <rect x="70" y="236" width="372" height="12" rx="6" fill="#e4676d" opacity=".5" />
+</svg>

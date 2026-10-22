@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <title>Ambo! — Numeretto saltellante</title>
+  <defs>
+    <radialGradient id="bg" cx="35%" cy="25%" r="85%">
+      <stop offset="0" stop-color="#de3540" />
+      <stop offset="1" stop-color="#a31621" />
+    </radialGradient>
+    <radialGradient id="top" cx="38%" cy="32%" r="75%">
+      <stop offset="0" stop-color="#f6e2bf" />
+      <stop offset=".55" stop-color="#dcb27c" />
+      <stop offset="1" stop-color="#b98950" />
+    </radialGradient>
+    <linearGradient id="side" x1="0" x2="1">
+      <stop offset="0" stop-color="#8a5a2b" />
+      <stop offset=".45" stop-color="#c69560" />
+      <stop offset="1" stop-color="#7a4d22" />
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="116" fill="url(#bg)" />
+  <!-- shadow left on the ground: the token is mid-jump -->
+  <ellipse cx="256" cy="430" rx="118" ry="22" fill="#5a0d14" opacity=".45" />
+  <g transform="rotate(-12 256 230)">
+    <!-- turned-wood cylinder: side band, then the top face -->
+    <path d="M100 222 v46 a156 66 0 0 0 312 0 v-46 z" fill="url(#side)" />
+    <ellipse cx="256" cy="222" rx="156" ry="132" fill="url(#top)" />
+    <g fill="none" stroke="#9b6b37" stroke-opacity=".18" stroke-width="3">
+      <ellipse cx="236" cy="206" rx="40" ry="32" />
+      <ellipse cx="236" cy="206" rx="72" ry="58" />
+      <ellipse cx="236" cy="206" rx="104" ry="86" />
+    </g>
+    <ellipse cx="256" cy="222" rx="156" ry="132" fill="none" stroke="#7a4d22" stroke-opacity=".35" stroke-width="4" />
+    <text x="256" y="292" text-anchor="middle" font-family="Geist, 'Arial Rounded MT Bold', sans-serif" font-weight="800" font-size="210" fill="#c41e2a" transform="matrix(1 0 0 .86 0 32)">2</text>
+  </g>
+  <!-- motion sparks -->
+  <g stroke="#ffd9a8" stroke-width="16" stroke-linecap="round">
+    <path d="M74 120 l30 26" />
+    <path d="M60 196 h38" />
+    <path d="M430 92 l-22 32" />
+  </g>
+</svg>
