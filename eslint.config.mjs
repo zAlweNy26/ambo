@@ -11,8 +11,7 @@ export default antfu({
   yaml: true,
   markdown: true,
   ignores: [
-    'server/worker-configuration.d.ts',
-    'server/db/migrations/**',
+    'db/migrations/**',
   ],
   rules: {
     'node/prefer-global/process': 'off',

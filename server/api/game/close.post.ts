@@ -1,3 +1,5 @@
+import { extractions, games } from '@schema'
+import { db } from 'void/db'
 import { z } from 'zod'
 
 const closeSchema = z.object({
@@ -17,14 +19,13 @@ export default defineEventHandler(async (event) => {
   }
 
   if (game) {
-    const db = useDB(event)
-    await db.insert(schema.games).values({
+    await db.insert(games).values({
       gameId,
       completedAt: new Date(),
       playersCount: game.clients.length,
       totalExtractions: game.extractions.length,
     })
-    await db.insert(schema.extractions).values({
+    await db.insert(extractions).values({
       gameId,
       numbers: game.extractions,
     })

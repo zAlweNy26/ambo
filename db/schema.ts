@@ -1,4 +1,4 @@
-import { integer, sqliteTable, text } from 'drizzle-orm/sqlite-core'
+import { integer, sqliteTable, text } from 'void/schema-d1'
 
 export const games = sqliteTable('games', {
   id: integer().primaryKey({ autoIncrement: true }),

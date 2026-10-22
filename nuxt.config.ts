@@ -1,4 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+import { resolve } from 'node:path'
+import { voidPlugin } from 'void'
+
 export default defineNuxtConfig({
   devtools: { enabled: true },
 
@@ -19,6 +22,11 @@ export default defineNuxtConfig({
 
   css: ['~/assets/main.css'],
 
+  // Lets nuxi typecheck resolve @schema (Void's Vite alias doesn't reach the typechecker)
+  alias: {
+    '@schema': resolve(import.meta.dirname, 'db/schema.ts'),
+  },
+
   future: {
     compatibilityVersion: 4,
   },
@@ -27,14 +35,10 @@ export default defineNuxtConfig({
 
   nitro: {
     preset: 'cloudflare_module',
+    modules: ['void/nitro'],
     cloudflare: {
-      deployConfig: true,
-      nodeCompat: true,
-    },
-    storage: {
-      kv: {
-        driver: 'cloudflare-kv-binding',
-        binding: 'KV',
+      dev: {
+        configPath: './.void-wrangler.jsonc',
       },
     },
   },
@@ -144,6 +148,7 @@ export default defineNuxtConfig({
 
   vite: {
     logLevel: 'info',
+    plugins: [voidPlugin()],
   },
 
   ogImage: {
