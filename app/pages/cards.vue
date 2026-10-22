@@ -142,7 +142,7 @@ function checkNumber(num: number, check = true) {
           <button v-for="(number, ni) in card" :key="`${ci}-${ni}`" type="button"
                   class="numero aspect-square border-ink text-lg sm:text-2xl dark:border-black"
                   :class="[
-                    number === 0 ? blocks[ni % 9 % blocks.length] : 'cursor-pointer hover:bg-giallo/40',
+                    number === 0 ? blocks[ni % 9 % blocks.length] : 'cursor-pointer hover:bg-giallo hover:text-ink',
                     ni % 9 !== 8 && 'border-e-2',
                     ni < 18 && 'border-b-2',
                   ]"

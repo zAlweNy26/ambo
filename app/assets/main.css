@@ -93,14 +93,35 @@
   background-size: 48px 12px;
 }
 
-/* A framed cart panel: painted frame colour, black keylines, white field */
+/* Folk rosette painted at the corners of every panel frame */
+.cart-panel,
+.rosette {
+  --rosette: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cg stroke='%231a1209' stroke-width='1.2' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='11' fill='%23ffd04a'/%3E%3Cg fill='%231f4fa3'%3E%3Cpath id='p' d='M12 1.5c2.6 3 2.6 6 0 9.5-2.6-3.5-2.6-6.5 0-9.5z'/%3E%3Cuse href='%23p' transform='rotate(90 12 12)'/%3E%3Cuse href='%23p' transform='rotate(180 12 12)'/%3E%3Cuse href='%23p' transform='rotate(270 12 12)'/%3E%3C/g%3E%3Cg fill='%23d7262e' transform='rotate(45 12 12)'%3E%3Cuse href='%23p'/%3E%3Cuse href='%23p' transform='rotate(90 12 12)'/%3E%3Cuse href='%23p' transform='rotate(180 12 12)'/%3E%3Cuse href='%23p' transform='rotate(270 12 12)'/%3E%3C/g%3E%3Ccircle cx='12' cy='12' r='3' fill='%23ff8904'/%3E%3C/g%3E%3C/svg%3E");
+  --dente: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='8'%3E%3Crect width='32' height='8' fill='%231a1209'/%3E%3Cpath d='M0 8 4 1l4 7z' fill='%23ffd04a'/%3E%3Cpath d='M8 8l4-7 4 7z' fill='%23ffffff'/%3E%3Cpath d='M16 8l4-7 4 7z' fill='%23ffd04a'/%3E%3Cpath d='M24 8l4-7 4 7z' fill='%23ffffff'/%3E%3C/svg%3E");
+}
+
+/* A framed cart panel: painted frame with a dente di lupo frieze top and bottom,
+   rosettes at the corners, black keylines, white field */
 .cart-panel {
   --frame: var(--color-rosso);
-  background: var(--frame);
+  position: relative;
+  background:
+    var(--rosette) top left / 1.5rem no-repeat,
+    var(--rosette) top right / 1.5rem no-repeat,
+    var(--rosette) bottom left / 1.5rem no-repeat,
+    var(--rosette) bottom right / 1.5rem no-repeat,
+    var(--dente) top 0.125rem center / 32px 8px repeat-x,
+    var(--dente) bottom 0.125rem center / 32px 8px repeat-x,
+    var(--frame);
   border: 3px solid var(--keyline);
   border-radius: 0.75rem;
-  padding: 0.375rem;
+  padding: 0.75rem 0.5rem;
   box-shadow: 0 6px 14px -6px rgb(26 18 9 / 0.45);
+}
+
+/* Signwriter's shade: a flat second ink painted under the lettering */
+.signwriter {
+  text-shadow: 0.05em 0.05em 0 var(--color-arancio);
 }
 
 .cart-panel > .cart-field {

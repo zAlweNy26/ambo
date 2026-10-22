@@ -6,7 +6,7 @@ const { changeLocale } = settings
 const { locale, locales, currentLocale } = storeToRefs(settings)
 
 const items = computed<DropdownMenuItem[]>(() => locales.value.map(l => ({
-  label: `${l.domain} ${l.name}`,
+  label: l.name,
   onSelect: () => changeLocale(l.code),
   checked: l.code === locale.value,
 } satisfies DropdownMenuItem)))
@@ -15,8 +15,8 @@ const items = computed<DropdownMenuItem[]>(() => locales.value.map(l => ({
 <template>
   <ClientOnly>
     <NuDropdownMenu :items :content="{ align: 'end', sideOffset: 16 }">
-      <NuButton :aria-label="$t('language.toggle')" :ui="{ label: 'size-5' }"
-                square :label="currentLocale.domain" />
+      <NuButton :aria-label="$t('language.toggle')"
+                :label="currentLocale.code.toUpperCase()" icon="i-tabler-language" />
       <template #item-trailing="{ item }">
         <NuIcon v-if="item.checked" name="i-tabler-point-filled" class="size-4" />
       </template>

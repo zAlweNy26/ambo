@@ -150,11 +150,11 @@ async function extractNumber() {
 </script>
 
 <template>
-  <section class="mx-auto flex w-full max-w-7xl grow touch-pan-y flex-col gap-6 overscroll-y-contain">
+  <section class="mx-auto flex w-full max-w-7xl grow touch-pan-y flex-col gap-4 overscroll-y-contain">
     <GameHeader :remaining />
 
     <div class="cart-panel frame-blu">
-      <div class="cart-field flex flex-wrap items-center justify-between gap-x-6 gap-y-2 px-4 py-3">
+      <div class="cart-field flex flex-wrap items-center justify-between gap-x-6 gap-y-2 px-4 py-2">
         <p class="flex items-center gap-3 text-lg">
           <span class="font-semibold">{{ $t('game.id') }}</span>
           <span class="font-numeral text-2xl tracking-wider">{{ gameId || '········' }}</span>
@@ -171,15 +171,15 @@ async function extractNumber() {
       </div>
     </div>
 
-    <div class="grid grow items-start gap-6 lg:grid-cols-[22rem_1fr]">
-      <div class="flex flex-col items-center gap-5">
-        <CarrettoWheel :number="currentNumber" />
-        <div class="min-h-16 text-center" aria-live="polite">
+    <div class="grid grow items-start gap-5 lg:grid-cols-[18rem_1fr] xl:grid-cols-[17rem_1fr_17rem]">
+      <div class="flex flex-col items-center gap-4">
+        <CarrettoWheel :number="currentNumber" class="max-w-64" />
+        <div class="min-h-20 w-full rounded-lg border-[3px] border-ink bg-carta px-3 py-2 text-center text-ink" aria-live="polite">
           <template v-if="currentSmirk">
             <p class="font-display text-2xl leading-tight text-balance">
               {{ currentSmirk.original }}
             </p>
-            <p class="text-toned">
+            <p class="text-[#594734]">
               {{ currentSmirk.translated }}
               <NuButton v-if="isSpeechSupported" variant="link" color="neutral" icon="i-tabler-volume"
                         :aria-label="$t('board.announcer')" class="align-middle" @click="speechText()" />
@@ -188,41 +188,41 @@ async function extractNumber() {
         </div>
         <NuButton icon="i-tabler-arrow-big-down-lines" :disabled="remaining === 0 || !smirk" size="xl" block loadingAuto
                   class="py-4 text-xl" :label="$t('board.draw')" @click="extractNumber" />
-        <div class="cart-panel frame-verde w-full">
-          <div class="cart-field flex flex-col gap-4 p-4">
-            <NuSelect v-model="smirk" :placeholder="$t('board.smirk')" size="xl" class="w-full"
-                      :aria-label="$t('board.smirk')" :items="smirkOptions" />
-            <NuSwitch v-model="autoAnnounce" :disabled="!smirk" size="xl" :label="$t('board.announcer')"
-                      uncheckedIcon="i-tabler-x" checkedIcon="i-tabler-check" defaultValue />
-            <NuFormField :label="$t('board.prize')" size="xl" :ui="{ label: 'flex items-center gap-1' }">
-              <NuInputNumber v-model="totalPrize" :min="0.1" :step="0.1" class="w-full" />
-              <template #label="{ label }">
-                <NuIcon name="i-tabler-moneybag" class="size-5" />
-                <span>{{ label }}</span>
-              </template>
-            </NuFormField>
-            <dl v-if="totalPrize > 0" class="grid grid-cols-[1fr_auto] gap-x-4 gap-y-1 rounded-md border-2 border-ink bg-giallo px-3 py-2 text-ink">
-              <template v-for="(value, name) in splittedPrize" :key="name">
-                <dt class="font-semibold capitalize">
-                  {{ name }}
-                </dt>
-                <dd class="text-end font-numeral tabular-nums">
-                  {{ $n(value, 'currency') }}
-                </dd>
-              </template>
-            </dl>
-          </div>
-        </div>
       </div>
 
-      <div class="grid gap-4 sm:grid-cols-2">
+      <div class="grid gap-4 sm:grid-cols-2 lg:row-span-2 xl:row-span-1">
         <div v-for="(card, index) in cards" :key="index" class="cart-panel" :class="frames[index % frames.length]">
           <div class="cart-field grid select-none grid-cols-5 gap-1 p-2">
-            <span v-for="number in card" :key="number" class="numero aspect-square text-lg sm:text-xl xl:text-2xl"
+            <span v-for="number in card" :key="number" class="numero h-11 text-lg sm:h-12 sm:text-xl xl:h-11 xl:text-2xl"
                   :data-state="number === currentNumber ? 'latest' : (extractedNumbers.includes(number) ? 'on' : undefined)">
               {{ number }}
             </span>
           </div>
+        </div>
+      </div>
+      <div class="cart-panel frame-verde w-full lg:col-start-1 xl:col-start-auto">
+        <div class="cart-field flex flex-col gap-4 p-4">
+          <NuSelect v-model="smirk" :placeholder="$t('board.smirk')" size="xl" class="w-full"
+                    :aria-label="$t('board.smirk')" :items="smirkOptions" />
+          <NuSwitch v-model="autoAnnounce" :disabled="!smirk" size="xl" :label="$t('board.announcer')"
+                    uncheckedIcon="i-tabler-x" checkedIcon="i-tabler-check" defaultValue />
+          <NuFormField :label="$t('board.prize')" size="xl" :ui="{ label: 'flex items-center gap-1' }">
+            <NuInputNumber v-model="totalPrize" :min="0.1" :step="0.1" class="w-full" />
+            <template #label="{ label }">
+              <NuIcon name="i-tabler-moneybag" class="size-5" />
+              <span>{{ label }}</span>
+            </template>
+          </NuFormField>
+          <dl v-if="totalPrize > 0" class="grid grid-cols-[1fr_auto] gap-x-4 gap-y-1 rounded-md border-2 border-ink bg-giallo px-3 py-2 text-ink">
+            <template v-for="(value, name) in splittedPrize" :key="name">
+              <dt class="font-semibold capitalize">
+                {{ name }}
+              </dt>
+              <dd class="text-end font-numeral tabular-nums">
+                {{ $n(value, 'currency') }}
+              </dd>
+            </template>
+          </dl>
         </div>
       </div>
     </div>

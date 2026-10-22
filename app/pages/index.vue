@@ -27,7 +27,7 @@ const blocks = ['bg-rosso', 'bg-verde', 'bg-blu', 'bg-arancio']
   <section class="mx-auto flex w-full max-w-3xl grow flex-col items-center justify-center gap-10 py-6">
     <div class="cart-panel frame-rosso w-full">
       <div class="cart-field flex flex-col items-center gap-6 px-4 py-8 text-center sm:px-10 sm:py-12">
-        <h1 class="font-display text-5xl leading-tight text-balance sm:text-7xl">
+        <h1 class="signwriter font-display text-5xl leading-tight text-balance sm:text-7xl">
           {{ $t('home.welcome', [title]) }}
         </h1>
         <p class="max-w-prose text-lg font-medium text-toned text-pretty">

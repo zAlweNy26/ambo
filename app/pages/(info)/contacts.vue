@@ -40,7 +40,7 @@ const { title } = useAppConfig()
 
 <template>
   <section class="flex flex-col items-center gap-4 grow">
-    <h1 class="font-display text-5xl text-center text-balance">
+    <h1 class="signwriter font-display text-5xl text-center text-balance">
       {{ $t('contacts.title') }}
     </h1>
     <i18n-t keypath="contacts.description" tag="p" class="font-medium">
