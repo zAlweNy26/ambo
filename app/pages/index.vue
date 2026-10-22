@@ -34,7 +34,7 @@ const blocks = ['bg-rosso', 'bg-verde', 'bg-blu', 'bg-arancio']
           {{ $t('home.subtitle') }}
         </p>
         <div class="grid w-full max-w-md grid-cols-9 border-[3px] border-ink" aria-hidden="true">
-          <span v-for="(n, i) in sample" :key="i" class="numero aspect-square border-ink text-lg sm:text-2xl"
+          <span v-for="(n, i) in sample" :key="i" class="numero aspect-square border-ink text-base sm:text-2xl"
                 :class="[n ? 'bg-carta text-ink' : blocks[(i >> 1) % blocks.length], i < 8 && 'border-e-2']"
                 :data-state="n === 43 ? 'on' : undefined">
             {{ n || '' }}

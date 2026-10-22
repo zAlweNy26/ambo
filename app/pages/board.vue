@@ -181,7 +181,7 @@ async function extractNumber() {
             </p>
             <p class="text-[#594734]">
               {{ currentSmirk.translated }}
-              <NuButton v-if="isSpeechSupported" variant="link" color="neutral" icon="i-tabler-volume"
+              <NuButton v-if="isSpeechSupported" variant="link" color="neutral" icon="i-tabler-volume" :ui="{ leadingIcon: 'text-ink' }"
                         :aria-label="$t('board.announcer')" class="align-middle" @click="speechText()" />
             </p>
           </template>
