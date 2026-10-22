@@ -130,7 +130,7 @@
 .numero::before {
   content: "";
   position: absolute;
-  inset: 12%;
+  inset: 6%;
   border-radius: 9999px;
   background: var(--color-arancio);
   border: 3px solid var(--keyline);

@@ -40,14 +40,14 @@ const { title } = useAppConfig()
 
 <template>
   <section class="flex flex-col items-center gap-4 grow">
-    <h1 class="text-4xl font-bold text-primary">
+    <h1 class="font-display text-5xl text-center text-balance">
       {{ $t('contacts.title') }}
     </h1>
     <i18n-t keypath="contacts.description" tag="p" class="font-medium">
       <strong>{{ title }}</strong>
     </i18n-t>
     <div class="flex flex-wrap gap-8 w-full items-center justify-evenly">
-      <NuCard v-for="member in devTeam" :key="member.name" class="text-center" :ui="{ header: 'grid place-content-center' }">
+      <NuCard v-for="member in devTeam" :key="member.name" class="bg-elevated text-center ring-[3px] ring-ink dark:ring-default" :ui="{ root: 'divide-y-0', header: 'grid place-content-center' }">
         <template v-if="member.avatar" #header>
           <NuxtImg :alt="member.name" :src="member.avatar" class="rounded-2xl"
                    width="128" height="128" sizes="96px md:128px" loading="eager" />

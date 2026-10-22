@@ -32,7 +32,7 @@ useEventListener('beforeunload', (event) => {
 <template>
   <div class="flex items-center justify-between w-full gap-4">
     <NuButton :aria-label="isFullscreen ? $t('button.minimize') : $t('button.maximize')"
-              :icon="isFullscreen ? 'i-tabler-minimize' : 'i-tabler-maximize'" size="xl" variant="ghost"
+              :icon="isFullscreen ? 'i-tabler-minimize' : 'i-tabler-maximize'" size="xl" variant="ghost" color="neutral"
               @click="toggle()" />
     <i18n-t keypath="game.title" tag="h2" class="font-display text-2xl text-balance sm:text-3xl">
       <slot name="title">
@@ -45,7 +45,7 @@ useEventListener('beforeunload', (event) => {
                footer: 'justify-between gap-8',
                content: 'sm:max-w-xs',
              }">
-      <NuButton :aria-label="$t('button.exit')" icon="i-tabler-x" size="xl" variant="ghost" />
+      <NuButton :aria-label="$t('button.exit')" icon="i-tabler-x" size="xl" variant="ghost" color="neutral" />
       <template #footer>
         <NuButton :label="$t('button.cancel')" size="xl" color="neutral" variant="subtle" @click="isModalOpen = false" />
         <NuButton :label="$t('button.exit')" size="xl" color="error" @click="goHome()" />
