@@ -1,7 +1,7 @@
 {
   "version": "6",
   "dialect": "sqlite",
-  "id": "afc1dc0a-3a7c-44c4-a6e3-667d7dc7053f",
+  "id": "db23e978-fc0e-4c5f-98e6-229be4c160d9",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
     "extractions": {
@@ -21,9 +21,9 @@
           "notNull": true,
           "autoincrement": false
         },
-        "number": {
-          "name": "number",
-          "type": "integer",
+        "numbers": {
+          "name": "numbers",
+          "type": "text",
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false

@@ -98,7 +98,7 @@ function checkNumber(num: number, check = true) {
 </script>
 
 <template>
-  <section v-auto-animate class="flex max-w-6xl mx-auto gap-8 text-center items-stretch grow flex-col">
+  <section v-auto-animate class="flex max-w-6xl touch-pan-y overscroll-y-contain mx-auto gap-8 text-center items-stretch grow flex-col">
     <GameHeader :remaining>
       <template #title>
         <i18n-t keypath="cards.quantity" tag="span" :plural="amount">

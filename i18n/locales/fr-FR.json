@@ -9,13 +9,15 @@
       "title": "Correspondance non trouvée"
     },
     "id": "Identifiant du jeu",
-    "title": "{0} - {1} numéros restants"
+    "title": "{0} - {1} numéros restants",
+    "confirmation": "Êtes-vous sûr de vouloir partir ? Vous perdrez tout."
   },
   "aria": {
     "copy": "Copie",
     "goTop": "Allez haut",
     "more": "Autre",
-    "toggle": "Changement"
+    "toggle": "Changement",
+    "share": "Partager"
   },
   "board": {
     "announcer": "Annonceur automatique",

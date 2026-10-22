@@ -1,7 +1,7 @@
 CREATE TABLE `extractions` (
 	`id` integer PRIMARY KEY AUTOINCREMENT NOT NULL,
 	`game_id` text NOT NULL,
-	`number` integer NOT NULL,
+	`numbers` text NOT NULL,
 	FOREIGN KEY (`game_id`) REFERENCES `games`(`game_id`) ON UPDATE no action ON DELETE no action
 );
 --> statement-breakpoint

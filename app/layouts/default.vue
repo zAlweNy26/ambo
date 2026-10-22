@@ -40,7 +40,6 @@ const head = useLocaleHead({
   dir: true,
   seo: true,
   lang: true,
-  key: 'id',
 })
 </script>
 

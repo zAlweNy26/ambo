@@ -1,4 +1,4 @@
-import { integer, sqliteTable, text } from 'drizzle-orm/sqlite-core'
+import { integer, sqliteTable, text } from 'void/schema-d1'
 
 export const games = sqliteTable('games', {
   id: integer().primaryKey({ autoIncrement: true }),
@@ -11,5 +11,5 @@ export const games = sqliteTable('games', {
 export const extractions = sqliteTable('extractions', {
   id: integer().primaryKey({ autoIncrement: true }),
   gameId: text('game_id').notNull().references(() => games.gameId),
-  number: integer().notNull(),
+  numbers: text('numbers', { mode: 'json' }).$type<number[]>().notNull(),
 })

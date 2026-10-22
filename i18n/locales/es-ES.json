@@ -9,13 +9,15 @@
       "title": "Coincidencia no encontrada"
     },
     "id": "ID del juego",
-    "title": "{0} - {1} números restantes"
+    "title": "{0} - {1} números restantes",
+    "confirmation": "¿Estás seguro de que quieres irte? Lo perderás todo."
   },
   "aria": {
     "copy": "Copiar",
     "goTop": "ir alto",
     "more": "Otro",
-    "toggle": "Cambiar"
+    "toggle": "Cambiar",
+    "share": "Compartir"
   },
   "board": {
     "announcer": "locutor automático",

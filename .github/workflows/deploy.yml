@@ -12,24 +12,26 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-      
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
       - name: Setup Bun
         uses: oven-sh/setup-bun@v2
         with:
           bun-version: latest
-      
+
       - name: Install dependencies
         run: bun install
-      
-      - name: Build application
-        run: bun run build
-      
-      - name: Deploy Worker
-        uses: cloudflare/wrangler-action@v3
-        with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          packageManager: bun
+
+      # Builds, applies D1 migrations and deploys (needs void.lock.json from a first local deploy)
+      - name: Deploy with Void
+        run: bunx void deploy --platform cloudflare
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
 
   report:
     needs: deploy

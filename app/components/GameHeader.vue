@@ -4,7 +4,7 @@ defineProps<{
 }>()
 
 const safeExit = ref(false), isModalOpen = ref(false)
-
+const { t } = useI18n()
 const { isSupported, request, release } = useWakeLock()
 const { toggle, isFullscreen } = useFullscreen(undefined, { autoExit: true })
 
@@ -23,7 +23,7 @@ onMounted(() => {
 useEventListener('beforeunload', (event) => {
   if (!safeExit.value) {
     event.preventDefault()
-    return event.returnValue = ''
+    return event.returnValue = t('game.confirmation')
   }
   if (isSupported.value) release()
 })

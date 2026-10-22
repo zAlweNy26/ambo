@@ -3,7 +3,8 @@
     "toggle": "Cambia",
     "copy": "Copia",
     "goTop": "Vai in alto",
-    "more": "Altro"
+    "more": "Altro",
+    "share": "Condividi"
   },
   "theme": {
     "light": "Chiaro",
@@ -69,7 +70,8 @@
     "error": {
       "title": "Partita non trovata",
       "description": "La partita a cui stai cercando di accedere non esiste."
-    }
+    },
+    "confirmation": "Sei sicuro di voler uscire? Perderai tutto."
   },
   "board": {
     "prize": "Partizione del premio",

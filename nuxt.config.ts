@@ -1,11 +1,13 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+import { resolve } from 'node:path'
+import { voidPlugin } from 'void'
+
 export default defineNuxtConfig({
   devtools: { enabled: true },
 
   ssr: false,
 
   modules: [
-    '@nuxthub/core',
     '@formkit/auto-animate/nuxt',
     '@vueuse/nuxt',
     '@vite-pwa/nuxt',
@@ -20,6 +22,11 @@ export default defineNuxtConfig({
 
   css: ['~/assets/main.css'],
 
+  // Lets nuxi typecheck resolve @schema (Void's Vite alias doesn't reach the typechecker)
+  alias: {
+    '@schema': resolve(import.meta.dirname, 'db/schema.ts'),
+  },
+
   future: {
     compatibilityVersion: 4,
   },
@@ -28,9 +35,11 @@ export default defineNuxtConfig({
 
   nitro: {
     preset: 'cloudflare_module',
+    modules: ['void/nitro'],
     cloudflare: {
-      deployConfig: true,
-      nodeCompat: true,
+      dev: {
+        configPath: './.void-wrangler.jsonc',
+      },
     },
   },
 
@@ -50,6 +59,13 @@ export default defineNuxtConfig({
   },
 
   content: {
+    database: {
+      type: 'd1',
+      bindingName: 'DB',
+    },
+    experimental: {
+      sqliteConnector: 'native',
+    },
     renderer: {
       anchorLinks: false,
     },
@@ -130,13 +146,9 @@ export default defineNuxtConfig({
     },
   },
 
-  hub: {
-    kv: true,
-    db: 'sqlite',
-  },
-
   vite: {
     logLevel: 'info',
+    plugins: [voidPlugin()],
   },
 
   ogImage: {
