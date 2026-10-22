@@ -3,84 +3,84 @@
     "copied": "Copiado"
   },
   "game": {
-    "description": "¡Comparte esta identificación con tus amigos para permitirles unirse a este juego!",
+    "description": "¡Comparte este ID con tus amigos para que se unan a la partida!",
     "error": {
-      "description": "El juego al que estás intentando unirte no existe.",
-      "title": "Coincidencia no encontrada"
+      "description": "La partida a la que intentas unirte no existe.",
+      "title": "Partida no encontrada"
     },
-    "id": "ID del juego",
+    "id": "ID de la partida",
     "title": "{0} – {1} números restantes",
-    "confirmation": "¿Estás seguro de que quieres irte? Lo perderás todo."
+    "confirmation": "¿Seguro que quieres salir? Perderás la partida."
   },
   "aria": {
     "copy": "Copiar",
-    "goTop": "ir alto",
-    "more": "Otro",
+    "goTop": "Ir arriba",
+    "more": "Más",
     "toggle": "Cambiar",
     "share": "Compartir"
   },
   "board": {
-    "announcer": "locutor automático",
-    "draw": "dibuja un numero",
-    "extractions": "Último sorteo | Últimos {0} sorteos",
-    "prize": "Partición del premio",
-    "smirk": "Elige una mueca"
+    "announcer": "Locutor automático",
+    "draw": "Sacar un número",
+    "extractions": "Último número sacado | Últimos {0} números sacados",
+    "prize": "Reparto del premio",
+    "smirk": "Elige una smorfia"
   },
   "button": {
     "backHome": "Volver a @:header.home",
     "cancel": "Cancelar",
-    "exit": "tu sales",
-    "maximize": "Maximizar",
-    "minimize": "Minimizar",
+    "exit": "Salir",
+    "maximize": "Pantalla completa",
+    "minimize": "Salir de pantalla completa",
     "reset": "Reiniciar"
   },
   "cards": {
-    "description": "Ingresa un ID de juego y selecciona la cantidad de cartas con las que deseas jugar.",
-    "found": "Número {0} encontrado y agregado",
-    "notFound": "Número {0} no encontrado",
-    "quantity": "{0} carpeta | {0} carpetas",
-    "search": "busca el numero",
-    "title": "¿Con cuántas cartas quieres jugar?"
+    "description": "Introduce el ID de la partida y elige con cuántos cartones quieres jugar.",
+    "found": "Número {0} encontrado y marcado",
+    "notFound": "El número {0} no está en tus cartones",
+    "quantity": "{0} cartón | {0} cartones",
+    "search": "Buscar número",
+    "title": "¿Con cuántos cartones quieres jugar?"
   },
   "contacts": {
-    "description": "Los que desarrollaron \"{0}\", poniendo su corazón en completarlo y ponerlo a disposición de todos.",
-    "title": "equipo de desarrollo"
+    "description": "Quienes han creado «{0}», poniendo todo su cariño en terminarlo y compartirlo con todos.",
+    "title": "Equipo de desarrollo"
   },
   "donate": {
-    "title": "Ayúdanos a mantener {0} libre. {1}",
+    "title": "Ayúdanos a mantener {0} gratis. {1}",
     "with": "Donar con"
   },
   "error": {
     "routes": {
-      "401": "No está autenticado, por lo que no puede acceder a esta página.",
-      "403": "No estás autorizado a acceder a esta página.",
-      "404": "La página que buscas no fue encontrada.",
-      "500": "Algo salió mal. Inténtelo de nuevo más tarde.",
-      "fallback": "Se produjo un error al intentar acceder a esta página.\nInténtelo de nuevo más tarde.",
-      "notAccessible": "Página no accesible",
-      "title": "Error: {0}"
+      "401": "No has iniciado sesión, así que no puedes acceder a esta página.",
+      "403": "No tienes permiso para acceder a esta página.",
+      "404": "La página que buscas no existe.",
+      "500": "Algo ha salido mal. Inténtalo de nuevo más tarde.",
+      "fallback": "Se ha producido un error al abrir esta página.\nInténtalo de nuevo más tarde.",
+      "notAccessible": "Página no disponible",
+      "title": "Error – {0}"
     }
   },
   "exit": {
-    "description": "Perderás todo tu progreso si abandonas ahora.",
-    "title": "¿Estás seguro de que quieres irte?"
+    "description": "Si sales ahora, perderás todo tu progreso.",
+    "title": "¿Seguro que quieres salir?"
   },
   "footer": {
-    "attributions": "Atribuciones",
-    "contacts": "Contáctenos",
-    "copyright": "Copyright © 2023-{0} {1} - Todos los derechos reservados.",
-    "privacy": "política de privacidad",
-    "terms": "Términos de servicio"
+    "attributions": "Créditos",
+    "contacts": "Contacto",
+    "copyright": "Copyright © 2023-{0} {1} – Todos los derechos reservados.",
+    "privacy": "Política de privacidad",
+    "terms": "Términos del servicio"
   },
   "header": {
-    "board": "Marcador",
-    "cards": "Carpetas",
-    "contacts": "Contáctenos",
-    "home": "Hogar",
+    "board": "Tablero",
+    "cards": "Cartones",
+    "contacts": "Contacto",
+    "home": "Inicio",
     "terms": "Términos"
   },
   "home": {
-    "subtitle": "Una aplicación para jugar al bingo online de forma rápida y sencilla.",
+    "subtitle": "Una app para jugar a la tombola online de forma rápida y sencilla.",
     "welcome": "Bienvenido a {0}",
     "today": "El número del día",
     "smorfia": "de la smorfia napolitana",
@@ -100,17 +100,17 @@
     "tombola": "Los quince números de un cartón"
   },
   "language": {
-    "toggle": "@:aria.alternar idioma"
+    "toggle": "Cambiar idioma"
   },
   "pwa": {
     "install": "Instalar",
-    "installTitle": "¿Quieres instalarlo como una aplicación?",
+    "installTitle": "¿Quieres instalarla como app?",
     "update": "Actualizar",
-    "updateTitle": "Actualización encontrada. ¿Quieres actualizar?"
+    "updateTitle": "Hay una actualización. ¿Quieres actualizar?"
   },
   "theme": {
     "dark": "Oscuro",
     "light": "Claro",
-    "toggle": "@:aria.alternar tema"
+    "toggle": "Cambiar tema"
   }
 }
