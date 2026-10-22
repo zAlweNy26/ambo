@@ -81,7 +81,23 @@
   },
   "home": {
     "subtitle": "Una aplicación para jugar al bingo online de forma rápida y sencilla.",
-    "welcome": "Bienvenido a {0}"
+    "welcome": "Bienvenido a {0}",
+    "today": "El número del día",
+    "smorfia": "de la smorfia napolitana",
+    "how": "Cómo se juega",
+    "step1": "Abre el tablero",
+    "step1Text": "En la tele o el portátil que todos ven, y comparte el ID de la partida con la mesa.",
+    "step2": "Únete con tus cartones",
+    "step2Text": "Cada jugador introduce el ID en su móvil y elige de 1 a 6 cartones.",
+    "step3": "Saca y marca",
+    "step3Text": "El anfitrión saca los números, llegan en directo y los marcas con un toque.",
+    "prizes": "Qué se gana",
+    "prizesText": "Todo se gana en una sola fila del cartón, salvo la tombola.",
+    "ambo": "Dos números en la misma fila",
+    "terna": "Tres en la misma fila",
+    "quaterna": "Cuatro en la misma fila",
+    "cinquina": "Una fila completa: los cinco números",
+    "tombola": "Los quince números de un cartón"
   },
   "language": {
     "toggle": "@:aria.alternar idioma"

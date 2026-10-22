@@ -57,7 +57,23 @@
   },
   "home": {
     "welcome": "Benvenuto su {0}",
-    "subtitle": "Un'applicazione per giocare a tombola online in modo semplice e veloce."
+    "subtitle": "Un'applicazione per giocare a tombola online in modo semplice e veloce.",
+    "today": "Il numero del giorno",
+    "smorfia": "dalla smorfia napoletana",
+    "how": "Come si gioca",
+    "step1": "Apri il tabellone",
+    "step1Text": "Sulla TV o sul portatile che vedono tutti, poi condividi l'ID della partita con il tavolo.",
+    "step2": "Entra con le tue cartelle",
+    "step2Text": "Ogni giocatore inserisce l'ID sul telefono e sceglie da 1 a 6 cartelle.",
+    "step3": "Estrai e segna",
+    "step3Text": "Chi tiene il tabellone estrae, i numeri arrivano in diretta e li segni con un tocco.",
+    "prizes": "Cosa si vince",
+    "prizesText": "Si vince su una sola riga della cartella, tranne la tombola.",
+    "ambo": "Due numeri sulla stessa riga",
+    "terna": "Tre sulla stessa riga",
+    "quaterna": "Quattro sulla stessa riga",
+    "cinquina": "Una riga completa: tutti e cinque i numeri",
+    "tombola": "Tutti i quindici numeri di una cartella"
   },
   "contacts": {
     "title": "Team di sviluppo",

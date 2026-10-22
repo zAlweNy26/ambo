@@ -81,7 +81,23 @@
   },
   "home": {
     "subtitle": "Eine Anwendung zum schnellen und einfachen Online-Bingospielen.",
-    "welcome": "Willkommen bei {0}"
+    "welcome": "Willkommen bei {0}",
+    "today": "Die Zahl des Tages",
+    "smorfia": "aus der neapolitanischen Smorfia",
+    "how": "So wird gespielt",
+    "step1": "Tabellone öffnen",
+    "step1Text": "Auf dem Fernseher oder Laptop, den alle sehen, dann die Spiel-ID mit dem Tisch teilen.",
+    "step2": "Mit deinen Karten beitreten",
+    "step2Text": "Jeder gibt die ID auf dem Handy ein und wählt 1 bis 6 Karten.",
+    "step3": "Ziehen und markieren",
+    "step3Text": "Der Gastgeber zieht, die Zahlen kommen live an und du markierst sie mit einem Tipp.",
+    "prizes": "Was man gewinnt",
+    "prizesText": "Gewonnen wird immer in einer einzigen Reihe einer Karte, außer bei der Tombola.",
+    "ambo": "Zwei Zahlen in derselben Reihe",
+    "terna": "Drei in derselben Reihe",
+    "quaterna": "Vier in derselben Reihe",
+    "cinquina": "Eine volle Reihe: alle fünf Zahlen",
+    "tombola": "Alle fünfzehn Zahlen einer Karte"
   },
   "language": {
     "toggle": "@:aria.Sprache umschalten"

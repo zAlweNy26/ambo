@@ -6,7 +6,7 @@
 @variant dark (&:where(.dark, .dark *));
 
 @theme static {
-  --font-sans: 'Geist', sans-serif;
+  --font-sans: 'Bricolage Grotesque', sans-serif;
 
   --text-2xs: 0.625rem;
   --text-2xs--line-height: 0.75rem;

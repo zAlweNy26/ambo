@@ -24,42 +24,42 @@ colors:
   text-muted-dark: "#a8a29e"
 typography:
   display:
-    fontFamily: "Geist, sans-serif"
+    fontFamily: "Bricolage Grotesque, sans-serif"
     fontSize: "3.75rem"
     fontWeight: 600
     lineHeight: 1
     letterSpacing: "-0.025em"
   headline:
-    fontFamily: "Geist, sans-serif"
+    fontFamily: "Bricolage Grotesque, sans-serif"
     fontSize: "2.25rem"
     fontWeight: 600
     lineHeight: 1.1
     letterSpacing: "-0.025em"
   title:
-    fontFamily: "Geist, sans-serif"
+    fontFamily: "Bricolage Grotesque, sans-serif"
     fontSize: "1.25rem"
     fontWeight: 500
     lineHeight: 1.4
   numeral:
-    fontFamily: "Geist, sans-serif"
+    fontFamily: "Bricolage Grotesque, sans-serif"
     fontSize: "1.25rem"
     fontWeight: 600
     lineHeight: 1
     fontFeature: "tnum"
   numeral-token:
-    fontFamily: "Geist, sans-serif"
+    fontFamily: "Bricolage Grotesque, sans-serif"
     fontSize: "4.5rem"
     fontWeight: 600
     lineHeight: 1
     letterSpacing: "-0.025em"
     fontFeature: "tnum"
   body:
-    fontFamily: "Geist, sans-serif"
+    fontFamily: "Bricolage Grotesque, sans-serif"
     fontSize: "1rem"
     fontWeight: 400
     lineHeight: 1.5
   label:
-    fontFamily: "Geist, sans-serif"
+    fontFamily: "Bricolage Grotesque, sans-serif"
     fontSize: "0.875rem"
     fontWeight: 400
     lineHeight: 1.43
@@ -118,7 +118,7 @@ components:
 
 Ambo! is quiet contemporary product UI wrapped around two objects taken straight from the family tombola: the paper cartella printed in red, and the round beech numeretto pulled from the bag. Those two objects are the entire theme. Everything else (header, forms, prize split, footer) is plain, neutral and hairline-thin so the numbers can be read from across a room.
 
-The palette is a single brand red on warm neutral grey, plus one material: flat beech wood. Red is ink (numerals, grid lines, the hatch of empty cells, the header bar, primary actions); beech is the token that lands on a drawn or marked number. There is no faked grain, no folk ornament and no texture beyond the faint diagonal hatch of a blank cell. Density is calm: generous gaps, one panel per job, Geist throughout with semibold tabular numerals.
+The palette is a single brand red on warm neutral grey, plus one material: flat beech wood. Red is ink (numerals, grid lines, the hatch of empty cells, the header bar, primary actions); beech is the token that lands on a drawn or marked number. There is no faked grain, no folk ornament and no texture beyond the faint diagonal hatch of a blank cell. Density is calm: generous gaps, one panel per job, Bricolage Grotesque throughout with semibold tabular numerals.
 
 The world explicitly rejects the folk-costume tombola (the earlier carretto direction, turned down as dated) and the generic neon bingo app.
 
@@ -126,7 +126,7 @@ The world explicitly rejects the folk-costume tombola (the earlier carretto dire
 - One brand red (#c41e2a family) used as print, never as fill for large surfaces beyond the slim header bar and card headers.
 - Drawn and marked numbers become flat beech tokens with a darker beech edge and a soft cast shadow, carrying a deep red numeral.
 - Neutral warm-grey ground with white or near-black panels, 1px hairlines and 16px corners.
-- Geist only; numerals are semibold and tabular everywhere.
+- Bricolage Grotesque only; numerals are semibold and tabular everywhere.
 - Light and dark themes share the same structure; dark lifts the print to a softer red.
 
 ## Colors
@@ -158,8 +158,8 @@ Restrained: one red ink, one wood, and warm stone neutrals.
 
 ## Typography
 
-**Display Font:** Geist (with sans-serif)
-**Body Font:** Geist (with sans-serif)
+**Display Font:** Bricolage Grotesque (with sans-serif)
+**Body Font:** Bricolage Grotesque (with sans-serif)
 
 **Character:** A single contemporary grotesque; hierarchy comes from weight and size, never from a second face. Numbers are the hero, so every numeral is semibold with tabular figures.
 
@@ -175,7 +175,7 @@ Restrained: one red ink, one wood, and warm stone neutrals.
 ### Named Rules
 **The Tabular Numeral Rule.** Every number (cells, tokens, counts, game ID, prize amounts) is set with tabular figures so columns and counts never jitter.
 
-**The One Face Rule.** Geist only. Emphasis is weight (500/600) and the red, not a display face or letterspaced caps.
+**The One Face Rule.** Bricolage Grotesque only. Emphasis is weight (500/600) and the red, not a display face or letterspaced caps.
 
 ## Layout
 
@@ -238,7 +238,7 @@ Each cartella has a red strip with the card index and the marked count (n/15) in
 ### Do:
 - **Do** use red only as print and as small solid accents (header bar, primary button, progress, card strip).
 - **Do** show every drawn or marked number as a beech token with the darker beech edge and a token-ink numeral.
-- **Do** set every numeral in Geist semibold with tabular figures.
+- **Do** set every numeral in Bricolage Grotesque semibold with tabular figures.
 - **Do** separate surfaces with 1px hairlines and 16px panel corners; switch to the red print line for grids.
 - **Do** honour reduced motion: tokens fade instead of rolling or scaling.
 
