@@ -64,7 +64,7 @@
     "description": "Those who developed \"{0}\", putting their hearts into completing it and making it available to all."
   },
   "game": {
-    "title": "{0} - {1} remaining numbers",
+    "title": "{0} – {1} remaining numbers",
     "id": "Game ID",
     "error": {
       "title": "Game not found",

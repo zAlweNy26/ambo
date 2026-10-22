@@ -124,7 +124,7 @@ function checkNumber(num: number, check = true) {
       <NuFieldGroup class="w-full">
         <NuInputNumber v-model="searchNumber" size="lg" :min="1" :step="1" :max="90" class="grow"
                        :aria-label="$t('cards.search')" @change="() => numberFound = undefined" />
-        <NuButton icon="i-tabler-search" size="lg" color="neutral" :label="$t('cards.search')" @click="checkNumber(searchNumber)" />
+        <NuButton icon="i-tabler-search" size="lg" color="neutral" variant="outline" :label="$t('cards.search')" @click="checkNumber(searchNumber)" />
       </NuFieldGroup>
       <i18n-t v-if="numberFound !== undefined" class="text-center text-sm" :class="[numberFound ? 'text-success' : 'text-error']"
               :keypath="`cards.${numberFound ? 'found' : 'notFound'}`" tag="p" role="status">

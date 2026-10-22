@@ -25,7 +25,7 @@ useHead({
   <NuApp :locale="locales[locale]" :tooltip="{ delayDuration: 300 }"
          :toaster="{ duration: 2000, position: 'bottom-right' }">
     <NuxtLayout name="default">
-      <main class="flex grow flex-col p-2 md:p-4">
+      <main class="flex grow flex-col px-4 py-3 md:p-4">
         <NuxtPage />
       </main>
     </NuxtLayout>

@@ -27,7 +27,6 @@
   --color-tombola-950: #3d070b;
 
   /* Beech wood of the numeretti */
-  --color-legno-light: #ecd2a8;
   --color-legno: #d6ad78;
   --color-legno-dark: #a97a45;
 }
@@ -35,14 +34,14 @@
 :root {
   --ui-primary: var(--ui-color-primary-600);
 
-  --ui-text-dimmed: var(--ui-color-neutral-400);
-  --ui-text-muted: var(--ui-color-neutral-500);
-  --ui-text-toned: var(--ui-color-neutral-600);
+  --ui-text-dimmed: var(--ui-color-neutral-500);
+  --ui-text-muted: var(--ui-color-neutral-600);
+  --ui-text-toned: var(--ui-color-neutral-700);
   --ui-text: var(--ui-color-neutral-800);
   --ui-text-highlighted: var(--ui-color-neutral-950);
   --ui-text-inverted: var(--ui-color-neutral-50);
 
-  --ui-bg: #f6f4f0;
+  --ui-bg: #f6f6f4;
   --ui-bg-elevated: #ffffff;
   --ui-bg-muted: #ededea;
   --ui-bg-accented: #e2e2de;
@@ -83,7 +82,7 @@
   --ui-border-muted: #232321;
   --ui-border-inverted: var(--ui-color-neutral-50);
 
-  --print: var(--ui-color-primary-300);
+  --print: var(--ui-color-primary-400);
   --print-line: rgb(228 103 109 / 0.3);
   --hatch: rgb(228 103 109 / 0.1);
   --ring-latest: var(--ui-color-primary-400);
@@ -109,12 +108,11 @@
   border-color: var(--print-line);
 }
 
-/* A turned beech token seen from the top: soft light, faint growth rings, darker edge */
+/* A beech token: flat wood colour, a darker beech edge, a soft cast shadow */
 .legno {
-  background:
-    repeating-radial-gradient(circle at 38% 34%, transparent 0 4px, rgb(120 72 30 / 0.06) 4px 5px),
-    radial-gradient(circle at 35% 30%, var(--color-legno-light), var(--color-legno) 58%, var(--color-legno-dark));
-  box-shadow: inset 0 -2px 0 rgb(90 52 20 / 0.25), 0 2px 6px rgb(60 35 10 / 0.3);
+  background: var(--color-legno);
+  border: 2px solid var(--color-legno-dark);
+  box-shadow: 0 6px 16px -6px rgb(60 35 10 / 0.45);
 }
 
 /* Number states, shared by tabellone and cartelle:
@@ -139,10 +137,9 @@
   aspect-ratio: 1;
   translate: -50% -50%;
   border-radius: 9999px;
-  background:
-    repeating-radial-gradient(circle at 38% 34%, transparent 0 4px, rgb(120 72 30 / 0.06) 4px 5px),
-    radial-gradient(circle at 35% 30%, var(--color-legno-light), var(--color-legno) 58%, var(--color-legno-dark));
-  box-shadow: inset 0 -2px 0 rgb(90 52 20 / 0.25), 0 1px 2px rgb(60 35 10 / 0.3);
+  background: var(--color-legno);
+  border: 1.5px solid var(--color-legno-dark);
+  box-shadow: 0 2px 4px -1px rgb(60 35 10 / 0.35);
   z-index: -1;
   scale: 0;
   transition: scale 0.4s cubic-bezier(0.16, 1, 0.3, 1);
@@ -159,7 +156,7 @@
 }
 
 .numero[data-state="latest"]::before {
-  box-shadow: inset 0 -2px 0 rgb(90 52 20 / 0.25), 0 0 0 2px var(--ui-bg-elevated), 0 0 0 4px var(--ring-latest);
+  box-shadow: 0 0 0 2px var(--ui-bg-elevated), 0 0 0 4px var(--ring-latest);
 }
 
 @media (prefers-reduced-motion: reduce) {

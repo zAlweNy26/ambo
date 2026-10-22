@@ -9,7 +9,7 @@
       "title": "Correspondance non trouvée"
     },
     "id": "Identifiant du jeu",
-    "title": "{0} - {1} numéros restants",
+    "title": "{0} – {1} numéros restants",
     "confirmation": "Êtes-vous sûr de vouloir partir ? Vous perdrez tout."
   },
   "aria": {

@@ -1,0 +1,8 @@
+{
+  "approved": true,
+  "approvedOn": "2026-10-22",
+  "approvedBy": "user",
+  "userWords": ["i think number 1, but with a more realistic font for the number", "go with 1A"],
+  "shipsAs": "public/logo.svg",
+  "provenance": "Hand-authored SVG (no image generation). Numeral '2' is Ultra (Google Fonts, SIL OFL / Apache, apache/ultra/Ultra-Regular.ttf) converted to outlines with opentype.js 1.3.4. Raster icons in public/ generated from it by @vite-pwa/assets-generator via pwa-assets.config.ts."
+}
