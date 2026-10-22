@@ -1,0 +1,527 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-22T13:40:58+00:00",
+  "title": "Design System: Ambo!",
+  "extensions": {
+    "colorMeta": {
+      "ink": {
+        "role": "neutral",
+        "displayName": "Cart Ink",
+        "canonical": "#1a1209",
+        "tonalRamp": [
+          "oklch(15% 0.021 69.3)",
+          "oklch(25% 0.021 69.3)",
+          "oklch(38% 0.021 69.3)",
+          "oklch(50% 0.021 69.3)",
+          "oklch(62% 0.021 69.3)",
+          "oklch(74% 0.021 69.3)",
+          "oklch(85% 0.021 69.3)",
+          "oklch(95% 0.021 69.3)"
+        ]
+      },
+      "giallo": {
+        "role": "secondary",
+        "displayName": "Chrome Yellow",
+        "canonical": "#ffd04a",
+        "tonalRamp": [
+          "oklch(15% 0.154 89.0)",
+          "oklch(25% 0.154 89.0)",
+          "oklch(38% 0.154 89.0)",
+          "oklch(50% 0.154 89.0)",
+          "oklch(62% 0.154 89.0)",
+          "oklch(74% 0.154 89.0)",
+          "oklch(85% 0.154 89.0)",
+          "oklch(95% 0.154 89.0)"
+        ]
+      },
+      "arancio": {
+        "role": "primary",
+        "displayName": "Carretto Orange",
+        "canonical": "#ff8904",
+        "tonalRamp": [
+          "oklch(15% 0.180 56.7)",
+          "oklch(25% 0.180 56.7)",
+          "oklch(38% 0.180 56.7)",
+          "oklch(50% 0.180 56.7)",
+          "oklch(62% 0.180 56.7)",
+          "oklch(74% 0.180 56.7)",
+          "oklch(85% 0.180 56.7)",
+          "oklch(95% 0.180 56.7)"
+        ]
+      },
+      "rosso": {
+        "role": "tertiary",
+        "displayName": "Vermilion",
+        "canonical": "#d7262e",
+        "tonalRamp": [
+          "oklch(15% 0.200 25.4)",
+          "oklch(25% 0.200 25.4)",
+          "oklch(38% 0.200 25.4)",
+          "oklch(50% 0.200 25.4)",
+          "oklch(62% 0.200 25.4)",
+          "oklch(74% 0.200 25.4)",
+          "oklch(85% 0.200 25.4)",
+          "oklch(95% 0.200 25.4)"
+        ]
+      },
+      "verde": {
+        "role": "tertiary",
+        "displayName": "Emerald",
+        "canonical": "#0f7a45",
+        "tonalRamp": [
+          "oklch(15% 0.123 154.5)",
+          "oklch(25% 0.123 154.5)",
+          "oklch(38% 0.123 154.5)",
+          "oklch(50% 0.123 154.5)",
+          "oklch(62% 0.123 154.5)",
+          "oklch(74% 0.123 154.5)",
+          "oklch(85% 0.123 154.5)",
+          "oklch(95% 0.123 154.5)"
+        ]
+      },
+      "blu": {
+        "role": "tertiary",
+        "displayName": "Cobalt",
+        "canonical": "#1f4fa3",
+        "tonalRamp": [
+          "oklch(15% 0.146 260.7)",
+          "oklch(25% 0.146 260.7)",
+          "oklch(38% 0.146 260.7)",
+          "oklch(50% 0.146 260.7)",
+          "oklch(62% 0.146 260.7)",
+          "oklch(74% 0.146 260.7)",
+          "oklch(85% 0.146 260.7)",
+          "oklch(95% 0.146 260.7)"
+        ]
+      },
+      "carta": {
+        "role": "neutral",
+        "displayName": "Paper White",
+        "canonical": "#ffffff",
+        "tonalRamp": [
+          "oklch(15% 0.000 89.9)",
+          "oklch(25% 0.000 89.9)",
+          "oklch(38% 0.000 89.9)",
+          "oklch(50% 0.000 89.9)",
+          "oklch(62% 0.000 89.9)",
+          "oklch(74% 0.000 89.9)",
+          "oklch(85% 0.000 89.9)",
+          "oklch(95% 0.000 89.9)"
+        ]
+      },
+      "lacca": {
+        "role": "neutral",
+        "displayName": "Black Lacquer",
+        "canonical": "#15100b",
+        "tonalRamp": [
+          "oklch(15% 0.013 66.8)",
+          "oklch(25% 0.013 66.8)",
+          "oklch(38% 0.013 66.8)",
+          "oklch(50% 0.013 66.8)",
+          "oklch(62% 0.013 66.8)",
+          "oklch(74% 0.013 66.8)",
+          "oklch(85% 0.013 66.8)",
+          "oklch(95% 0.013 66.8)"
+        ]
+      },
+      "giallo-pale": {
+        "role": "neutral",
+        "displayName": "Pale Yellow",
+        "canonical": "#fff1c7",
+        "tonalRamp": [
+          "oklch(15% 0.056 91.8)",
+          "oklch(25% 0.056 91.8)",
+          "oklch(38% 0.056 91.8)",
+          "oklch(50% 0.056 91.8)",
+          "oklch(62% 0.056 91.8)",
+          "oklch(74% 0.056 91.8)",
+          "oklch(85% 0.056 91.8)",
+          "oklch(95% 0.056 91.8)"
+        ]
+      },
+      "giallo-wash": {
+        "role": "neutral",
+        "displayName": "Yellow Wash",
+        "canonical": "#ffe08a",
+        "tonalRamp": [
+          "oklch(15% 0.111 90.3)",
+          "oklch(25% 0.111 90.3)",
+          "oklch(38% 0.111 90.3)",
+          "oklch(50% 0.111 90.3)",
+          "oklch(62% 0.111 90.3)",
+          "oklch(74% 0.111 90.3)",
+          "oklch(85% 0.111 90.3)",
+          "oklch(95% 0.111 90.3)"
+        ]
+      },
+      "umber-toned": {
+        "role": "neutral",
+        "displayName": "Umber Toned",
+        "canonical": "#3d2f20",
+        "tonalRamp": [
+          "oklch(15% 0.032 68.2)",
+          "oklch(25% 0.032 68.2)",
+          "oklch(38% 0.032 68.2)",
+          "oklch(50% 0.032 68.2)",
+          "oklch(62% 0.032 68.2)",
+          "oklch(74% 0.032 68.2)",
+          "oklch(85% 0.032 68.2)",
+          "oklch(95% 0.032 68.2)"
+        ]
+      },
+      "umber-muted": {
+        "role": "neutral",
+        "displayName": "Umber Muted",
+        "canonical": "#594734",
+        "tonalRamp": [
+          "oklch(15% 0.039 67.9)",
+          "oklch(25% 0.039 67.9)",
+          "oklch(38% 0.039 67.9)",
+          "oklch(50% 0.039 67.9)",
+          "oklch(62% 0.039 67.9)",
+          "oklch(74% 0.039 67.9)",
+          "oklch(85% 0.039 67.9)",
+          "oklch(95% 0.039 67.9)"
+        ]
+      },
+      "umber-dimmed": {
+        "role": "neutral",
+        "displayName": "Umber Dimmed",
+        "canonical": "#6b5a45",
+        "tonalRamp": [
+          "oklch(15% 0.039 72.6)",
+          "oklch(25% 0.039 72.6)",
+          "oklch(38% 0.039 72.6)",
+          "oklch(50% 0.039 72.6)",
+          "oklch(62% 0.039 72.6)",
+          "oklch(74% 0.039 72.6)",
+          "oklch(85% 0.039 72.6)",
+          "oklch(95% 0.039 72.6)"
+        ]
+      },
+      "umber-rule": {
+        "role": "neutral",
+        "displayName": "Umber Rule",
+        "canonical": "#8a7458",
+        "tonalRamp": [
+          "oklch(15% 0.049 73.3)",
+          "oklch(25% 0.049 73.3)",
+          "oklch(38% 0.049 73.3)",
+          "oklch(50% 0.049 73.3)",
+          "oklch(62% 0.049 73.3)",
+          "oklch(74% 0.049 73.3)",
+          "oklch(85% 0.049 73.3)",
+          "oklch(95% 0.049 73.3)"
+        ]
+      },
+      "lacca-raised": {
+        "role": "neutral",
+        "displayName": "Raised Lacquer",
+        "canonical": "#241b12",
+        "tonalRamp": [
+          "oklch(15% 0.022 66.4)",
+          "oklch(25% 0.022 66.4)",
+          "oklch(38% 0.022 66.4)",
+          "oklch(50% 0.022 66.4)",
+          "oklch(62% 0.022 66.4)",
+          "oklch(74% 0.022 66.4)",
+          "oklch(85% 0.022 66.4)",
+          "oklch(95% 0.022 66.4)"
+        ]
+      },
+      "lacca-muted": {
+        "role": "neutral",
+        "displayName": "Lacquer Muted",
+        "canonical": "#2e2318",
+        "tonalRamp": [
+          "oklch(15% 0.026 66.4)",
+          "oklch(25% 0.026 66.4)",
+          "oklch(38% 0.026 66.4)",
+          "oklch(50% 0.026 66.4)",
+          "oklch(62% 0.026 66.4)",
+          "oklch(74% 0.026 66.4)",
+          "oklch(85% 0.026 66.4)",
+          "oklch(95% 0.026 66.4)"
+        ]
+      },
+      "lacca-accented": {
+        "role": "neutral",
+        "displayName": "Lacquer Accented",
+        "canonical": "#3a2d1f",
+        "tonalRamp": [
+          "oklch(15% 0.030 68.4)",
+          "oklch(25% 0.030 68.4)",
+          "oklch(38% 0.030 68.4)",
+          "oklch(50% 0.030 68.4)",
+          "oklch(62% 0.030 68.4)",
+          "oklch(74% 0.030 68.4)",
+          "oklch(85% 0.030 68.4)",
+          "oklch(95% 0.030 68.4)"
+        ]
+      },
+      "bone": {
+        "role": "neutral",
+        "displayName": "Bone",
+        "canonical": "#f7ecda",
+        "tonalRamp": [
+          "oklch(15% 0.027 80.3)",
+          "oklch(25% 0.027 80.3)",
+          "oklch(38% 0.027 80.3)",
+          "oklch(50% 0.027 80.3)",
+          "oklch(62% 0.027 80.3)",
+          "oklch(74% 0.027 80.3)",
+          "oklch(85% 0.027 80.3)",
+          "oklch(95% 0.027 80.3)"
+        ]
+      },
+      "bone-bright": {
+        "role": "neutral",
+        "displayName": "Bright Bone",
+        "canonical": "#fff8ec",
+        "tonalRamp": [
+          "oklch(15% 0.018 81.3)",
+          "oklch(25% 0.018 81.3)",
+          "oklch(38% 0.018 81.3)",
+          "oklch(50% 0.018 81.3)",
+          "oklch(62% 0.018 81.3)",
+          "oklch(74% 0.018 81.3)",
+          "oklch(85% 0.018 81.3)",
+          "oklch(95% 0.018 81.3)"
+        ]
+      },
+      "bone-muted": {
+        "role": "neutral",
+        "displayName": "Bone Muted",
+        "canonical": "#c2b29a",
+        "tonalRamp": [
+          "oklch(15% 0.038 78.0)",
+          "oklch(25% 0.038 78.0)",
+          "oklch(38% 0.038 78.0)",
+          "oklch(50% 0.038 78.0)",
+          "oklch(62% 0.038 78.0)",
+          "oklch(74% 0.038 78.0)",
+          "oklch(85% 0.038 78.0)",
+          "oklch(95% 0.038 78.0)"
+        ]
+      },
+      "bone-dimmed": {
+        "role": "neutral",
+        "displayName": "Bone Dimmed",
+        "canonical": "#a8977f",
+        "tonalRamp": [
+          "oklch(15% 0.039 76.4)",
+          "oklch(25% 0.039 76.4)",
+          "oklch(38% 0.039 76.4)",
+          "oklch(50% 0.039 76.4)",
+          "oklch(62% 0.039 76.4)",
+          "oklch(74% 0.039 76.4)",
+          "oklch(85% 0.039 76.4)",
+          "oklch(95% 0.039 76.4)"
+        ]
+      },
+      "bone-rule": {
+        "role": "neutral",
+        "displayName": "Bone Rule",
+        "canonical": "#7d6c55",
+        "tonalRamp": [
+          "oklch(15% 0.040 75.1)",
+          "oklch(25% 0.040 75.1)",
+          "oklch(38% 0.040 75.1)",
+          "oklch(50% 0.040 75.1)",
+          "oklch(62% 0.040 75.1)",
+          "oklch(74% 0.040 75.1)",
+          "oklch(85% 0.040 75.1)",
+          "oklch(95% 0.040 75.1)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Sancreek Display",
+        "purpose": "Home welcome and info page titles, with the signwriter shade."
+      },
+      "headline": {
+        "displayName": "Sancreek Headline",
+        "purpose": "Wordmark, game header, modal titles, smorfia line."
+      },
+      "numeral-hub": {
+        "displayName": "Hub Numeral",
+        "purpose": "Latest number in the wheel hub; error code."
+      },
+      "numeral": {
+        "displayName": "Cell Numeral",
+        "purpose": "Board and cartella cells, game ID, tally, prizes."
+      },
+      "body": {
+        "displayName": "Figtree Body",
+        "purpose": "Descriptions and help text."
+      },
+      "label": {
+        "displayName": "Figtree Label",
+        "purpose": "Buttons, field labels, prize names, footer links."
+      }
+    },
+    "shadows": [
+      {
+        "name": "panel-cast",
+        "value": "0 6px 14px -6px rgb(26 18 9 / 0.45)",
+        "purpose": "Under every cart panel."
+      },
+      {
+        "name": "wheel-cast",
+        "value": "drop-shadow(0 8px 10px rgb(26 18 9 / 0.35))",
+        "purpose": "Filter under the carretto wheel."
+      },
+      {
+        "name": "signwriter-shade",
+        "value": "text-shadow: 0.05em 0.05em 0 var(--color-arancio)",
+        "purpose": "Flat painted shade under display lettering."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-paint",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "Disc scale-in (0.45s), wheel spin (1.2s), hub entry (0.4s after 0.8s)."
+      },
+      {
+        "name": "reduced-motion",
+        "value": "transition: none",
+        "purpose": "All spin, disc and hub transitions under prefers-reduced-motion."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "sm",
+        "value": "40rem"
+      },
+      {
+        "name": "lg",
+        "value": "64rem"
+      },
+      {
+        "name": "xl",
+        "value": "80rem"
+      },
+      {
+        "name": "3xl",
+        "value": "120rem"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Orange paint, ink label, 3px ink keyline; the main action (Estrai, Tabellone).",
+      "html": "<button class=\"ds-btn-primary\">Estrai un numero</button>",
+      "css": ".ds-btn-primary{background:#ff8904;color:#1a1209;border:3px solid #1a1209;border-radius:6px;padding:1rem 1.5rem;font:600 1.25rem Figtree,sans-serif;cursor:pointer;transition:background .2s}.ds-btn-primary:hover{background:#ff6900}.ds-btn-primary:focus-visible{outline:3px solid #1f4fa3;outline-offset:2px}"
+    },
+    {
+      "name": "Neutral Button",
+      "kind": "button",
+      "refersTo": "button-neutral",
+      "description": "Ink solid with paper label; the secondary home action.",
+      "html": "<button class=\"ds-btn-neutral\">Cartelle</button>",
+      "css": ".ds-btn-neutral{background:#1a1209;color:#fff;border:0;border-radius:6px;padding:1rem 1.5rem;font:600 1.25rem Figtree,sans-serif;cursor:pointer;transition:background .2s}.ds-btn-neutral:hover{background:#3d2f20}.ds-btn-neutral:focus-visible{outline:3px solid #1f4fa3;outline-offset:2px}"
+    },
+    {
+      "name": "Input",
+      "kind": "input",
+      "refersTo": "input",
+      "description": "Paper field with a 2px inset ink ring.",
+      "html": "<input class=\"ds-input\" placeholder=\"ID partita\">",
+      "css": ".ds-input{background:#fff;color:#1a1209;border:0;box-shadow:inset 0 0 0 2px #1a1209;border-radius:6px;padding:.625rem .875rem;font:400 1rem Figtree,sans-serif}.ds-input::placeholder{color:#6b5a45}.ds-input:focus-visible{outline:3px solid #1f4fa3;outline-offset:2px}"
+    },
+    {
+      "name": "Header Rail",
+      "kind": "nav",
+      "refersTo": "header-rail",
+      "description": "Orange rail with Sancreek wordmark, closed by the four-ink dente di lupo frieze.",
+      "html": "<header class=\"ds-rail\"><div class=\"ds-rail-bar\"><span class=\"ds-wordmark\">Ambo!</span></div><div class=\"ds-frieze\"></div></header>",
+      "css": ".ds-rail{background:#ff8904;color:#1a1209}.ds-rail-bar{padding:.5rem 1.25rem}.ds-wordmark{font-family:Sancreek,serif;font-size:1.875rem;line-height:1}.ds-frieze{height:.75rem;background-color:#1a1209;background-image:url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='12'%3E%3Cpath d='M0 12 6 1l6 11z' fill='%23d7262e'/%3E%3Cpath d='M12 12l6-11 6 11z' fill='%23ffd04a'/%3E%3Cpath d='M24 12l6-11 6 11z' fill='%230f7a45'/%3E%3Cpath d='M36 12l6-11 6 11z' fill='%231f4fa3'/%3E%3C/svg%3E\");background-repeat:repeat-x;background-size:48px 12px}"
+    },
+    {
+      "name": "Cart Panel",
+      "kind": "card",
+      "refersTo": "cart-panel",
+      "description": "The single container: painted frame, frieze top and bottom, corner rosettes, keylined white field.",
+      "html": "<div class=\"ds-panel\" style=\"--frame:#1f4fa3\"><div class=\"ds-field\">Tabellone</div></div>",
+      "css": ".ds-panel{position:relative;background:url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cg stroke='%231a1209' stroke-width='1.2' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='11' fill='%23ffd04a'/%3E%3Cg fill='%231f4fa3'%3E%3Cpath id='p' d='M12 1.5c2.6 3 2.6 6 0 9.5-2.6-3.5-2.6-6.5 0-9.5z'/%3E%3Cuse href='%23p' transform='rotate(90 12 12)'/%3E%3Cuse href='%23p' transform='rotate(180 12 12)'/%3E%3Cuse href='%23p' transform='rotate(270 12 12)'/%3E%3C/g%3E%3Cg fill='%23d7262e' transform='rotate(45 12 12)'%3E%3Cuse href='%23p'/%3E%3Cuse href='%23p' transform='rotate(90 12 12)'/%3E%3Cuse href='%23p' transform='rotate(180 12 12)'/%3E%3Cuse href='%23p' transform='rotate(270 12 12)'/%3E%3C/g%3E%3Ccircle cx='12' cy='12' r='3' fill='%23ff8904'/%3E%3C/g%3E%3C/svg%3E\") top left/1.5rem no-repeat,url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cg stroke='%231a1209' stroke-width='1.2' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='11' fill='%23ffd04a'/%3E%3Cg fill='%231f4fa3'%3E%3Cpath id='p' d='M12 1.5c2.6 3 2.6 6 0 9.5-2.6-3.5-2.6-6.5 0-9.5z'/%3E%3Cuse href='%23p' transform='rotate(90 12 12)'/%3E%3Cuse href='%23p' transform='rotate(180 12 12)'/%3E%3Cuse href='%23p' transform='rotate(270 12 12)'/%3E%3C/g%3E%3Cg fill='%23d7262e' transform='rotate(45 12 12)'%3E%3Cuse href='%23p'/%3E%3Cuse href='%23p' transform='rotate(90 12 12)'/%3E%3Cuse href='%23p' transform='rotate(180 12 12)'/%3E%3Cuse href='%23p' transform='rotate(270 12 12)'/%3E%3C/g%3E%3Ccircle cx='12' cy='12' r='3' fill='%23ff8904'/%3E%3C/g%3E%3C/svg%3E\") top right/1.5rem no-repeat,url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cg stroke='%231a1209' stroke-width='1.2' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='11' fill='%23ffd04a'/%3E%3Cg fill='%231f4fa3'%3E%3Cpath id='p' d='M12 1.5c2.6 3 2.6 6 0 9.5-2.6-3.5-2.6-6.5 0-9.5z'/%3E%3Cuse href='%23p' transform='rotate(90 12 12)'/%3E%3Cuse href='%23p' transform='rotate(180 12 12)'/%3E%3Cuse href='%23p' transform='rotate(270 12 12)'/%3E%3C/g%3E%3Cg fill='%23d7262e' transform='rotate(45 12 12)'%3E%3Cuse href='%23p'/%3E%3Cuse href='%23p' transform='rotate(90 12 12)'/%3E%3Cuse href='%23p' transform='rotate(180 12 12)'/%3E%3Cuse href='%23p' transform='rotate(270 12 12)'/%3E%3C/g%3E%3Ccircle cx='12' cy='12' r='3' fill='%23ff8904'/%3E%3C/g%3E%3C/svg%3E\") bottom left/1.5rem no-repeat,url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cg stroke='%231a1209' stroke-width='1.2' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='11' fill='%23ffd04a'/%3E%3Cg fill='%231f4fa3'%3E%3Cpath id='p' d='M12 1.5c2.6 3 2.6 6 0 9.5-2.6-3.5-2.6-6.5 0-9.5z'/%3E%3Cuse href='%23p' transform='rotate(90 12 12)'/%3E%3Cuse href='%23p' transform='rotate(180 12 12)'/%3E%3Cuse href='%23p' transform='rotate(270 12 12)'/%3E%3C/g%3E%3Cg fill='%23d7262e' transform='rotate(45 12 12)'%3E%3Cuse href='%23p'/%3E%3Cuse href='%23p' transform='rotate(90 12 12)'/%3E%3Cuse href='%23p' transform='rotate(180 12 12)'/%3E%3Cuse href='%23p' transform='rotate(270 12 12)'/%3E%3C/g%3E%3Ccircle cx='12' cy='12' r='3' fill='%23ff8904'/%3E%3C/g%3E%3C/svg%3E\") bottom right/1.5rem no-repeat,url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='8'%3E%3Crect width='32' height='8' fill='%231a1209'/%3E%3Cpath d='M0 8 4 1l4 7z' fill='%23ffd04a'/%3E%3Cpath d='M8 8l4-7 4 7z' fill='%23ffffff'/%3E%3Cpath d='M16 8l4-7 4 7z' fill='%23ffd04a'/%3E%3Cpath d='M24 8l4-7 4 7z' fill='%23ffffff'/%3E%3C/svg%3E\") top .125rem center/32px 8px repeat-x,url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='8'%3E%3Crect width='32' height='8' fill='%231a1209'/%3E%3Cpath d='M0 8 4 1l4 7z' fill='%23ffd04a'/%3E%3Cpath d='M8 8l4-7 4 7z' fill='%23ffffff'/%3E%3Cpath d='M16 8l4-7 4 7z' fill='%23ffd04a'/%3E%3Cpath d='M24 8l4-7 4 7z' fill='%23ffffff'/%3E%3C/svg%3E\") bottom .125rem center/32px 8px repeat-x,var(--frame,#d7262e);border:3px solid #1a1209;border-radius:.75rem;padding:.75rem .5rem;box-shadow:0 6px 14px -6px rgb(26 18 9/.45)}.ds-field{background:#fff;color:#1a1209;border:3px solid #1a1209;border-radius:.4rem;padding:1rem;font-family:Figtree,sans-serif}"
+    },
+    {
+      "name": "Numero",
+      "kind": "chip",
+      "refersTo": "numero-on",
+      "description": "Number cell: plain when waiting, orange disc when drawn, plus cobalt ring when latest.",
+      "html": "<span class=\"ds-numero\">14</span> <span class=\"ds-numero\" data-state=\"on\">15</span> <span class=\"ds-numero\" data-state=\"latest\">72</span>",
+      "css": ".ds-numero{position:relative;display:inline-grid;place-content:center;width:3rem;height:3rem;font-family:'Alfa Slab One',serif;font-size:1.5rem;font-variant-numeric:tabular-nums;line-height:1;color:#1a1209;isolation:isolate}.ds-numero::before{content:'';position:absolute;inset:6%;border-radius:9999px;background:#ff8904;border:3px solid #1a1209;z-index:-1;transform:scale(0);transition:transform .45s cubic-bezier(.16,1,.3,1)}.ds-numero[data-state]::before{transform:scale(1)}.ds-numero[data-state=latest]::after{content:'';position:absolute;inset:2%;border-radius:9999px;border:3px solid #1f4fa3}"
+    },
+    {
+      "name": "Display Lettering",
+      "kind": "custom",
+      "refersTo": "display",
+      "description": "Sancreek title with the signwriter's orange shade.",
+      "html": "<h1 class=\"ds-sign\">Benvenuto su Ambo!</h1>",
+      "css": ".ds-sign{font-family:Sancreek,serif;font-weight:400;font-size:3rem;line-height:1.25;color:#1a1209;text-shadow:.05em .05em 0 #ff8904;margin:0}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Painted Cart",
+    "overview": "Ambo! is painted like a Sicilian carretto. Every tabellone block and every cartella is a framed cart panel: a flat frame of saturated paint, a black keyline, a dente di lupo zigzag frieze along the top and bottom edge, a folk rosette at each corner, and a white field where the numbers sit. The page itself is the cart body, painted chrome yellow by day and black lacquer by night; the header is an orange rail closed by a four-ink frieze.\n\nThe paint is flat. No gradients anywhere: colour changes happen at keylines, the way a cart painter separates fields. The density is that of a board game at a family table: big numerals readable from across the room, generous controls, few words. Decoration lives in the frames and friezes, never inside the number field, so the ornament never competes with the draw.\n\nThe build landed slightly differently from the direction: the contract had orange owning the shell, but the shipped shell is chrome yellow (`giallo`) with orange reserved for the header rail, the primary action and the drawn-number disc. The build is the system.",
+    "keyCharacteristics": [
+      "Flat saturated inks separated by black keylines (3px on panels, discs and the primary button; 2px on form controls).",
+      "Framed cart panels with frieze and corner rosettes as the single container grammar.",
+      "Three typefaces with strict jobs: Sancreek lettering, Alfa Slab One numerals, Figtree UI.",
+      "Orange disc means drawn or marked; a blue ring (yellow at night) means latest.",
+      "Same inks in both themes; only the ground and the text tones change."
+    ],
+    "rules": [
+      {
+        "name": "The Flat Paint Rule",
+        "body": "No gradients, on any surface, in either theme. Colour changes only at a keyline.",
+        "section": "colors"
+      },
+      {
+        "name": "The Ink On Paint Rule",
+        "body": "Text on orange, yellow and white is always Cart Ink. Paper White text appears only on ink or vermilion grounds.",
+        "section": "colors"
+      },
+      {
+        "name": "The Same Inks Rule",
+        "body": "Night mode swaps the ground to black lacquer and the text to bone; the six inks keep their exact values.",
+        "section": "colors"
+      },
+      {
+        "name": "The Three Hands Rule",
+        "body": "Sancreek only for lettering (wordmark, titles, smorfia), Alfa Slab One only for numbers, Figtree for everything else. Never set a number in Sancreek or a sentence in Alfa Slab One.",
+        "section": "typography"
+      },
+      {
+        "name": "The Tabular Rule",
+        "body": "Every numeral that changes (cells, tally, remaining count, prizes) uses tabular figures so the board never jitters.",
+        "section": "typography"
+      },
+      {
+        "name": "The Keyline Not Shadow Rule",
+        "body": "Inside a panel, separation is a black keyline. Shadows belong only to whole painted objects (panels, the wheel).",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "**Do** put every board, cartella and settings group inside a cart panel with a white field; cycle frames vermilion, emerald, cobalt.",
+      "**Do** separate colour fields with ink keylines: 3px for panels, discs and primary buttons, 2px for form controls and cell dividers.",
+      "**Do** set ink text on orange, yellow and white, including the primary button.",
+      "**Do** mark drawn numbers with the orange disc and the latest with the cobalt ring (yellow at night), on both board and cartelle.",
+      "**Do** honour `prefers-reduced-motion` on every spin, disc and hub transition."
+    ],
+    "donts": [
+      "**Don't** use gradients on any surface, in either theme.",
+      "**Don't** put white text on orange or yellow.",
+      "**Don't** set numbers in Sancreek or running text in Alfa Slab One.",
+      "**Don't** add shadows inside a panel; depth belongs to whole panels and the wheel.",
+      "**Don't** change ink values for dark mode; only the ground and text tones switch."
+    ]
+  }
+}
