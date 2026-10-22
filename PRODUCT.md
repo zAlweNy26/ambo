@@ -36,6 +36,7 @@ Tombola, tabellone (board), cartella/cartelle (cards), ambo, terna, quaterna, ci
 
 ## Brand commitments
 
-- Orange is the brand color (PWA theme color `#ff8904`).
+- Tombola red is the brand color (PWA theme color `#c41e2a`), with beech-wood tokens as markers; the user moved it from orange (2026-10-22). The logo asset is still orange.
+- Style: minimal and contemporary, with tombola cues carried by red print and wooden tokens; heavy folk ornament was rejected.
 - Keep the light/dark toggle.
 - A donation link (PayPal) exists today; placement may change.

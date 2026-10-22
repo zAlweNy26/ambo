@@ -38,7 +38,7 @@ useEventListener('beforeunload', (event) => {
       <slot name="title">
         <span>{{ $t(`header.${String($route.name)}`) }}</span>
       </slot>
-      <strong class="font-semibold text-highlighted tabular-nums">{{ remaining }}</strong>
+      <strong class="font-semibold text-primary tabular-nums">{{ remaining }}</strong>
     </i18n-t>
     <NuModal v-model:open="isModalOpen" :close="false"
              :title="$t('exit.title')" :description="$t('exit.description')" :ui="{

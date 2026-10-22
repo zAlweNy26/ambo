@@ -3,7 +3,7 @@ export default defineAppConfig({
   // https://ui3.nuxt.dev/getting-started/theme#design-system
   ui: {
     colors: {
-      primary: 'orange',
+      primary: 'tombola',
       neutral: 'stone',
     },
     icons: {
@@ -31,8 +31,7 @@ export default defineAppConfig({
       compoundVariants: [{
         color: 'primary',
         variant: 'solid',
-        // Dark text on orange: white on orange fails contrast
-        class: 'text-neutral-950 hover:bg-primary-500',
+        class: 'text-white hover:bg-primary-700',
       }],
     },
     card: {

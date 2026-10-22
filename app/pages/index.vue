@@ -33,8 +33,8 @@ const sample = [4, 0, 21, 0, 43, 0, 62, 0, 85]
       </p>
     </div>
 
-    <div class="panel grid w-full max-w-md grid-cols-9 overflow-hidden" aria-hidden="true">
-      <span v-for="(n, i) in sample" :key="i" class="numero aspect-square border-default text-base sm:text-lg"
+    <div class="panel grid w-full max-w-md grid-cols-9 overflow-hidden border-[var(--print-line)]" aria-hidden="true">
+      <span v-for="(n, i) in sample" :key="i" class="numero print aspect-square text-base sm:text-lg"
             :class="[!n && 'blank', i < 8 && 'border-e']"
             :data-state="n === 43 ? 'on' : undefined">
         {{ n || '' }}

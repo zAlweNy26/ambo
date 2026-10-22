@@ -162,7 +162,7 @@ export default defineNuxtConfig({
       name: 'Ambo! - Gioco della tombola',
       short_name: 'Ambo!',
       description: 'Gioco della tombola digitale, per quando non hai voglia di portarti la scatola!',
-      theme_color: '#ff8904',
+      theme_color: '#c41e2a',
       icons: [
         {
           src: 'pwa-192x192.png',

@@ -189,10 +189,10 @@ async function extractNumber() {
                   :label="$t('board.draw')" @click="extractNumber" />
       </div>
 
-      <div class="panel grid select-none sm:grid-cols-2 lg:row-span-2 xl:row-span-1">
-        <div v-for="(card, index) in cards" :key="index" class="grid grid-cols-5 gap-y-1 p-3 sm:p-4 border-default"
+      <div class="panel grid select-none border-[var(--print-line)] sm:grid-cols-2 lg:row-span-2 xl:row-span-1">
+        <div v-for="(card, index) in cards" :key="index" class="print grid grid-cols-5 gap-y-1 p-3 sm:p-4"
              :class="[index % 2 === 0 && 'sm:border-e', index < 5 && 'border-b', index >= 4 && 'sm:border-b-0']">
-          <span v-for="number in card" :key="number" class="numero h-11 text-lg sm:text-xl"
+          <span v-for="number in card" :key="number" class="numero print h-11 text-lg sm:text-xl"
                 :data-state="number === currentNumber ? 'latest' : (extractedNumbers.includes(number) ? 'on' : undefined)">
             {{ number }}
           </span>

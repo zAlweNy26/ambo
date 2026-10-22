@@ -133,16 +133,16 @@ function checkNumber(num: number, check = true) {
     </div>
 
     <div class="grid w-full justify-items-center gap-5 lg:grid-cols-2">
-      <div v-for="(card, ci) in cards" :key="ci" class="panel w-full max-w-xl overflow-hidden">
-        <div class="flex items-center justify-between border-b border-default px-4 py-2 text-xs text-muted">
+      <div v-for="(card, ci) in cards" :key="ci" class="panel w-full max-w-xl overflow-hidden border-[var(--print-line)]">
+        <div class="flex items-center justify-between bg-primary px-4 py-2 text-xs text-white">
           <span class="font-medium tabular-nums">#{{ ci + 1 }}</span>
-          <span class="tabular-nums">{{ signedNumbers[ci]?.length ?? 0 }}/15</span>
+          <span class="tabular-nums text-white/80">{{ signedNumbers[ci]?.length ?? 0 }}/15</span>
         </div>
         <div class="grid select-none grid-cols-9">
           <button v-for="(number, ni) in card" :key="`${ci}-${ni}`" type="button"
-                  class="numero aspect-square border-default text-lg sm:text-xl"
+                  class="numero print aspect-square text-lg sm:text-xl"
                   :class="[
-                    number === 0 ? 'blank' : 'cursor-pointer hover:bg-muted',
+                    number === 0 ? 'blank' : 'cursor-pointer hover:bg-primary/5',
                     ni % 9 !== 8 && 'border-e',
                     ni < 18 && 'border-b',
                   ]"
