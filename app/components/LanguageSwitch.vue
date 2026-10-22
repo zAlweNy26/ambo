@@ -15,7 +15,7 @@ const items = computed<DropdownMenuItem[]>(() => locales.value.map(l => ({
 <template>
   <ClientOnly>
     <NuDropdownMenu :items :content="{ align: 'end', sideOffset: 16 }">
-      <NuButton variant="outline" color="neutral" :ui="{ label: 'size-5' }"
+      <NuButton :aria-label="$t('language.toggle')" :ui="{ label: 'size-5' }"
                 square :label="currentLocale.domain" />
       <template #item-trailing="{ item }">
         <NuIcon v-if="item.checked" name="i-tabler-point-filled" class="size-4" />

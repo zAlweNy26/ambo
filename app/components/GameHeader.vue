@@ -34,11 +34,11 @@ useEventListener('beforeunload', (event) => {
     <NuButton :aria-label="isFullscreen ? $t('button.minimize') : $t('button.maximize')"
               :icon="isFullscreen ? 'i-tabler-minimize' : 'i-tabler-maximize'" size="xl" variant="ghost"
               @click="toggle()" />
-    <i18n-t keypath="game.title" tag="h3" class="text-2xl">
+    <i18n-t keypath="game.title" tag="h2" class="font-display text-2xl text-balance sm:text-3xl">
       <slot name="title">
         <span>{{ $t(`header.${String($route.name)}`) }}</span>
       </slot>
-      <strong>{{ remaining }}</strong>
+      <strong class="font-numeral font-normal tabular-nums">{{ remaining }}</strong>
     </i18n-t>
     <NuModal v-model:open="isModalOpen" :close="false"
              :title="$t('exit.title')" :description="$t('exit.description')" :ui="{

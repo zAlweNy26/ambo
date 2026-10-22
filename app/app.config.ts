@@ -26,7 +26,19 @@ export default defineAppConfig({
     },
     button: {
       slots: {
-        base: 'cursor-pointer transition-all',
+        base: 'cursor-pointer transition-all font-semibold',
+      },
+      compoundVariants: [{
+        color: 'primary',
+        variant: 'solid',
+        // Black ink on orange paint: white on orange fails contrast
+        class: 'text-ink border-[3px] border-ink hover:bg-primary-300 disabled:bg-primary-200 aria-disabled:bg-primary-200 dark:border-black',
+      }],
+    },
+    modal: {
+      slots: {
+        content: 'ring-0 border-[3px] border-ink dark:border-default',
+        title: 'font-display text-2xl font-normal',
       },
     },
     card: {
