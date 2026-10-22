@@ -1,0 +1,153 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-22T00:00:00Z",
+  "title": "Design System: Ambo!",
+  "extensions": {
+    "colorMeta": {
+      "tombola-red": { "role": "primary", "displayName": "Tombola Red", "canonical": "#c41e2a", "tonalRamp": ["#3d070b", "#6e161d", "#84151e", "#a31621", "#c41e2a", "#e4676d", "#f7c8c9", "#fdf3f3"] },
+      "tombola-red-deep": { "role": "primary", "displayName": "Deep Print Red", "canonical": "#a31621", "tonalRamp": ["#3d070b", "#6e161d", "#84151e", "#a31621", "#c41e2a", "#e4676d", "#f7c8c9", "#fdf3f3"] },
+      "tombola-red-ink": { "role": "primary", "displayName": "Token Ink", "canonical": "#84151e", "tonalRamp": ["#3d070b", "#6e161d", "#84151e", "#a31621", "#c41e2a", "#e4676d", "#f7c8c9", "#fdf3f3"] },
+      "tombola-red-soft": { "role": "primary", "displayName": "Soft Print Red", "canonical": "#e4676d", "tonalRamp": ["#3d070b", "#6e161d", "#84151e", "#a31621", "#c41e2a", "#e4676d", "#f7c8c9", "#fdf3f3"] },
+      "beech": { "role": "secondary", "displayName": "Beech", "canonical": "#d6ad78", "tonalRamp": ["#3a2611", "#5a3c1d", "#7a522a", "#a97a45", "#c3955e", "#d6ad78", "#e8cda6", "#f7ecdc"] },
+      "beech-edge": { "role": "secondary", "displayName": "Beech Edge", "canonical": "#a97a45", "tonalRamp": ["#3a2611", "#5a3c1d", "#7a522a", "#a97a45", "#c3955e", "#d6ad78", "#e8cda6", "#f7ecdc"] },
+      "ground-light": { "role": "neutral", "displayName": "Light Ground", "canonical": "#f6f6f4" },
+      "panel-light": { "role": "neutral", "displayName": "Panel White", "canonical": "#ffffff" },
+      "muted-light": { "role": "neutral", "displayName": "Muted Light", "canonical": "#ededea" },
+      "hairline-light": { "role": "neutral", "displayName": "Hairline", "canonical": "#e4e4e0" },
+      "hairline-accented-light": { "role": "neutral", "displayName": "Hairline Accented", "canonical": "#d2d2cd" },
+      "ground-dark": { "role": "neutral", "displayName": "Dark Ground", "canonical": "#0f0f0e" },
+      "panel-dark": { "role": "neutral", "displayName": "Panel Night", "canonical": "#191917" },
+      "muted-dark": { "role": "neutral", "displayName": "Muted Dark", "canonical": "#232321" },
+      "hairline-dark": { "role": "neutral", "displayName": "Hairline Dark", "canonical": "#2a2a27" },
+      "text-light": { "role": "neutral", "displayName": "Stone Text", "canonical": "var(--ui-color-neutral-800)", "tonalRamp": ["#0c0a09", "#292524", "#44403c", "#57534e", "#78716c", "#a8a29e", "#d6d3d1", "#f5f5f4"] },
+      "text-muted-light": { "role": "neutral", "displayName": "Stone Muted", "canonical": "var(--ui-color-neutral-600)" },
+      "text-highlighted-light": { "role": "neutral", "displayName": "Stone Highlighted", "canonical": "var(--ui-color-neutral-950)" },
+      "text-dark": { "role": "neutral", "displayName": "Stone Text (dark)", "canonical": "var(--ui-color-neutral-200)" },
+      "text-muted-dark": { "role": "neutral", "displayName": "Stone Muted (dark)", "canonical": "var(--ui-color-neutral-400)" }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "Home headline (2.25rem mobile, 3.75rem sm+) and error status code (6rem, red)." },
+      "headline": { "displayName": "Headline", "purpose": "Info page titles." },
+      "title": { "displayName": "Title", "purpose": "Game header with red remaining count; smorfia line at 600." },
+      "numeral": { "displayName": "Numeral", "purpose": "Tabellone and cartella cells, semibold tabular." },
+      "numeral-token": { "displayName": "Numeral Token", "purpose": "The large draw token (3.75rem mobile, 4.5rem sm+)." },
+      "body": { "displayName": "Body", "purpose": "Running text; home lede at 1.125rem muted." },
+      "label": { "displayName": "Label", "purpose": "Field labels, captions, footer; card strips at 0.75rem." }
+    },
+    "shadows": [
+      { "name": "token-cast", "value": "0 6px 16px -6px rgb(60 35 10 / 0.45)", "purpose": "Large beech draw token." },
+      { "name": "grid-token-cast", "value": "0 2px 4px -1px rgb(60 35 10 / 0.35)", "purpose": "Drawn or marked numbers in grids." },
+      { "name": "dish", "value": "0 12px 32px -16px rgb(28 25 23 / 0.35)", "purpose": "Round panel under the draw token." },
+      { "name": "latest-ring", "value": "0 0 0 2px var(--ui-bg-elevated), 0 0 0 4px var(--ring-latest)", "purpose": "Most recent draw on the tabellone." }
+    ],
+    "motion": [
+      { "name": "ease-settle", "value": "cubic-bezier(0.16, 1, 0.3, 1)", "purpose": "Token roll-in and numero disc scale-in." },
+      { "name": "token-roll-in", "value": "0.55s; from translateY(-24%) rotate(-90deg) scale(0.6), opacity 0", "purpose": "New draw token arriving; reduced motion is a 0.15s fade." },
+      { "name": "token-leave", "value": "0.2s ease-in; to scale(0.85), opacity 0", "purpose": "Previous draw token leaving." },
+      { "name": "numero-disc", "value": "scale 0 to 1, 0.4s ease-settle", "purpose": "Beech disc appearing behind a drawn or marked numero; off under reduced motion." },
+      { "name": "progress", "value": "width 500ms", "purpose": "9/90 progress bar fill." }
+    ],
+    "breakpoints": [
+      { "name": "sm", "value": "40rem" },
+      { "name": "md", "value": "48rem" },
+      { "name": "lg", "value": "64rem" },
+      { "name": "xl", "value": "80rem" },
+      { "name": "3xl", "value": "120rem" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Main action (Estrai, Tabellone): tombola red, white medium label, 8px radius.",
+      "html": "<button class=\"ds-btn-primary\"><svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M15 12h3.586a1 1 0 0 1 .707 1.707l-6.586 6.586a1 1 0 0 1-1.414 0l-6.586-6.586a1 1 0 0 1 .707-1.707H9V9h6v3z\"/><path d=\"M15 3H9\"/><path d=\"M15 6H9\"/></svg>Estrai un numero</button>",
+      "css": ".ds-btn-primary { display: inline-flex; align-items: center; justify-content: center; gap: 8px; width: 256px; padding: 10px 12px; font-family: Geist, sans-serif; font-size: 16px; font-weight: 500; color: #fff; background: #c41e2a; border: none; border-radius: 8px; cursor: pointer; transition: background 0.15s; } .ds-btn-primary:hover { background: #a31621; } .ds-btn-primary:focus-visible { outline: 2px solid #d63a42; outline-offset: 2px; }"
+    },
+    {
+      "name": "Neutral Outline Button",
+      "kind": "button",
+      "refersTo": "button-neutral-outline",
+      "description": "Secondary action beside a primary (home Cartelle).",
+      "html": "<button class=\"ds-btn-outline\">Cartelle</button>",
+      "css": ".ds-btn-outline { padding: 10px 12px; font-family: Geist, sans-serif; font-size: 16px; font-weight: 500; color: #292524; background: #fff; border: none; box-shadow: inset 0 0 0 1px #d2d2cd; border-radius: 8px; cursor: pointer; transition: background 0.15s; } .ds-btn-outline:hover { background: #ededea; } .ds-btn-outline:focus-visible { outline: 2px solid #d63a42; outline-offset: 2px; }"
+    },
+    {
+      "name": "Header Bar",
+      "kind": "nav",
+      "refersTo": "header-bar",
+      "description": "Slim red bar with logo tile, wordmark and theme toggle.",
+      "html": "<header class=\"ds-header\"><a class=\"ds-header-brand\" href=\"#\"><span class=\"ds-header-logo\"></span>Ambo!</a><button class=\"ds-header-icon\" aria-label=\"Theme\"><svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3a9 9 0 1 0 9 9a7 7 0 0 1-9-9z\"/></svg></button></header>",
+      "css": ".ds-header { display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; background: #c41e2a; color: #fff; font-family: Geist, sans-serif; } .ds-header-brand { display: flex; align-items: center; gap: 10px; color: #fff; text-decoration: none; font-size: 18px; font-weight: 600; letter-spacing: -0.025em; } .ds-header-logo { width: 36px; height: 36px; border-radius: 22%; background: #a31621; box-shadow: 0 0 0 1px rgb(255 255 255 / 0.5); } .ds-header-icon { display: grid; place-items: center; padding: 6px; color: #fff; background: transparent; border: none; border-radius: 8px; cursor: pointer; } .ds-header-icon:hover { background: rgb(255 255 255 / 0.15); } .ds-header-icon:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }"
+    },
+    {
+      "name": "Panel",
+      "kind": "card",
+      "refersTo": "panel",
+      "description": "Elevated surface with a 1px hairline and 16px radius; no shadow.",
+      "html": "<div class=\"ds-panel\"><dl class=\"ds-panel-list\"><div><dt>Ambo</dt><dd>0,40 €</dd></div><div><dt>Terna</dt><dd>0,60 €</dd></div><div><dt>Tombola</dt><dd>2,00 €</dd></div></dl></div>",
+      "css": ".ds-panel { width: 272px; padding: 16px; background: #fff; border: 1px solid #e4e4e0; border-radius: 16px; font-family: Geist, sans-serif; font-size: 14px; } .ds-panel-list { margin: 0; } .ds-panel-list div { display: flex; justify-content: space-between; padding: 6px 0; border-top: 1px solid #e4e4e0; } .ds-panel-list div:first-child { border-top: none; } .ds-panel-list dt { color: #57534e; } .ds-panel-list dd { margin: 0; font-weight: 500; color: #292524; font-variant-numeric: tabular-nums; }"
+    },
+    {
+      "name": "Game ID Input",
+      "kind": "input",
+      "description": "Nuxt UI input on neutral tokens; wide tracking and tabular figures for the 8-character game ID.",
+      "html": "<input class=\"ds-input\" placeholder=\"ID partita\" value=\"b67ebe2c\">",
+      "css": ".ds-input { width: 280px; padding: 10px 12px; font-family: Geist, sans-serif; font-size: 16px; letter-spacing: 0.05em; font-variant-numeric: tabular-nums; color: #292524; background: #fff; border: none; box-shadow: inset 0 0 0 1px #d2d2cd; border-radius: 8px; } .ds-input:focus-visible { outline: none; box-shadow: inset 0 0 0 2px #c41e2a; }"
+    },
+    {
+      "name": "Cartella Row",
+      "kind": "custom",
+      "refersTo": "numero-on",
+      "description": "Signature: red-printed 9-column cartella with hatched blanks, a marked beech token and a red header strip.",
+      "html": "<div class=\"ds-cartella\"><div class=\"ds-cartella-strip\"><span>#1</span><span>1/15</span></div><div class=\"ds-cartella-row\"><span class=\"ds-numero\">4</span><span class=\"ds-numero ds-blank\"></span><span class=\"ds-numero\">23</span><span class=\"ds-numero ds-blank\"></span><span class=\"ds-numero ds-on\">43</span><span class=\"ds-numero\">57</span><span class=\"ds-numero ds-blank\"></span><span class=\"ds-numero\">71</span><span class=\"ds-numero ds-blank\"></span></div></div>",
+      "css": ".ds-cartella { width: 432px; background: #fff; border: 1px solid rgb(196 30 42 / 0.28); border-radius: 16px; overflow: hidden; font-family: Geist, sans-serif; } .ds-cartella-strip { display: flex; justify-content: space-between; padding: 8px 16px; background: #c41e2a; color: #fff; font-size: 12px; font-variant-numeric: tabular-nums; } .ds-cartella-row { display: grid; grid-template-columns: repeat(9, 1fr); } .ds-numero { position: relative; display: grid; place-content: center; aspect-ratio: 1; isolation: isolate; color: #a31621; font-size: 20px; font-weight: 600; line-height: 1; font-variant-numeric: tabular-nums; border-right: 1px solid rgb(196 30 42 / 0.28); cursor: pointer; transition: color 0.3s ease-out; } .ds-numero:last-child { border-right: none; } .ds-numero:not(.ds-blank):hover { background: rgb(196 30 42 / 0.05); } .ds-numero::before { content: ''; position: absolute; top: 50%; left: 50%; width: min(100%, 2.4em); aspect-ratio: 1; translate: -50% -50%; border-radius: 9999px; background: #d6ad78; border: 1.5px solid #a97a45; box-shadow: 0 2px 4px -1px rgb(60 35 10 / 0.35); z-index: -1; scale: 0; transition: scale 0.4s cubic-bezier(0.16, 1, 0.3, 1); } .ds-numero.ds-on { color: #84151e; } .ds-numero.ds-on::before { scale: 1; } .ds-blank { cursor: default; background-image: repeating-linear-gradient(135deg, rgb(196 30 42 / 0.1) 0 1px, transparent 1px 7px); }"
+    },
+    {
+      "name": "Draw Token",
+      "kind": "custom",
+      "refersTo": "draw-token",
+      "description": "Signature: the drawn number as a large beech token in a neutral dish; rolls in with a quarter turn.",
+      "html": "<div class=\"ds-dish\"><div class=\"ds-token\">29</div></div>",
+      "css": ".ds-dish { position: relative; display: grid; place-content: center; width: 224px; aspect-ratio: 1; border-radius: 9999px; background: #fff; border: 1px solid #e4e4e0; box-shadow: 0 12px 32px -16px rgb(28 25 23 / 0.35); } .ds-token { position: absolute; inset: 11%; display: grid; place-content: center; border-radius: 9999px; background: #d6ad78; border: 2px solid #a97a45; box-shadow: 0 6px 16px -6px rgb(60 35 10 / 0.45); color: #84151e; font-family: Geist, sans-serif; font-size: 72px; font-weight: 600; letter-spacing: -0.025em; line-height: 1; font-variant-numeric: tabular-nums; animation: ds-roll 0.55s cubic-bezier(0.16, 1, 0.3, 1); } @keyframes ds-roll { from { transform: translateY(-24%) rotate(-90deg) scale(0.6); opacity: 0; } } @media (prefers-reduced-motion: reduce) { .ds-token { animation: ds-fade 0.15s linear; } @keyframes ds-fade { from { opacity: 0; } } }"
+    },
+    {
+      "name": "Latest Numero",
+      "kind": "custom",
+      "description": "Tabellone cell for the most recent draw: beech token plus a red ring.",
+      "html": "<span class=\"ds-latest\">29</span>",
+      "css": ".ds-latest { display: inline-grid; place-content: center; width: 48px; height: 48px; border-radius: 9999px; background: #d6ad78; border: 1.5px solid #a97a45; box-shadow: 0 0 0 2px #fff, 0 0 0 4px #c41e2a; color: #84151e; font-family: Geist, sans-serif; font-size: 20px; font-weight: 600; line-height: 1; font-variant-numeric: tabular-nums; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Printed Cartella",
+    "overview": "Ambo! is quiet contemporary product UI wrapped around two objects taken straight from the family tombola: the paper cartella printed in red, and the round beech numeretto pulled from the bag. Those two objects are the entire theme. Everything else (header, forms, prize split, footer) is plain, neutral and hairline-thin so the numbers can be read from across a room.\n\nThe palette is a single brand red on warm neutral grey, plus one material: flat beech wood. Red is ink (numerals, grid lines, the hatch of empty cells, the header bar, primary actions); beech is the token that lands on a drawn or marked number. There is no faked grain, no folk ornament and no texture beyond the faint diagonal hatch of a blank cell. Density is calm: generous gaps, one panel per job, Geist throughout with semibold tabular numerals.\n\nThe world explicitly rejects the folk-costume tombola (the earlier carretto direction, turned down as dated) and the generic neon bingo app.",
+    "keyCharacteristics": [
+      "One brand red (#c41e2a family) used as print, never as fill for large surfaces beyond the slim header bar and card headers.",
+      "Drawn and marked numbers become flat beech tokens with a darker beech edge and a soft cast shadow, carrying a deep red numeral.",
+      "Neutral warm-grey ground with white or near-black panels, 1px hairlines and 16px corners.",
+      "Geist only; numerals are semibold and tabular everywhere.",
+      "Light and dark themes share the same structure; dark lifts the print to a softer red."
+    ],
+    "rules": [
+      { "name": "The Ink, Not Paint Rule", "body": "Red is printed: numerals, grid lines, hatch, a slim bar. It never floods a panel or a page section.", "section": "colors" },
+      { "name": "The Wood Means Drawn Rule", "body": "Beech appears only on a number that has been drawn or marked. A wooden surface anywhere else breaks the game's own signal.", "section": "colors" },
+      { "name": "The Tabular Numeral Rule", "body": "Every number (cells, tokens, counts, game ID, prize amounts) is set with tabular figures so columns and counts never jitter.", "section": "typography" },
+      { "name": "The One Face Rule", "body": "Geist only. Emphasis is weight (500/600) and the red, not a display face or letterspaced caps.", "section": "typography" },
+      { "name": "The Only Objects Cast Rule", "body": "Only wooden tokens and their dish carry shadows. UI panels, buttons and inputs stay flat.", "section": "elevation" }
+    ],
+    "dos": [
+      "**Do** use red only as print and as small solid accents (header bar, primary button, progress, card strip).",
+      "**Do** show every drawn or marked number as a beech token with the darker beech edge and a token-ink numeral.",
+      "**Do** set every numeral in Geist semibold with tabular figures.",
+      "**Do** separate surfaces with 1px hairlines and 16px panel corners; switch to the red print line for grids.",
+      "**Do** honour reduced motion: tokens fade instead of rolling or scaling."
+    ],
+    "donts": [
+      "**Don't** add folk ornament, carretto motifs, painted borders or faked wood grain; the beech is flat colour.",
+      "**Don't** put shadows on panels, buttons or inputs; shadow is reserved for wooden objects.",
+      "**Don't** use beech for anything other than a drawn or marked number (the logo is the one approved exception).",
+      "**Don't** introduce a second typeface or letterspaced uppercase labels."
+    ]
+  }
+}
