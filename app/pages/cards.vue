@@ -79,7 +79,7 @@ function checkNumber(num: number, check = true) {
 
 <template>
   <section class="mx-auto flex w-full max-w-5xl grow touch-pan-y flex-col items-center gap-6 overscroll-y-contain">
-    <GameHeader :remaining>
+    <GameHeader :remaining :confirm-exit="data !== null">
       <template #title>
         <i18n-t keypath="cards.quantity" tag="span" :plural="amount">
           <span>{{ amount }}</span>
