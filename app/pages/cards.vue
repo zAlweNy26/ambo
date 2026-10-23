@@ -13,7 +13,8 @@ const extractions = ref<number[]>([])
 const { data, error } = useEventSource(() => `/game?id=${gameId.value}`)
 
 watchImmediate(error, (err) => {
-  if (err) {
+  // After the first message an error is a dropped connection: EventSource reconnects by itself, so keep the cards
+  if (err && data.value === null) {
     navigateTo({ path: '/', query: {} }, { redirectCode: 302 })
     toast.add({
       title: t('game.error.title'),
@@ -33,7 +34,7 @@ watch(data, (val) => {
   }
   catch (error) {
     console.error(error)
-    console.error('Failed to parse WebSocket data:', data)
+    console.error('Failed to parse game stream data:', val)
     return
   }
 
