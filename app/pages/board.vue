@@ -28,26 +28,19 @@ const game = ref({ gameId: '', hostId: '' })
 const gameId = computed(() => game.value.gameId)
 const extractedNumbers = ref<number[]>([]), currentNumber = ref<number>(), speakText = ref<string>('')
 
-onMounted(async () => {
-  if (route.query.id && route.query.id === hosted.value.gameId) {
-    try {
-      const { extractions } = await $fetch('/api/game/resume', { method: 'POST', body: hosted.value })
-      extractedNumbers.value = extractions
-      currentNumber.value = extractions.at(-1)
-      game.value = { ...hosted.value }
-      return
-    }
-    catch (error) {
-      // Expired (24h) or not ours any more: start a new game instead
-      console.error(error)
-    }
-  }
+async function newGame() {
   const { gameId: id, hostId } = await $fetch('/api/game/create', { method: 'POST' })
   game.value = { gameId: id, hostId }
   hosted.value = { ...game.value }
   router.replace({
-    query: { id: gameId.value },
+    query: { id },
   })
+}
+
+// A reload of /board?id=… reconnects to the hosted game; the room answers with its state, or an error if it's gone
+onMounted(() => {
+  if (route.query.id && route.query.id === hosted.value.gameId) game.value = { ...hosted.value }
+  else newGame()
 })
 
 const cards = Array.from({ length: 6 }).map((_, i) => {
@@ -71,16 +64,6 @@ const smirkOptions = [
   { label: 'Livornese', value: 'livornese' },
 ]
 
-// Leaving through the app ends the game; closing or reloading the tab doesn't, so the board can resume it.
-// A beacon still arrives if the page is torn down right after.
-onBeforeUnmount(() => {
-  if (!gameId.value) return
-  navigator.sendBeacon('/api/game/close', new Blob([
-    JSON.stringify(game.value),
-  ], { type: 'application/json' }))
-  hosted.value = { gameId: '', hostId: '' }
-})
-
 const { currentLocale } = storeToRefs(useSettingsStore())
 const toast = useToast()
 const { t } = useI18n()
@@ -97,13 +80,7 @@ const { isPlaying, isSupported: isSpeechSupported, speak, stop } = useSpeechSynt
 
 const splittedPrize = computed(() => splitPrize(settings.value.totalPrize))
 
-const remainingNumbers = computed(() => {
-  const allNumbers = cards.flat()
-  if (!allNumbers.length) return new Set<number>()
-  return new Set(allNumbers).difference(new Set(extractedNumbers.value))
-})
-
-const remaining = computed(() => remainingNumbers.value.size)
+const remaining = computed(() => 90 - extractedNumbers.value.length)
 
 const currentSmirk = computed(() => {
   const number = currentNumber.value
@@ -161,25 +138,44 @@ function speechText() {
   setTimeout(speak, 250)
 }
 
-// Claims arrive from the phones; poll them so the room hears a win right away
 const winners = ref<Winner[]>([])
-const winnersByPrize = computed(() => _GroupBy(winners.value, w => w.prize))
-let seenClaims = -1 // -1 until the first poll, so a resumed board doesn't re-announce old wins
+// Each prize's winners with their share: a prize won on the same draw is split in tenths of a euro
+const prizeWinners = computed(() => _MapValues(splittedPrize.value, (amount, prize) => {
+  const names = winners.value.filter(w => w.prize === prize).map(w => w.name)
+  const shares = allocate(Math.round(amount * 10), names.map(() => 1))
+  return names.map((name, i) => ({ name, amount: shares[i]! / 10 }))
+}))
 
-useIntervalFn(async () => {
+let drawDone: (() => void) | undefined
+
+const room = useRoom(gameId, () => ({ type: 'host', host: game.value.hostId }), (message) => {
+  switch (message.type) {
+    case 'state':
+      extractedNumbers.value = message.extractions
+      currentNumber.value ??= message.extractions.at(-1)
+      winners.value = message.winners
+      break
+    case 'draw':
+      extractedNumbers.value = [...extractedNumbers.value, message.number]
+      currentNumber.value = message.number
+      drawDone?.()
+      break
+    case 'winners':
+      message.winners.slice(winners.value.length).forEach(announceWinner)
+      winners.value = message.winners
+      break
+    case 'error':
+      // The hosted game expired (a day) or isn't ours: start a new one
+      if (message.reason !== 'full') newGame()
+  }
+})
+
+// Leaving through the app ends the game; closing or reloading the tab doesn't, so the board can resume it
+onBeforeUnmount(() => {
   if (!gameId.value) return
-  try {
-    const list = await $fetch<Winner[]>('/api/game/claims', {
-      query: { id: gameId.value },
-    })
-    if (seenClaims >= 0) list.slice(seenClaims).forEach(announceWinner)
-    seenClaims = list.length
-    winners.value = list
-  }
-  catch (error) {
-    console.error(error)
-  }
-}, 3000)
+  room.send({ type: 'close' })
+  hosted.value = { gameId: '', hostId: '' }
+})
 
 function announceWinner({ name, prize }: Winner) {
   const title = t('claim.announce', { name, prize })
@@ -196,29 +192,25 @@ function announceWinner({ name, prize }: Winner) {
   }
 }
 
-async function extractNumber() {
-  const random = _Sample([...remainingNumbers.value])
-  if (!random) return
-  try {
-    const { extractions } = await $fetch('/api/game/extract', {
-      method: 'POST',
-      body: {
-        ...game.value,
-        number: random,
-      },
-    })
-    // Show the number only once it's saved, so the room never sees a draw the players won't get
-    currentNumber.value = random
-    extractedNumbers.value = extractions
-  }
-  catch (error) {
-    console.error(error)
-    toast.add({
-      title: t('toasts.drawFailed'),
-      color: 'error',
-      icon: 'i-tabler-alert-triangle',
-    })
-  }
+// Resolves when the room broadcasts the number, so the button spins until every phone has it too
+function extractNumber() {
+  return new Promise<void>((resolve) => {
+    const timeout = setTimeout(() => {
+      drawDone = undefined
+      toast.add({
+        title: t('toasts.drawFailed'),
+        color: 'error',
+        icon: 'i-tabler-alert-triangle',
+      })
+      resolve()
+    }, 5000)
+    drawDone = () => {
+      clearTimeout(timeout)
+      drawDone = undefined
+      resolve()
+    }
+    room.send({ type: 'draw' })
+  })
 }
 </script>
 
@@ -294,9 +286,9 @@ async function extractNumber() {
           <div v-for="(value, name) in splittedPrize" :key="name" class="flex justify-between py-1.5">
             <dt class="text-muted">
               <span class="capitalize">{{ name }}</span>
-              <span v-if="winnersByPrize[name]" class="block text-xs font-medium text-highlighted">
+              <span v-for="(w, i) in prizeWinners[name]" :key="i" class="block text-xs font-medium text-highlighted">
                 <UIcon name="i-tabler-trophy" class="size-3.5 align-[-2px] text-primary" />
-                {{ winnersByPrize[name].map(w => w.name).join(', ') }}
+                {{ w.name }}<template v-if="prizeWinners[name].length > 1"> · {{ $n(w.amount, 'currency') }}</template>
               </span>
             </dt>
             <dd class="font-medium tabular-nums">

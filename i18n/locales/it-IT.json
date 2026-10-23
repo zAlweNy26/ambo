@@ -80,7 +80,9 @@
       "title": "Partita non trovata",
       "description": "La partita a cui stai cercando di accedere non esiste."
     },
-    "confirmation": "Sei sicuro di voler uscire? Perderai tutto."
+    "confirmation": "Sei sicuro di voler uscire? Perderai tutto.",
+    "closed": "Chi tiene il tabellone ha chiuso la partita.",
+    "full": "Questa partita è al completo."
   },
   "board": {
     "qr": "Inquadra per partecipare",

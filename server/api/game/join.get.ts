@@ -7,9 +7,7 @@ const checkSchema = z.object({
 export default defineEventHandler(async (event) => {
   const { id } = await getValidatedQuery(event, body => checkSchema.parse(body))
 
-  const game = await getGame(id)
-
   return {
-    found: !!game,
+    found: await useRooms(event).exists(id),
   }
 })

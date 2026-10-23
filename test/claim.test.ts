@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { bestPrize, isPrizeClosed, isValidClaim } from '../shared/utils/claim'
+import { bestPrize, hasPrize, isPrizeClosed } from '../shared/utils/claim'
 
 // Same sample cartella as the home page
 const card = [
@@ -29,14 +29,14 @@ describe('bestPrize', () => {
   })
 })
 
-describe('isValidClaim', () => {
-  it('accepts drawn numbers that fit one row', () => {
-    expect(isValidClaim('ambo', [21, 43], [1, 21, 43])).toBe(true)
-    expect(isValidClaim('terna', [80, 85, 90], [80, 85, 90])).toBe(false) // all in the last column
-    expect(isValidClaim('ambo', [21, 43], [21])).toBe(false)
-    expect(isValidClaim('ambo', [21, 21], [21])).toBe(false)
-    expect(isValidClaim('terna', [21, 43], [21, 43])).toBe(false)
-    expect(isValidClaim('tombola', all, all)).toBe(true)
+describe('hasPrize', () => {
+  it('checks the dealt cartella against the draws only', () => {
+    expect(hasPrize(card, [21, 43, 1], 'ambo')).toBe(true)
+    expect(hasPrize(card, [21, 66], 'ambo')).toBe(false) // two rows
+    expect(hasPrize(card, [4, 21, 43], 'ambo')).toBe(true) // a terna row covers ambo
+    expect(hasPrize(card, [4, 21, 43], 'quaterna')).toBe(false)
+    expect(hasPrize(card, all.slice(0, 14), 'tombola')).toBe(false)
+    expect(hasPrize(card, all, 'tombola')).toBe(true)
   })
 })
 

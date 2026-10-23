@@ -12,7 +12,9 @@
     },
     "id": "Spiel-ID",
     "title": "{0} – {1} Zahlen übrig",
-    "confirmation": "Willst du wirklich gehen? Das Spiel geht verloren."
+    "confirmation": "Willst du wirklich gehen? Das Spiel geht verloren.",
+    "closed": "Der Gastgeber hat das Spiel beendet.",
+    "full": "Dieses Spiel ist voll."
   },
   "aria": {
     "copy": "Kopieren",

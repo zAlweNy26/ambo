@@ -12,7 +12,9 @@
     },
     "id": "ID de la partida",
     "title": "{0} – {1} números restantes",
-    "confirmation": "¿Seguro que quieres salir? Perderás la partida."
+    "confirmation": "¿Seguro que quieres salir? Perderás la partida.",
+    "closed": "El anfitrión ha terminado la partida.",
+    "full": "Esta partida está completa."
   },
   "aria": {
     "copy": "Copiar",

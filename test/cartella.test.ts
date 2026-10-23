@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { generateCartella } from '../app/utils/cartella'
+import { generateCartella } from '../shared/utils/cartella'
 
 describe('generateCartella', () => {
   it('always builds a valid cartella', () => {

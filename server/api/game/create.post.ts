@@ -1,21 +1,14 @@
-export default defineEventHandler(async () => {
+export default defineEventHandler(async (event) => {
+  const rooms = useRooms(event)
   // First UUID segment (8 hex chars) is the shareable game code; the host ID stays secret on the board
-  const id = crypto.randomUUID().slice(0, 8)
-  const hostId = crypto.randomUUID()
-
-  // Housekeeping only: a D1 hiccup must not stop a game from starting
-  await forgetOldClaims().catch(error => console.error(error))
-
-  const game = await setGame(id, {
-    id,
-    extractions: [],
-    host: hostId,
-  })
-
-  console.info(`[Game: ${game.id}] Host ${game.host} created game`)
-
-  return {
-    gameId: id,
-    hostId,
+  for (let attempt = 0; attempt < 3; attempt++) {
+    const id = crypto.randomUUID().slice(0, 8)
+    const hostId = crypto.randomUUID()
+    // A code already in use (one in four billion) gets another try
+    if (await rooms.init(id, hostId)) {
+      console.info(`[Game: ${id}] Created`)
+      return { gameId: id, hostId }
+    }
   }
+  throw createError({ statusCode: 503, statusMessage: 'Could not create a game' })
 })

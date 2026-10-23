@@ -40,7 +40,19 @@ export default defineNuxtConfig({
 
   nitro: {
     preset: 'cloudflare_module',
-    modules: ['void/nitro'],
+    // WebSockets for the in-memory game rooms of `bun run dev` (server/routes/room/[id].ts); production uses Durable Objects
+    experimental: {
+      websocket: true,
+    },
+    modules: [
+      'void/nitro',
+      // The Worker entry exports the GameRoom Durable Object and routes /room/<id> to it. Only for the Worker build:
+      // Nuxt's prerender runs a Node build with the same options.
+      (nitro) => {
+        if (nitro.options.preset === 'cloudflare-module')
+          nitro.options.entry = resolve(import.meta.dirname, 'server/room/entry.ts')
+      },
+    ],
     cloudflare: {
       dev: {
         configPath: './.void-wrangler.jsonc',

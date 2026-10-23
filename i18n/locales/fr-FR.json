@@ -12,7 +12,9 @@
     },
     "id": "ID de la partie",
     "title": "{0} – {1} numéros restants",
-    "confirmation": "Voulez-vous vraiment quitter ? Vous perdrez la partie."
+    "confirmation": "Voulez-vous vraiment quitter ? Vous perdrez la partie.",
+    "closed": "L’hôte a terminé la partie.",
+    "full": "Cette partie est complète."
   },
   "aria": {
     "copy": "Copier",

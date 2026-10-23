@@ -80,7 +80,9 @@
       "description": "The game you are trying to access does not exist."
     },
     "description": "Share this ID with your friends to allow them to join this game!",
-    "confirmation": "Are you sure you want to leave? You will lose everything."
+    "confirmation": "Are you sure you want to leave? You will lose everything.",
+    "closed": "The host ended the game.",
+    "full": "This game is full."
   },
   "board": {
     "qr": "Scan to join",

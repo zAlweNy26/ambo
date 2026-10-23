@@ -9,76 +9,95 @@ definePageMeta({
 
 const gameId = useRouteQuery<string>('id', '')
 const { t } = useI18n(), toast = useToast()
-const extractions = ref<number[]>([])
-// Stable per device, so reconnects, reloads and a killed browser count as the same player
+// Stable per device, so reconnects, reloads and a killed browser get the same cartelle back
 const player = useLocalStorage('player', () => crypto.randomUUID())
-const { data, error, eventSource } = useEventSource(() => `/game?id=${gameId.value}&player=${player.value}`)
-
-watchImmediate(error, (err) => {
-  // After the first message an error is a dropped connection: EventSource reconnects by itself, so keep the cards
-  if (err && data.value === null) {
-    navigateTo({ path: '/', query: {} }, { redirectCode: 302 })
-    toast.add({
-      title: t('game.error.title'),
-      description: t('game.error.description'),
-      color: 'error',
-    })
-  }
-})
-
-watch(data, (val) => {
-  if (val === null) return
-
-  let content: number[]
-
-  try {
-    content = JSON.parse(val)
-  }
-  catch (error) {
-    console.error(error)
-    console.error('Failed to parse game stream data:', val)
-    return
-  }
-
-  extractions.value = content
-})
-
-const lastExtractions = computed(() => extractions.value.slice(-5))
-
-// Claims so far, sent with every draw; tells which prizes are gone
-const winners = ref<Winner[]>([])
-useEventListener(eventSource, 'winners', (event: MessageEvent<string>) => {
-  try {
-    winners.value = JSON.parse(event.data)
-  }
-  catch (error) {
-    console.error(error)
-  }
-})
 
 const amount = useRouteQuery('n', 1, {
-  transform: v => Math.min(Number(v), 6),
+  transform: v => Math.min(Math.max(Number(v) || 1, 1), 6),
 })
 
-const searchNumber = ref(1), numberFound = ref<boolean>()
+const extractions = ref<number[]>([]), winners = ref<Winner[]>([])
 
-// One game at a time: a reload or a killed browser keeps the same cartelle and marks
+// The room deals the cartelle and checks claims against them; this copy shows them at once after a reload.
+// Marks and claims only live on the phone, one game at a time.
 const saved = useLocalStorage('cartelle', {
   gameId: '',
   cards: [] as number[][],
   marked: [] as number[][],
   claimed: [] as Prize[],
 })
-if (saved.value.gameId !== gameId.value || saved.value.cards?.length !== amount.value) {
+if (saved.value.gameId !== gameId.value) {
   saved.value = {
     gameId: gameId.value,
-    cards: Array.from({ length: amount.value }, generateCartella),
-    marked: Array.from({ length: amount.value }, () => []),
+    cards: [],
+    marked: [],
     claimed: [],
   }
 }
 const cards = computed(() => saved.value.cards)
 const signedNumbers = computed(() => saved.value.marked)
+
+function goHome(title: string, description?: string) {
+  navigateTo({ path: '/', query: {} }, { redirectCode: 302 })
+  toast.add({ title, description, color: 'error' })
+}
+
+const room = useRoom(gameId, () => ({ type: 'join', player: player.value, cards: amount.value }), (message) => {
+  switch (message.type) {
+    case 'state':
+      extractions.value = message.extractions
+      winners.value = message.winners
+      // New cards (first join, or another amount before the first draw) start the marks over
+      if (message.cards && JSON.stringify(message.cards) !== JSON.stringify(saved.value.cards)) {
+        saved.value = {
+          ...saved.value,
+          cards: message.cards,
+          marked: message.cards.map(() => []),
+        }
+      }
+      break
+    case 'draw':
+      extractions.value = [...extractions.value, message.number]
+      break
+    case 'winners':
+      winners.value = message.winners
+      break
+    case 'claim':
+      if (message.ok) {
+        saved.value.claimed = [...saved.value.claimed, message.prize]
+        toast.add({
+          title: t('claim.won', { prize: message.prize }),
+          color: 'success',
+          icon: 'i-tabler-trophy',
+        })
+      }
+      else {
+        toast.add({
+          title: t(`claim.${message.reason}`, { prize: message.prize }),
+          color: 'error',
+        })
+      }
+
+      break
+    case 'closed':
+      room.close()
+      toast.add({
+        title: t('game.closed'),
+        icon: 'i-tabler-flag',
+      })
+      break
+    case 'error':
+      // Gone or full before we ever got cards: back home. Once playing, keep the cards on screen.
+      room.close()
+      if (cards.value.length) break
+      if (message.reason === 'full') goHome(t('game.full'))
+      else goHome(t('game.error.title'), t('game.error.description'))
+  }
+})
+
+const lastExtractions = computed(() => extractions.value.slice(-5))
+
+const searchNumber = ref(1), numberFound = ref<boolean>()
 
 const remaining = computed(() => new Set(cards.value.flat().filter(r => r !== 0)).size - new Set(signedNumbers.value.flat()).size)
 
@@ -116,8 +135,9 @@ watchImmediate([extractions, autoMark], () => {
 // The prize each cartella can claim now: its best row (or full card), unless that prize is gone or already ours
 const claimable = computed(() => cards.value.map((card, ci) => {
   const best = bestPrize(card, signedNumbers.value[ci] ?? [], extractions.value)
-  const gone = !best || (saved.value.claimed ?? []).includes(best.prize)
-    || winners.value.some(w => PRIZES.indexOf(w.prize) >= PRIZES.indexOf(best.prize))
+  // Same rule as the room: someone else's win on this very draw is a tie, still claimable
+  const gone = !best || saved.value.claimed.includes(best.prize)
+    || isPrizeClosed(best.prize, winners.value, extractions.value.length)
   return gone ? undefined : best
 }))
 
@@ -138,38 +158,14 @@ function confirmName() {
   sendClaim()
 }
 
-async function sendClaim() {
+function sendClaim() {
   const best = claimable.value[pendingCard.value]
-  if (!best) return
-  try {
-    await $fetch('/api/game/claim', {
-      method: 'POST',
-      body: {
-        gameId: gameId.value,
-        player: player.value,
-        name: playerName.value,
-        ...best,
-      },
-    })
-    saved.value.claimed = [
-      ...(saved.value.claimed ?? []),
-      best.prize,
-    ]
-    toast.add({
-      title: t('claim.won', { prize: best.prize }),
-      color: 'success',
-      icon: 'i-tabler-trophy',
-    })
-  }
-  catch (error) {
-    const status = (error as { statusCode?: number }).statusCode
-    toast.add({
-      title: status === 409
-        ? t('claim.closed', { prize: best.prize })
-        : status === 400
-          ? t('claim.invalid', { prize: best.prize })
-          : t('toasts.network'),
-      color: 'error',
+  if (best) {
+    room.send({
+      type: 'claim',
+      card: pendingCard.value,
+      prize: best.prize,
+      name: playerName.value,
     })
   }
 }
@@ -177,7 +173,7 @@ async function sendClaim() {
 
 <template>
   <section class="mx-auto flex w-full max-w-5xl grow touch-pan-y flex-col items-center gap-6 overscroll-y-contain">
-    <GameHeader :remaining :confirm-exit="data !== null">
+    <GameHeader :remaining :confirm-exit="cards.length > 0">
       <template #title>
         <i18n-t keypath="cards.quantity" tag="span" :plural="amount">
           <span>{{ amount }}</span>

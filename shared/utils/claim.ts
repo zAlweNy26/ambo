@@ -18,10 +18,9 @@ export const PRIZE_COUNT: Record<Prize, number> = {
 export interface Winner {
   prize: Prize
   name: string
+  // How many numbers were drawn when it was claimed: others can still tie until the next draw
+  draw: number
 }
-
-// Cartella column of a number: 1–9, 10–19 … 80–90
-const column = (n: number) => Math.min(Math.floor(n / 10), 8)
 
 // The biggest prize one cartella (27 cells, 0 = blank) has earned with numbers that are both marked and drawn
 export function bestPrize(card: number[], marked: number[], drawn: number[]) {
@@ -40,11 +39,10 @@ export function bestPrize(card: number[], marked: number[], drawn: number[]) {
   return { prize: PRIZES[best.length - 2]!, numbers: best }
 }
 
-// Whether the numbers can win the prize: all drawn, no repeats, and for ambo…cinquina one per column, as on a single row
-export function isValidClaim(prize: Prize, numbers: number[], drawn: number[]) {
-  if (numbers.length !== PRIZE_COUNT[prize] || new Set(numbers).size !== numbers.length) return false
-  if (!numbers.every(n => drawn.includes(n))) return false
-  return prize === 'tombola' || new Set(numbers.map(column)).size === numbers.length
+// Whether a dealt cartella earns the prize with the numbers drawn so far (a bigger row also covers a smaller prize)
+export function hasPrize(card: number[], drawn: number[], prize: Prize) {
+  const best = bestPrize(card, drawn, drawn)
+  return !!best && PRIZES.indexOf(best.prize) >= PRIZES.indexOf(prize)
 }
 
 // A prize is closed once it, or a bigger one, was claimed on an earlier draw; claims on the same draw share it

@@ -1,78 +1,9 @@
 {
   "version": "6",
   "dialect": "sqlite",
-  "id": "d160a0bb-781c-4d5a-b94b-6b66fe95dcf6",
+  "id": "0243a20e-b14e-43e4-9319-ea3913b3ab11",
   "prevId": "db23e978-fc0e-4c5f-98e6-229be4c160d9",
   "tables": {
-    "claims": {
-      "name": "claims",
-      "columns": {
-        "id": {
-          "name": "id",
-          "type": "integer",
-          "primaryKey": true,
-          "notNull": true,
-          "autoincrement": true
-        },
-        "game_id": {
-          "name": "game_id",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": true,
-          "autoincrement": false
-        },
-        "prize": {
-          "name": "prize",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": true,
-          "autoincrement": false
-        },
-        "player": {
-          "name": "player",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": true,
-          "autoincrement": false
-        },
-        "name": {
-          "name": "name",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": true,
-          "autoincrement": false
-        },
-        "draw": {
-          "name": "draw",
-          "type": "integer",
-          "primaryKey": false,
-          "notNull": true,
-          "autoincrement": false
-        },
-        "created_at": {
-          "name": "created_at",
-          "type": "integer",
-          "primaryKey": false,
-          "notNull": true,
-          "autoincrement": false
-        }
-      },
-      "indexes": {
-        "claims_game_id_prize_player_unique": {
-          "name": "claims_game_id_prize_player_unique",
-          "columns": [
-            "game_id",
-            "prize",
-            "player"
-          ],
-          "isUnique": true
-        }
-      },
-      "foreignKeys": {},
-      "compositePrimaryKeys": {},
-      "uniqueConstraints": {},
-      "checkConstraints": {}
-    },
     "extractions": {
       "name": "extractions",
       "columns": {
@@ -98,7 +29,15 @@
           "autoincrement": false
         }
       },
-      "indexes": {},
+      "indexes": {
+        "extractions_game_id_unique": {
+          "name": "extractions_game_id_unique",
+          "columns": [
+            "game_id"
+          ],
+          "isUnique": true
+        }
+      },
       "foreignKeys": {
         "extractions_game_id_games_game_id_fk": {
           "name": "extractions_game_id_games_game_id_fk",

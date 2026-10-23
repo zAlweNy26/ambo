@@ -1,31 +1,17 @@
-import type { Prize } from '../shared/utils/claim'
-import { integer, sqliteTable, text, unique } from 'void/schema-d1'
+import { integer, sqliteTable, text } from 'void/schema-d1'
 
+// One row per game, upserted at every draw so games whose host just closes the tab are counted too
 export const games = sqliteTable('games', {
   id: integer().primaryKey({ autoIncrement: true }),
   gameId: text('game_id').notNull().unique(),
   playersCount: integer('players_count').notNull(),
+  // Time of the latest draw
   completedAt: integer('completed_at', { mode: 'timestamp' }).notNull(),
   totalExtractions: integer('total_extractions').notNull(),
 })
 
 export const extractions = sqliteTable('extractions', {
   id: integer().primaryKey({ autoIncrement: true }),
-  gameId: text('game_id').notNull().references(() => games.gameId),
+  gameId: text('game_id').notNull().unique().references(() => games.gameId),
   numbers: text('numbers', { mode: 'json' }).$type<number[]>().notNull(),
 })
-
-// Prize claims of live games: D1 inserts are atomic, so players claiming on the same draw are all kept.
-// Rows hold the names players type, so they're deleted when the game closes or after a day.
-export const claims = sqliteTable('claims', {
-  id: integer().primaryKey({ autoIncrement: true }),
-  gameId: text('game_id').notNull(),
-  prize: text().$type<Prize>().notNull(),
-  player: text().notNull(),
-  name: text().notNull(),
-  // How many numbers were drawn when it was claimed
-  draw: integer().notNull(),
-  createdAt: integer('created_at', { mode: 'timestamp' }).notNull(),
-}, t => [
-  unique().on(t.gameId, t.prize, t.player),
-])

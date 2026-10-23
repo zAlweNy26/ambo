@@ -1,0 +1,1 @@
+CREATE UNIQUE INDEX `extractions_game_id_unique` ON `extractions` (`game_id`);

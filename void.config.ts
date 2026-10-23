@@ -1,6 +1,12 @@
 import { defineConfig } from 'void/config'
 
 export default defineConfig({
+  // A Worker with a Durable Object can't be staged; traffic moves to the new version at once
+  deploy: {
+    cloudflare: {
+      mode: 'atomic',
+    },
+  },
   cloudflare: {
     name: 'ambo',
     compatibility_date: '2025-12-10',
@@ -18,10 +24,19 @@ export default defineConfig({
         migrations_dir: 'db/migrations',
       },
     ],
-    kv_namespaces: [
+    // One GameRoom Durable Object per live game (server/room/durable.ts)
+    durable_objects: {
+      bindings: [
+        {
+          name: 'ROOMS',
+          class_name: 'GameRoom',
+        },
+      ],
+    },
+    migrations: [
       {
-        binding: 'KV',
-        id: 'f9a6ed58f7bd408d95f29c705e5f2d31',
+        tag: 'v1',
+        new_sqlite_classes: ['GameRoom'],
       },
     ],
     vars: {
