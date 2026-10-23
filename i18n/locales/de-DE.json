@@ -16,8 +16,6 @@
   },
   "aria": {
     "copy": "Kopieren",
-    "goTop": "Nach oben",
-    "more": "Mehr",
     "toggle": "Umschalten",
     "share": "Teilen"
   },
@@ -33,8 +31,7 @@
     "cancel": "Abbrechen",
     "exit": "Verlassen",
     "maximize": "Vollbild",
-    "minimize": "Vollbild beenden",
-    "reset": "Zurücksetzen"
+    "minimize": "Vollbild beenden"
   },
   "cards": {
     "description": "Gib die Spiel-ID ein und wähle, mit wie vielen Karten du spielen willst.",
@@ -51,7 +48,6 @@
     "title": "Entwicklungsteam"
   },
   "donate": {
-    "title": "Hilf uns, {0} kostenlos zu halten. {1}",
     "with": "Spenden mit"
   },
   "error": {
@@ -70,10 +66,8 @@
     "title": "Willst du wirklich gehen?"
   },
   "footer": {
-    "attributions": "Quellenangaben",
     "contacts": "Kontakt",
     "copyright": "Copyright © 2023-{0} {1} – Alle Rechte vorbehalten.",
-    "privacy": "Datenschutzerklärung",
     "terms": "Nutzungsbedingungen"
   },
   "header": {
@@ -87,7 +81,6 @@
     "subtitle": "Eine App, um schnell und einfach online Tombola zu spielen.",
     "welcome": "Willkommen bei {0}",
     "today": "Die Zahl des Tages",
-    "smorfia": "aus der neapolitanischen Smorfia",
     "how": "So wird gespielt",
     "step1": "Tabellone öffnen",
     "step1Text": "Auf dem Fernseher oder Laptop, den alle sehen, dann die Spiel-ID mit dem Tisch teilen.",
@@ -113,8 +106,6 @@
     "updateTitle": "Ein Update ist verfügbar. Jetzt aktualisieren?"
   },
   "theme": {
-    "dark": "Dunkel",
-    "light": "Hell",
     "toggle": "Design wechseln"
   }
 }

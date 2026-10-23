@@ -16,8 +16,6 @@
   },
   "aria": {
     "copy": "Copiar",
-    "goTop": "Ir arriba",
-    "more": "Más",
     "toggle": "Cambiar",
     "share": "Compartir"
   },
@@ -33,8 +31,7 @@
     "cancel": "Cancelar",
     "exit": "Salir",
     "maximize": "Pantalla completa",
-    "minimize": "Salir de pantalla completa",
-    "reset": "Reiniciar"
+    "minimize": "Salir de pantalla completa"
   },
   "cards": {
     "description": "Introduce el ID de la partida y elige con cuántos cartones quieres jugar.",
@@ -51,7 +48,6 @@
     "title": "Equipo de desarrollo"
   },
   "donate": {
-    "title": "Ayúdanos a mantener {0} gratis. {1}",
     "with": "Donar con"
   },
   "error": {
@@ -70,10 +66,8 @@
     "title": "¿Seguro que quieres salir?"
   },
   "footer": {
-    "attributions": "Créditos",
     "contacts": "Contacto",
     "copyright": "Copyright © 2023-{0} {1} – Todos los derechos reservados.",
-    "privacy": "Política de privacidad",
     "terms": "Términos del servicio"
   },
   "header": {
@@ -87,7 +81,6 @@
     "subtitle": "Una app para jugar a la tombola online de forma rápida y sencilla.",
     "welcome": "Bienvenido a {0}",
     "today": "El número del día",
-    "smorfia": "de la smorfia napolitana",
     "how": "Cómo se juega",
     "step1": "Abre el tablero",
     "step1Text": "En la tele o el portátil que todos ven, y comparte el ID de la partida con la mesa.",
@@ -113,8 +106,6 @@
     "updateTitle": "Hay una actualización. ¿Quieres actualizar?"
   },
   "theme": {
-    "dark": "Oscuro",
-    "light": "Claro",
     "toggle": "Cambiar tema"
   }
 }

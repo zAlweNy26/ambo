@@ -16,8 +16,6 @@
   },
   "aria": {
     "copy": "Copier",
-    "goTop": "Remonter en haut",
-    "more": "Plus",
     "toggle": "Basculer",
     "share": "Partager"
   },
@@ -33,8 +31,7 @@
     "cancel": "Annuler",
     "exit": "Quitter",
     "maximize": "Plein écran",
-    "minimize": "Quitter le plein écran",
-    "reset": "Réinitialiser"
+    "minimize": "Quitter le plein écran"
   },
   "cards": {
     "description": "Saisissez l’ID de la partie et choisissez avec combien de cartons vous voulez jouer.",
@@ -51,7 +48,6 @@
     "title": "Équipe de développement"
   },
   "donate": {
-    "title": "Aidez-nous à garder {0} gratuit. {1}",
     "with": "Faire un don avec"
   },
   "error": {
@@ -70,10 +66,8 @@
     "title": "Voulez-vous vraiment quitter ?"
   },
   "footer": {
-    "attributions": "Crédits",
     "contacts": "Nous contacter",
     "copyright": "Copyright © 2023-{0} {1} – Tous droits réservés.",
-    "privacy": "Politique de confidentialité",
     "terms": "Conditions d’utilisation"
   },
   "header": {
@@ -87,7 +81,6 @@
     "subtitle": "Une application pour jouer à la tombola en ligne, simplement et rapidement.",
     "welcome": "Bienvenue sur {0}",
     "today": "Le numéro du jour",
-    "smorfia": "de la smorfia napolitaine",
     "how": "Comment jouer",
     "step1": "Ouvrez le tableau",
     "step1Text": "Sur la télé ou l’ordinateur que tout le monde voit, puis partagez l’ID de la partie avec la table.",
@@ -113,8 +106,6 @@
     "updateTitle": "Une mise à jour est disponible. Voulez-vous mettre à jour ?"
   },
   "theme": {
-    "dark": "Sombre",
-    "light": "Clair",
     "toggle": "Changer de thème"
   }
 }

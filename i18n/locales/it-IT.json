@@ -2,13 +2,9 @@
   "aria": {
     "toggle": "Cambia",
     "copy": "Copia",
-    "goTop": "Vai in alto",
-    "more": "Altro",
     "share": "Condividi"
   },
   "theme": {
-    "light": "Chiaro",
-    "dark": "Scuro",
     "toggle": "@:aria.toggle tema"
   },
   "language": {
@@ -22,13 +18,10 @@
     "contacts": "Contattaci"
   },
   "donate": {
-    "title": "Aiutaci a mantenere gratis {0}. {1}",
     "with": "Dona con"
   },
   "footer": {
-    "privacy": "Informativa sulla Privacy",
     "terms": "Termini di Servizio",
-    "attributions": "Attribuzioni",
     "contacts": "Contattaci",
     "copyright": "Copyright © 2023-{0} {1} - Tutti i diritti riservati."
   },
@@ -47,7 +40,6 @@
     "backHome": "Torna alla @:header.home",
     "exit": "Esci",
     "cancel": "Annulla",
-    "reset": "Azzera",
     "minimize": "Esci da schermo intero",
     "maximize": "Schermo intero"
   },
@@ -59,7 +51,6 @@
     "welcome": "Benvenuto su {0}",
     "subtitle": "Un'applicazione per giocare a tombola online in modo semplice e veloce.",
     "today": "Il numero del giorno",
-    "smorfia": "dalla smorfia napoletana",
     "how": "Come si gioca",
     "step1": "Apri il tabellone",
     "step1Text": "Sulla TV o sul portatile che vedono tutti, poi condividi l'ID della partita con il tavolo.",

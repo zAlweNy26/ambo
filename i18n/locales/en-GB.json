@@ -2,13 +2,9 @@
   "aria": {
     "toggle": "Toggle",
     "copy": "Copy",
-    "goTop": "Go to the top",
-    "more": "More",
     "share": "Share"
   },
   "theme": {
-    "light": "Light",
-    "dark": "Dark",
     "toggle": "@:aria.toggle theme"
   },
   "language": {
@@ -22,13 +18,10 @@
     "contacts": "Contacts"
   },
   "donate": {
-    "title": "Help us keep {0} free. {1}",
     "with": "Donate with"
   },
   "footer": {
-    "privacy": "Privacy Policy",
     "terms": "Terms & Conditions",
-    "attributions": "Attributions",
     "contacts": "Contact Us",
     "copyright": "Copyright © 2023-{0} {1} - All Rights Reserved."
   },
@@ -47,7 +40,6 @@
     "backHome": "Go back to @:header.home",
     "exit": "Exit",
     "cancel": "Cancel",
-    "reset": "Reset",
     "minimize": "Exit fullscreen",
     "maximize": "Fullscreen"
   },
@@ -59,7 +51,6 @@
     "welcome": "Welcome to {0}",
     "subtitle": "An application to play tombola online quickly and easily.",
     "today": "Number of the day",
-    "smorfia": "from the Neapolitan smorfia",
     "how": "How to play",
     "step1": "Open the board",
     "step1Text": "On the TV or laptop everyone can see, then share the game ID with the table.",
