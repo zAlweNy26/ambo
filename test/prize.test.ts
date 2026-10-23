@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { allocate, splitPrize } from '../app/utils/prize'
+import { allocate, prizeWinners, splitPrize } from '../app/utils/prize'
 
 describe('allocate', () => {
   it('gives leftover units to the first shares', () => {
@@ -88,5 +88,19 @@ describe('splitPrize', () => {
     const prizes = splitPrize(total)
     for (const key of Object.keys(expected) as (keyof typeof expected)[])
       expect(prizes[key]).toBeCloseTo(expected[key], 10)
+  })
+})
+
+describe('prizeWinners', () => {
+  it('splits a prize won on the same draw', () => {
+    const won = prizeWinners(10, [
+      { prize: 'ambo', name: 'Ada', draw: 3 },
+      { prize: 'ambo', name: 'Bea', draw: 3 },
+    ])
+    expect(won.ambo).toEqual([
+      { name: 'Ada', amount: 0.3 },
+      { name: 'Bea', amount: 0.3 },
+    ])
+    expect(won.tombola).toEqual([])
   })
 })

@@ -139,12 +139,7 @@ function speechText() {
 }
 
 const winners = ref<Winner[]>([])
-// Each prize's winners with their share: a prize won on the same draw is split in tenths of a euro
-const prizeWinners = computed(() => _MapValues(splittedPrize.value, (amount, prize) => {
-  const names = winners.value.filter(w => w.prize === prize).map(w => w.name)
-  const shares = allocate(Math.round(amount * 10), names.map(() => 1))
-  return names.map((name, i) => ({ name, amount: shares[i]! / 10 }))
-}))
+const wonPrizes = computed(() => prizeWinners(settings.value.totalPrize, winners.value))
 
 let drawDone: (() => void) | undefined
 
@@ -154,6 +149,8 @@ const room = useRoom(gameId, () => ({ type: 'host', host: game.value.hostId }), 
       extractedNumbers.value = message.extractions
       currentNumber.value ??= message.extractions.at(-1)
       winners.value = message.winners
+      // The room keeps the pool for the phones; the host's own setting wins
+      if (message.prize !== settings.value.totalPrize) room.send({ type: 'prize', total: settings.value.totalPrize })
       break
     case 'draw':
       extractedNumbers.value = [...extractedNumbers.value, message.number]
@@ -169,6 +166,8 @@ const room = useRoom(gameId, () => ({ type: 'host', host: game.value.hostId }), 
       if (message.reason !== 'full') newGame()
   }
 })
+
+watchDebounced(() => settings.value.totalPrize, total => room.send({ type: 'prize', total }), { debounce: 500 })
 
 // Leaving through the app ends the game; closing or reloading the tab doesn't, so the board can resume it
 onBeforeUnmount(() => {
@@ -266,9 +265,9 @@ function extractNumber() {
       </div>
 
       <div class="panel grid select-none border-[var(--print-line)] sm:grid-cols-2 lg:row-span-2 xl:row-span-1">
-        <div v-for="(card, index) in cards" :key="index" class="print grid grid-cols-5 gap-y-1 p-3 sm:p-4"
+        <div v-for="(card, index) in cards" :key="index" class="print grid grid-cols-5 gap-x-1.5 gap-y-1 p-3 sm:p-4"
              :class="[index % 2 === 0 && 'sm:border-e', index < 5 && 'border-b', index >= 4 && 'sm:border-b-0']">
-          <span v-for="number in card" :key="number" class="numero print h-11 text-lg sm:text-xl"
+          <span v-for="number in card" :key="number" class="numero print h-11 text-lg sm:h-13 sm:text-xl"
                 :data-state="number === currentNumber ? 'latest' : (extractedNumbers.includes(number) ? 'on' : undefined)">
             {{ number }}
           </span>
@@ -286,9 +285,9 @@ function extractNumber() {
           <div v-for="(value, name) in splittedPrize" :key="name" class="flex justify-between py-1.5">
             <dt class="text-muted">
               <span class="capitalize">{{ name }}</span>
-              <span v-for="(w, i) in prizeWinners[name]" :key="i" class="block text-xs font-medium text-highlighted">
+              <span v-for="(w, i) in wonPrizes[name]" :key="i" class="block text-xs font-medium text-highlighted">
                 <UIcon name="i-tabler-trophy" class="size-3.5 align-[-2px] text-primary" />
-                {{ w.name }}<template v-if="prizeWinners[name].length > 1"> · {{ $n(w.amount, 'currency') }}</template>
+                {{ w.name }}<template v-if="wonPrizes[name].length > 1"> · {{ $n(w.amount, 'currency') }}</template>
               </span>
             </dt>
             <dd class="font-medium tabular-nums">

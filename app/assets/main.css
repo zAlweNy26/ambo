@@ -149,6 +149,11 @@
 }
 
 .numero[data-state="on"]::before,
+/* Lifted so its ring paints over the neighbouring tokens */
+.numero[data-state="latest"] {
+  z-index: 1;
+}
+
 .numero[data-state="latest"]::before {
   scale: 1;
 }

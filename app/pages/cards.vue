@@ -16,7 +16,7 @@ const amount = useRouteQuery('n', 1, {
   transform: v => Math.min(Math.max(Number(v) || 1, 1), 6),
 })
 
-const extractions = ref<number[]>([]), winners = ref<Winner[]>([])
+const extractions = ref<number[]>([]), winners = ref<Winner[]>([]), prize = ref(0)
 
 // The room deals the cartelle and checks claims against them; this copy shows them at once after a reload.
 // Marks and claims only live on the phone, one game at a time.
@@ -47,6 +47,7 @@ const room = useRoom(gameId, () => ({ type: 'join', player: player.value, cards:
     case 'state':
       extractions.value = message.extractions
       winners.value = message.winners
+      prize.value = message.prize
       // New cards (first join, or another amount before the first draw) start the marks over
       if (message.cards && JSON.stringify(message.cards) !== JSON.stringify(saved.value.cards)) {
         saved.value = {
@@ -61,6 +62,9 @@ const room = useRoom(gameId, () => ({ type: 'join', player: player.value, cards:
       break
     case 'winners':
       winners.value = message.winners
+      break
+    case 'prize':
+      prize.value = message.total
       break
     case 'claim':
       if (message.ok) {
@@ -94,6 +98,9 @@ const room = useRoom(gameId, () => ({ type: 'join', player: player.value, cards:
       else goHome(t('game.error.title'), t('game.error.description'))
   }
 })
+
+// Only the prizes someone won, biggest first, with each winner's share
+const wonPrizes = computed(() => Object.entries(prizeWinners(prize.value, winners.value)).filter(([, ws]) => ws.length).reverse())
 
 const lastExtractions = computed(() => extractions.value.slice(-5))
 
@@ -192,13 +199,26 @@ function sendClaim() {
           {{ num }}
         </span>
       </div>
-      <p v-if="winners.length" class="text-center text-sm text-muted">
-        {{ $t('cards.winners') }}:
-        <template v-for="(w, i) in winners" :key="i">
-          <span v-if="i" aria-hidden="true"> · </span>
-          <span class="capitalize">{{ w.prize }}</span> <strong class="text-highlighted">{{ w.name }}</strong>
-        </template>
+    </div>
+
+    <div v-if="wonPrizes.length" class="panel w-full max-w-sm px-4 py-2">
+      <p class="py-1.5 text-sm font-medium text-highlighted">
+        {{ $t('cards.winners') }}
       </p>
+      <dl class="divide-y divide-default text-sm">
+        <div v-for="[name, ws] in wonPrizes" :key="name" class="flex justify-between gap-4 py-1.5">
+          <dt class="capitalize text-muted">
+            {{ name }}
+          </dt>
+          <dd class="text-end">
+            <span v-for="(w, i) in ws" :key="i" class="block">
+              <UIcon name="i-tabler-trophy" class="size-3.5 align-[-2px] text-primary" />
+              <span class="font-medium text-highlighted">{{ w.name }}</span>
+              <span v-if="prize > 0" class="tabular-nums text-muted"> · {{ $n(w.amount, 'currency') }}</span>
+            </span>
+          </dd>
+        </div>
+      </dl>
     </div>
 
     <div class="flex w-full max-w-sm flex-col gap-1.5">
@@ -216,7 +236,7 @@ function sendClaim() {
 
     <div class="grid w-full justify-items-center gap-5 lg:grid-cols-2">
       <div v-for="(card, ci) in cards" :key="ci" class="panel w-full max-w-xl overflow-hidden border-[var(--print-line)]">
-        <div class="flex items-center justify-between bg-primary px-4 py-2 text-xs text-white">
+        <div class="flex h-10 items-center justify-between bg-primary px-4 text-xs text-white">
           <span class="font-medium tabular-nums">#{{ ci + 1 }}</span>
           <UButton v-if="claimable[ci]" size="xs" color="neutral" icon="i-tabler-trophy"
                    class="bg-white font-bold capitalize text-tombola-700 hover:bg-white/90"

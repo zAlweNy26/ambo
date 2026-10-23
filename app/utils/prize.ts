@@ -1,3 +1,5 @@
+import type { Winner } from '../../shared/utils/claim'
+
 export type Prizes = Record<'ambo' | 'terna' | 'quaterna' | 'cinquina' | 'tombola', number>
 
 // Splits an integer amount by ratios; leftover units go one each to the first shares (dinero.js v1 semantics)
@@ -30,4 +32,17 @@ export function splitPrize(totalPrize: number): Prizes {
   prizes.terna += toTerna / 10
   prizes.ambo += toAmbo / 10
   return prizes
+}
+
+// Each prize's winners with their share: a prize won on the same draw is split in tenths of a euro
+export function prizeWinners(totalPrize: number, winners: Winner[]) {
+  const prizes = splitPrize(totalPrize)
+  return Object.fromEntries(Object.entries(prizes).map(([prize, amount]) => {
+    const names = winners.filter(w => w.prize === prize).map(w => w.name)
+    const shares = allocate(Math.round(amount * 10), names.map(() => 1))
+    return [
+      prize,
+      names.map((name, i) => ({ name, amount: shares[i]! / 10 })),
+    ]
+  })) as Record<keyof Prizes, { name: string, amount: number }[]>
 }

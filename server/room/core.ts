@@ -26,6 +26,8 @@ export interface RoomState {
   // Cartelle the server dealt, per player ID: claims are checked against these
   players: Record<string, number[][]>
   claims: Claim[]
+  // The host's prize pool in euro, so phones can show what each winner takes; missing in rooms saved before it existed
+  prize?: number
 }
 
 // Who is on the other end of one socket, set by its first host/join message
@@ -58,6 +60,10 @@ const messageSchema = z.discriminatedUnion('type', [
   }),
   z.object({
     type: z.literal('draw'),
+  }),
+  z.object({
+    type: z.literal('prize'),
+    total: z.number().min(0).max(1_000_000),
   }),
   z.object({
     type: z.literal('claim'),
@@ -101,6 +107,7 @@ export function handle(state: RoomState, session: Session, msg: ClientMessage, r
   const snapshot = {
     extractions: state.extractions,
     winners: winnersOf(state),
+    prize: state.prize ?? 0,
   }
   switch (msg.type) {
     case 'host':
@@ -141,6 +148,17 @@ export function handle(state: RoomState, session: Session, msg: ClientMessage, r
         drawn: true,
       }
     }
+
+    case 'prize':
+      if (!session.host) return forbidden
+      state.prize = msg.total
+      return {
+        reply: [],
+        broadcast: [
+          { type: 'prize', total: msg.total },
+        ],
+        changed: true,
+      }
 
     case 'claim': {
       const { prize, name } = msg

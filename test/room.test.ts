@@ -22,6 +22,15 @@ function room(): RoomState {
 }
 
 describe('handle', () => {
+  it('lets only the host set the prize, and tells everyone', () => {
+    const state = room()
+    expect(handle(state, { player: P1 }, { type: 'prize', total: 10 }).reply[0]).toEqual({ type: 'error', reason: 'forbidden' })
+    expect(handle(state, { host: true }, { type: 'prize', total: 10 }).broadcast).toEqual([
+      { type: 'prize', total: 10 },
+    ])
+    expect(handle(state, {}, { type: 'join', player: P1, cards: 1 }).reply[0]).toMatchObject({ type: 'state', prize: 10 })
+  })
+
   it('lets only the host draw', () => {
     const state = room()
     expect(handle(state, {}, { type: 'host', host: P1 }).reply[0]).toEqual({ type: 'error', reason: 'forbidden' })
