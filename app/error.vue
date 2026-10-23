@@ -14,10 +14,6 @@ useHead({
   title: () => t('error.routes.title', [error.statusCode]),
 })
 
-watchDeep(() => error, (err) => {
-  console.log(err)
-}, { immediate: true })
-
 function handleError() {
   return clearError({
     redirect: localePath('index'),
@@ -27,7 +23,7 @@ function handleError() {
 
 <template>
   <NuxtLayout name="default">
-    <div class="flex h-svh w-screen flex-col items-center justify-evenly gap-8 text-center">
+    <div class="flex grow flex-col items-center justify-center gap-8 px-4 py-12 text-center">
       <div class="flex flex-col gap-4 text-4xl font-bold sm:text-5xl">
         <span class="text-8xl font-semibold tracking-tight text-primary tabular-nums">{{ error.statusCode }}</span>
         <span class="font-semibold tracking-tight text-highlighted">{{ $t('error.routes.notAccessible') }}</span>
