@@ -26,20 +26,29 @@ export default defineEventHandler(async (event) => {
 
   const eventStream = createEventStream(event)
 
+  // Workers allow 1,000 KV operations per request: end the stream well before that and let EventSource reconnect
+  let ticks = 0, sent = -1
   const interval = setInterval(async () => {
-    const game = await getGame(id)
-    if (!game) {
-      clearInterval(interval)
-      await eventStream.close()
-      return
+    try {
+      const game = ++ticks > 900
+        ? undefined
+        : await getGame(id)
+      if (!game) return await stop()
+      if (game.extractions.length === sent) return
+      sent = game.extractions.length
+      await eventStream.push(JSON.stringify(game.extractions))
     }
-    await eventStream.push(JSON.stringify(game.extractions))
+    catch (error) {
+      console.error(`[Game: ${id}] Stream poll failed`, error)
+    }
   }, 1000)
 
-  eventStream.onClosed(async () => {
+  async function stop() {
     clearInterval(interval)
     await eventStream.close()
-  })
+  }
+
+  eventStream.onClosed(stop)
 
   return eventStream.send()
 })
