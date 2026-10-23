@@ -210,6 +210,10 @@ export default defineNuxtConfig({
     },
     workbox: {
       globPatterns: ['**/*.{js,css,html,png,svg,ico}'],
+      // shortcut: one-off move off the old autoUpdate worker (its pages never show the update prompt, so they'd stay
+      // stuck); open pages reload once. Remove both lines once everyone has had a week to pick it up.
+      skipWaiting: true,
+      clientsClaim: true,
     },
     client: {
       installPrompt: true,
