@@ -52,12 +52,17 @@ const smirkOptions = [
   { label: 'Livornese', value: 'livornese' },
 ]
 
-onBeforeUnmount(() => {
-  $fetch('/api/game/close', {
-    method: 'POST',
-    body: game.value,
-  })
-})
+// Closing or reloading the tab skips unmount, so pagehide closes the game too; a beacon outlives the page
+let closed = false
+function closeGame() {
+  if (closed || !gameId.value) return
+  closed = true
+  navigator.sendBeacon('/api/game/close', new Blob([
+    JSON.stringify(game.value),
+  ], { type: 'application/json' }))
+}
+onBeforeUnmount(closeGame)
+useEventListener('pagehide', closeGame)
 
 const { currentLocale } = storeToRefs(useSettingsStore())
 const toast = useToast()

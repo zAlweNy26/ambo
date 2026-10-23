@@ -12,16 +12,17 @@ export default defineEventHandler(async (event) => {
 
   const game = await getHostedGame(gameId, hostId)
 
-  if (game) {
-    await db.insert(games).values({
+  // One batch is one transaction: no games row without its numbers
+  await db.batch([
+    db.insert(games).values({
       gameId,
       completedAt: new Date(),
       playersCount: await countPlayers(gameId),
       totalExtractions: game.extractions.length,
-    })
-    await db.insert(extractions).values({
+    }),
+    db.insert(extractions).values({
       gameId,
       numbers: game.extractions,
-    })
-  }
+    }),
+  ])
 })
