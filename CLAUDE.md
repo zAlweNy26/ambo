@@ -14,7 +14,7 @@ Ambo! is a digital Italian tombola: a host runs the 90-number board (tabellone) 
 
 Package manager is **bun**.
 
-- `bun run dev`: dev server on http://localhost:3000. It answers 503 for every request until the build is ready, so wait for `Ready` before loading the page.
+- `bun run dev`: dev server on http://localhost:3000. Games run in in-memory rooms here, not in the Durable Object. It answers 503 for every request until the build is ready, so wait for `Ready` before loading the page.
 - `bun run lint` / `bun run lint:fix`: ESLint (`@antfu/eslint-config`).
 - `bun run typecheck`: `nuxi typecheck`.
 - `bun run test`: Vitest. Tests live in `test/` (for example `test/prize.test.ts`). Run a single file with `bunx vitest --run test/prize.test.ts`.
@@ -27,17 +27,19 @@ Package manager is **bun**.
 
 - **Nuxt 4 SPA** (`ssr: false`). App code is in `app/`. Nuxt UI v4 components use the default **`U` prefix** (`UButton`, `UModal`…). Tailwind v4 is configured in `app/assets/main.css`. Icons are Tabler (`i-tabler-*`).
 - **Deploy target:** Cloudflare Workers through **Void** (`void.config.ts`, `voidPlugin()` in `nuxt.config.ts`). Bindings:
-  - **KV** holds live games as `game:<id>` with a 24h TTL (`server/utils/game.ts`: `getGame` / `setGame`).
-  - **D1** (`db/schema.ts`, imported as `@schema`) stores finished-game stats, written by `POST /api/game/close`, and the prize claims of live games (`claims`). D1 inserts are atomic, so simultaneous claims are never lost. Claims hold player names, so they are deleted on close and swept after 24h.
+  - **Durable Objects:** each live game is a `GameRoom` (`ROOMS` binding, `server/room/durable.ts`), named by its game ID. It holds the draws, players, the cartelle it dealt, and claims. Clients talk to it over a WebSocket at `/room/<id>`. An alarm deletes everything after 24h.
+  - **D1** (`db/schema.ts`, imported as `@schema`) stores game stats. The room upserts them at every draw (`server/room/stats.ts`).
   - Nuxt Content also uses the D1 binding (`content/terms_*.md`).
+  - One Worker only. The custom entry `server/room/entry.ts`, set for the `cloudflare-module` build in `nuxt.config.ts`, exports `GameRoom` and routes `/room/<id>` to it before Nuxt. `void.config.ts` declares the binding and class migration, and deploys in `atomic` mode.
+- **Game rules** live in `server/room/core.ts`. This module is pure, has no Cloudflare code, and is tested in `test/room.test.ts`. `dispatch` feeds every socket message through `handle`.
+  - Production runs it in the Durable Object.
+  - `bun run dev` can't run a Durable Object of the same Worker, so it uses in-memory rooms (`server/room/memory.ts`), wired by the dev-only plugin `server/plugins/room-dev.ts`. The plugin is needed because a lazy `llms.txt` middleware from `@nuxtjs/seo` hides route WebSocket hooks in h3 v1.
+  - To test the real Durable Object locally, run `bun run build`, then `bun run preview`. Preview runs the built Worker in `wrangler dev` with Void's generated config.
 - **Game flow:**
-  1. `pages/board.vue` calls `POST /api/game/create`. The game ID is the first 8 hex characters of a UUID. The response also carries a secret host ID, which draw, resume and close require (`getHostedGame`). The board keeps both in localStorage, so `/board?id=…` resumes after a reload through `/api/game/resume`.
-  2. The board draws numbers client-side from the fixed six-block tabellone layout and posts each one to `/api/game/extract`. The board is the only writer of `game:<id>`. Players live under their own `player:<id>:<uuid>` keys, so a join never races a draw.
-  3. Players use `pages/cards.vue`. Their cartelle are generated client-side (`app/utils/cartella.ts`) and saved in localStorage per game. They subscribe to `GET /game?id=…&player=…` (`server/routes/game.ts`). That route is an SSE stream that polls KV every second:
-     - It pushes the extractions array when it changes, plus a named `winners` event.
-     - It ends after 900 polls so EventSource reconnects, because Workers allow 1,000 KV operations per request.
-  4. `/api/game/join` only checks that the game exists.
-  5. Players claim prizes with `POST /api/game/claim`. The rules are in `shared/utils/claim.ts`, which is auto-imported in both app and server. The board polls `GET /api/game/claims` every 3 s, and each draw copies the winners into the game for the stream.
+  1. `pages/board.vue` calls `POST /api/game/create`. It returns the 8-hex game ID and a secret host ID, kept in localStorage, so `/board?id=…` resumes after a reload. The board joins the room as host, sends `draw` (the room picks the number), and sends `close` when leaving through the app.
+  2. Players use `pages/cards.vue`. They join with a per-device player ID and a number of cards. The room deals cartelle once, and allows a different number only before the first draw. The page keeps a copy, plus marks and claims, in localStorage.
+  3. Claims are checked against the player's dealt cartella (`hasPrize`) with the shared rules in `shared/utils/claim.ts`. A prize closes once it or a bigger one was won on an earlier draw. Claims on the same draw tie, and the board splits the amount with `allocate()`.
+  4. `/api/game/join` only checks that the game exists. The message types are in `shared/types/room.ts`. The client side is `app/composables/useRoom.ts`, which reconnects, sends heartbeats, and says hello again on every reconnect.
 - **Smorfia:** the regional number meanings are static JSON in `app/assets/*.json` (`{ number, original, translated }`). The board optionally reads them aloud with `useSpeechSynthesis`.
 - **Auto-imports:**
   - es-toolkit is auto-imported by `nuxt-es-toolkit` with an **`_` prefix** (`_Sample`, `_RandomInt`; `is*` functions keep their name). Keep that prefix: the module's default `use` prefix silently overrides Nuxt's `useHead` and VueUse's `useDebounce`, `useThrottle` and `useMemoize`.
