@@ -10,8 +10,8 @@ definePageMeta({
 const gameId = useRouteQuery<string>('id', '')
 const { t } = useI18n(), toast = useToast()
 const extractions = ref<number[]>([])
-// Stable per tab, so reconnects and reloads count as the same player
-const player = useSessionStorage('player', () => crypto.randomUUID())
+// Stable per device, so reconnects, reloads and a killed browser count as the same player
+const player = useLocalStorage('player', () => crypto.randomUUID())
 const { data, error } = useEventSource(() => `/game?id=${gameId.value}&player=${player.value}`)
 
 watchImmediate(error, (err) => {
@@ -50,9 +50,18 @@ const amount = useRouteQuery('n', 1, {
 })
 
 const searchNumber = ref(1), numberFound = ref<boolean>()
-const signedNumbers = ref(Array.from({ length: amount.value }).map<number[]>(() => []))
 
-const cards = computed(() => Array.from({ length: amount.value }, generateCartella))
+// One game at a time: a reload or a killed browser keeps the same cartelle and marks
+const saved = useLocalStorage('cartelle', { gameId: '', cards: [] as number[][], marked: [] as number[][] })
+if (saved.value.gameId !== gameId.value || saved.value.cards?.length !== amount.value) {
+  saved.value = {
+    gameId: gameId.value,
+    cards: Array.from({ length: amount.value }, generateCartella),
+    marked: Array.from({ length: amount.value }, () => []),
+  }
+}
+const cards = computed(() => saved.value.cards)
+const signedNumbers = computed(() => saved.value.marked)
 
 const remaining = computed(() => new Set(cards.value.flat().filter(r => r !== 0)).size - new Set(signedNumbers.value.flat()).size)
 
