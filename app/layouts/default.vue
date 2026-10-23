@@ -53,7 +53,7 @@ const head = useLocaleHead({
   <div class="max-h-dvh h-dvh flex flex-col">
     <NuxtPwaManifest />
     <NuxtLoadingIndicator :duration="3000" :throttle="300"
-                          color="repeating-linear-gradient(to right, rgb(var(--color-primary-400)) 0%,rgb(var(--color-primary-900)) 100%)" />
+                          color="repeating-linear-gradient(to right, var(--ui-color-primary-400) 0%, var(--ui-color-primary-900) 100%)" />
     <Html :lang="head.htmlAttrs?.lang" :dir="head.htmlAttrs?.dir">
       <Head>
         <template v-for="link in head.link" :key="link.id">
