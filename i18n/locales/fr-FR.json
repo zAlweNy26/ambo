@@ -36,6 +36,7 @@
     "minimize": "Quitter le plein écran"
   },
   "cards": {
+    "autoMark": "Cocher automatiquement les numéros tirés",
     "description": "Saisissez l’ID de la partie et choisissez avec combien de cartons vous voulez jouer.",
     "found": "Numéro {0} trouvé et coché",
     "notFound": "Le numéro {0} n’est sur aucun de vos cartons",

@@ -92,6 +92,7 @@
     "extractions": "Ultima estrazione | Ultime {0} estrazioni"
   },
   "cards": {
+    "autoMark": "Segna in automatico i numeri estratti",
     "title": "Con quante cartelle vuoi giocare?",
     "description": "Inserisci un ID partita e seleziona il numero di cartelle con cui vuoi giocare.",
     "quantity": "{0} cartella | {0} cartelle",

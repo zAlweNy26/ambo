@@ -36,6 +36,7 @@
     "minimize": "Vollbild beenden"
   },
   "cards": {
+    "autoMark": "Gezogene Zahlen automatisch markieren",
     "description": "Gib die Spiel-ID ein und wähle, mit wie vielen Karten du spielen willst.",
     "found": "Zahl {0} gefunden und markiert",
     "notFound": "Die {0} ist auf keiner deiner Karten",

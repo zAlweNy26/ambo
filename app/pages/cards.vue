@@ -84,6 +84,17 @@ function checkNumber(num: number, check = true) {
     for (const card of indexes) toggleNumber(card, num, check)
   }
 }
+
+// Optional help for kids and grandparents: marks every drawn number, never unmarks; tapping still works
+const autoMark = useLocalStorage('cards:autoMark', false)
+watchImmediate([extractions, autoMark], () => {
+  if (!autoMark.value) return
+  for (const num of extractions.value) {
+    cards.value.forEach((card, ci) => {
+      if (card.includes(num)) toggleNumber(ci, num, true)
+    })
+  }
+})
 </script>
 
 <template>
@@ -119,6 +130,7 @@ function checkNumber(num: number, check = true) {
               :keypath="`cards.${numberFound ? 'found' : 'notFound'}`" tag="p" role="status">
         <strong>{{ searchNumber }}</strong>
       </i18n-t>
+      <USwitch v-model="autoMark" :label="$t('cards.autoMark')" class="mt-2 self-center" />
     </div>
 
     <div class="grid w-full justify-items-center gap-5 lg:grid-cols-2">

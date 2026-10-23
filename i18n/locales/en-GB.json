@@ -92,6 +92,7 @@
     "extractions": "Last draw | Last {0} draws"
   },
   "cards": {
+    "autoMark": "Mark drawn numbers automatically",
     "title": "How many cards do you want to play with?",
     "description": "Enter a game ID and select the number of cards you want to play with.",
     "quantity": "{0} card | {0} cards",
