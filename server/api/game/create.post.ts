@@ -12,7 +12,6 @@ export default defineEventHandler(async () => {
   })
 
   console.info(`[Game: ${game.id}] Host ${game.host} created game`)
-  console.info(`Active games: ${await getActiveGames()}`)
 
   return {
     gameId: id,
