@@ -193,6 +193,11 @@
   outline-offset: 2px;
 }
 
+/* The red outline vanishes on the red header bar */
+header :focus-visible {
+  outline-color: #ffffff;
+}
+
 [contenteditable="true"], [contenteditable=""] {
   @apply outline outline-default rounded-lg text-toned bg-muted p-1;
 }
