@@ -24,11 +24,6 @@ export default defineConfig({
         id: 'f9a6ed58f7bd408d95f29c705e5f2d31',
       },
     ],
-    analytics_engine_datasets: [
-      {
-        binding: 'ANALYTICS',
-      },
-    ],
     vars: {
       NUXT_PUBLIC_I18N_BASE_URL: 'https://ambo.danyalwe.me',
     },

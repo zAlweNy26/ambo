@@ -1,9 +1,7 @@
-import { randomUUID } from 'uncrypto'
-
 export default defineEventHandler(async () => {
   // First UUID segment (8 hex chars) is the shareable game code; the host ID stays secret on the board
-  const id = randomUUID().slice(0, 8)
-  const hostId = randomUUID()
+  const id = crypto.randomUUID().slice(0, 8)
+  const hostId = crypto.randomUUID()
 
   const game = await setGame(id, {
     id,
