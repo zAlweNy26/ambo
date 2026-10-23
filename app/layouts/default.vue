@@ -63,7 +63,7 @@ const head = useLocaleHead({
           <Meta v-bind="meta" :content="String(meta.content)" />
         </template>
       </Head>
-      <Body class="flex min-h-dvh flex-col scroll-smooth antialiased transition-colors">
+      <Body class="flex min-h-dvh flex-col motion-safe:scroll-smooth antialiased transition-colors">
         <NavHeader />
         <AdvicePwa />
         <slot />
@@ -86,5 +86,16 @@ const head = useLocaleHead({
     transform: translateY(20px);
     opacity: 0;
     filter: blur(0.5rem);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-enter-active, .page-leave-active, .layout-enter-active, .layout-leave-active {
+    transition: opacity 0.15s linear;
+  }
+
+  .page-enter-from, .page-leave-to, .layout-enter-from, .layout-leave-to {
+    transform: none;
+    filter: none;
+  }
 }
 </style>

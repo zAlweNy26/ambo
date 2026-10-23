@@ -9,8 +9,10 @@ function switchTheme() {
   colorMode.preference = nextTheme.value
 }
 
+const reduceMotion = usePreferredReducedMotion()
+
 function startViewTransition(event: MouseEvent) {
-  if (!document.startViewTransition) {
+  if (!document.startViewTransition || reduceMotion.value === 'reduce') {
     switchTheme()
     return
   }
@@ -48,8 +50,8 @@ function startViewTransition(event: MouseEvent) {
 <template>
   <ClientOnly>
     <UButton variant="ghost" color="neutral" square class="text-white hover:bg-white/15 hover:text-white" @click="startViewTransition">
-      <UIcon name="i-tabler-moon" class="size-5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-      <UIcon name="i-tabler-sun" class="absolute size-5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+      <UIcon name="i-tabler-moon" class="size-5 rotate-0 scale-100 transition-all motion-reduce:transition-none dark:-rotate-90 dark:scale-0" />
+      <UIcon name="i-tabler-sun" class="absolute size-5 rotate-90 scale-0 transition-all motion-reduce:transition-none dark:rotate-0 dark:scale-100" />
       <span class="sr-only">{{ $t('theme.toggle') }}</span>
     </UButton>
     <template #fallback>
