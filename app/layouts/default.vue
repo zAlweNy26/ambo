@@ -64,12 +64,10 @@ const head = useLocaleHead({
         </template>
       </Head>
       <Body class="flex min-h-dvh flex-col scroll-smooth antialiased transition-colors">
-        <UApp :locale="locales[locale]">
-          <NavHeader />
-          <AdvicePwa />
-          <slot />
-          <NavFooter />
-        </UApp>
+        <NavHeader />
+        <AdvicePwa />
+        <slot />
+        <NavFooter />
       </Body>
     </Html>
   </div>
