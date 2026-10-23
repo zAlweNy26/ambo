@@ -165,7 +165,8 @@ export default defineNuxtConfig({
 
   pwa: {
     strategies: 'generateSW',
-    registerType: 'autoUpdate',
+    // prompt, not autoUpdate: an update must never reload a board or cards page mid-game
+    registerType: 'prompt',
     manifest: {
       name: 'Ambo! - Gioco della tombola',
       short_name: 'Ambo!',
