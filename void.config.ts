@@ -13,6 +13,13 @@ export default defineConfig({
     compatibility_flags: ['nodejs_compat'],
     preview_urls: false,
     workers_dev: false,
+    // Declared, not left to the dashboard: Void only republishes routes it knows
+    routes: [
+      {
+        pattern: 'ambo.danyalwe.me',
+        custom_domain: true,
+      },
+    ],
     observability: {
       enabled: true,
     },
