@@ -3,7 +3,7 @@ export default defineAppConfig({
   // https://ui3.nuxt.dev/getting-started/theme#design-system
   ui: {
     colors: {
-      primary: 'orange',
+      primary: 'tombola',
       neutral: 'stone',
     },
     icons: {
@@ -26,8 +26,15 @@ export default defineAppConfig({
     },
     button: {
       slots: {
-        base: 'cursor-pointer transition-all',
+        base: 'cursor-pointer transition-all font-medium',
       },
+      compoundVariants: [
+        {
+          color: 'primary',
+          variant: 'solid',
+          class: 'text-white hover:bg-primary-700',
+        },
+      ],
     },
     card: {
       slots: {

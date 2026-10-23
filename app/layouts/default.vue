@@ -9,19 +9,25 @@ const name = computed(() => route.name)
 const lang = computed(() => locales[locale.value].code)
 const dir = computed(() => locales[locale.value].dir)
 
-const seoTitle = computed(() => name.value && name.value !== 'index' ? t(`header.${String(name.value)}`) : '')
+const seoTitle = computed(() => name.value && name.value !== 'index'
+  ? t(`header.${String(name.value)}`)
+  : '')
 
 useHead({
-  titleTemplate: t => t ? `${t} - ${title}` : title,
+  titleTemplate: t => t
+    ? `${t} - ${title}`
+    : title,
   title: seoTitle,
   htmlAttrs: {
     lang,
     dir,
   },
-  link: [{
-    rel: 'canonical',
-    href: () => route.path,
-  }],
+  link: [
+    {
+      rel: 'canonical',
+      href: () => route.path,
+    },
+  ],
 })
 
 useSeoMeta({
@@ -40,7 +46,6 @@ const head = useLocaleHead({
   dir: true,
   seo: true,
   lang: true,
-  key: 'id',
 })
 </script>
 
@@ -52,19 +57,19 @@ const head = useLocaleHead({
     <Html :lang="head.htmlAttrs?.lang" :dir="head.htmlAttrs?.dir">
       <Head>
         <template v-for="link in head.link" :key="link.id">
-          <Link :id="link.id" :rel="link.rel" :href="link.href" :hreflang="link.hreflang" />
+          <Link v-bind="link" />
         </template>
         <template v-for="meta in head.meta" :key="meta.id">
-          <Meta :id="meta.id" :property="meta.property" :content="meta.content" />
+          <Meta v-bind="meta" :content="String(meta.content)" />
         </template>
       </Head>
       <Body class="flex min-h-dvh flex-col scroll-smooth antialiased transition-colors">
-        <NuApp :locale="locales[locale]">
+        <UApp :locale="locales[locale]">
           <NavHeader />
           <AdvicePwa />
           <slot />
           <NavFooter />
-        </NuApp>
+        </UApp>
       </Body>
     </Html>
   </div>

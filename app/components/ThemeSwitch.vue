@@ -1,7 +1,9 @@
 <script lang="ts" setup>
 const colorMode = useColorMode()
 
-const nextTheme = computed(() => (colorMode.value === 'dark' ? 'light' : 'dark'))
+const nextTheme = computed(() => (colorMode.value === 'dark'
+  ? 'light'
+  : 'dark'))
 
 function switchTheme() {
   colorMode.preference = nextTheme.value
@@ -45,11 +47,11 @@ function startViewTransition(event: MouseEvent) {
 
 <template>
   <ClientOnly>
-    <NuButton variant="outline" color="neutral" square @click="startViewTransition">
-      <NuIcon name="i-tabler-moon" class="size-5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-      <NuIcon name="i-tabler-sun" class="absolute size-5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+    <UButton variant="ghost" color="neutral" square class="text-white hover:bg-white/15 hover:text-white" @click="startViewTransition">
+      <UIcon name="i-tabler-moon" class="size-5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+      <UIcon name="i-tabler-sun" class="absolute size-5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
       <span class="sr-only">{{ $t('theme.toggle') }}</span>
-    </NuButton>
+    </UButton>
     <template #fallback>
       <div class="size-8" />
     </template>

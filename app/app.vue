@@ -4,7 +4,9 @@ import * as locales from '@nuxt/ui/locale'
 const { locale } = useI18n()
 const colorMode = useColorMode()
 
-const color = computed(() => colorMode.value === 'dark' ? '#fafaf9' : '#1c1917')
+const color = computed(() => colorMode.value === 'dark'
+  ? '#fafaf9'
+  : '#1c1917')
 
 useHead({
   meta: [
@@ -22,12 +24,12 @@ useHead({
 </script>
 
 <template>
-  <NuApp :locale="locales[locale]" :tooltip="{ delayDuration: 300 }"
-         :toaster="{ duration: 2000, position: 'bottom-right' }">
+  <UApp :locale="locales[locale]" :tooltip="{ delayDuration: 300 }"
+        :toaster="{ duration: 2000, position: 'bottom-right' }">
     <NuxtLayout name="default">
-      <main class="flex grow flex-col p-2 md:p-4">
+      <main class="flex grow flex-col px-4 py-3 md:p-4">
         <NuxtPage />
       </main>
     </NuxtLayout>
-  </NuApp>
+  </UApp>
 </template>

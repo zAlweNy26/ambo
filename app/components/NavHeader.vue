@@ -3,20 +3,13 @@ const { title } = useAppConfig()
 </script>
 
 <template>
-  <header class="flex items-center justify-between bg-elevated p-2 shadow-lg">
-    <NuLink :to="$localePath('index')">
-      <NuAvatar alt="App Logo" src="/logo.svg" />
-    </NuLink>
-    <div class="h-full items-center gap-2 flex">
-      <i18n-t keypath="donate.title" tag="p" class="text-sm">
-        <strong>{{ title }}</strong>
-        <span class="hidden sm:inline-block">{{ $t('donate.with') }}</span>
-      </i18n-t>
-      <NuButton variant="subtle" size="sm" color="info" class="px-1.5 sm:px-2.5" aria-label="PayPal"
-                target="_blank" to="https://www.paypal.com/donate/?hosted_button_id=39KEMRPM67FB6" external icon="i-tabler-brand-paypal-filled">
-        <span class="hidden sm:inline-block">PayPal</span>
-      </NuButton>
+  <header class="bg-primary text-white">
+    <div class="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3">
+      <ULink :to="$localePath('index')" class="flex items-center gap-2.5 text-white hover:text-white">
+        <img alt="" src="/logo.svg" class="size-9 rounded-[22%] ring-1 ring-white/50">
+        <span class="text-lg font-semibold tracking-tight">{{ title }}</span>
+      </ULink>
+      <ThemeSwitch />
     </div>
-    <ThemeSwitch />
   </header>
 </template>

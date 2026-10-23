@@ -3,96 +3,114 @@
     "copied": "Kopiert"
   },
   "game": {
-    "description": "Teilen Sie diese ID mit Ihren Freunden, damit diese an diesem Spiel teilnehmen können!",
+    "description": "Teile diese ID mit deinen Freunden, damit sie mitspielen können!",
     "error": {
-      "description": "Das Spiel, dem Sie beitreten möchten, existiert nicht.",
-      "title": "Übereinstimmung nicht gefunden"
+      "description": "Das Spiel, dem du beitreten willst, existiert nicht.",
+      "title": "Spiel nicht gefunden"
     },
     "id": "Spiel-ID",
-    "title": "{0} – {1} Nummern übrig"
+    "title": "{0} – {1} Zahlen übrig",
+    "confirmation": "Willst du wirklich gehen? Das Spiel geht verloren."
   },
   "aria": {
-    "copy": "Kopie",
-    "goTop": "Geh hoch",
-    "more": "Andere",
-    "toggle": "Ändern"
+    "copy": "Kopieren",
+    "goTop": "Nach oben",
+    "more": "Mehr",
+    "toggle": "Umschalten",
+    "share": "Teilen"
   },
   "board": {
-    "announcer": "Automatischer Ansager",
-    "draw": "Zeichne eine Zahl",
-    "extractions": "Letzte Ziehung | Letzte {0} Ziehungen",
-    "prize": "Aufteilung des Preises",
-    "smirk": "Wähle eine Grimasse"
+    "announcer": "Automatische Ansage",
+    "draw": "Zahl ziehen",
+    "extractions": "Zuletzt gezogene Zahl | Letzte {0} gezogene Zahlen",
+    "prize": "Gewinnverteilung",
+    "smirk": "Smorfia wählen"
   },
   "button": {
-    "backHome": "Kehren Sie zu @:header.home zurück",
-    "cancel": "Stornieren",
-    "exit": "Du gehst raus",
-    "maximize": "Maximieren",
-    "minimize": "Minimieren",
+    "backHome": "Zurück zur @:header.home",
+    "cancel": "Abbrechen",
+    "exit": "Verlassen",
+    "maximize": "Vollbild",
+    "minimize": "Vollbild beenden",
     "reset": "Zurücksetzen"
   },
   "cards": {
-    "description": "Geben Sie eine Spiel-ID ein und wählen Sie die Anzahl der Karten aus, mit denen Sie spielen möchten.",
-    "found": "Nummer {0} gefunden und hinzugefügt",
-    "notFound": "Nummer {0} nicht gefunden",
-    "quantity": "{0} Ordner | {0} Ordner",
-    "search": "Suchen Sie nach der Nummer",
-    "title": "Mit wie vielen Karten möchtest du spielen?"
+    "description": "Gib die Spiel-ID ein und wähle, mit wie vielen Karten du spielen willst.",
+    "found": "Zahl {0} gefunden und markiert",
+    "notFound": "Die {0} ist auf keiner deiner Karten",
+    "quantity": "{0} Karte | {0} Karten",
+    "search": "Zahl suchen",
+    "title": "Mit wie vielen Karten willst du spielen?"
   },
   "contacts": {
-    "description": "Diejenigen, die „{0}“ entwickelt haben und sich mit ganzem Herzen dafür eingesetzt haben, es fertigzustellen und es allen zugänglich zu machen.",
+    "description": "Die Menschen hinter „{0}“, die mit viel Herz daran gearbeitet haben, es fertigzustellen und mit allen zu teilen.",
     "title": "Entwicklungsteam"
   },
   "donate": {
-    "title": "Helfen Sie uns, {0} frei zu halten. {1}",
-    "with": "Spenden Sie mit"
+    "title": "Hilf uns, {0} kostenlos zu halten. {1}",
+    "with": "Spenden mit"
   },
   "error": {
     "routes": {
-      "401": "Sie sind nicht authentifiziert und können daher nicht auf diese Seite zugreifen.",
-      "403": "Sie sind nicht berechtigt, auf diese Seite zuzugreifen.",
-      "404": "Die gesuchte Seite wurde nicht gefunden.",
-      "500": "Etwas ist schief gelaufen. Bitte versuchen Sie es später noch einmal.",
-      "fallback": "Beim Versuch, auf diese Seite zuzugreifen, ist ein Fehler aufgetreten.\nBitte versuchen Sie es später noch einmal.",
-      "notAccessible": "Seite nicht zugänglich",
+      "401": "Du bist nicht angemeldet und kannst diese Seite deshalb nicht öffnen.",
+      "403": "Du hast keine Berechtigung für diese Seite.",
+      "404": "Die gesuchte Seite gibt es nicht.",
+      "500": "Etwas ist schiefgelaufen. Bitte versuche es später noch einmal.",
+      "fallback": "Beim Öffnen dieser Seite ist ein Fehler aufgetreten.\nBitte versuche es später noch einmal.",
+      "notAccessible": "Seite nicht verfügbar",
       "title": "Fehler – {0}"
     }
   },
   "exit": {
-    "description": "Wenn Sie jetzt aufhören, gehen alle Ihre Fortschritte verloren.",
-    "title": "Sind Sie sicher, dass Sie gehen möchten?"
+    "description": "Wenn du jetzt gehst, geht dein ganzer Fortschritt verloren.",
+    "title": "Willst du wirklich gehen?"
   },
   "footer": {
-    "attributions": "Zuschreibungen",
-    "contacts": "Kontaktieren Sie uns",
+    "attributions": "Quellenangaben",
+    "contacts": "Kontakt",
     "copyright": "Copyright © 2023-{0} {1} – Alle Rechte vorbehalten.",
-    "privacy": "Datenschutzrichtlinie",
+    "privacy": "Datenschutzerklärung",
     "terms": "Nutzungsbedingungen"
   },
   "header": {
-    "board": "Anzeigetafel",
-    "cards": "Ordner",
-    "contacts": "Kontaktieren Sie uns",
-    "home": "Heim",
+    "board": "Tabellone",
+    "cards": "Karten",
+    "contacts": "Kontakt",
+    "home": "Startseite",
     "terms": "Bedingungen"
   },
   "home": {
-    "subtitle": "Eine Anwendung zum schnellen und einfachen Online-Bingospielen.",
-    "welcome": "Willkommen bei {0}"
+    "subtitle": "Eine App, um schnell und einfach online Tombola zu spielen.",
+    "welcome": "Willkommen bei {0}",
+    "today": "Die Zahl des Tages",
+    "smorfia": "aus der neapolitanischen Smorfia",
+    "how": "So wird gespielt",
+    "step1": "Tabellone öffnen",
+    "step1Text": "Auf dem Fernseher oder Laptop, den alle sehen, dann die Spiel-ID mit dem Tisch teilen.",
+    "step2": "Mit deinen Karten beitreten",
+    "step2Text": "Jeder gibt die ID auf dem Handy ein und wählt 1 bis 6 Karten.",
+    "step3": "Ziehen und markieren",
+    "step3Text": "Der Gastgeber zieht, die Zahlen kommen live an und du markierst sie mit einem Tipp.",
+    "prizes": "Was man gewinnt",
+    "prizesText": "Gewonnen wird immer in einer einzigen Reihe einer Karte, außer bei der Tombola.",
+    "ambo": "Zwei Zahlen in derselben Reihe",
+    "terna": "Drei in derselben Reihe",
+    "quaterna": "Vier in derselben Reihe",
+    "cinquina": "Eine volle Reihe: alle fünf Zahlen",
+    "tombola": "Alle fünfzehn Zahlen einer Karte"
   },
   "language": {
-    "toggle": "@:aria.Sprache umschalten"
+    "toggle": "Sprache wechseln"
   },
   "pwa": {
     "install": "Installieren",
-    "installTitle": "Möchten Sie es als App installieren?",
+    "installTitle": "Als App installieren?",
     "update": "Aktualisieren",
-    "updateTitle": "Update gefunden. Möchten Sie ein Upgrade durchführen?"
+    "updateTitle": "Ein Update ist verfügbar. Jetzt aktualisieren?"
   },
   "theme": {
     "dark": "Dunkel",
-    "light": "Klar",
-    "toggle": "@:aria.Thema umschalten"
+    "light": "Hell",
+    "toggle": "Design wechseln"
   }
 }

@@ -3,96 +3,114 @@
     "copied": "Copié"
   },
   "game": {
-    "description": "Partagez cet identifiant avec vos amis pour leur permettre de rejoindre ce jeu !",
+    "description": "Partagez cet ID avec vos amis pour qu’ils rejoignent la partie !",
     "error": {
-      "description": "Le jeu auquel vous essayez de rejoindre n’existe pas.",
-      "title": "Correspondance non trouvée"
+      "description": "La partie que vous essayez de rejoindre n’existe pas.",
+      "title": "Partie introuvable"
     },
-    "id": "Identifiant du jeu",
-    "title": "{0} - {1} numéros restants"
+    "id": "ID de la partie",
+    "title": "{0} – {1} numéros restants",
+    "confirmation": "Voulez-vous vraiment quitter ? Vous perdrez la partie."
   },
   "aria": {
-    "copy": "Copie",
-    "goTop": "Allez haut",
-    "more": "Autre",
-    "toggle": "Changement"
+    "copy": "Copier",
+    "goTop": "Remonter en haut",
+    "more": "Plus",
+    "toggle": "Basculer",
+    "share": "Partager"
   },
   "board": {
-    "announcer": "Annonceur automatique",
-    "draw": "Dessine un numéro",
-    "extractions": "Dernier tirage | {0} derniers tirages",
-    "prize": "Partage du prix",
-    "smirk": "Choisissez une grimace"
+    "announcer": "Annonce automatique",
+    "draw": "Tirer un numéro",
+    "extractions": "Dernier numéro tiré | {0} derniers numéros tirés",
+    "prize": "Répartition des gains",
+    "smirk": "Choisissez une smorfia"
   },
   "button": {
-    "backHome": "Revenir à @:header.home",
+    "backHome": "Retour à l’@:header.home",
     "cancel": "Annuler",
-    "exit": "tu sors",
-    "maximize": "Maximiser",
-    "minimize": "Minimiser",
+    "exit": "Quitter",
+    "maximize": "Plein écran",
+    "minimize": "Quitter le plein écran",
     "reset": "Réinitialiser"
   },
   "cards": {
-    "description": "Entrez un identifiant de jeu et sélectionnez le nombre de cartes avec lesquelles vous souhaitez jouer.",
-    "found": "Numéro {0} trouvé et ajouté",
-    "notFound": "Numéro {0} introuvable",
-    "quantity": "{0} dossier | {0} dossiers",
-    "search": "Rechercher le numéro",
-    "title": "Avec combien de cartes voulez-vous jouer ?"
+    "description": "Saisissez l’ID de la partie et choisissez avec combien de cartons vous voulez jouer.",
+    "found": "Numéro {0} trouvé et coché",
+    "notFound": "Le numéro {0} n’est sur aucun de vos cartons",
+    "quantity": "{0} carton | {0} cartons",
+    "search": "Chercher le numéro",
+    "title": "Avec combien de cartons voulez-vous jouer ?"
   },
   "contacts": {
-    "description": "Ceux qui ont développé \"{0}\", en mettant tout leur cœur à le compléter et à le rendre accessible à tous.",
+    "description": "Ceux qui ont créé « {0} », en y mettant tout leur cœur pour le terminer et le partager avec tous.",
     "title": "Équipe de développement"
   },
   "donate": {
     "title": "Aidez-nous à garder {0} gratuit. {1}",
-    "with": "Faites un don avec"
+    "with": "Faire un don avec"
   },
   "error": {
     "routes": {
-      "401": "Vous n'êtes pas authentifié, vous ne pouvez donc pas accéder à cette page.",
-      "403": "Vous n'êtes pas autorisé à accéder à cette page.",
-      "404": "La page que vous recherchez n'a pas été trouvée.",
-      "500": "Quelque chose s'est mal passé. Veuillez réessayer plus tard.",
-      "fallback": "Une erreur s'est produite lors de la tentative d'accès à cette page.\nVeuillez réessayer plus tard.",
-      "notAccessible": "Page non accessible",
-      "title": "Erreur – {0}"
+      "401": "Vous n’êtes pas connecté, vous ne pouvez donc pas accéder à cette page.",
+      "403": "Vous n’avez pas l’autorisation d’accéder à cette page.",
+      "404": "La page que vous cherchez n’existe pas.",
+      "500": "Un problème est survenu. Veuillez réessayer plus tard.",
+      "fallback": "Une erreur est survenue lors de l’ouverture de cette page.\nVeuillez réessayer plus tard.",
+      "notAccessible": "Page indisponible",
+      "title": "Erreur – {0}"
     }
   },
   "exit": {
-    "description": "Vous perdrez toute votre progression si vous arrêtez maintenant.",
-    "title": "Êtes-vous sûr de vouloir partir ?"
+    "description": "Si vous quittez maintenant, vous perdrez toute votre progression.",
+    "title": "Voulez-vous vraiment quitter ?"
   },
   "footer": {
-    "attributions": "Attributions",
-    "contacts": "Contactez-nous",
-    "copyright": "Copyright © 2023-{0} {1} – Tous droits réservés.",
-    "privacy": "politique de confidentialité",
-    "terms": "Conditions d'utilisation"
+    "attributions": "Crédits",
+    "contacts": "Nous contacter",
+    "copyright": "Copyright © 2023-{0} {1} – Tous droits réservés.",
+    "privacy": "Politique de confidentialité",
+    "terms": "Conditions d’utilisation"
   },
   "header": {
-    "board": "Tableau de bord",
-    "cards": "Dossiers",
-    "contacts": "Contactez-nous",
-    "home": "Maison",
-    "terms": "Termes"
+    "board": "Tableau",
+    "cards": "Cartons",
+    "contacts": "Contact",
+    "home": "Accueil",
+    "terms": "Conditions"
   },
   "home": {
-    "subtitle": "Une application pour jouer au bingo en ligne rapidement et facilement.",
-    "welcome": "Bienvenue à {0}"
+    "subtitle": "Une application pour jouer à la tombola en ligne, simplement et rapidement.",
+    "welcome": "Bienvenue sur {0}",
+    "today": "Le numéro du jour",
+    "smorfia": "de la smorfia napolitaine",
+    "how": "Comment jouer",
+    "step1": "Ouvrez le tableau",
+    "step1Text": "Sur la télé ou l'ordinateur que tout le monde voit, puis partagez l'ID de la partie avec la table.",
+    "step2": "Rejoignez avec vos cartons",
+    "step2Text": "Chaque joueur saisit l'ID sur son téléphone et choisit de 1 à 6 cartons.",
+    "step3": "Tirez et cochez",
+    "step3Text": "L'hôte tire les numéros, ils arrivent en direct et vous les cochez d'un geste.",
+    "prizes": "Ce que l'on gagne",
+    "prizesText": "Tout se gagne sur une seule ligne d'un carton, sauf la tombola.",
+    "ambo": "Deux numéros sur la même ligne",
+    "terna": "Trois sur la même ligne",
+    "quaterna": "Quatre sur la même ligne",
+    "cinquina": "Une ligne complète : les cinq numéros",
+    "tombola": "Les quinze numéros d'un carton"
   },
   "language": {
-    "toggle": "@:aria.toggle langue"
+    "toggle": "Changer de langue"
   },
   "pwa": {
     "install": "Installer",
-    "installTitle": "Voulez-vous l'installer en tant qu'application ?",
-    "update": "Mise à jour",
-    "updateTitle": "Mise à jour trouvée. Voulez-vous effectuer une mise à niveau ?"
+    "installTitle": "Voulez-vous l’installer comme application ?",
+    "update": "Mettre à jour",
+    "updateTitle": "Une mise à jour est disponible. Voulez-vous mettre à jour ?"
   },
   "theme": {
     "dark": "Sombre",
     "light": "Clair",
-    "toggle": "@:thème aria.toggle"
+    "toggle": "Changer de thème"
   }
 }

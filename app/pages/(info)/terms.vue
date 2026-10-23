@@ -15,9 +15,11 @@ const { data: page } = await useAsyncData(
 </script>
 
 <template>
-  <section class="grow mx-auto">
-    <ContentRenderer v-if="page"
-                     class="prose-sm prose max-w-[90ch] md:prose-base dark:prose-invert prose-headings:text-center prose-h1:text-primary prose-li:marker:text-primary prose-li:marker:font-medium"
-                     :value="page" prose :data="{ owner }" />
+  <section class="panel mx-auto grow">
+    <div class="px-4 py-8 sm:px-10">
+      <ContentRenderer v-if="page"
+                       class="prose-sm prose max-w-[90ch] md:prose-base dark:prose-invert prose-headings:tracking-tight prose-headings:text-highlighted prose-li:marker:text-primary"
+                       :value="page" prose :data="{ owner }" />
+    </div>
   </section>
 </template>

@@ -7,22 +7,22 @@ const { $pwa } = useNuxtApp()
     <div v-if="$pwa?.isPWAInstalled && ($pwa?.offlineReady || $pwa?.needRefresh)"
          class="flex justify-center items-center font-medium p-2 bg-accented gap-2">
       <h6>{{ $t('pwa.updateTitle') }}</h6>
-      <NuButton size="sm" color="success" @click="$pwa.updateServiceWorker()">
+      <UButton size="sm" color="success" @click="$pwa.updateServiceWorker()">
         {{ $t('pwa.update') }}
-      </NuButton>
-      <NuButton size="sm" variant="outline" color="error" @click="$pwa.cancelPrompt()">
+      </UButton>
+      <UButton size="sm" variant="outline" color="error" @click="$pwa.cancelPrompt()">
         {{ $t('button.cancel') }}
-      </NuButton>
+      </UButton>
     </div>
     <div v-else-if="$pwa?.showInstallPrompt && !$pwa?.offlineReady && !$pwa?.needRefresh"
          class="flex justify-center items-center font-medium p-2 bg-accented gap-2">
       <h6>{{ $t('pwa.installTitle') }}</h6>
-      <NuButton size="sm" color="success" @click="$pwa.install()">
+      <UButton size="sm" color="success" @click="$pwa.install()">
         {{ $t('pwa.install') }}
-      </NuButton>
-      <NuButton size="sm" variant="outline" color="error" @click="$pwa.cancelInstall()">
+      </UButton>
+      <UButton size="sm" variant="outline" color="error" @click="$pwa.cancelInstall()">
         {{ $t('button.cancel') }}
-      </NuButton>
+      </UButton>
     </div>
   </ClientOnly>
 </template>

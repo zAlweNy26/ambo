@@ -3,7 +3,8 @@
     "toggle": "Toggle",
     "copy": "Copy",
     "goTop": "Go to the top",
-    "more": "More"
+    "more": "More",
+    "share": "Share"
   },
   "theme": {
     "light": "Light",
@@ -56,20 +57,37 @@
   },
   "home": {
     "welcome": "Welcome on {0}",
-    "subtitle": "An application to play online bingo quickly and easily."
+    "subtitle": "An application to play online bingo quickly and easily.",
+    "today": "Number of the day",
+    "smorfia": "from the Neapolitan smorfia",
+    "how": "How to play",
+    "step1": "Open the board",
+    "step1Text": "On the TV or laptop everyone can see, then share the game ID with the table.",
+    "step2": "Join with your cards",
+    "step2Text": "Each player enters the ID on their phone and picks 1 to 6 cards.",
+    "step3": "Draw and mark",
+    "step3Text": "The host draws, numbers arrive live and you mark them with a tap.",
+    "prizes": "What you can win",
+    "prizesText": "Everything is won on a single row of a card, except the tombola.",
+    "ambo": "Two numbers on the same row",
+    "terna": "Three on the same row",
+    "quaterna": "Four on the same row",
+    "cinquina": "A full row: all five numbers",
+    "tombola": "All fifteen numbers of a card"
   },
   "contacts": {
     "title": "Development team",
     "description": "Those who developed \"{0}\", putting their hearts into completing it and making it available to all."
   },
   "game": {
-    "title": "{0} - {1} remaining numbers",
+    "title": "{0} – {1} remaining numbers",
     "id": "Game ID",
     "error": {
       "title": "Game not found",
       "description": "The game you are trying to access does not exist."
     },
-    "description": "Share this ID with your friends to allow them to join this game!"
+    "description": "Share this ID with your friends to allow them to join this game!",
+    "confirmation": "Are you sure you want to leave? You will lose everything."
   },
   "board": {
     "prize": "Prize distribution",

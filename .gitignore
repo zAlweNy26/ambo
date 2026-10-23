@@ -21,7 +21,9 @@ logs
 # Local env files
 .env
 .env.*
-!.env.example
 .wrangler
 .eslintcache
 .unlighthouse
+.void
+.void-wrangler.jsonc
+server/middleware/__void-dev-trigger.ts
