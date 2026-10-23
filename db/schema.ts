@@ -1,4 +1,5 @@
-import { integer, sqliteTable, text } from 'void/schema-d1'
+import type { Prize } from '../shared/utils/claim'
+import { integer, sqliteTable, text, unique } from 'void/schema-d1'
 
 export const games = sqliteTable('games', {
   id: integer().primaryKey({ autoIncrement: true }),
@@ -13,3 +14,18 @@ export const extractions = sqliteTable('extractions', {
   gameId: text('game_id').notNull().references(() => games.gameId),
   numbers: text('numbers', { mode: 'json' }).$type<number[]>().notNull(),
 })
+
+// Prize claims of live games: D1 inserts are atomic, so players claiming on the same draw are all kept.
+// Rows hold the names players type, so they're deleted when the game closes or after a day.
+export const claims = sqliteTable('claims', {
+  id: integer().primaryKey({ autoIncrement: true }),
+  gameId: text('game_id').notNull(),
+  prize: text().$type<Prize>().notNull(),
+  player: text().notNull(),
+  name: text().notNull(),
+  // How many numbers were drawn when it was claimed
+  draw: integer().notNull(),
+  createdAt: integer('created_at', { mode: 'timestamp' }).notNull(),
+}, t => [
+  unique().on(t.gameId, t.prize, t.player),
+])

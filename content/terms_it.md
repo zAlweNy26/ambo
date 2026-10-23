@@ -7,7 +7,7 @@
 3. Ci riserviamo il diritto di modificare o interrompere il Sito in qualsiasi momento, con o senza preavviso.
 4. Il Sito non fornisce alcuna forma di scambio monetario o premi, quindi non è soggetto a regole delle normative di gioco d'azzardo.
 5. Il Sito non possiede alcun metodo di registrazione utente, quindi non può risalire in alcun modo all'identità dei giocatori. Nessun dato personale viene raccolto durante l'utilizzo del Sito.
-6. L'estrazione dei numeri e la generazione delle cartelle sono casuali e avvengono nel browser. Finché una partita è aperta, i server del Sito ne conservano il codice e i numeri estratti per un massimo di 24 ore, così che i giocatori possano seguirla. Al termine della partita vengono conservate statistiche anonime (numero di giocatori, numeri estratti, ora di fine). Nessuno di questi dati identifica una persona.
+6. L'estrazione dei numeri e la generazione delle cartelle sono casuali e avvengono nel browser. Finché una partita è aperta, i server del Sito ne conservano il codice e i numeri estratti per un massimo di 24 ore, così che i giocatori possano seguirla, insieme al nome che un giocatore inserisce quando rivendica un premio; i nomi vengono cancellati alla fine della partita o dopo 24 ore. Al termine della partita vengono conservate statistiche anonime (numero di giocatori, numeri estratti, ora di fine). Nessuno di questi dati identifica una persona.
 
 ## Proprietà Intellettuale
 

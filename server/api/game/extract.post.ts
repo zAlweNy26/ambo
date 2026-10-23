@@ -19,6 +19,7 @@ export default defineEventHandler(async (event) => {
   }
 
   game.extractions.push(number)
+  game.winners = await getWinners(gameId)
   await setGame(gameId, game)
 
   console.info(`[Game: ${gameId}] Host ${game.host} extracted number ${number}`)

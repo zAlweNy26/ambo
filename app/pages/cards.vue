@@ -12,7 +12,7 @@ const { t } = useI18n(), toast = useToast()
 const extractions = ref<number[]>([])
 // Stable per device, so reconnects, reloads and a killed browser count as the same player
 const player = useLocalStorage('player', () => crypto.randomUUID())
-const { data, error } = useEventSource(() => `/game?id=${gameId.value}&player=${player.value}`)
+const { data, error, eventSource } = useEventSource(() => `/game?id=${gameId.value}&player=${player.value}`)
 
 watchImmediate(error, (err) => {
   // After the first message an error is a dropped connection: EventSource reconnects by itself, so keep the cards
@@ -45,6 +45,17 @@ watch(data, (val) => {
 
 const lastExtractions = computed(() => extractions.value.slice(-5))
 
+// Claims so far, sent with every draw; tells which prizes are gone
+const winners = ref<Winner[]>([])
+useEventListener(eventSource, 'winners', (event: MessageEvent<string>) => {
+  try {
+    winners.value = JSON.parse(event.data)
+  }
+  catch (error) {
+    console.error(error)
+  }
+})
+
 const amount = useRouteQuery('n', 1, {
   transform: v => Math.min(Number(v), 6),
 })
@@ -52,12 +63,18 @@ const amount = useRouteQuery('n', 1, {
 const searchNumber = ref(1), numberFound = ref<boolean>()
 
 // One game at a time: a reload or a killed browser keeps the same cartelle and marks
-const saved = useLocalStorage('cartelle', { gameId: '', cards: [] as number[][], marked: [] as number[][] })
+const saved = useLocalStorage('cartelle', {
+  gameId: '',
+  cards: [] as number[][],
+  marked: [] as number[][],
+  claimed: [] as Prize[],
+})
 if (saved.value.gameId !== gameId.value || saved.value.cards?.length !== amount.value) {
   saved.value = {
     gameId: gameId.value,
     cards: Array.from({ length: amount.value }, generateCartella),
     marked: Array.from({ length: amount.value }, () => []),
+    claimed: [],
   }
 }
 const cards = computed(() => saved.value.cards)
@@ -95,6 +112,67 @@ watchImmediate([extractions, autoMark], () => {
     })
   }
 })
+
+// The prize each cartella can claim now: its best row (or full card), unless that prize is gone or already ours
+const claimable = computed(() => cards.value.map((card, ci) => {
+  const best = bestPrize(card, signedNumbers.value[ci] ?? [], extractions.value)
+  const gone = !best || (saved.value.claimed ?? []).includes(best.prize)
+    || winners.value.some(w => PRIZES.indexOf(w.prize) >= PRIZES.indexOf(best.prize))
+  return gone ? undefined : best
+}))
+
+const playerName = useLocalStorage('player:name', '')
+const nameOpen = ref(false), nameDraft = ref(''), pendingCard = ref(0)
+
+function claim(ci: number) {
+  pendingCard.value = ci
+  if (playerName.value) return sendClaim()
+  nameDraft.value = ''
+  nameOpen.value = true
+}
+
+function confirmName() {
+  if (!nameDraft.value.trim()) return
+  playerName.value = nameDraft.value.trim()
+  nameOpen.value = false
+  sendClaim()
+}
+
+async function sendClaim() {
+  const best = claimable.value[pendingCard.value]
+  if (!best) return
+  try {
+    await $fetch('/api/game/claim', {
+      method: 'POST',
+      body: {
+        gameId: gameId.value,
+        player: player.value,
+        name: playerName.value,
+        ...best,
+      },
+    })
+    saved.value.claimed = [
+      ...(saved.value.claimed ?? []),
+      best.prize,
+    ]
+    toast.add({
+      title: t('claim.won', { prize: best.prize }),
+      color: 'success',
+      icon: 'i-tabler-trophy',
+    })
+  }
+  catch (error) {
+    const status = (error as { statusCode?: number }).statusCode
+    toast.add({
+      title: status === 409
+        ? t('claim.closed', { prize: best.prize })
+        : status === 400
+          ? t('claim.invalid', { prize: best.prize })
+          : t('toasts.network'),
+      color: 'error',
+    })
+  }
+}
 </script>
 
 <template>
@@ -118,6 +196,13 @@ watchImmediate([extractions, autoMark], () => {
           {{ num }}
         </span>
       </div>
+      <p v-if="winners.length" class="text-center text-sm text-muted">
+        {{ $t('cards.winners') }}:
+        <template v-for="(w, i) in winners" :key="i">
+          <span v-if="i" aria-hidden="true"> · </span>
+          <span class="capitalize">{{ w.prize }}</span> <strong class="text-highlighted">{{ w.name }}</strong>
+        </template>
+      </p>
     </div>
 
     <div class="flex w-full max-w-sm flex-col gap-1.5">
@@ -137,6 +222,9 @@ watchImmediate([extractions, autoMark], () => {
       <div v-for="(card, ci) in cards" :key="ci" class="panel w-full max-w-xl overflow-hidden border-[var(--print-line)]">
         <div class="flex items-center justify-between bg-primary px-4 py-2 text-xs text-white">
           <span class="font-medium tabular-nums">#{{ ci + 1 }}</span>
+          <UButton v-if="claimable[ci]" size="xs" color="neutral" icon="i-tabler-trophy"
+                   class="bg-white font-bold capitalize text-tombola-700 hover:bg-white/90"
+                   :label="`${claimable[ci].prize}!`" @click="claim(ci)" />
           <span class="tabular-nums text-white">{{ signedNumbers[ci]?.length ?? 0 }}/15</span>
         </div>
         <div class="grid select-none grid-cols-9">
@@ -155,5 +243,17 @@ watchImmediate([extractions, autoMark], () => {
         </div>
       </div>
     </div>
+
+    <UModal v-model:open="nameOpen" :title="$t('claim.title')" :description="$t('claim.description')" :ui="{ content: 'sm:max-w-sm' }">
+      <template #body>
+        <form class="flex flex-col gap-4" @submit.prevent="confirmName">
+          <UFormField :label="$t('claim.name')" required>
+            <UInput v-model="nameDraft" autofocus maxlength="24" autocomplete="given-name" class="w-full" />
+          </UFormField>
+          <UButton type="submit" block size="lg" icon="i-tabler-trophy" :disabled="!nameDraft.trim()"
+                   :label="$t('claim.submit', { prize: claimable[pendingCard]?.prize ?? '' })" />
+        </form>
+      </template>
+    </UModal>
   </section>
 </template>

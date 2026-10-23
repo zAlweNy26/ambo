@@ -98,7 +98,8 @@
     "quantity": "{0} card | {0} cards",
     "search": "Search the number",
     "found": "Number {0} found and marked",
-    "notFound": "Number {0} not found"
+    "notFound": "Number {0} not found",
+    "winners": "Winners"
   },
   "pwa": {
     "installTitle": "Do you want to install it as an app?",
@@ -110,5 +111,15 @@
     "copied": "Copied",
     "drawFailed": "The number was not saved. Draw again.",
     "network": "Couldn’t reach the server. Check your connection and try again."
+  },
+  "claim": {
+    "title": "Your name",
+    "description": "The board shows it next to the prize.",
+    "name": "Name",
+    "submit": "Claim {prize}!",
+    "won": "You won {prize}!",
+    "closed": "{prize} has already been won.",
+    "invalid": "This cartella doesn’t have {prize} yet.",
+    "announce": "{name} wins {prize}!"
   }
 }

@@ -42,7 +42,8 @@
     "notFound": "Die {0} ist auf keiner deiner Karten",
     "quantity": "{0} Karte | {0} Karten",
     "search": "Zahl suchen",
-    "title": "Mit wie vielen Karten willst du spielen?"
+    "title": "Mit wie vielen Karten willst du spielen?",
+    "winners": "Gewinner"
   },
   "contacts": {
     "role": "Projektleiter\nFull-Stack-Entwickler",
@@ -110,5 +111,15 @@
   },
   "theme": {
     "toggle": "Design wechseln"
+  },
+  "claim": {
+    "title": "Dein Name",
+    "description": "Das Tabellone zeigt ihn neben dem Gewinn.",
+    "name": "Name",
+    "submit": "{prize} melden!",
+    "won": "Du hast {prize} gewonnen!",
+    "closed": "{prize} wurde schon gewonnen.",
+    "invalid": "Diese Karte hat {prize} noch nicht.",
+    "announce": "{name} gewinnt {prize}!"
   }
 }

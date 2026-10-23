@@ -161,6 +161,41 @@ function speechText() {
   setTimeout(speak, 250)
 }
 
+// Claims arrive from the phones; poll them so the room hears a win right away
+const winners = ref<Winner[]>([])
+const winnersByPrize = computed(() => _GroupBy(winners.value, w => w.prize))
+let seenClaims = -1 // -1 until the first poll, so a resumed board doesn't re-announce old wins
+
+useIntervalFn(async () => {
+  if (!gameId.value) return
+  try {
+    const list = await $fetch<Winner[]>('/api/game/claims', {
+      query: { id: gameId.value },
+    })
+    if (seenClaims >= 0) list.slice(seenClaims).forEach(announceWinner)
+    seenClaims = list.length
+    winners.value = list
+  }
+  catch (error) {
+    console.error(error)
+  }
+}, 3000)
+
+function announceWinner({ name, prize }: Winner) {
+  const title = t('claim.announce', { name, prize })
+  toast.add({
+    title,
+    color: 'success',
+    icon: 'i-tabler-trophy',
+    duration: 8000,
+  })
+  if (settings.value.autoAnnounce && isSpeechSupported.value) {
+    speakText.value = title
+    if (isPlaying.value) stop()
+    setTimeout(speak, 250)
+  }
+}
+
 async function extractNumber() {
   const random = _Sample([...remainingNumbers.value])
   if (!random) return
@@ -257,8 +292,12 @@ async function extractNumber() {
         </UFormField>
         <dl v-if="settings.totalPrize > 0" class="divide-y divide-default text-sm">
           <div v-for="(value, name) in splittedPrize" :key="name" class="flex justify-between py-1.5">
-            <dt class="capitalize text-muted">
-              {{ name }}
+            <dt class="text-muted">
+              <span class="capitalize">{{ name }}</span>
+              <span v-if="winnersByPrize[name]" class="block text-xs font-medium text-highlighted">
+                <UIcon name="i-tabler-trophy" class="size-3.5 align-[-2px] text-primary" />
+                {{ winnersByPrize[name].map(w => w.name).join(', ') }}
+              </span>
             </dt>
             <dd class="font-medium tabular-nums">
               {{ $n(value, 'currency') }}

@@ -42,7 +42,8 @@
     "notFound": "Le numéro {0} n’est sur aucun de vos cartons",
     "quantity": "{0} carton | {0} cartons",
     "search": "Chercher le numéro",
-    "title": "Avec combien de cartons voulez-vous jouer ?"
+    "title": "Avec combien de cartons voulez-vous jouer ?",
+    "winners": "Gagnants"
   },
   "contacts": {
     "role": "Chef de projet\nDéveloppeur full-stack",
@@ -110,5 +111,15 @@
   },
   "theme": {
     "toggle": "Changer de thème"
+  },
+  "claim": {
+    "title": "Votre nom",
+    "description": "Le tableau l’affiche à côté du gain.",
+    "name": "Nom",
+    "submit": "Annoncer {prize} !",
+    "won": "Vous avez gagné {prize} !",
+    "closed": "{prize} a déjà été gagné.",
+    "invalid": "Ce carton n’a pas encore {prize}.",
+    "announce": "{name} gagne {prize} !"
   }
 }

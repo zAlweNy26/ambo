@@ -7,7 +7,7 @@
 3. We reserve the right to modify or discontinue the Site at any time, with or without notice.
 4. The Site does not provide any form of monetary exchange or prizes, therefore it is not subject to gambling regulations.
 5. The Site does not have any user registration method, thus it cannot trace players' identities in any way. No personal data is collected during the use of the Site.
-6. Number drawing and card generation are random and run in the browser. While a game is open, the Site's servers keep its code and drawn numbers for up to 24 hours so that players can follow it. When a game ends, anonymous statistics (number of players, numbers drawn, end time) are kept. None of this data identifies a person.
+6. Number drawing and card generation are random and run in the browser. While a game is open, the Site's servers keep its code and drawn numbers for up to 24 hours so that players can follow it, together with the name a player types when claiming a prize; names are deleted when the game ends or after 24 hours. When a game ends, anonymous statistics (number of players, numbers drawn, end time) are kept. None of this data identifies a person.
 
 ## Intellectual Property
 

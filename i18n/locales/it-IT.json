@@ -98,7 +98,8 @@
     "quantity": "{0} cartella | {0} cartelle",
     "search": "Cerca il numero",
     "found": "Numero {0} trovato e segnato",
-    "notFound": "Numero {0} non trovato"
+    "notFound": "Numero {0} non trovato",
+    "winners": "Vincitori"
   },
   "pwa": {
     "installTitle": "Vuoi installarla come app?",
@@ -110,5 +111,15 @@
     "copied": "Copiato",
     "drawFailed": "Il numero non è stato salvato. Estrai di nuovo.",
     "network": "Impossibile contattare il server. Controlla la connessione e riprova."
+  },
+  "claim": {
+    "title": "Il tuo nome",
+    "description": "Il tabellone lo mostra accanto al premio.",
+    "name": "Nome",
+    "submit": "Ho fatto {prize}!",
+    "won": "Hai fatto {prize}!",
+    "closed": "{prize} è già stato vinto.",
+    "invalid": "Questa cartella non ha ancora {prize}.",
+    "announce": "{name} ha fatto {prize}!"
   }
 }

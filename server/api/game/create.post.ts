@@ -3,6 +3,9 @@ export default defineEventHandler(async () => {
   const id = crypto.randomUUID().slice(0, 8)
   const hostId = crypto.randomUUID()
 
+  // Housekeeping only: a D1 hiccup must not stop a game from starting
+  await forgetOldClaims().catch(error => console.error(error))
+
   const game = await setGame(id, {
     id,
     extractions: [],

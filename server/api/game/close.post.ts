@@ -1,5 +1,5 @@
-import { extractions, games } from '@schema'
-import { db } from 'void/db'
+import { claims, extractions, games } from '@schema'
+import { db, eq } from 'void/db'
 import { z } from 'zod'
 
 const closeSchema = z.object({
@@ -12,7 +12,7 @@ export default defineEventHandler(async (event) => {
 
   const game = await getHostedGame(gameId, hostId)
 
-  // One batch is one transaction: no games row without its numbers
+  // One batch is one transaction: no games row without its numbers. Claims go: they hold players' names
   await db.batch([
     db.insert(games).values({
       gameId,
@@ -24,5 +24,6 @@ export default defineEventHandler(async (event) => {
       gameId,
       numbers: game.extractions,
     }),
+    db.delete(claims).where(eq(claims.gameId, gameId)),
   ])
 })
