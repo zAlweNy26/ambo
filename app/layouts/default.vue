@@ -39,7 +39,7 @@ useSeoMeta({
   twitterTitle: seoTitle,
   twitterDescription: () => t('home.subtitle'),
   twitterImage: '/maskable-icon-512x512.png',
-  twitterCard: 'app',
+  twitterCard: 'summary',
 })
 
 const head = useLocaleHead({
