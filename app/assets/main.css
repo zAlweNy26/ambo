@@ -6,7 +6,7 @@
 @variant dark (&:where(.dark, .dark *));
 
 @theme static {
-  --font-sans: 'Bricolage Grotesque', sans-serif;
+  --font-sans: 'Figtree', sans-serif;
 
   --text-2xs: 0.625rem;
   --text-2xs--line-height: 0.75rem;
@@ -71,15 +71,15 @@
   --ui-text-highlighted: #ffffff;
   --ui-text-inverted: var(--ui-color-neutral-900);
 
-  --ui-bg: #0f0f0e;
-  --ui-bg-elevated: #191917;
-  --ui-bg-muted: #232321;
-  --ui-bg-accented: #2e2e2b;
+  --ui-bg: #1c1c1a;
+  --ui-bg-elevated: #262624;
+  --ui-bg-muted: #30302d;
+  --ui-bg-accented: #3a3a37;
   --ui-bg-inverted: var(--ui-color-neutral-50);
 
-  --ui-border: #2a2a27;
-  --ui-border-accented: #3a3a36;
-  --ui-border-muted: #232321;
+  --ui-border: #33332f;
+  --ui-border-accented: #44443f;
+  --ui-border-muted: #30302d;
   --ui-border-inverted: var(--ui-color-neutral-50);
 
   --print: var(--ui-color-primary-400);
