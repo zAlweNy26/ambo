@@ -11,8 +11,6 @@
   --text-2xs: 0.625rem;
   --text-2xs--line-height: 0.75rem;
 
-  --breakpoint-3xl: 120rem;
-
   /* Tombola red: the ink printed on paper cartelle */
   --color-tombola-50: #fdf3f3;
   --color-tombola-100: #fbe4e4;
@@ -196,12 +194,4 @@
 /* The red outline vanishes on the red header bar */
 header :focus-visible {
   outline-color: #ffffff;
-}
-
-[contenteditable="true"], [contenteditable=""] {
-  @apply outline outline-default rounded-lg text-toned bg-muted p-1;
-}
-
-[contenteditable="true"]:focus, [contenteditable=""]:focus {
-  @apply outline-2;
 }

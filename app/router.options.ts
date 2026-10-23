@@ -1,7 +1,6 @@
 import type { RouterConfig } from '@nuxt/schema'
 
 export default <RouterConfig> {
-  linkExactActiveClass: 'active',
   async scrollBehavior(to, from, savedPosition) {
     const nuxtApp = useNuxtApp()
 
