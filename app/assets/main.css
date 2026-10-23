@@ -88,6 +88,11 @@
   --ring-latest: var(--ui-color-primary-400);
 }
 
+/* Red 600 is too faint as text on the dark grounds (2.9:1): lift text to 400 like the print; fills such as the header keep 600 */
+.dark .text-primary {
+  color: var(--ui-color-primary-400);
+}
+
 /* A plain elevated surface with a hairline */
 @layer components {
   .panel {
