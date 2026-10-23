@@ -28,7 +28,7 @@ export default defineI18nConfig(() => ({
     },
     en: {
       currency: {
-        style: 'currency', currency: 'GBP', notation: 'standard',
+        style: 'currency', currency: 'EUR', notation: 'standard',
       },
       decimal: {
         style: 'decimal', minimumFractionDigits: 2, maximumFractionDigits: 2,
