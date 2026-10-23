@@ -8,7 +8,6 @@ export default defineEventHandler(async () => {
   const game = await setGame(id, {
     id,
     extractions: [],
-    clients: [],
     host: hostId,
   })
 

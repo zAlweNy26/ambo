@@ -10,7 +10,9 @@ definePageMeta({
 const gameId = useRouteQuery<string>('id', '')
 const { t } = useI18n(), toast = useToast()
 const extractions = ref<number[]>([])
-const { data, error } = useEventSource(() => `/game?id=${gameId.value}`)
+// Stable per tab, so reconnects and reloads count as the same player
+const player = useSessionStorage('player', () => crypto.randomUUID())
+const { data, error } = useEventSource(() => `/game?id=${gameId.value}&player=${player.value}`)
 
 watchImmediate(error, (err) => {
   // After the first message an error is a dropped connection: EventSource reconnects by itself, so keep the cards

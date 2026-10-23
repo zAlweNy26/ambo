@@ -22,7 +22,7 @@ export default defineEventHandler(async (event) => {
     await db.insert(games).values({
       gameId,
       completedAt: new Date(),
-      playersCount: game.clients.length,
+      playersCount: await countPlayers(gameId),
       totalExtractions: game.extractions.length,
     })
     await db.insert(extractions).values({

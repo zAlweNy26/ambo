@@ -1,14 +1,14 @@
-import { randomUUID } from 'uncrypto'
 import { z } from 'zod'
 
 const gameSchema = z.object({
   id: z.string().length(8),
+  player: z.uuid(),
 })
 
 export default defineEventHandler(async (event) => {
-  const { id } = await getValidatedQuery(event, data => gameSchema.parse(data))
+  const { id, player } = await getValidatedQuery(event, data => gameSchema.parse(data))
 
-  let game = await getGame(id)
+  const game = await getGame(id)
 
   if (!game) {
     throw createError({
@@ -17,12 +17,9 @@ export default defineEventHandler(async (event) => {
     })
   }
 
-  const clientId = randomUUID()
+  await addPlayer(id, player)
 
-  game.clients.push(clientId)
-  game = await setGame(id, game)
-
-  console.info(`[Game: ${game.id}] Client ${clientId} joined game`)
+  console.info(`[Game: ${id}] Player ${player} connected`)
 
   const eventStream = createEventStream(event)
 
