@@ -56,7 +56,7 @@ export function memoryHost(id: string): RoomHost {
 
 const roomId = (url: string) => new URL(url, 'http://localhost').pathname.split('/').pop()!
 
-// WebSocket hooks of the in-memory rooms (wired up by server/plugins/room-dev.ts)
+// WebSocket hooks of the in-memory rooms (served by server/routes/room/[id].ts)
 export const memorySocket = defineWebSocket({
   open(peer) {
     memoryRoom(roomId(peer.request!.url)).peers.add(peer)

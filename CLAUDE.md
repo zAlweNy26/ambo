@@ -25,7 +25,7 @@ Package manager is **bun**.
 
 ## Architecture
 
-- **Nuxt 4 SPA** (`ssr: false`). App code is in `app/`. Nuxt UI v4 components use the default **`U` prefix** (`UButton`, `UModal`…). Tailwind v4 is configured in `app/assets/main.css`. Icons are Tabler (`i-tabler-*`).
+- **Nuxt 4 SPA** (`ssr: false`). `nuxt-ai-ready` (llms.txt, from `@nuxtjs/seo`) stays disabled: its mdream WebAssembly breaks Void's Cloudflare deploy, which re-bundles Nitro's Worker with Vite. App code is in `app/`. Nuxt UI v4 components use the default **`U` prefix** (`UButton`, `UModal`…). Tailwind v4 is configured in `app/assets/main.css`. Icons are Tabler (`i-tabler-*`).
 - **Deploy target:** Cloudflare Workers through **Void** (`void.config.ts`, `voidPlugin()` in `nuxt.config.ts`). Bindings:
   - **Durable Objects:** each live game is a `GameRoom` (`ROOMS` binding, `server/room/durable.ts`), named by its game ID. It holds the draws, players, the cartelle it dealt, and claims. Clients talk to it over a WebSocket at `/room/<id>`. An alarm deletes everything after 24h.
   - **D1** (`db/schema.ts`, imported as `@schema`) stores game stats. The room upserts them at every draw (`server/room/stats.ts`).
@@ -33,7 +33,7 @@ Package manager is **bun**.
   - One Worker only. The custom entry `server/room/entry.ts`, set for the `cloudflare-module` build in `nuxt.config.ts`, exports `GameRoom` and routes `/room/<id>` to it before Nuxt. `void.config.ts` declares the binding and class migration, and deploys in `atomic` mode.
 - **Game rules** live in `server/room/core.ts`. This module is pure, has no Cloudflare code, and is tested in `test/room.test.ts`. `dispatch` feeds every socket message through `handle`.
   - Production runs it in the Durable Object.
-  - `bun run dev` can't run a Durable Object of the same Worker, so it uses in-memory rooms (`server/room/memory.ts`), wired by the dev-only plugin `server/plugins/room-dev.ts`. The plugin is needed because a lazy `llms.txt` middleware from `@nuxtjs/seo` hides route WebSocket hooks in h3 v1.
+  - `bun run dev` can't run a Durable Object of the same Worker, so it uses in-memory rooms (`server/room/memory.ts`), served by `server/routes/room/[id].ts`.
   - To test the real Durable Object locally, run `bun run build`, then `bun run preview`. Preview runs the built Worker in `wrangler dev` with Void's generated config.
 - **Game flow:**
   1. `pages/board.vue` calls `POST /api/game/create`. It returns the 8-hex game ID and a secret host ID, kept in localStorage, so `/board?id=…` resumes after a reload. The board joins the room as host, sends `draw` (the room picks the number), and sends `close` when leaving through the app.

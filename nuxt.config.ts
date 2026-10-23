@@ -175,6 +175,11 @@ export default defineNuxtConfig({
     enabled: false,
   },
 
+  // llms.txt and markdown for AI agents need mdream's WebAssembly build, which Void's Cloudflare deploy can't re-bundle
+  aiReady: {
+    enabled: false,
+  },
+
   pwa: {
     strategies: 'generateSW',
     // prompt, not autoUpdate: an update must never reload a board or cards page mid-game
