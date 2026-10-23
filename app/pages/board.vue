@@ -13,22 +13,40 @@ const smirks = {
   livornese,
 }
 
-const { data: game } = useFetch('/api/game/create', {
-  method: 'POST',
-  lazy: true,
-  default: () => ({ gameId: '', hostId: '' }),
-})
+const route = useRoute(), router = useRouter()
+
+// The hosted game and the host's choices survive a reload or crash; the settings carry over to the next game
+const hosted = useLocalStorage('board:game', { gameId: '', hostId: '' })
+const settings = useLocalStorage('board:settings', {
+  smirk: undefined as keyof typeof smirks | undefined,
+  totalPrize: 0.1,
+  autoAnnounce: false,
+}, { mergeDefaults: true })
+
+const game = ref({ gameId: '', hostId: '' })
 const gameId = computed(() => game.value.gameId)
+const extractedNumbers = ref<number[]>([]), currentNumber = ref<number>(), speakText = ref<string>('')
 
-const router = useRouter()
-
-watch(gameId, (id) => {
-  if (id) {
-    router.push({
-      query: { id },
-      replace: true,
-    })
+onMounted(async () => {
+  if (route.query.id && route.query.id === hosted.value.gameId) {
+    try {
+      const { extractions } = await $fetch('/api/game/resume', { method: 'POST', body: hosted.value })
+      extractedNumbers.value = extractions
+      currentNumber.value = extractions.at(-1)
+      game.value = { ...hosted.value }
+      return
+    }
+    catch (error) {
+      // Expired (24h) or not ours any more: start a new game instead
+      console.error(error)
+    }
   }
+  const { gameId: id, hostId } = await $fetch('/api/game/create', { method: 'POST' })
+  game.value = { gameId: id, hostId }
+  hosted.value = { ...game.value }
+  router.replace({
+    query: { id: gameId.value },
+  })
 })
 
 const cards = Array.from({ length: 6 }).map((_, i) => {
@@ -52,17 +70,15 @@ const smirkOptions = [
   { label: 'Livornese', value: 'livornese' },
 ]
 
-// Closing or reloading the tab skips unmount, so pagehide closes the game too; a beacon outlives the page
-let closed = false
-function closeGame() {
-  if (closed || !gameId.value) return
-  closed = true
+// Leaving through the app ends the game; closing or reloading the tab doesn't, so the board can resume it.
+// A beacon still arrives if the page is torn down right after.
+onBeforeUnmount(() => {
+  if (!gameId.value) return
   navigator.sendBeacon('/api/game/close', new Blob([
     JSON.stringify(game.value),
   ], { type: 'application/json' }))
-}
-onBeforeUnmount(closeGame)
-useEventListener('pagehide', closeGame)
+  hosted.value = { gameId: '', hostId: '' }
+})
 
 const { currentLocale } = storeToRefs(useSettingsStore())
 const toast = useToast()
@@ -70,8 +86,6 @@ const { t } = useI18n()
 const { title } = useAppConfig()
 const { copy, copied } = useClipboard()
 const { share, isSupported: isShareSupported } = useShare()
-const extractedNumbers = ref<number[]>([]), autoAnnounce = ref(false), currentNumber = ref<number>()
-const totalPrize = ref(0.1), smirk = ref<keyof typeof smirks>(), speakText = ref<string>('')
 
 const { isPlaying, isSupported: isSpeechSupported, speak, stop } = useSpeechSynthesis(speakText, {
   lang: () => currentLocale.value.language ?? currentLocale.value.code,
@@ -80,7 +94,7 @@ const { isPlaying, isSupported: isSpeechSupported, speak, stop } = useSpeechSynt
   volume: 1,
 })
 
-const splittedPrize = computed(() => splitPrize(totalPrize.value))
+const splittedPrize = computed(() => splitPrize(settings.value.totalPrize))
 
 const remainingNumbers = computed(() => {
   const allNumbers = cards.flat()
@@ -92,15 +106,16 @@ const remaining = computed(() => remainingNumbers.value.size)
 
 const currentSmirk = computed(() => {
   const number = currentNumber.value
-  if (!smirk.value || !number) return
-  const smirkData = smirks[smirk.value]
+  const smirk = settings.value.smirk
+  if (!smirk || !number) return
+  const smirkData = smirks[smirk]
   const smirkNumber = smirkData.find(({ number: n }) => n === number)
   return smirkNumber
 })
 
 watchDeep(currentSmirk, () => {
   if (isPlaying.value) stop()
-  if (autoAnnounce.value) speechText()
+  if (settings.value.autoAnnounce) speechText()
 })
 
 async function copyGameId() {
@@ -203,7 +218,7 @@ async function extractNumber() {
             </p>
           </template>
         </div>
-        <UButton icon="i-tabler-arrow-big-down-lines" :disabled="remaining === 0 || !smirk" size="xl" block loadingAuto
+        <UButton icon="i-tabler-arrow-big-down-lines" :disabled="remaining === 0 || !settings.smirk || !gameId" size="xl" block loadingAuto
                  :label="$t('board.draw')" @click="extractNumber" />
       </div>
 
@@ -218,13 +233,13 @@ async function extractNumber() {
       </div>
 
       <div class="panel flex flex-col gap-4 p-4 lg:col-start-1 xl:col-start-auto">
-        <USelect v-model="smirk" :placeholder="$t('board.smirk')" class="w-full"
+        <USelect v-model="settings.smirk" :placeholder="$t('board.smirk')" class="w-full"
                  :aria-label="$t('board.smirk')" :items="smirkOptions" />
-        <USwitch v-model="autoAnnounce" :disabled="!smirk" :label="$t('board.announcer')" />
+        <USwitch v-model="settings.autoAnnounce" :disabled="!settings.smirk" :label="$t('board.announcer')" />
         <UFormField :label="$t('board.prize')">
-          <UInputNumber v-model="totalPrize" :min="0.1" :step="0.1" class="w-full" />
+          <UInputNumber v-model="settings.totalPrize" :min="0.1" :step="0.1" class="w-full" />
         </UFormField>
-        <dl v-if="totalPrize > 0" class="divide-y divide-default text-sm">
+        <dl v-if="settings.totalPrize > 0" class="divide-y divide-default text-sm">
           <div v-for="(value, name) in splittedPrize" :key="name" class="flex justify-between py-1.5">
             <dt class="capitalize text-muted">
               {{ name }}
