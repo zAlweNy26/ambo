@@ -3,6 +3,8 @@ on:
   push:
     branches:
       - main
+  # Redeploy without a commit: gh workflow run deploy.yml
+  workflow_dispatch:
 
 jobs:
   deploy:
