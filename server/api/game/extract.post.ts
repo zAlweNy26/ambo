@@ -2,18 +2,19 @@ import { z } from 'zod'
 
 const extractionSchema = z.object({
   gameId: z.string().length(8),
-  number: z.number().min(1).max(90),
+  hostId: z.uuid(),
+  number: z.int().min(1).max(90),
 })
 
 export default defineEventHandler(async (event) => {
-  const { gameId, number } = await readValidatedBody(event, body => extractionSchema.parse(body))
+  const { gameId, hostId, number } = await readValidatedBody(event, body => extractionSchema.parse(body))
 
-  const game = await getGame(gameId)
+  const game = await getHostedGame(gameId, hostId)
 
-  if (!game) {
+  if (game.extractions.includes(number)) {
     throw createError({
-      statusCode: 400,
-      statusMessage: 'Game not found',
+      statusCode: 409,
+      statusMessage: 'Number already drawn',
     })
   }
 

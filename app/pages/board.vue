@@ -13,12 +13,12 @@ const smirks = {
   livornese,
 }
 
-const { data: gameId } = useFetch('/api/game/create', {
+const { data: game } = useFetch('/api/game/create', {
   method: 'POST',
   lazy: true,
-  transform: data => data.gameId!,
-  default: () => '',
+  default: () => ({ gameId: '', hostId: '' }),
 })
+const gameId = computed(() => game.value.gameId)
 
 const router = useRouter()
 
@@ -55,7 +55,7 @@ const smirkOptions = [
 onBeforeUnmount(() => {
   $fetch('/api/game/close', {
     method: 'POST',
-    body: { gameId: gameId.value },
+    body: game.value,
   })
 })
 
@@ -141,7 +141,7 @@ async function extractNumber() {
   const { extractions } = await $fetch('/api/game/extract', {
     method: 'POST',
     body: {
-      gameId: gameId.value,
+      ...game.value,
       number: random,
     },
   })

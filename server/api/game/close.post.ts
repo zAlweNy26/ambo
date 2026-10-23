@@ -4,19 +4,13 @@ import { z } from 'zod'
 
 const closeSchema = z.object({
   gameId: z.string().length(8),
+  hostId: z.uuid(),
 })
 
 export default defineEventHandler(async (event) => {
-  const { gameId } = await readValidatedBody(event, body => closeSchema.parse(body))
+  const { gameId, hostId } = await readValidatedBody(event, body => closeSchema.parse(body))
 
-  const game = await getGame(gameId)
-
-  if (!game) {
-    throw createError({
-      statusCode: 400,
-      statusMessage: 'Game not found',
-    })
-  }
+  const game = await getHostedGame(gameId, hostId)
 
   if (game) {
     await db.insert(games).values({

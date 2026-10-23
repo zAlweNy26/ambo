@@ -19,6 +19,16 @@ export async function setGame(id: string, game: Game) {
 
 export const getGame = (id: string) => kv.get<Game>(`game:${id}`)
 
+// The game, only for the host who created it: players know the game ID but never the host ID
+export async function getHostedGame(id: string, hostId: string) {
+  const game = await getGame(id)
+  if (!game)
+    throw createError({ statusCode: 400, statusMessage: 'Game not found' })
+  if (game.host !== hostId)
+    throw createError({ statusCode: 403, statusMessage: 'Not the host of this game' })
+  return game
+}
+
 // Players live under their own keys so a join never rewrites (and races with) the game's draws
 export async function addPlayer(id: string, player: string) {
   const key = `player:${id}:${player}`
