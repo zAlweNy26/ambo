@@ -1,6 +1,7 @@
 {
   "toasts": {
-    "copied": "Kopiert"
+    "copied": "Kopiert",
+    "drawFailed": "Die Zahl wurde nicht gespeichert. Zieh noch einmal."
   },
   "game": {
     "description": "Teile diese ID mit deinen Freunden, damit sie mitspielen können!",

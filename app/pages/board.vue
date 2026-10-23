@@ -137,15 +137,26 @@ function speechText() {
 async function extractNumber() {
   const random = _Sample([...remainingNumbers.value])
   if (!random) return
-  currentNumber.value = random
-  const { extractions } = await $fetch('/api/game/extract', {
-    method: 'POST',
-    body: {
-      ...game.value,
-      number: random,
-    },
-  })
-  extractedNumbers.value = extractions
+  try {
+    const { extractions } = await $fetch('/api/game/extract', {
+      method: 'POST',
+      body: {
+        ...game.value,
+        number: random,
+      },
+    })
+    // Show the number only once it's saved, so the room never sees a draw the players won't get
+    currentNumber.value = random
+    extractedNumbers.value = extractions
+  }
+  catch (error) {
+    console.error(error)
+    toast.add({
+      title: t('toasts.drawFailed'),
+      color: 'error',
+      icon: 'i-tabler-alert-triangle',
+    })
+  }
 }
 </script>
 

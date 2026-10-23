@@ -1,6 +1,7 @@
 {
   "toasts": {
-    "copied": "Copiado"
+    "copied": "Copiado",
+    "drawFailed": "El número no se ha guardado. Vuelve a sacar."
   },
   "game": {
     "description": "¡Comparte este ID con tus amigos para que se unan a la partida!",

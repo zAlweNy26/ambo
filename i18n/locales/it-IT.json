@@ -111,6 +111,7 @@
     "update": "Aggiorna"
   },
   "toasts": {
-    "copied": "Copiato"
+    "copied": "Copiato",
+    "drawFailed": "Il numero non è stato salvato. Estrai di nuovo."
   }
 }
