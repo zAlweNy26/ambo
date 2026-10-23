@@ -83,6 +83,8 @@
     "confirmation": "Sei sicuro di voler uscire? Perderai tutto."
   },
   "board": {
+    "qr": "Inquadra per partecipare",
+    "qrDescription": "Inquadra il codice con la fotocamera del telefono per entrare nella partita.",
     "prize": "Ripartizione del premio",
     "smirk": "Scegli una smorfia",
     "announcer": "Annunciatore automatico",

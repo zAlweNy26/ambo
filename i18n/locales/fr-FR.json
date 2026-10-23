@@ -20,6 +20,8 @@
     "share": "Partager"
   },
   "board": {
+    "qr": "Scannez pour rejoindre",
+    "qrDescription": "Visez le code avec l’appareil photo du téléphone pour rejoindre la partie.",
     "announcer": "Annonce automatique",
     "draw": "Tirer un numéro",
     "extractions": "Dernier numéro tiré | {0} derniers numéros tirés",

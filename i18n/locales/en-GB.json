@@ -83,6 +83,8 @@
     "confirmation": "Are you sure you want to leave? You will lose everything."
   },
   "board": {
+    "qr": "Scan to join",
+    "qrDescription": "Point a phone camera at the code to join this game.",
     "prize": "Prize distribution",
     "smirk": "Choose a smorfia",
     "announcer": "Automatic announcer",

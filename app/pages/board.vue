@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import { renderSVG } from 'uqr'
 import livornese from '~/assets/livornese.json'
 import napoletana from '~/assets/napoletana.json'
 import piemontese from '~/assets/piemontese.json'
@@ -129,13 +130,19 @@ async function copyGameId() {
   })
 }
 
+const joinUrl = computed(() => `${window.location.origin}/?id=${gameId.value}`)
+// Fixed black on white so phones scan it in either theme
+const qrCode = computed(() => gameId.value
+  ? renderSVG(joinUrl.value, { border: 2 })
+  : '')
+
 async function shareGameId() {
   if (isShareSupported.value) {
     try {
       await share({
         title,
         text: `${$t('game.id')}: ${gameId.value}`,
-        url: `${window.location.origin}?id=${gameId.value}`,
+        url: joinUrl.value,
       })
     }
     catch (error) {
@@ -191,6 +198,15 @@ async function extractNumber() {
         <UButton square variant="soft" color="neutral" :aria-label="isShareSupported ? $t('aria.share') : $t('aria.copy')"
                  :icon="isShareSupported ? 'i-tabler-share' : (copied ? 'i-tabler-copy-check' : 'i-tabler-copy')"
                  @click="shareGameId()" />
+        <UModal :title="$t('board.qr')" :description="$t('board.qrDescription')" :ui="{ content: 'sm:max-w-md' }">
+          <UButton square variant="soft" color="neutral" icon="i-tabler-qrcode" :aria-label="$t('board.qr')" :disabled="!gameId" />
+          <template #body>
+            <div class="flex flex-col items-center gap-4">
+              <div class="w-full max-w-80 rounded-xl bg-white p-2 [&>svg]:size-full" role="img" :aria-label="joinUrl" v-html="qrCode" />
+              <span class="text-3xl font-semibold tracking-wide tabular-nums">{{ gameId }}</span>
+            </div>
+          </template>
+        </UModal>
       </div>
       <p class="grow text-sm text-muted">
         {{ $t('game.description') }}

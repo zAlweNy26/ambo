@@ -20,6 +20,8 @@
     "share": "Teilen"
   },
   "board": {
+    "qr": "Zum Mitspielen scannen",
+    "qrDescription": "Richte die Handykamera auf den Code, um dem Spiel beizutreten.",
     "announcer": "Automatische Ansage",
     "draw": "Zahl ziehen",
     "extractions": "Zuletzt gezogene Zahl | Letzte {0} gezogene Zahlen",
