@@ -49,40 +49,7 @@ const amount = useRouteQuery('n', 1, {
 const searchNumber = ref(1), numberFound = ref<boolean>()
 const signedNumbers = ref(Array.from({ length: amount.value }).map<number[]>(() => []))
 
-const cards = computed(() => {
-  // TODO: Improve card generation algorithm
-  return Array.from({ length: amount.value }, () => {
-    const card = Array.from({ length: 3 }, () => Array.from<number>({ length: 9 }).fill(0))
-    card.forEach((v) => {
-      let times = 0
-      while (times < 5) {
-        const randIndex = _RandomInt(0, 9)
-        const randNum = _RandomInt(randIndex === 0
-          ? 1
-          : randIndex * 10, (randIndex * 10) + (randIndex === 8
-          ? 10
-          : 9) + 1)
-        if (v[randIndex] === 0
-          && card.findIndex(v => v.find(s => s === randNum)) === -1
-          && card.filter(v => v[randIndex] === 0).length > 1) {
-          v[randIndex] = randNum
-          times++
-        }
-      }
-    })
-    for (let i = 0; i < card.length; i++) {
-      for (let j = 0; j < card[i]!.length; j++) {
-        if (card[i]![j] !== 0) {
-          if (card[i + 1] !== undefined && card[i + 1]![j] !== 0 && card[i]![j]! > card[i + 1]![j]!)
-            [card[i]![j]!, card[i + 1]![j]!] = [card[i + 1]![j]!, card[i]![j]!]
-          else if (card[i + 2] !== undefined && card[i + 2]![j]! !== 0 && card[i]![j]! > card[i + 2]![j]!)
-            [card[i]![j]!, card[i + 2]![j]!] = [card[i + 2]![j]!, card[i]![j]!]
-        }
-      }
-    }
-    return card
-  }).map(c => c.flat())
-})
+const cards = computed(() => Array.from({ length: amount.value }, generateCartella))
 
 const remaining = computed(() => new Set(cards.value.flat().filter(r => r !== 0)).size - new Set(signedNumbers.value.flat()).size)
 
