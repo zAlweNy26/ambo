@@ -48,16 +48,16 @@
     "exit": "Exit",
     "cancel": "Cancel",
     "reset": "Reset",
-    "minimize": "Minimize",
-    "maximize": "Maximize"
+    "minimize": "Exit fullscreen",
+    "maximize": "Fullscreen"
   },
   "exit": {
     "title": "Are you sure you want to exit?",
     "description": "You will lose all your progress if you exit now."
   },
   "home": {
-    "welcome": "Welcome on {0}",
-    "subtitle": "An application to play online bingo quickly and easily.",
+    "welcome": "Welcome to {0}",
+    "subtitle": "An application to play tombola online quickly and easily.",
     "today": "Number of the day",
     "smorfia": "from the Neapolitan smorfia",
     "how": "How to play",
@@ -91,17 +91,17 @@
   },
   "board": {
     "prize": "Prize distribution",
-    "smirk": "Choose a smirk",
+    "smirk": "Choose a smorfia",
     "announcer": "Automatic announcer",
     "draw": "Draw a number",
-    "extractions": "Last extraction | Last {0} extractions"
+    "extractions": "Last draw | Last {0} draws"
   },
   "cards": {
     "title": "How many cards do you want to play with?",
     "description": "Enter a game ID and select the number of cards you want to play with.",
     "quantity": "{0} card | {0} cards",
     "search": "Search the number",
-    "found": "Number {0} found and added",
+    "found": "Number {0} found and marked",
     "notFound": "Number {0} not found"
   },
   "pwa": {

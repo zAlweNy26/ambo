@@ -88,18 +88,18 @@
     "smorfia": "de la smorfia napolitaine",
     "how": "Comment jouer",
     "step1": "Ouvrez le tableau",
-    "step1Text": "Sur la télé ou l'ordinateur que tout le monde voit, puis partagez l'ID de la partie avec la table.",
+    "step1Text": "Sur la télé ou l’ordinateur que tout le monde voit, puis partagez l’ID de la partie avec la table.",
     "step2": "Rejoignez avec vos cartons",
-    "step2Text": "Chaque joueur saisit l'ID sur son téléphone et choisit de 1 à 6 cartons.",
+    "step2Text": "Chaque joueur saisit l’ID sur son téléphone et choisit de 1 à 6 cartons.",
     "step3": "Tirez et cochez",
-    "step3Text": "L'hôte tire les numéros, ils arrivent en direct et vous les cochez d'un geste.",
-    "prizes": "Ce que l'on gagne",
-    "prizesText": "Tout se gagne sur une seule ligne d'un carton, sauf la tombola.",
+    "step3Text": "L’hôte tire les numéros, ils arrivent en direct et vous les cochez d’un geste.",
+    "prizes": "Ce que l’on gagne",
+    "prizesText": "Tout se gagne sur une seule ligne d’un carton, sauf la tombola.",
     "ambo": "Deux numéros sur la même ligne",
     "terna": "Trois sur la même ligne",
     "quaterna": "Quatre sur la même ligne",
     "cinquina": "Une ligne complète : les cinq numéros",
-    "tombola": "Les quinze numéros d'un carton"
+    "tombola": "Les quinze numéros d’un carton"
   },
   "language": {
     "toggle": "Changer de langue"
