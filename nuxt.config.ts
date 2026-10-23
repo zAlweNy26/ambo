@@ -169,6 +169,18 @@ export default defineNuxtConfig({
     plugins: [
       voidPlugin(),
     ],
+    // Found late on a cold cache, Vite re-bundled them mid-load and reloaded, leaving duplicate modules
+    // (vue-i18n "Need to install with app.use", skew-protection's undefined config)
+    optimizeDeps: {
+      include: [
+        'nuxt > @nuxt/devtools > @vitejs/devtools-kit/client',
+        'nuxt > @nuxt/devtools > error-stack-parser-es',
+        'nuxt > @nuxt/devtools > vite-plugin-vue-devtools/client',
+        'nuxt > @nuxt/devtools > vite-plugin-vue-tracer/client/overlay',
+        'uqr',
+        'workbox-window',
+      ],
+    },
   },
 
   ogImage: {

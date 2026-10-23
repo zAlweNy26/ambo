@@ -71,12 +71,21 @@ const { title } = useAppConfig()
 const { copy, copied } = useClipboard()
 const { share, isSupported: isShareSupported } = useShare()
 
-const { isPlaying, isSupported: isSpeechSupported, speak, stop } = useSpeechSynthesis(speakText, {
+const { isPlaying, isSupported: hasSynth, speak, stop } = useSpeechSynthesis(speakText, {
   lang: () => currentLocale.value.language ?? currentLocale.value.code,
   pitch: 1,
   rate: 1,
   volume: 1,
 })
+
+// Chromium on Linux has no voices without --enable-speech-dispatcher and fails silently: hide the announcer there
+const hasVoices = ref(false)
+if (window.speechSynthesis) {
+  const checkVoices = () => hasVoices.value = speechSynthesis.getVoices().length > 0
+  checkVoices()
+  useEventListener(speechSynthesis, 'voiceschanged', checkVoices)
+}
+const isSpeechSupported = computed(() => hasSynth.value && hasVoices.value)
 
 const splittedPrize = computed(() => splitPrize(settings.value.totalPrize))
 
@@ -93,7 +102,7 @@ const currentSmirk = computed(() => {
 
 watchDeep(currentSmirk, () => {
   if (isPlaying.value) stop()
-  if (settings.value.autoAnnounce) speechText()
+  if (settings.value.autoAnnounce && isSpeechSupported.value) speechText()
 })
 
 async function copyGameId() {
@@ -277,7 +286,7 @@ function extractNumber() {
       <div class="panel flex flex-col gap-4 p-4 lg:col-start-1 xl:col-start-auto">
         <USelect v-model="settings.smirk" :placeholder="$t('board.smirk')" class="w-full"
                  :aria-label="$t('board.smirk')" :items="smirkOptions" />
-        <USwitch v-model="settings.autoAnnounce" :disabled="!settings.smirk" :label="$t('board.announcer')" />
+        <USwitch v-if="isSpeechSupported" v-model="settings.autoAnnounce" :disabled="!settings.smirk" :label="$t('board.announcer')" />
         <UFormField :label="$t('board.prize')">
           <UInputNumber v-model="settings.totalPrize" :min="0.1" :step="0.1" class="w-full" />
         </UFormField>
