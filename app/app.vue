@@ -2,17 +2,12 @@
 import * as locales from '@nuxt/ui/locale'
 
 const { locale } = useI18n()
-const colorMode = useColorMode()
-
-const color = computed(() => colorMode.value === 'dark'
-  ? '#fafaf9'
-  : '#1c1917')
-
 useHead({
   meta: [
     { charset: 'utf-8' },
     { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-    { key: 'theme-color', name: 'theme-color', content: color },
+    // Matches the red header bar (same in both themes) and the manifest
+    { key: 'theme-color', name: 'theme-color', content: '#c41e2a' },
   ],
   link: [
     { rel: 'icon', href: '/favicon.ico' },
