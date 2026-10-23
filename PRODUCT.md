@@ -20,7 +20,9 @@ The primary scene is a family table during the holidays. One host runs the **boa
 - Host draws numbers 1–90; drawn numbers mark on the tabellone (six 15-number blocks).
 - Host sets a total prize; the app splits it across ambo, terna, quaterna, cinquina, tombola.
 - Host picks a regional smorfia (Napoletana, Trapanese, Romana, Piemontese, Livornese); each drawn number shows its smorfia meaning, optionally read aloud by speech synthesis.
-- Players join with the game ID choosing 1–6 cartelle (3×9 grid, 15 numbers each), receive draws live (SSE), see the last 5 draws, tap to mark numbers, and search a number across their cards.
+- Host shows a QR code of the join link; the board resumes its game after a reload or crash.
+- Players join with the game ID choosing 1–6 cartelle (3×9 grid, 15 numbers each), receive draws live (SSE), see the last 5 draws, tap to mark numbers (or turn on auto-mark), and search a number across their cards. Cartelle and marks survive a reload.
+- Players claim ambo…tombola from a cartella; the server verifies the claim against the draws, the board announces the winner and shows names next to each prize, and same-draw claims share the prize.
 - Wake lock and fullscreen during games; exit confirmation.
 - Terms and contacts pages; 404/error page.
 

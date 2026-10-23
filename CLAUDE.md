@@ -28,13 +28,16 @@ Package manager is **bun**.
 - **Nuxt 4 SPA** (`ssr: false`). App code is in `app/`. Nuxt UI v4 components use the default **`U` prefix** (`UButton`, `UModal`…). Tailwind v4 is configured in `app/assets/main.css`. Icons are Tabler (`i-tabler-*`).
 - **Deploy target:** Cloudflare Workers through **Void** (`void.config.ts`, `voidPlugin()` in `nuxt.config.ts`). Bindings:
   - **KV** holds live games as `game:<id>` with a 24h TTL (`server/utils/game.ts`: `getGame` / `setGame`).
-  - **D1** (`db/schema.ts`, imported as `@schema`) only stores finished-game stats, written by `POST /api/game/close`.
+  - **D1** (`db/schema.ts`, imported as `@schema`) stores finished-game stats, written by `POST /api/game/close`, and the prize claims of live games (`claims`). D1 inserts are atomic, so simultaneous claims are never lost. Claims hold player names, so they are deleted on close and swept after 24h.
   - Nuxt Content also uses the D1 binding (`content/terms_*.md`).
 - **Game flow:**
-  1. `pages/board.vue` calls `POST /api/game/create`. The game ID is the first 8 hex characters of a UUID.
-  2. The board draws numbers client-side from the fixed six-block tabellone layout and posts each one to `/api/game/extract`.
-  3. Players use `pages/cards.vue`. Their cartelle are generated client-side, and they subscribe to `GET /game?id=…` (`server/routes/game.ts`). That route is an SSE stream that polls KV every second and pushes the full extractions array.
+  1. `pages/board.vue` calls `POST /api/game/create`. The game ID is the first 8 hex characters of a UUID. The response also carries a secret host ID, which draw, resume and close require (`getHostedGame`). The board keeps both in localStorage, so `/board?id=…` resumes after a reload through `/api/game/resume`.
+  2. The board draws numbers client-side from the fixed six-block tabellone layout and posts each one to `/api/game/extract`. The board is the only writer of `game:<id>`. Players live under their own `player:<id>:<uuid>` keys, so a join never races a draw.
+  3. Players use `pages/cards.vue`. Their cartelle are generated client-side (`app/utils/cartella.ts`) and saved in localStorage per game. They subscribe to `GET /game?id=…&player=…` (`server/routes/game.ts`). That route is an SSE stream that polls KV every second:
+     - It pushes the extractions array when it changes, plus a named `winners` event.
+     - It ends after 900 polls so EventSource reconnects, because Workers allow 1,000 KV operations per request.
   4. `/api/game/join` only checks that the game exists.
+  5. Players claim prizes with `POST /api/game/claim`. The rules are in `shared/utils/claim.ts`, which is auto-imported in both app and server. The board polls `GET /api/game/claims` every 3 s, and each draw copies the winners into the game for the stream.
 - **Smorfia:** the regional number meanings are static JSON in `app/assets/*.json` (`{ number, original, translated }`). The board optionally reads them aloud with `useSpeechSynthesis`.
 - **Auto-imports:**
   - es-toolkit is auto-imported by `nuxt-es-toolkit` with an **`_` prefix** (`_Sample`, `_RandomInt`; `is*` functions keep their name). Keep that prefix: the module's default `use` prefix silently overrides Nuxt's `useHead` and VueUse's `useDebounce`, `useThrottle` and `useMemoize`.
