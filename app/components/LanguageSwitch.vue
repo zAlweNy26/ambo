@@ -15,7 +15,7 @@ const items = computed<DropdownMenuItem[]>(() => locales.value.map(l => ({
 <template>
   <ClientOnly>
     <UDropdownMenu :items :content="{ align: 'end', sideOffset: 16 }">
-      <UButton :aria-label="$t('language.toggle')" variant="ghost" color="neutral" size="sm"
+      <UButton :aria-label="`${currentLocale.code.toUpperCase()}, ${$t('language.toggle')}`" variant="ghost" color="neutral" size="sm"
                :label="currentLocale.code.toUpperCase()" icon="i-tabler-language" />
       <template #item-trailing="{ item }">
         <UIcon v-if="item.checked" name="i-tabler-point-filled" class="size-4" />
