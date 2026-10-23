@@ -76,6 +76,8 @@
     "tombola": "All fifteen numbers of a card"
   },
   "contacts": {
+    "role": "Project Manager\nFull-Stack Developer",
+    "website": "Website",
     "title": "Development team",
     "description": "Those who developed \"{0}\", putting their hearts into completing it and making it available to all."
   },

@@ -76,6 +76,8 @@
     "tombola": "Tutti i quindici numeri di una cartella"
   },
   "contacts": {
+    "role": "Project Manager\nSviluppatore full-stack",
+    "website": "Sito web",
     "title": "Team di sviluppo",
     "description": "Coloro che hanno sviluppato \"{0}\", mettendoci il cuore per completarlo e renderlo disponibile a tutti."
   },

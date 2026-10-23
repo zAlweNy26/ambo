@@ -1,24 +1,15 @@
 <script lang="ts" setup>
-interface Member {
-  name: string
-  avatar?: string
-  description: string
-  links: {
-    icon: string
-    name: string
-    url: string
-  }[]
-}
+const { t } = useI18n()
 
-const devTeam: Member[] = [
+const devTeam = computed(() => [
   {
     name: 'Daniele Nicosia',
     avatar: '/main_dev.webp',
-    description: 'Project Manager\nFull-Stack Developer',
+    description: t('contacts.role'),
     links: [
       {
         icon: 'i-tabler-world',
-        name: 'Website',
+        name: t('contacts.website'),
         url: 'https://zalweny26.github.io',
       },
       {
@@ -33,7 +24,7 @@ const devTeam: Member[] = [
       },
     ],
   },
-]
+])
 
 const { title } = useAppConfig()
 </script>

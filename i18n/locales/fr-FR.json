@@ -45,6 +45,8 @@
     "title": "Avec combien de cartons voulez-vous jouer ?"
   },
   "contacts": {
+    "role": "Chef de projet\nDéveloppeur full-stack",
+    "website": "Site web",
     "description": "Ceux qui ont créé « {0} », en y mettant tout leur cœur pour le terminer et le partager avec tous.",
     "title": "Équipe de développement"
   },
