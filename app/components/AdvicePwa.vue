@@ -6,7 +6,7 @@ const { $pwa } = useNuxtApp()
   <ClientOnly>
     <div v-if="$pwa?.needRefresh"
          class="flex justify-center items-center font-medium p-2 bg-accented gap-2">
-      <h6>{{ $t('pwa.updateTitle') }}</h6>
+      <p>{{ $t('pwa.updateTitle') }}</p>
       <UButton size="sm" color="success" @click="$pwa.updateServiceWorker()">
         {{ $t('pwa.update') }}
       </UButton>
@@ -16,7 +16,7 @@ const { $pwa } = useNuxtApp()
     </div>
     <div v-else-if="$pwa?.showInstallPrompt"
          class="flex justify-center items-center font-medium p-2 bg-accented gap-2">
-      <h6>{{ $t('pwa.installTitle') }}</h6>
+      <p>{{ $t('pwa.installTitle') }}</p>
       <UButton size="sm" color="success" @click="$pwa.install()">
         {{ $t('pwa.install') }}
       </UButton>

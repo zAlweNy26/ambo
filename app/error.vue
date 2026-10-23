@@ -26,7 +26,9 @@ function handleError() {
     <div class="flex grow flex-col items-center justify-center gap-8 px-4 py-12 text-center">
       <div class="flex flex-col gap-4 text-4xl font-bold sm:text-5xl">
         <span class="text-8xl font-semibold tracking-tight text-primary tabular-nums">{{ error.statusCode }}</span>
-        <span class="font-semibold tracking-tight text-highlighted">{{ $t('error.routes.notAccessible') }}</span>
+        <h1 class="font-semibold tracking-tight text-highlighted">
+          {{ $t('error.routes.notAccessible') }}
+        </h1>
         <span class="whitespace-break-spaces text-2xl font-medium text-toned">
           {{ $t($te(errorMsg) ? errorMsg : 'error.routes.fallback') }}
         </span>

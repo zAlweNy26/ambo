@@ -52,9 +52,9 @@ const { title } = useAppConfig()
           <NuxtImg :alt="member.name" :src="member.avatar" class="rounded-2xl"
                    width="128" height="128" sizes="96px md:128px" loading="eager" />
         </template>
-        <h3 class="font-bold">
+        <h2 class="font-bold">
           {{ member.name }}
-        </h3>
+        </h2>
         <p class="whitespace-pre-wrap text-sm">
           {{ member.description }}
         </p>

@@ -45,7 +45,7 @@ useEventListener('beforeunload', (event) => {
     <UButton :aria-label="isFullscreen ? $t('button.minimize') : $t('button.maximize')"
              :icon="isFullscreen ? 'i-tabler-minimize' : 'i-tabler-maximize'" size="xl" variant="ghost" color="neutral"
              @click="toggle()" />
-    <i18n-t keypath="game.title" tag="h2" class="text-lg font-medium text-toned text-balance sm:text-xl">
+    <i18n-t keypath="game.title" tag="h1" class="text-lg font-medium text-toned text-balance sm:text-xl">
       <slot name="title">
         <span>{{ $t(`header.${String($route.name)}`) }}</span>
       </slot>
