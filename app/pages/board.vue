@@ -1,12 +1,17 @@
 <script lang="ts" setup>
-import Dinero from 'dinero.js'
 import livornese from '~/assets/livornese.json'
 import napoletana from '~/assets/napoletana.json'
 import piemontese from '~/assets/piemontese.json'
 import romana from '~/assets/romana.json'
 import trapanese from '~/assets/trapanese.json'
 
-const smirks = { napoletana, trapanese, romana, piemontese, livornese }
+const smirks = {
+  napoletana,
+  trapanese,
+  romana,
+  piemontese,
+  livornese,
+}
 
 const { data: gameId } = useFetch('/api/game/create', {
   method: 'POST',
@@ -18,14 +23,23 @@ const { data: gameId } = useFetch('/api/game/create', {
 const router = useRouter()
 
 watch(gameId, (id) => {
-  if (id) router.push({ query: { id }, replace: true })
+  if (id) {
+    router.push({
+      query: { id },
+      replace: true,
+    })
+  }
 })
 
 const cards = Array.from({ length: 6 }).map((_, i) => {
   let up = -5
   const card = Array.from({ length: 15 }).map((_, j) => {
-    up += j % 5 ? 0 : 5
-    return (j + 1) + (i * 15) + up - (i % 2 ? 10 : 0)
+    up += j % 5
+      ? 0
+      : 5
+    return (j + 1) + (i * 15) + up - (i % 2
+      ? 10
+      : 0)
   })
   return card
 })
@@ -39,7 +53,10 @@ const smirkOptions = [
 ]
 
 onBeforeUnmount(() => {
-  $fetch('/api/game/close', { method: 'POST', body: { gameId: gameId.value } })
+  $fetch('/api/game/close', {
+    method: 'POST',
+    body: { gameId: gameId.value },
+  })
 })
 
 const { currentLocale } = storeToRefs(useSettingsStore())
@@ -58,22 +75,7 @@ const { isPlaying, isSupported: isSpeechSupported, speak, stop } = useSpeechSynt
   volume: 1,
 })
 
-const splittedPrize = computed(() => {
-  const totPrize = Dinero({ amount: Math.round(totalPrize.value * 10) })
-  const prizes = { ambo: 0, terna: 0, quaterna: 0, cinquina: 0, tombola: 0 }
-  const dividedPrize = totPrize.allocate([40, 60])
-  prizes.tombola = dividedPrize[0]!.getAmount() / 10
-  prizes.cinquina = dividedPrize[1]!.divide(2, 'HALF_UP').getAmount() / 10
-  prizes.quaterna = dividedPrize[1]!.divide(4, 'HALF_UP').getAmount() / 10
-  prizes.terna = dividedPrize[1]!.divide(8, 'HALF_UP').getAmount() / 10
-  prizes.ambo = dividedPrize[1]!.divide(12, 'HALF_UP').getAmount() / 10
-  const sumPrizes = prizes.ambo + prizes.terna + prizes.quaterna + prizes.cinquina + prizes.tombola
-  const remainder = Dinero({ amount: Math.round(((totPrize.getAmount() / 10) - sumPrizes) * 10) })
-  const dividedRemainder = remainder.allocate([50, 50]).map(v => v.getAmount())
-  prizes.terna += dividedRemainder[0]! / 10
-  prizes.ambo += dividedRemainder[1]! / 10
-  return prizes
-})
+const splittedPrize = computed(() => splitPrize(totalPrize.value))
 
 const remainingNumbers = computed(() => {
   const allNumbers = cards.flat()
@@ -129,7 +131,7 @@ function speechText() {
   const { number, original, translated } = currentSmirk.value
   speakText.value = `${number}. ${original}. ${translated}.`
   if (isPlaying.value) stop()
-  setTimeout(() => speak(), 250)
+  setTimeout(speak, 250)
 }
 
 async function extractNumber() {
@@ -155,9 +157,9 @@ async function extractNumber() {
       <div class="flex items-center gap-3">
         <span class="text-sm text-muted">{{ $t('game.id') }}</span>
         <span class="text-xl font-semibold tracking-wide tabular-nums">{{ gameId || '········' }}</span>
-        <NuButton square variant="soft" color="neutral" :aria-label="isShareSupported ? $t('aria.share') : $t('aria.copy')"
-                  :icon="isShareSupported ? 'i-tabler-share' : (copied ? 'i-tabler-copy-check' : 'i-tabler-copy')"
-                  @click="shareGameId()" />
+        <UButton square variant="soft" color="neutral" :aria-label="isShareSupported ? $t('aria.share') : $t('aria.copy')"
+                 :icon="isShareSupported ? 'i-tabler-share' : (copied ? 'i-tabler-copy-check' : 'i-tabler-copy')"
+                 @click="shareGameId()" />
       </div>
       <p class="grow text-sm text-muted">
         {{ $t('game.description') }}
@@ -180,13 +182,13 @@ async function extractNumber() {
             </p>
             <p class="text-sm text-muted">
               {{ currentSmirk.translated }}
-              <NuButton v-if="isSpeechSupported" variant="link" color="neutral" size="sm" icon="i-tabler-volume"
-                        :aria-label="$t('board.announcer')" class="align-middle" @click="speechText()" />
+              <UButton v-if="isSpeechSupported" variant="link" color="neutral" size="sm" icon="i-tabler-volume"
+                       :aria-label="$t('board.announcer')" class="align-middle" @click="speechText()" />
             </p>
           </template>
         </div>
-        <NuButton icon="i-tabler-arrow-big-down-lines" :disabled="remaining === 0 || !smirk" size="xl" block loadingAuto
-                  :label="$t('board.draw')" @click="extractNumber" />
+        <UButton icon="i-tabler-arrow-big-down-lines" :disabled="remaining === 0 || !smirk" size="xl" block loadingAuto
+                 :label="$t('board.draw')" @click="extractNumber" />
       </div>
 
       <div class="panel grid select-none border-[var(--print-line)] sm:grid-cols-2 lg:row-span-2 xl:row-span-1">
@@ -200,12 +202,12 @@ async function extractNumber() {
       </div>
 
       <div class="panel flex flex-col gap-4 p-4 lg:col-start-1 xl:col-start-auto">
-        <NuSelect v-model="smirk" :placeholder="$t('board.smirk')" class="w-full"
-                  :aria-label="$t('board.smirk')" :items="smirkOptions" />
-        <NuSwitch v-model="autoAnnounce" :disabled="!smirk" :label="$t('board.announcer')" />
-        <NuFormField :label="$t('board.prize')">
-          <NuInputNumber v-model="totalPrize" :min="0.1" :step="0.1" class="w-full" />
-        </NuFormField>
+        <USelect v-model="smirk" :placeholder="$t('board.smirk')" class="w-full"
+                 :aria-label="$t('board.smirk')" :items="smirkOptions" />
+        <USwitch v-model="autoAnnounce" :disabled="!smirk" :label="$t('board.announcer')" />
+        <UFormField :label="$t('board.prize')">
+          <UInputNumber v-model="totalPrize" :min="0.1" :step="0.1" class="w-full" />
+        </UFormField>
         <dl v-if="totalPrize > 0" class="divide-y divide-default text-sm">
           <div v-for="(value, name) in splittedPrize" :key="name" class="flex justify-between py-1.5">
             <dt class="capitalize text-muted">

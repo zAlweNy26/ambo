@@ -92,8 +92,11 @@ export default defineI18nConfig(() => ({
         hour: '2-digit', minute: '2-digit',
       },
       datetime: {
-        year: 'numeric', month: 'short', day: '2-digit',
-        hour: '2-digit', minute: '2-digit',
+        year: 'numeric',
+        month: 'short',
+        day: '2-digit',
+        hour: '2-digit',
+        minute: '2-digit',
       },
     },
     en: {
@@ -104,8 +107,11 @@ export default defineI18nConfig(() => ({
         hour: '2-digit', minute: '2-digit',
       },
       datetime: {
-        year: 'numeric', month: 'short', day: '2-digit',
-        hour: '2-digit', minute: '2-digit',
+        year: 'numeric',
+        month: 'short',
+        day: '2-digit',
+        hour: '2-digit',
+        minute: '2-digit',
       },
     },
     es: {
@@ -116,8 +122,11 @@ export default defineI18nConfig(() => ({
         hour: '2-digit', minute: '2-digit',
       },
       datetime: {
-        year: 'numeric', month: 'short', day: '2-digit',
-        hour: '2-digit', minute: '2-digit',
+        year: 'numeric',
+        month: 'short',
+        day: '2-digit',
+        hour: '2-digit',
+        minute: '2-digit',
       },
     },
     fr: {
@@ -128,8 +137,11 @@ export default defineI18nConfig(() => ({
         hour: '2-digit', minute: '2-digit',
       },
       datetime: {
-        year: 'numeric', month: 'short', day: '2-digit',
-        hour: '2-digit', minute: '2-digit',
+        year: 'numeric',
+        month: 'short',
+        day: '2-digit',
+        hour: '2-digit',
+        minute: '2-digit',
       },
     },
     it: {
@@ -140,8 +152,11 @@ export default defineI18nConfig(() => ({
         hour: '2-digit', minute: '2-digit',
       },
       datetime: {
-        year: 'numeric', month: 'short', day: '2-digit',
-        hour: '2-digit', minute: '2-digit',
+        year: 'numeric',
+        month: 'short',
+        day: '2-digit',
+        hour: '2-digit',
+        minute: '2-digit',
       },
     },
   },

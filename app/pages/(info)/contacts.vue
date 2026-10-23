@@ -47,7 +47,7 @@ const { title } = useAppConfig()
       <strong>{{ title }}</strong>
     </i18n-t>
     <div class="flex flex-wrap gap-8 w-full items-center justify-evenly">
-      <NuCard v-for="member in devTeam" :key="member.name" class="panel text-center ring-0" :ui="{ root: 'divide-y-0', header: 'grid place-content-center' }">
+      <UCard v-for="member in devTeam" :key="member.name" class="panel text-center ring-0" :ui="{ root: 'divide-y-0', header: 'grid place-content-center' }">
         <template v-if="member.avatar" #header>
           <NuxtImg :alt="member.name" :src="member.avatar" class="rounded-2xl"
                    width="128" height="128" sizes="96px md:128px" loading="eager" />
@@ -59,12 +59,12 @@ const { title } = useAppConfig()
           {{ member.description }}
         </p>
         <template #footer>
-          <NuFieldGroup>
-            <NuButton v-for="link in member.links" :key="link.icon" size="xl" variant="subtle" :aria-label="`${link.name} - ${member.name}`"
-                      :icon="link.icon" square external :to="link.url" target="_blank" />
-          </NuFieldGroup>
+          <UFieldGroup>
+            <UButton v-for="link in member.links" :key="link.icon" size="xl" variant="subtle" :aria-label="`${link.name} - ${member.name}`"
+                     :icon="link.icon" square external :to="link.url" target="_blank" />
+          </UFieldGroup>
         </template>
-      </NuCard>
+      </UCard>
     </div>
   </section>
 </template>

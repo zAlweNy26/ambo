@@ -18,7 +18,11 @@ watchDeep(() => error, (err) => {
   console.log(err)
 }, { immediate: true })
 
-const handleError = () => clearError({ redirect: localePath('index') })
+function handleError() {
+  return clearError({
+    redirect: localePath('index'),
+  })
+}
 </script>
 
 <template>
@@ -31,9 +35,9 @@ const handleError = () => clearError({ redirect: localePath('index') })
           {{ $t($te(errorMsg) ? errorMsg : 'error.routes.fallback') }}
         </span>
       </div>
-      <NuButton color="error" size="xl" @click="handleError">
+      <UButton color="error" size="xl" @click="handleError">
         {{ $t('button.backHome') }}
-      </NuButton>
+      </UButton>
     </div>
   </NuxtLayout>
 </template>

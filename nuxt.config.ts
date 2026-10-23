@@ -18,6 +18,11 @@ export default defineNuxtConfig({
     '@nuxt/image',
     '@nuxt/eslint',
     '@nuxt/content',
+    // `_` prefix keeps es-toolkit out of the use* namespace (its default `use` overrides useHead, useDebounce, useThrottle…)
+    [
+      'nuxt-es-toolkit',
+      { prefix: '_' },
+    ],
   ],
 
   css: ['~/assets/main.css'],
@@ -54,10 +59,6 @@ export default defineNuxtConfig({
     },
   },
 
-  ui: {
-    prefix: 'Nu',
-  },
-
   content: {
     database: {
       type: 'd1',
@@ -81,6 +82,11 @@ export default defineNuxtConfig({
 
   icon: {
     serverBundle: 'local',
+  },
+
+  site: {
+    url: 'https://ambo.danyalwe.me',
+    name: 'Ambo!',
   },
 
   seo: {
@@ -148,7 +154,9 @@ export default defineNuxtConfig({
 
   vite: {
     logLevel: 'info',
-    plugins: [voidPlugin()],
+    plugins: [
+      voidPlugin(),
+    ],
   },
 
   ogImage: {

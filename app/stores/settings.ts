@@ -19,7 +19,9 @@ export const useSettingsStore = defineStore('Settings', () => {
   )
 
   const toggleTheme = () => {
-    colorMode.preference = colorMode.value === 'light' ? 'dark' : 'light'
+    colorMode.preference = colorMode.value === 'light'
+      ? 'dark'
+      : 'light'
   }
 
   const changeLocale = (e: Locale) => {

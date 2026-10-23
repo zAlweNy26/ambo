@@ -4,6 +4,12 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Ambo! is a digital Italian tombola: a host runs the 90-number board (tabellone) and players join from their phones with an 8-character game ID to play their cards (cartelle).
 
+## Rules
+
+- **Never use git worktrees** in this repository: no `EnterWorktree`, no `git worktree add`. This applies even in background or parallel sessions. Work directly in the main checkout, on the branch that is checked out.
+- **Nuxt UI first.** When the UI needs something, use the matching Nuxt UI component (`UButton`, `UModal`, `USelect`, `UFormField`, `UInputNumber`…). If none exists, compose the piece from Nuxt UI components and theme them through `app/app.config.ts`. Hand-roll markup only for game-specific visuals: the tabellone, cartelle, number tokens and the draw token.
+- **No lodash.** Use es-toolkit through `nuxt-es-toolkit` (see Architecture).
+
 ## Commands
 
 Package manager is **bun**.
@@ -11,7 +17,7 @@ Package manager is **bun**.
 - `bun run dev`: dev server on http://localhost:3000. It answers 503 for every request until the build is ready, so wait for `Ready` before loading the page.
 - `bun run lint` / `bun run lint:fix`: ESLint (`@antfu/eslint-config`).
 - `bun run typecheck`: `nuxi typecheck`.
-- `bun run test`: Vitest (`--passWithNoTests`). There are no tests yet. Run a single file with `bunx vitest --run path/to/file.test.ts`.
+- `bun run test`: Vitest. Tests live in `test/` (for example `test/prize.test.ts`). Run a single file with `bunx vitest --run test/prize.test.ts`.
 - `bun run ci`: lint, then typecheck, then test. Run lint and typecheck before committing.
 - `bun run db:generate` / `bun run db:migrate`: Void (Drizzle) migrations for D1, output in `db/migrations`.
 - `bunx pwa-assets-generator`: regenerates the favicon and PWA icons from `public/logo.svg` (`pwa-assets.config.ts`).
@@ -19,7 +25,7 @@ Package manager is **bun**.
 
 ## Architecture
 
-- **Nuxt 4 SPA** (`ssr: false`). App code is in `app/`. Nuxt UI v4 components use the **`Nu` prefix** (`NuButton`, `NuModal`…). Tailwind v4 is configured in `app/assets/main.css`. Icons are Tabler (`i-tabler-*`).
+- **Nuxt 4 SPA** (`ssr: false`). App code is in `app/`. Nuxt UI v4 components use the default **`U` prefix** (`UButton`, `UModal`…). Tailwind v4 is configured in `app/assets/main.css`. Icons are Tabler (`i-tabler-*`).
 - **Deploy target:** Cloudflare Workers through **Void** (`void.config.ts`, `voidPlugin()` in `nuxt.config.ts`). Bindings:
   - **KV** holds live games as `game:<id>` with a 24h TTL (`server/utils/game.ts`: `getGame` / `setGame`).
   - **D1** (`db/schema.ts`, imported as `@schema`) only stores finished-game stats, written by `POST /api/game/close`.
@@ -30,7 +36,11 @@ Package manager is **bun**.
   3. Players use `pages/cards.vue`. Their cartelle are generated client-side, and they subscribe to `GET /game?id=…` (`server/routes/game.ts`). That route is an SSE stream that polls KV every second and pushes the full extractions array.
   4. `/api/game/join` only checks that the game exists.
 - **Smorfia:** the regional number meanings are static JSON in `app/assets/*.json` (`{ number, original, translated }`). The board optionally reads them aloud with `useSpeechSynthesis`.
-- **Auto-imports:** lodash-es is auto-imported with an **`_` prefix** by the local module `modules/lodash` (`_Sample`, `_Random`; `is*` functions keep their name). VueUse composables are auto-imported too.
+- **Auto-imports:**
+  - es-toolkit is auto-imported by `nuxt-es-toolkit` with an **`_` prefix** (`_Sample`, `_RandomInt`; `is*` functions keep their name). Keep that prefix: the module's default `use` prefix silently overrides Nuxt's `useHead` and VueUse's `useDebounce`, `useThrottle` and `useMemoize`.
+  - `_RandomInt(min, max)` excludes `max`.
+  - VueUse composables are auto-imported too.
+- **Prize split:** `app/utils/prize.ts` (`splitPrize`) works in tenths of a euro and keeps the rounding of the old dinero.js v1 code. `test/prize.test.ts` pins those values, so don't change the split without updating the test on purpose.
 
 ## i18n
 

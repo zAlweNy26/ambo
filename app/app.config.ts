@@ -28,11 +28,13 @@ export default defineAppConfig({
       slots: {
         base: 'cursor-pointer transition-all font-medium',
       },
-      compoundVariants: [{
-        color: 'primary',
-        variant: 'solid',
-        class: 'text-white hover:bg-primary-700',
-      }],
+      compoundVariants: [
+        {
+          color: 'primary',
+          variant: 'solid',
+          class: 'text-white hover:bg-primary-700',
+        },
+      ],
     },
     card: {
       slots: {

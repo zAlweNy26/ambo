@@ -10,20 +10,20 @@ const { title } = useAppConfig()
         <span class="font-medium text-toned">{{ title }}</span>
       </i18n-t>
       <nav class="flex flex-wrap items-center justify-center gap-x-5 gap-y-2">
-        <NuLink class="hover:text-highlighted" :to="$localePath('terms')">
+        <ULink class="hover:text-highlighted" :to="$localePath('terms')">
           {{ $t('footer.terms') }}
-        </NuLink>
-        <NuLink class="hover:text-highlighted" :to="$localePath('contacts')">
+        </ULink>
+        <ULink class="hover:text-highlighted" :to="$localePath('contacts')">
           {{ $t('footer.contacts') }}
-        </NuLink>
-        <NuLink class="hover:text-highlighted" to="https://github.com/zAlweNy26/ambo" external target="_blank">
+        </ULink>
+        <ULink class="hover:text-highlighted" to="https://github.com/zAlweNy26/ambo" external target="_blank">
           GitHub
-        </NuLink>
-        <NuLink class="inline-flex items-center gap-1 hover:text-highlighted" target="_blank" external
-                to="https://www.paypal.com/donate/?hosted_button_id=39KEMRPM67FB6">
-          <NuIcon name="i-tabler-heart" class="size-4 text-primary" />
+        </ULink>
+        <ULink class="inline-flex items-center gap-1 hover:text-highlighted" target="_blank" external
+               to="https://www.paypal.com/donate/?hosted_button_id=39KEMRPM67FB6">
+          <UIcon name="i-tabler-heart" class="size-4 text-primary" />
           {{ $t('donate.with') }} PayPal
-        </NuLink>
+        </ULink>
         <LanguageSwitch />
       </nav>
     </div>

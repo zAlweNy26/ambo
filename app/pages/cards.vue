@@ -1,8 +1,10 @@
 <script lang="ts" setup>
 definePageMeta({
-  middleware: [(to) => {
-    if (!to.query.id) return navigateTo('/')
-  }],
+  middleware: [
+    (to) => {
+      if (!to.query.id) return navigateTo('/')
+    },
+  ],
 })
 
 const gameId = useRouteQuery<string>('id', '')
@@ -40,7 +42,9 @@ watch(data, (val) => {
 
 const lastExtractions = computed(() => extractions.value.slice(-5))
 
-const amount = useRouteQuery('n', 1, { transform: v => Math.min(Number(v), 6) })
+const amount = useRouteQuery('n', 1, {
+  transform: v => Math.min(Number(v), 6),
+})
 
 const searchNumber = ref(1), numberFound = ref<boolean>()
 const signedNumbers = ref(Array.from({ length: amount.value }).map<number[]>(() => []))
@@ -52,8 +56,12 @@ const cards = computed(() => {
     card.forEach((v) => {
       let times = 0
       while (times < 5) {
-        const randIndex = _Random(0, 8, false)
-        const randNum = _Random(randIndex === 0 ? 1 : randIndex * 10, (randIndex * 10) + (randIndex === 8 ? 10 : 9), false)
+        const randIndex = _RandomInt(0, 9)
+        const randNum = _RandomInt(randIndex === 0
+          ? 1
+          : randIndex * 10, (randIndex * 10) + (randIndex === 8
+          ? 10
+          : 9) + 1)
         if (v[randIndex] === 0
           && card.findIndex(v => v.find(s => s === randNum)) === -1
           && card.filter(v => v[randIndex] === 0).length > 1) {
@@ -88,7 +96,9 @@ function toggleNumber(card: number, num: number, force = false) {
 
 function checkNumber(num: number, check = true) {
   numberFound.value = undefined
-  const indexes = cards.value.flatMap((c, j) => c.map(n => n === num ? j : -1)).filter(v => v !== -1)
+  const indexes = cards.value.flatMap((c, j) => c.map(n => n === num
+    ? j
+    : -1)).filter(v => v !== -1)
   if (indexes.length === 0 && check) numberFound.value = false
   else {
     if (check) numberFound.value = true
@@ -121,11 +131,11 @@ function checkNumber(num: number, check = true) {
     </div>
 
     <div class="flex w-full max-w-sm flex-col gap-1.5">
-      <NuFieldGroup class="w-full">
-        <NuInputNumber v-model="searchNumber" size="lg" :min="1" :step="1" :max="90" class="grow"
-                       :aria-label="$t('cards.search')" @change="() => numberFound = undefined" />
-        <NuButton icon="i-tabler-search" size="lg" color="neutral" variant="outline" :label="$t('cards.search')" @click="checkNumber(searchNumber)" />
-      </NuFieldGroup>
+      <UFieldGroup class="w-full">
+        <UInputNumber v-model="searchNumber" size="lg" :min="1" :step="1" :max="90" class="grow"
+                      :aria-label="$t('cards.search')" @change="() => numberFound = undefined" />
+        <UButton icon="i-tabler-search" size="lg" color="neutral" variant="outline" :label="$t('cards.search')" @click="checkNumber(searchNumber)" />
+      </UFieldGroup>
       <i18n-t v-if="numberFound !== undefined" class="text-center text-sm" :class="[numberFound ? 'text-success' : 'text-error']"
               :keypath="`cards.${numberFound ? 'found' : 'notFound'}`" tag="p" role="status">
         <strong>{{ searchNumber }}</strong>

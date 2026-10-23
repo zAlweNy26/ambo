@@ -8,7 +8,9 @@ const { t } = useI18n(), toast = useToast()
 const gameId = useRouteQuery<string>('id', '')
 
 async function checkGame(cards: number) {
-  const { found } = await $fetch('/api/game/join', { query: { id: gameId.value } })
+  const { found } = await $fetch('/api/game/join', {
+    query: { id: gameId.value },
+  })
   if (!found) {
     toast.add({
       title: t('game.error.title'),
@@ -17,7 +19,10 @@ async function checkGame(cards: number) {
     })
     return
   }
-  await navigateTo({ name: 'cards', query: { id: gameId.value, n: cards } })
+  await navigateTo({
+    name: 'cards',
+    query: { id: gameId.value, n: cards },
+  })
 }
 
 // A valid sample cartella (five numbers per row); 21 and 43 on the first row make an ambo
@@ -52,23 +57,23 @@ const today = napoletana[dayOfYear % napoletana.length]!
           {{ $t('home.subtitle') }}
         </p>
         <div class="grid w-full max-w-md gap-3 sm:grid-cols-2">
-          <NuButton :label="$t('header.board')" block icon="i-tabler-grid-dots" size="xl"
-                    :to="$localePath('board')" />
-          <NuModal :title="$t('cards.title')" :description="$t('cards.description')" :ui="{
+          <UButton :label="$t('header.board')" block icon="i-tabler-grid-dots" size="xl"
+                   :to="$localePath('board')" />
+          <UModal :title="$t('cards.title')" :description="$t('cards.description')" :ui="{
             content: 'sm:max-w-md',
             body: 'grid grid-cols-2 place-content-center gap-3',
           }" :defaultOpen="!!gameId">
-            <NuButton :label="$t('header.cards')" block icon="i-tabler-cards" size="xl" color="neutral" variant="outline" />
+            <UButton :label="$t('header.cards')" block icon="i-tabler-cards" size="xl" color="neutral" variant="outline" />
             <template #body>
-              <NuFormField class="col-span-2" size="xl" :label="$t('game.id')" required>
-                <NuInput v-model="gameId" :placeholder="$t('game.id')" icon="i-tabler-lock-password" class="w-full"
-                         :ui="{ base: 'tracking-wider tabular-nums' }" />
-              </NuFormField>
-              <NuButton v-for="n in 6" :key="n" :disabled="gameId.length !== 8" :label="$t('cards.quantity', [n], n)"
-                        block size="lg" :color="gameId.length !== 8 ? 'neutral' : 'primary'" :variant="gameId.length !== 8 ? 'outline' : 'solid'"
-                        @click="checkGame(n)" />
+              <UFormField class="col-span-2" size="xl" :label="$t('game.id')" required>
+                <UInput v-model="gameId" :placeholder="$t('game.id')" icon="i-tabler-lock-password" class="w-full"
+                        :ui="{ base: 'tracking-wider tabular-nums' }" />
+              </UFormField>
+              <UButton v-for="n in 6" :key="n" :disabled="gameId.length !== 8" :label="$t('cards.quantity', [n], n)"
+                       block size="lg" :color="gameId.length !== 8 ? 'neutral' : 'primary'" :variant="gameId.length !== 8 ? 'outline' : 'solid'"
+                       @click="checkGame(n)" />
             </template>
-          </NuModal>
+          </UModal>
         </div>
       </div>
 
