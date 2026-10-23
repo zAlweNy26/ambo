@@ -112,6 +112,7 @@
   },
   "toasts": {
     "copied": "Copiato",
-    "drawFailed": "Il numero non è stato salvato. Estrai di nuovo."
+    "drawFailed": "Il numero non è stato salvato. Estrai di nuovo.",
+    "network": "Impossibile contattare il server. Controlla la connessione e riprova."
   }
 }

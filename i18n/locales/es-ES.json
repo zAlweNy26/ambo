@@ -1,7 +1,8 @@
 {
   "toasts": {
     "copied": "Copiado",
-    "drawFailed": "El número no se ha guardado. Vuelve a sacar."
+    "drawFailed": "El número no se ha guardado. Vuelve a sacar.",
+    "network": "No se ha podido conectar con el servidor. Comprueba la conexión e inténtalo de nuevo."
   },
   "game": {
     "description": "¡Comparte este ID con tus amigos para que se unan a la partida!",

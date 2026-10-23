@@ -6,22 +6,34 @@ const { title } = useAppConfig()
 const { t } = useI18n(), toast = useToast()
 
 const gameId = useRouteQuery<string>('id', '')
+// Codes are lowercase hex: forgive capitals and spaces from pasting
+const code = computed(() => gameId.value.trim().toLowerCase())
 
 async function checkGame(cards: number) {
-  const { found } = await $fetch('/api/game/join', {
-    query: { id: gameId.value },
-  })
-  if (!found) {
+  try {
+    const { found } = await $fetch('/api/game/join', {
+      query: { id: code.value },
+    })
+    if (!found) {
+      toast.add({
+        title: t('game.error.title'),
+        description: t('game.error.description'),
+        color: 'error',
+      })
+      return
+    }
+  }
+  catch (error) {
+    console.error(error)
     toast.add({
-      title: t('game.error.title'),
-      description: t('game.error.description'),
+      title: t('toasts.network'),
       color: 'error',
     })
     return
   }
   await navigateTo({
     name: 'cards',
-    query: { id: gameId.value, n: cards },
+    query: { id: code.value, n: cards },
   })
 }
 
@@ -69,8 +81,8 @@ const today = napoletana[dayOfYear % napoletana.length]!
                 <UInput v-model="gameId" :placeholder="$t('game.id')" icon="i-tabler-lock-password" class="w-full"
                         :ui="{ base: 'tracking-wider tabular-nums' }" />
               </UFormField>
-              <UButton v-for="n in 6" :key="n" :disabled="gameId.length !== 8" :label="$t('cards.quantity', [n], n)"
-                       block size="lg" :color="gameId.length !== 8 ? 'neutral' : 'primary'" :variant="gameId.length !== 8 ? 'outline' : 'solid'"
+              <UButton v-for="n in 6" :key="n" :disabled="code.length !== 8" :label="$t('cards.quantity', [n], n)"
+                       block size="lg" :color="code.length !== 8 ? 'neutral' : 'primary'" :variant="code.length !== 8 ? 'outline' : 'solid'"
                        @click="checkGame(n)" />
             </template>
           </UModal>

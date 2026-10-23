@@ -112,6 +112,7 @@
   },
   "toasts": {
     "copied": "Copied",
-    "drawFailed": "The number was not saved. Draw again."
+    "drawFailed": "The number was not saved. Draw again.",
+    "network": "Couldn’t reach the server. Check your connection and try again."
   }
 }

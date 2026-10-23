@@ -1,7 +1,8 @@
 {
   "toasts": {
     "copied": "Kopiert",
-    "drawFailed": "Die Zahl wurde nicht gespeichert. Zieh noch einmal."
+    "drawFailed": "Die Zahl wurde nicht gespeichert. Zieh noch einmal.",
+    "network": "Der Server ist nicht erreichbar. Prüfe deine Verbindung und versuche es noch einmal."
   },
   "game": {
     "description": "Teile diese ID mit deinen Freunden, damit sie mitspielen können!",
