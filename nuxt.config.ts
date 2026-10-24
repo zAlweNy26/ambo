@@ -101,6 +101,11 @@ export default defineNuxtConfig({
     name: 'Ambo!',
   },
 
+  // Crawlers that run JavaScript would create a game (a Durable Object kept for a day) on every /board visit
+  robots: {
+    disallow: ['/board', '/cards'],
+  },
+
   seo: {
     redirectToCanonicalSiteUrl: true,
     debug: process.env.NODE_ENV === 'development',

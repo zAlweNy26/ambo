@@ -28,7 +28,7 @@ Package manager is **bun**.
 - **Nuxt 4 SPA** (`ssr: false`). `nuxt-ai-ready` (llms.txt, from `@nuxtjs/seo`) stays disabled: its mdream WebAssembly breaks Void's Cloudflare deploy, which re-bundles Nitro's Worker with Vite. App code is in `app/`. Nuxt UI v4 components use the default **`U` prefix** (`UButton`, `UModal`…). Tailwind v4 is configured in `app/assets/main.css`. Icons are Tabler (`i-tabler-*`).
 - **Deploy target:** Cloudflare Workers through **Void** (`void.config.ts`, `voidPlugin()` in `nuxt.config.ts`). Bindings:
   - **Durable Objects:** each live game is a `GameRoom` (`ROOMS` binding, `server/room/durable.ts`), named by its game ID. It holds the draws, players, the cartelle it dealt, and claims. Clients talk to it over a WebSocket at `/room/<id>`. An alarm deletes everything after 24h.
-  - **D1** (`db/schema.ts`, imported as `@schema`) stores game stats. The room upserts them at every draw (`server/room/stats.ts`).
+  - **D1** (`db/schema.ts`, imported as `@schema`) stores game stats. The room writes them once, when the host closes the game or its 24h alarm expires it (`server/room/stats.ts`).
   - Nuxt Content also uses the D1 binding (`content/terms_*.md`).
   - One Worker only. The custom entry `server/room/entry.ts`, set for the `cloudflare-module` build in `nuxt.config.ts`, exports `GameRoom` and routes `/room/<id>` to it before Nuxt. `void.config.ts` declares the binding and class migration, and deploys in `atomic` mode.
 - **Game rules** live in `server/room/core.ts`. This module is pure, has no Cloudflare code, and is tested in `test/room.test.ts`. `dispatch` feeds every socket message through `handle`.
@@ -39,7 +39,7 @@ Package manager is **bun**.
   1. `pages/board.vue` calls `POST /api/game/create`. It returns the 8-hex game ID and a secret host ID, kept in localStorage, so `/board?id=…` resumes after a reload. The board joins the room as host, sends `draw` (the room picks the number), and sends `close` when leaving through the app.
   2. Players use `pages/cards.vue`. They join with a per-device player ID and a number of cards. The room deals cartelle once, and allows a different number only before the first draw. The page keeps a copy, plus marks and claims, in localStorage.
   3. Claims are checked against the player's dealt cartella (`hasPrize`) with the shared rules in `shared/utils/claim.ts`. A prize closes once it or a bigger one was won on an earlier draw. Claims on the same draw tie, and the board splits the amount with `allocate()`.
-  4. `/api/game/join` only checks that the game exists. The message types are in `shared/types/room.ts`. The client side is `app/composables/useRoom.ts`, which reconnects, sends heartbeats, and says hello again on every reconnect.
+  4. There is no join check: the cards page opens the socket, and the room answers `not-found` if the game is gone. The message types are in `shared/types/room.ts`. The client side is `app/composables/useRoom.ts`, which reconnects, sends heartbeats, and says hello again on every reconnect.
 - **Smorfia:** the regional number meanings are static JSON in `app/assets/*.json` (`{ number, original, translated }`). The board optionally reads them aloud with `useSpeechSynthesis`.
 - **Auto-imports:**
   - es-toolkit is auto-imported by `nuxt-es-toolkit` with an **`_` prefix** (`_Sample`, `_RandomInt`; `is*` functions keep their name). Keep that prefix: the module's default `use` prefix silently overrides Nuxt's `useHead` and VueUse's `useDebounce`, `useThrottle` and `useMemoize`.

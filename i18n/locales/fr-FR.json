@@ -1,8 +1,7 @@
 {
   "toasts": {
     "copied": "Copié",
-    "drawFailed": "Le numéro n’a pas été enregistré. Tirez à nouveau.",
-    "network": "Impossible de joindre le serveur. Vérifiez votre connexion et réessayez."
+    "drawFailed": "Le numéro n’a pas été enregistré. Tirez à nouveau."
   },
   "game": {
     "description": "Partagez cet ID avec vos amis pour qu’ils rejoignent la partie !",

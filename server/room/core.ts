@@ -42,8 +42,6 @@ export interface Outcome {
   session?: Session
   // The state changed and must be saved
   changed?: boolean
-  // A number was drawn: refresh the stats
-  drawn?: boolean
   // The host ended the game: forget everything
   end?: boolean
 }
@@ -145,7 +143,6 @@ export function handle(state: RoomState, session: Session, msg: ClientMessage, r
           { type: 'draw', number },
         ],
         changed: true,
-        drawn: true,
       }
     }
 
@@ -239,7 +236,15 @@ export async function dispatch(room: RoomHost, conn: Connection, raw: string) {
   if (out.changed) await room.save()
   out.reply.forEach(conn.send)
   for (const message of out.broadcast) room.connections().forEach(c => c.send(message))
-  if (out.end) return room.clear()
-  // Stats are best effort: a D1 hiccup must not stop the game
-  if (out.drawn) await room.stats().catch(error => console.error(error))
+  if (out.end) {
+    await saveFinalStats(room)
+    return room.clear()
+  }
+}
+
+// Stats are written once, when the host closes the game or its alarm expires it, not at every draw: a draw then
+// doesn't wait on D1, which is most of a Durable Object's billed time. Games with no draw aren't counted.
+export async function saveFinalStats(room: RoomHost) {
+  // Best effort: a D1 hiccup must not stop the game from closing
+  if (room.state?.extractions.length) await room.stats().catch(error => console.error(error))
 }

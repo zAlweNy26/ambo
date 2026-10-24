@@ -150,15 +150,22 @@ describe('dispatch', () => {
     return { host, conns, sent, calls }
   }
 
-  it('saves, broadcasts and refreshes stats on a draw, even if stats fail', async () => {
+  it('saves and broadcasts a draw, and writes stats only at close, even if stats fail', async () => {
     const { host, conns, sent, calls } = fake(room())
     await dispatch(host, conns[0]!, JSON.stringify({ type: 'host', host: HOST }))
     await dispatch(host, conns[0]!, '{"type":"draw"}')
-    expect(calls).toEqual(['save', 'stats'])
+    expect(calls).toEqual(['save'])
     expect(sent.b).toHaveLength(1)
     await dispatch(host, conns[0]!, '{"type":"close"}')
-    expect(calls.at(-1)).toBe('clear')
+    expect(calls).toEqual(['save', 'stats', 'clear'])
     expect(sent.b!.at(-1)).toEqual({ type: 'closed' })
+  })
+
+  it('skips stats for a game closed before any draw', async () => {
+    const { host, conns, calls } = fake(room())
+    await dispatch(host, conns[0]!, JSON.stringify({ type: 'host', host: HOST }))
+    await dispatch(host, conns[0]!, '{"type":"close"}')
+    expect(calls).toEqual(['clear'])
   })
 
   it('tells a socket when the game does not exist', async () => {

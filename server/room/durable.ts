@@ -2,7 +2,7 @@
 import type { Connection, RoomHost, RoomState, Session } from './core'
 import { DurableObject } from 'cloudflare:workers'
 import { createDb } from 'void/db'
-import { createRoom, dispatch, ROOM_TTL } from './core'
+import { createRoom, dispatch, ROOM_TTL, saveFinalStats } from './core'
 import { saveStats } from './stats'
 
 export interface Env {
@@ -45,10 +45,6 @@ export class GameRoom extends DurableObject<Env> {
     return true
   }
 
-  exists() {
-    return !!this.state
-  }
-
   async fetch(request: Request) {
     if (request.headers.get('upgrade') !== 'websocket') return new Response('Expected a WebSocket', { status: 426 })
     const { 0: client, 1: server } = new WebSocketPair()
@@ -61,6 +57,7 @@ export class GameRoom extends DurableObject<Env> {
   }
 
   async alarm() {
+    await saveFinalStats(this.host())
     await this.host().clear()
   }
 

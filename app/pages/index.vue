@@ -3,34 +3,13 @@ import napoletana from '~/assets/napoletana.json'
 
 const { title } = useAppConfig()
 
-const { t } = useI18n(), toast = useToast()
-
 const gameId = useRouteQuery<string>('id', '')
 // Codes are lowercase hex: forgive capitals and spaces from pasting
 const code = computed(() => gameId.value.trim().toLowerCase())
+const valid = computed(() => /^[0-9a-f]{8}$/.test(code.value))
 
-async function checkGame(cards: number) {
-  try {
-    const { found } = await $fetch('/api/game/join', {
-      query: { id: code.value },
-    })
-    if (!found) {
-      toast.add({
-        title: t('game.error.title'),
-        description: t('game.error.description'),
-        color: 'error',
-      })
-      return
-    }
-  }
-  catch (error) {
-    console.error(error)
-    toast.add({
-      title: t('toasts.network'),
-      color: 'error',
-    })
-    return
-  }
+// The cards page sends players back here if the room answers that the game doesn't exist
+async function joinGame(cards: number) {
   await navigateTo({
     name: 'cards',
     query: { id: code.value, n: cards },
@@ -81,9 +60,9 @@ const today = napoletana[dayOfYear % napoletana.length]!
                 <UInput v-model="gameId" :placeholder="$t('game.id')" icon="i-tabler-lock-password" class="w-full"
                         :ui="{ base: 'tracking-wider tabular-nums' }" />
               </UFormField>
-              <UButton v-for="n in 6" :key="n" :disabled="code.length !== 8" :label="$t('cards.quantity', [n], n)"
-                       block size="lg" :color="code.length !== 8 ? 'neutral' : 'primary'" :variant="code.length !== 8 ? 'outline' : 'solid'"
-                       @click="checkGame(n)" />
+              <UButton v-for="n in 6" :key="n" :disabled="!valid" :label="$t('cards.quantity', [n], n)"
+                       block size="lg" :color="!valid ? 'neutral' : 'primary'" :variant="!valid ? 'outline' : 'solid'"
+                       @click="joinGame(n)" />
             </template>
           </UModal>
         </div>

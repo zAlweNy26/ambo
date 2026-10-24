@@ -2,7 +2,7 @@ import type { DrizzleD1Database } from 'void/db'
 import type { RoomState } from './core'
 import { extractions, games } from '@schema'
 
-// Stats are upserted at every draw, so a game counts even if its host never leaves through the app
+// Called once per game, at close or expiry (saveFinalStats in core.ts); an upsert, so a repeat is harmless
 export async function saveStats(db: DrizzleD1Database, state: RoomState) {
   const row = {
     playersCount: Object.keys(state.players).length,

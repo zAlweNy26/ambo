@@ -1,11 +1,11 @@
 import { integer, sqliteTable, text } from 'void/schema-d1'
 
-// One row per game, upserted at every draw so games whose host just closes the tab are counted too
+// One row per game with at least one draw, written when the host closes it or its 24h alarm expires it
 export const games = sqliteTable('games', {
   id: integer().primaryKey({ autoIncrement: true }),
   gameId: text('game_id').notNull().unique(),
   playersCount: integer('players_count').notNull(),
-  // Time of the latest draw
+  // When the game was closed or expired
   completedAt: integer('completed_at', { mode: 'timestamp' }).notNull(),
   totalExtractions: integer('total_extractions').notNull(),
 })

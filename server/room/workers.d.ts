@@ -24,7 +24,6 @@ interface DurableObjectState {
 interface DurableObjectStub<T> {
   fetch: (request: unknown) => Promise<Response>
   init: T extends { init: (...args: infer A) => infer R } ? (...args: A) => R : never
-  exists: T extends { exists: () => infer R } ? () => Promise<Awaited<R>> : never
 }
 
 interface DurableObjectNamespace<T> {
