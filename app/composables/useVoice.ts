@@ -1,9 +1,9 @@
 // Reads text aloud in the app's language, for the board's announcer
 export function useVoice() {
-  const { currentLocale } = storeToRefs(useSettingsStore())
+  const { localeProperties } = useI18n()
   const text = ref('')
   const { isPlaying, isSupported: hasSynth, speak, stop } = useSpeechSynthesis(text, {
-    lang: () => currentLocale.value.language ?? currentLocale.value.code,
+    lang: () => localeProperties.value.language ?? localeProperties.value.code,
     pitch: 1,
     rate: 1,
     volume: 1,
