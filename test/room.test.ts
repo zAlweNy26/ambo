@@ -1,8 +1,8 @@
-import type { Connection, RoomHost, RoomState } from '../server/room/core'
-import type { ServerMessage } from '../shared/types/room'
-import type { Prize } from '../shared/utils/claim'
+import type { Connection, RoomHost, RoomState } from '#server/room/core'
+import type { ServerMessage } from '#shared/types/room'
+import type { Prize } from '#shared/utils/claim'
 import { describe, expect, it } from 'vitest'
-import { createRoom, dispatch, handle, parseMessage } from '../server/room/core'
+import { createRoom, dispatch, handle, parseMessage } from '#server/room/core'
 
 const HOST = '00000000-0000-4000-8000-000000000001'
 const P1 = '00000000-0000-4000-8000-000000000002'

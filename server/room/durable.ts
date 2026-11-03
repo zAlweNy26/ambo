@@ -1,9 +1,9 @@
 /// <reference path="./workers.d.ts" />
-import type { Connection, RoomHost, RoomState, Session } from './core'
+import type { Connection, RoomHost, RoomState, Session } from '#server/room/core'
 import { DurableObject } from 'cloudflare:workers'
 import { createDb } from 'void/db'
-import { createRoom, dispatch, ROOM_TTL, saveFinalStats } from './core'
-import { saveStats } from './stats'
+import { createRoom, dispatch, ROOM_TTL, saveFinalStats } from '#server/room/core'
+import { saveStats } from '#server/room/stats'
 
 export interface Env {
   DB: Parameters<typeof createDb>[0]

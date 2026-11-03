@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { allocate, DEFAULT_SPLIT, prizeWinners, splitPrize } from '../app/utils/prize'
+import { allocate, DEFAULT_SPLIT, prizeWinners, splitPrize } from '~/utils/prize'
 
 describe('allocate', () => {
   it('gives leftover units to the first shares', () => {

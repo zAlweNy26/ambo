@@ -1,8 +1,8 @@
 import type { Peer } from 'crossws'
-import type { Connection, RoomHost, RoomState, Session } from './core'
+import type { Connection, RoomHost, RoomState, Session } from '#server/room/core'
 import { db } from 'void/db'
-import { createRoom, dispatch } from './core'
-import { saveStats } from './stats'
+import { createRoom, dispatch } from '#server/room/core'
+import { saveStats } from '#server/room/stats'
 
 // `bun run dev` can't run a Durable Object of this same Worker, so dev keeps rooms in memory with the same rules.
 // They reset when the dev server restarts.

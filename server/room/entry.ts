@@ -1,11 +1,11 @@
 /// <reference path="./workers.d.ts" />
-import type { Env } from './durable'
+import type { Env } from '#server/room/durable'
 import { createHandler } from 'nitropack/presets/cloudflare/runtime/_module-handler'
 import { isPublicAssetURL } from '#nitro-internal-virtual/public-assets'
 import '#nitro-internal-pollyfills'
 
 // Production Worker entry: Nitro's cloudflare-module entry, plus the GameRoom class and /room/<id> routed to it
-export { GameRoom } from './durable'
+export { GameRoom } from '#server/room/durable'
 
 export default createHandler<Env & { ASSETS?: { fetch: (request: unknown) => Promise<Response> } }>({
   fetch(request, env, _context, url) {

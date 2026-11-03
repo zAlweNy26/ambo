@@ -1,10 +1,10 @@
-import type { ClientMessage, Player, ServerMessage } from '../../shared/types/room'
-import type { Prize, Split, Winner } from '../../shared/utils/claim'
-import type { Smorfia } from '../../shared/utils/smorfia'
+import type { ClientMessage, Player, ServerMessage } from '#shared/types/room'
+import type { Prize, Split, Winner } from '#shared/utils/claim'
+import type { Smorfia } from '#shared/utils/smorfia'
 import { z } from 'zod'
-import { generateCartella } from '../../shared/utils/cartella'
-import { hasPrize, isPrizeClosed, isPrizeOn, isTombolinoOpen, PRIZES } from '../../shared/utils/claim'
-import { SMORFIE } from '../../shared/utils/smorfia'
+import { generateCartella } from '#shared/utils/cartella'
+import { hasPrize, isPrizeClosed, isPrizeOn, isTombolinoOpen, PRIZES } from '#shared/utils/claim'
+import { SMORFIE } from '#shared/utils/smorfia'
 
 // The rules of one live game, with no Cloudflare code: the Durable Object (production) and the in-memory
 // room (`bun run dev`) both feed messages through `dispatch`, so they behave the same.

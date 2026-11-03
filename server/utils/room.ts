@@ -1,6 +1,6 @@
 import type { H3Event } from 'h3'
-import type { Env } from '../room/durable'
-import { memoryRooms } from '../room/memory'
+import type { Env } from '#server/room/durable'
+import { memoryRooms } from '#server/room/memory'
 
 // The live games: a Durable Object per game in production, in-memory rooms under `bun run dev`
 export function useRooms(event: H3Event) {

@@ -1,5 +1,5 @@
-import type { Prize, Split, Winner } from '../utils/claim'
-import type { Smorfia } from '../utils/smorfia'
+import type { Prize, Split, Winner } from '#shared/utils/claim'
+import type { Smorfia } from '#shared/utils/smorfia'
 
 // One player who joined, as the board lists them; name is '' until they give one
 export interface Player {

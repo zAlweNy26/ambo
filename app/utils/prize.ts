@@ -1,5 +1,5 @@
-import type { Prize, Split, Winner } from '../../shared/utils/claim'
-import { PRIZES } from '../../shared/utils/claim'
+import type { Prize, Split, Winner } from '#shared/utils/claim'
+import { PRIZES } from '#shared/utils/claim'
 
 export type Prizes = Record<Prize, number>
 

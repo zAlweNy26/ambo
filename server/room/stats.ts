@@ -1,5 +1,5 @@
 import type { DrizzleD1Database } from 'void/db'
-import type { RoomState } from './core'
+import type { RoomState } from '#server/room/core'
 import { extractions, games } from '@schema'
 
 // Called once per game, at close or expiry (saveFinalStats in core.ts); an upsert, so a repeat is harmless

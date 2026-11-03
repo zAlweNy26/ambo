@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
-import { DEFAULT_SPLIT } from '../app/utils/prize'
-import { bestPrize, claimablePrize, hasPrize, isPrizeClosed, isPrizeOn } from '../shared/utils/claim'
+import { bestPrize, claimablePrize, hasPrize, isPrizeClosed, isPrizeOn } from '#shared/utils/claim'
+import { DEFAULT_SPLIT } from '~/utils/prize'
 
 // Same sample cartella as the home page
 const card = [
