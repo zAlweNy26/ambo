@@ -17,6 +17,8 @@ const amount = useRouteQuery('n', 1, {
 })
 
 const extractions = ref<number[]>([]), winners = ref<Winner[]>([]), prize = ref(0), split = ref<Split>(), smirk = ref<Smorfia>()
+// The price of one cartella, set by the host only when the pool comes from the cartelle sold
+const price = ref<number>()
 
 // The room deals the cartelle and checks claims against them; this copy shows them at once after a reload.
 // Marks and claims only live on the phone, one game at a time.
@@ -63,6 +65,7 @@ const room = useRoom(gameId, hello, (message) => {
       winners.value = message.winners
       prize.value = message.prize
       split.value = message.split
+      price.value = message.price
       smirk.value = message.smirk
       // New cards (first join, another amount before the first draw, a new round) start marks and claims over
       if (message.cards && JSON.stringify(message.cards) !== JSON.stringify(saved.value.cards)) {
@@ -84,6 +87,7 @@ const room = useRoom(gameId, hello, (message) => {
     case 'prize':
       prize.value = message.total
       split.value = message.split
+      price.value = message.price
       break
     case 'smirk':
       smirk.value = message.smirk
@@ -209,9 +213,14 @@ const myId = computed(() => shortId(player.value))
       </template>
     </GameHeader>
 
-    <p class="-mt-3 text-sm text-muted">
-      {{ $t('cards.you') }} <span class="font-semibold tracking-wide text-highlighted tabular-nums">{{ myId }}</span>
-    </p>
+    <div class="-mt-3 flex flex-col items-center gap-1 text-sm text-muted">
+      <p>
+        {{ $t('cards.you') }} <span class="font-semibold tracking-wide text-highlighted tabular-nums">{{ myId }}</span>
+      </p>
+      <p v-if="price" class="tabular-nums">
+        {{ $t('cards.cost', { total: $n(price * dealt, 'currency'), price: $n(price, 'currency') }) }}
+      </p>
+    </div>
 
     <div v-if="lastExtractions.length > 0" class="flex flex-col items-center gap-3" aria-live="polite">
       <p class="text-sm text-muted">

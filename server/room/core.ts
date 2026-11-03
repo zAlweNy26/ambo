@@ -34,6 +34,8 @@ export interface RoomState {
   prize?: number
   // The host's custom split, which also says which prizes are played; missing means the default ladder
   split?: Split
+  // The price of one cartella, when the pool comes from the cartelle sold, so each phone shows what it owes
+  price?: number
   // The host's smorfia, so phones can show the meaning of each number
   smirk?: Smorfia
 }
@@ -71,6 +73,7 @@ const messageSchema = z.discriminatedUnion('type', [
     type: z.literal('prize'),
     total: z.number().min(0).max(1_000_000),
     split: z.record(z.enum(PRIZES), z.int().min(0).max(100)).optional(),
+    price: z.number().min(0).max(10_000).optional(),
   }),
   z.object({
     type: z.literal('smirk'),
@@ -137,6 +140,7 @@ export function handle(state: RoomState, session: Session, msg: ClientMessage, r
     winners: winnersOf(state),
     prize: state.prize ?? 0,
     split: state.split,
+    price: state.price,
     players: playersOf(state),
     smirk: state.smirk,
   })
@@ -201,10 +205,16 @@ export function handle(state: RoomState, session: Session, msg: ClientMessage, r
       if (!session.host) return forbidden
       state.prize = msg.total
       state.split = msg.split
+      state.price = msg.price
       return {
         reply: [],
         broadcast: [
-          { type: 'prize', total: msg.total, split: msg.split },
+          {
+            type: 'prize',
+            total: msg.total,
+            split: msg.split,
+            price: msg.price,
+          },
         ],
         changed: true,
       }

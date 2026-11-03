@@ -118,6 +118,10 @@ const cartelle = computed(() => players.value.reduce((sum, p) => sum + p.cards, 
 const pot = computed(() => settings.value.perCard
   ? Math.round(settings.value.price * cartelle.value * 10) / 10
   : settings.value.totalPrize)
+// Sent to the phones only while the pool comes from it
+const price = computed(() => settings.value.perCard
+  ? settings.value.price
+  : undefined)
 const splittedPrize = computed(() => splitPrize(pot.value, settings.value.split))
 const wonPrizes = computed(() => prizeWinners(pot.value, winners.value, settings.value.split))
 const customSplit = computed({
@@ -140,7 +144,7 @@ const room = useRoom(gameId, () => ({ type: 'host', host: game.value.hostId }), 
       winners.value = message.winners
       players.value = message.players
       // The room keeps the pool for the phones; the host's own setting wins
-      if (message.prize !== pot.value || !isEqual(message.split, settings.value.split)) sendPrize()
+      if (message.prize !== pot.value || !isEqual(message.split, settings.value.split) || message.price !== price.value) sendPrize()
       if (settings.value.smirk && message.smirk !== settings.value.smirk) room.send({ type: 'smirk', smirk: settings.value.smirk })
       break
     case 'draw':
@@ -168,12 +172,18 @@ const room = useRoom(gameId, () => ({ type: 'host', host: game.value.hostId }), 
 })
 
 function sendPrize() {
-  room.send({ type: 'prize', total: pot.value, split: settings.value.split })
+  room.send({
+    type: 'prize',
+    total: pot.value,
+    split: settings.value.split,
+    price: price.value,
+  })
 }
 
 watch(() => settings.value.smirk, smirk => smirk && room.send({ type: 'smirk', smirk }))
 watchDebounced([
   pot,
+  price,
   () => settings.value.split,
 ], sendPrize, { debounce: 500, deep: true })
 

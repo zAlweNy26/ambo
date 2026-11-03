@@ -113,6 +113,7 @@
     "notFound": "Number {0} not found",
     "winners": "Winners",
     "you": "Your player ID",
+    "cost": "{total} to pay · {price} per card",
     "vibrate": "Vibrate on each draw"
   },
   "pwa": {

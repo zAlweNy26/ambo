@@ -12,7 +12,7 @@ export type ClientMessage
   = | { type: 'host', host: string }
     | { type: 'join', player: string, cards: number }
     | { type: 'draw' }
-    | { type: 'prize', total: number, split?: Split }
+    | { type: 'prize', total: number, split?: Split, price?: number }
     | { type: 'smirk', smirk: Smorfia }
     | { type: 'claim', card: number, prize: Prize }
     | { type: 'round' }
@@ -20,11 +20,11 @@ export type ClientMessage
 
 // What a game room sends back; `state` answers host/join and repeats after every reconnect
 export type ServerMessage
-  = | { type: 'state', extractions: number[], winners: Winner[], prize: number, split?: Split, players: Player[], smirk?: Smorfia, cards?: number[][] }
+  = | { type: 'state', extractions: number[], winners: Winner[], prize: number, split?: Split, price?: number, players: Player[], smirk?: Smorfia, cards?: number[][] }
     | { type: 'players', players: Player[] }
     | { type: 'draw', number: number }
     | { type: 'winners', winners: Winner[] }
-    | { type: 'prize', total: number, split?: Split }
+    | { type: 'prize', total: number, split?: Split, price?: number }
     | { type: 'smirk', smirk: Smorfia }
     | { type: 'claim', prize: Prize, ok: true }
     | { type: 'claim', prize: Prize, ok: false, reason: 'closed' | 'invalid' }

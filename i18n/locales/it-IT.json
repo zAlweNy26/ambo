@@ -113,6 +113,7 @@
     "notFound": "Numero {0} non trovato",
     "winners": "Vincitori",
     "you": "Il tuo ID giocatore",
+    "cost": "{total} da pagare · {price} a cartella",
     "vibrate": "Vibra a ogni estrazione"
   },
   "pwa": {

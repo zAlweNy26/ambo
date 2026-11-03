@@ -56,6 +56,7 @@
     "title": "¿Con cuántos cartones quieres jugar?",
     "winners": "Ganadores",
     "you": "Tu ID de jugador",
+    "cost": "{total} a pagar · {price} por cartón",
     "vibrate": "Vibrar en cada extracción"
   },
   "contacts": {

@@ -56,6 +56,7 @@
     "title": "Mit wie vielen Karten willst du spielen?",
     "winners": "Gewinner",
     "you": "Deine Spieler-ID",
+    "cost": "{total} zu zahlen · {price} pro Karte",
     "vibrate": "Bei jeder Ziehung vibrieren"
   },
   "contacts": {

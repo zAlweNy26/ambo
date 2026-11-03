@@ -32,6 +32,16 @@ describe('handle', () => {
     expect(handle(state, {}, { type: 'join', player: P1, cards: 1 }).reply[0]).toMatchObject({ type: 'state', prize: 10 })
   })
 
+  it('passes the host\'s price per cartella on to the phones', () => {
+    const state = room()
+    expect(handle(state, { player: P1 }, { type: 'prize', total: 3, price: 0.5 }).reply[0]).toEqual({ type: 'error', reason: 'forbidden' })
+    expect(handle(state, { host: true }, { type: 'prize', total: 3, price: 0.5 }).broadcast).toEqual([
+      { type: 'prize', total: 3, price: 0.5 },
+    ])
+    expect(handle(state, {}, { type: 'join', player: P1, cards: 1 }).reply[0]).toMatchObject({ prize: 3, price: 0.5 })
+    expect(parseMessage('{"type":"prize","total":3,"price":-1}')).toBeUndefined()
+  })
+
   it('lets only the host pick the smorfia, and tells everyone', () => {
     const state = room()
     expect(handle(state, { player: P1 }, { type: 'smirk', smirk: 'romana' }).reply[0]).toEqual({ type: 'error', reason: 'forbidden' })
