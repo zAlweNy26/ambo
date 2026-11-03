@@ -14,7 +14,6 @@ export default defineNuxtConfig({
     '@nuxtjs/i18n',
     '@nuxtjs/seo',
     '@nuxt/ui',
-    '@nuxt/image',
     '@nuxt/eslint',
     '@nuxt/content',
     // `_` prefix keeps es-toolkit out of the use* namespace (its default `use` overrides useHead, useDebounce, useThrottle…)
@@ -85,10 +84,6 @@ export default defineNuxtConfig({
 
   colorMode: {
     classSuffix: '',
-  },
-
-  image: {
-    quality: 100,
   },
 
   icon: {
