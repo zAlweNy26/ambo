@@ -112,8 +112,8 @@
     "found": "Numero {0} trovato e segnato",
     "notFound": "Numero {0} non trovato",
     "winners": "Vincitori",
-    "announce": "Annuncia ogni estrazione",
-    "you": "Il tuo ID giocatore"
+    "you": "Il tuo ID giocatore",
+    "vibrate": "Vibra a ogni estrazione"
   },
   "pwa": {
     "installTitle": "Vuoi installarla come app?",

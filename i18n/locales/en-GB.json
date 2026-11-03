@@ -112,8 +112,8 @@
     "found": "Number {0} found and marked",
     "notFound": "Number {0} not found",
     "winners": "Winners",
-    "announce": "Announce each draw",
-    "you": "Your player ID"
+    "you": "Your player ID",
+    "vibrate": "Vibrate on each draw"
   },
   "pwa": {
     "installTitle": "Do you want to install it as an app?",

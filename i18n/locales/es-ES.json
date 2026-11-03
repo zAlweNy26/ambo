@@ -55,8 +55,8 @@
     "search": "Buscar número",
     "title": "¿Con cuántos cartones quieres jugar?",
     "winners": "Ganadores",
-    "announce": "Anunciar cada extracción",
-    "you": "Tu ID de jugador"
+    "you": "Tu ID de jugador",
+    "vibrate": "Vibrar en cada extracción"
   },
   "contacts": {
     "role": "Jefe de proyecto\nDesarrollador full-stack",

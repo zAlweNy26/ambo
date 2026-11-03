@@ -42,9 +42,9 @@ function goHome(title: string, description?: string) {
   toast.add({ title, description, color: 'error' })
 }
 
-// For players who can't keep an eye on the board: a buzz, and the number read aloud where the phone has a voice
-const announce = useLocalStorage('cards:announce', false)
-const { isSupported: isSpeechSupported, say } = useVoice()
+// For players who can't keep an eye on the board; the board's announcer does the talking. iPhones can't vibrate.
+const canVibrate = 'vibrate' in navigator
+const vibrate = useLocalStorage('cards:vibrate', false)
 
 function hello(): ClientMessage {
   return {
@@ -74,10 +74,7 @@ const room = useRoom(gameId, hello, (message) => {
       break
     case 'draw':
       extractions.value = [...extractions.value, message.number]
-      if (announce.value) {
-        navigator.vibrate?.(200)
-        if (isSpeechSupported.value) say(String(message.number))
-      }
+      if (vibrate.value) navigator.vibrate?.(200)
       break
     case 'winners':
       winners.value = message.winners
@@ -262,7 +259,7 @@ const myId = computed(() => shortId(player.value))
         <strong>{{ searchNumber }}</strong>
       </i18n-t>
       <USwitch v-model="autoMark" :label="$t('cards.autoMark')" class="mt-2 self-center" />
-      <USwitch v-model="announce" :label="$t('cards.announce')" class="self-center" />
+      <USwitch v-if="canVibrate" v-model="vibrate" :label="$t('cards.vibrate')" class="self-center" />
     </div>
 
     <div class="grid w-full justify-items-center gap-5 lg:grid-cols-2">

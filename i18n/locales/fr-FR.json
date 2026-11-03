@@ -55,8 +55,8 @@
     "search": "Chercher le numéro",
     "title": "Avec combien de cartons voulez-vous jouer ?",
     "winners": "Gagnants",
-    "announce": "Annoncer chaque tirage",
-    "you": "Votre ID de joueur"
+    "you": "Votre ID de joueur",
+    "vibrate": "Vibrer à chaque tirage"
   },
   "contacts": {
     "role": "Chef de projet\nDéveloppeur full-stack",

@@ -55,8 +55,8 @@
     "search": "Zahl suchen",
     "title": "Mit wie vielen Karten willst du spielen?",
     "winners": "Gewinner",
-    "announce": "Jede Ziehung ansagen",
-    "you": "Deine Spieler-ID"
+    "you": "Deine Spieler-ID",
+    "vibrate": "Bei jeder Ziehung vibrieren"
   },
   "contacts": {
     "role": "Projektleiter\nFull-Stack-Entwickler",

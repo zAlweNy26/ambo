@@ -1,4 +1,4 @@
-// Reads text aloud in the app's language, for the board's announcer and the phones' draw readout
+// Reads text aloud in the app's language, for the board's announcer
 export function useVoice() {
   const { currentLocale } = storeToRefs(useSettingsStore())
   const text = ref('')
