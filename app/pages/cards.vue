@@ -35,6 +35,8 @@ if (saved.value.gameId !== gameId.value) {
   }
 }
 const cards = computed(() => saved.value.cards)
+// After the first draw the room keeps the cartelle it dealt, whatever amount the link asks for
+const dealt = computed(() => cards.value.length || amount.value)
 const signedNumbers = computed(() => saved.value.marked)
 
 function goHome(title: string, description?: string) {
@@ -201,8 +203,8 @@ const myId = computed(() => shortId(player.value))
   <section class="mx-auto flex w-full max-w-5xl grow touch-pan-y flex-col items-center gap-6 overscroll-y-contain">
     <GameHeader :remaining :confirm-exit="cards.length > 0">
       <template #title>
-        <i18n-t keypath="cards.quantity" tag="span" :plural="amount">
-          <span>{{ amount }}</span>
+        <i18n-t keypath="cards.quantity" tag="span" :plural="dealt">
+          <span>{{ dealt }}</span>
         </i18n-t>
       </template>
     </GameHeader>
