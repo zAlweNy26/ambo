@@ -21,6 +21,9 @@ const hosted = useLocalStorage('board:game', { gameId: '', hostId: '' })
 const settings = useLocalStorage('board:settings', {
   smirk: undefined as keyof typeof smirks | undefined,
   totalPrize: 0.1,
+  // The pool can instead be the price of a cartella times the cartelle sold, as with a real box
+  perCard: false,
+  price: 0.5,
   autoAnnounce: false,
 }, { mergeDefaults: true })
 
@@ -87,8 +90,6 @@ if (window.speechSynthesis) {
 }
 const isSpeechSupported = computed(() => hasSynth.value && hasVoices.value)
 
-const splittedPrize = computed(() => splitPrize(settings.value.totalPrize))
-
 const remaining = computed(() => 90 - extractedNumbers.value.length)
 
 const currentSmirk = computed(() => {
@@ -149,7 +150,12 @@ function speechText() {
 
 const winners = ref<Winner[]>([]), players = ref<Player[]>([])
 const cartelle = computed(() => players.value.reduce((sum, p) => sum + p.cards, 0))
-const wonPrizes = computed(() => prizeWinners(settings.value.totalPrize, winners.value))
+// shortcut: cartelle dealt after the first draw still raise the pool, and amounts already won with it
+const pot = computed(() => settings.value.perCard
+  ? Math.round(settings.value.price * cartelle.value * 10) / 10
+  : settings.value.totalPrize)
+const splittedPrize = computed(() => splitPrize(pot.value))
+const wonPrizes = computed(() => prizeWinners(pot.value, winners.value))
 
 let drawDone: (() => void) | undefined
 
@@ -161,7 +167,7 @@ const room = useRoom(gameId, () => ({ type: 'host', host: game.value.hostId }), 
       winners.value = message.winners
       players.value = message.players
       // The room keeps the pool for the phones; the host's own setting wins
-      if (message.prize !== settings.value.totalPrize) room.send({ type: 'prize', total: settings.value.totalPrize })
+      if (message.prize !== pot.value) room.send({ type: 'prize', total: pot.value })
       break
     case 'draw':
       extractedNumbers.value = [...extractedNumbers.value, message.number]
@@ -181,7 +187,7 @@ const room = useRoom(gameId, () => ({ type: 'host', host: game.value.hostId }), 
   }
 })
 
-watchDebounced(() => settings.value.totalPrize, total => room.send({ type: 'prize', total }), { debounce: 500 })
+watchDebounced(pot, total => room.send({ type: 'prize', total }), { debounce: 500 })
 
 // Leaving through the app ends the game; closing or reloading the tab doesn't, so the board can resume it
 onBeforeUnmount(() => {
@@ -292,10 +298,15 @@ function extractNumber() {
         <USelect v-model="settings.smirk" :placeholder="$t('board.smirk')" class="w-full"
                  :aria-label="$t('board.smirk')" :items="smirkOptions" />
         <USwitch v-if="isSpeechSupported" v-model="settings.autoAnnounce" :disabled="!settings.smirk" :label="$t('board.announcer')" />
-        <UFormField :label="$t('board.prize')">
+        <USwitch v-model="settings.perCard" :label="$t('board.perCard')" />
+        <UFormField v-if="settings.perCard" :label="$t('board.price')"
+                    :help="$t('board.pot', { n: cartelle, total: $n(pot, 'currency') }, cartelle)">
+          <UInputNumber v-model="settings.price" :min="0.1" :step="0.1" class="w-full" />
+        </UFormField>
+        <UFormField v-else :label="$t('board.prize')">
           <UInputNumber v-model="settings.totalPrize" :min="0.1" :step="0.1" class="w-full" />
         </UFormField>
-        <dl v-if="settings.totalPrize > 0" class="divide-y divide-default text-sm">
+        <dl v-if="pot > 0" class="divide-y divide-default text-sm">
           <div v-for="(value, name) in splittedPrize" :key="name" class="flex justify-between py-1.5">
             <dt class="text-muted">
               <span class="capitalize">{{ name }}</span>

@@ -93,7 +93,10 @@
     "draw": "Estrai un numero",
     "extractions": "Ultima estrazione | Ultime {0} estrazioni",
     "players": "{0} giocatore | {0} giocatori",
-    "guest": "Ospite"
+    "guest": "Ospite",
+    "perCard": "Montepremi dalle cartelle vendute",
+    "price": "Prezzo per cartella",
+    "pot": "{n} cartella venduta · {total} in palio | {n} cartelle vendute · {total} in palio"
   },
   "cards": {
     "autoMark": "Segna in automatico i numeri estratti",

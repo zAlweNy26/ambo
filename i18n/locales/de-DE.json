@@ -29,7 +29,10 @@
     "prize": "Gewinnverteilung",
     "smirk": "Smorfia wählen",
     "players": "{0} Spieler | {0} Spieler",
-    "guest": "Gast"
+    "guest": "Gast",
+    "perCard": "Topf aus verkauften Karten",
+    "price": "Preis pro Karte",
+    "pot": "{n} Karte verkauft · {total} im Topf | {n} Karten verkauft · {total} im Topf"
   },
   "button": {
     "backHome": "Zurück zur @:header.home",

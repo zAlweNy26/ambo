@@ -29,7 +29,10 @@
     "prize": "Répartition des gains",
     "smirk": "Choisissez une smorfia",
     "players": "{0} joueur | {0} joueurs",
-    "guest": "Invité"
+    "guest": "Invité",
+    "perCard": "Cagnotte selon les cartons vendus",
+    "price": "Prix par carton",
+    "pot": "{n} carton vendu · {total} en jeu | {n} cartons vendus · {total} en jeu"
   },
   "button": {
     "backHome": "Retour à l’@:header.home",

@@ -93,7 +93,10 @@
     "draw": "Draw a number",
     "extractions": "Last draw | Last {0} draws",
     "players": "{0} player | {0} players",
-    "guest": "Guest"
+    "guest": "Guest",
+    "perCard": "Pool from cards sold",
+    "price": "Price per card",
+    "pot": "{n} card sold · {total} to win | {n} cards sold · {total} to win"
   },
   "cards": {
     "autoMark": "Mark drawn numbers automatically",
