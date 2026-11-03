@@ -97,7 +97,10 @@
     "guest": "Ospite",
     "perCard": "Montepremi dalle cartelle vendute",
     "price": "Prezzo per cartella",
-    "pot": "{n} cartella venduta · {total} in palio | {n} cartelle vendute · {total} in palio"
+    "pot": "{n} cartella venduta · {total} in palio | {n} cartelle vendute · {total} in palio",
+    "customSplit": "Ripartizione personalizzata",
+    "share": "Quota {prize}",
+    "splitTotal": "Le quote sommano al {0}%, quindi gli importi sono riproporzionati al montepremi. Metti un premio a 0% per non giocarlo."
   },
   "cards": {
     "autoMark": "Segna in automatico i numeri estratti",

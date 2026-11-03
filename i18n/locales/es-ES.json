@@ -33,7 +33,10 @@
     "guest": "Invitado",
     "perCard": "Bote según los cartones vendidos",
     "price": "Precio por cartón",
-    "pot": "{n} cartón vendido · {total} en juego | {n} cartones vendidos · {total} en juego"
+    "pot": "{n} cartón vendido · {total} en juego | {n} cartones vendidos · {total} en juego",
+    "customSplit": "Reparto personalizado",
+    "share": "Parte de {prize}",
+    "splitTotal": "Las partes suman el {0}%, así que los importes se ajustan al bote. Pon un premio a 0% para no jugarlo."
   },
   "button": {
     "backHome": "Volver a @:header.home",

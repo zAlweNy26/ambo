@@ -1,9 +1,9 @@
 import type { ClientMessage, Player, ServerMessage } from '../../shared/types/room'
-import type { Prize, Winner } from '../../shared/utils/claim'
+import type { Prize, Split, Winner } from '../../shared/utils/claim'
 import type { Smorfia } from '../../shared/utils/smorfia'
 import { z } from 'zod'
 import { generateCartella } from '../../shared/utils/cartella'
-import { hasPrize, isPrizeClosed, PRIZES } from '../../shared/utils/claim'
+import { hasPrize, isPrizeClosed, isPrizeOn, isTombolinoOpen, PRIZES } from '../../shared/utils/claim'
 import { SMORFIE } from '../../shared/utils/smorfia'
 
 // The rules of one live game, with no Cloudflare code: the Durable Object (production) and the in-memory
@@ -32,6 +32,8 @@ export interface RoomState {
   claims: Claim[]
   // The host's prize pool in euro, so phones can show what each winner takes; missing in rooms saved before it existed
   prize?: number
+  // The host's custom split, which also says which prizes are played; missing means the default ladder
+  split?: Split
   // The host's smorfia, so phones can show the meaning of each number
   smirk?: Smorfia
 }
@@ -69,6 +71,7 @@ const messageSchema = z.discriminatedUnion('type', [
   z.object({
     type: z.literal('prize'),
     total: z.number().min(0).max(1_000_000),
+    split: z.record(z.enum(PRIZES), z.int().min(0).max(100)).optional(),
   }),
   z.object({
     type: z.literal('smirk'),
@@ -136,6 +139,7 @@ export function handle(state: RoomState, session: Session, msg: ClientMessage, r
     extractions: state.extractions,
     winners: winnersOf(state),
     prize: state.prize ?? 0,
+    split: state.split,
     players: playersOf(state),
     smirk: state.smirk,
   })
@@ -199,10 +203,11 @@ export function handle(state: RoomState, session: Session, msg: ClientMessage, r
     case 'prize':
       if (!session.host) return forbidden
       state.prize = msg.total
+      state.split = msg.split
       return {
         reply: [],
         broadcast: [
-          { type: 'prize', total: msg.total },
+          { type: 'prize', total: msg.total, split: msg.split },
         ],
         changed: true,
       }
@@ -219,7 +224,10 @@ export function handle(state: RoomState, session: Session, msg: ClientMessage, r
     case 'claim': {
       const { prize, name } = msg
       const card = session.player ? state.players[session.player]?.[msg.card] : undefined
-      if (!card || !hasPrize(card, state.extractions, prize)) {
+      const won = state.claims.filter(c => c.player === session.player).map(c => c.prize)
+      const draw = state.extractions.length
+      if (!card || !hasPrize(card, state.extractions, prize) || !isPrizeOn(prize, state.split)
+        || (prize === 'tombolino' && !isTombolinoOpen(state.claims, draw, won))) {
         return only({
           type: 'claim',
           prize,
@@ -227,7 +235,6 @@ export function handle(state: RoomState, session: Session, msg: ClientMessage, r
           reason: 'invalid',
         })
       }
-      const draw = state.extractions.length
       if (isPrizeClosed(prize, state.claims, draw)) {
         return only({
           type: 'claim',
@@ -236,7 +243,7 @@ export function handle(state: RoomState, session: Session, msg: ClientMessage, r
           reason: 'closed',
         })
       }
-      if (state.claims.some(c => c.player === session.player && c.prize === prize)) return only({ type: 'claim', prize, ok: true })
+      if (won.includes(prize)) return only({ type: 'claim', prize, ok: true })
       state.claims.push({
         prize,
         player: session.player!,

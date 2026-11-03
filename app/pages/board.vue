@@ -11,6 +11,8 @@ const settings = useLocalStorage('board:settings', {
   // The pool can instead be the price of a cartella times the cartelle sold, as with a real box
   perCard: false,
   price: 0.5,
+  // Custom shares per prize, in percent; a prize at 0 isn't played. Missing means the default ladder, without tombolino
+  split: undefined as Split | undefined,
   autoAnnounce: false,
 }, { mergeDefaults: true })
 
@@ -114,8 +116,17 @@ const cartelle = computed(() => players.value.reduce((sum, p) => sum + p.cards, 
 const pot = computed(() => settings.value.perCard
   ? Math.round(settings.value.price * cartelle.value * 10) / 10
   : settings.value.totalPrize)
-const splittedPrize = computed(() => splitPrize(pot.value))
-const wonPrizes = computed(() => prizeWinners(pot.value, winners.value))
+const splittedPrize = computed(() => splitPrize(pot.value, settings.value.split))
+const wonPrizes = computed(() => prizeWinners(pot.value, winners.value, settings.value.split))
+const customSplit = computed({
+  get: () => !!settings.value.split,
+  set: on => settings.value.split = on
+    ? { ...DEFAULT_SPLIT }
+    : undefined,
+})
+const splitTotal = computed(() => settings.value.split
+  ? Object.values(settings.value.split).reduce((a, b) => a + b, 0)
+  : 100)
 
 let drawDone: (() => void) | undefined
 
@@ -127,7 +138,7 @@ const room = useRoom(gameId, () => ({ type: 'host', host: game.value.hostId }), 
       winners.value = message.winners
       players.value = message.players
       // The room keeps the pool for the phones; the host's own setting wins
-      if (message.prize !== pot.value) room.send({ type: 'prize', total: pot.value })
+      if (message.prize !== pot.value || !isEqual(message.split, settings.value.split)) sendPrize()
       if (settings.value.smirk && message.smirk !== settings.value.smirk) room.send({ type: 'smirk', smirk: settings.value.smirk })
       break
     case 'draw':
@@ -154,8 +165,15 @@ const room = useRoom(gameId, () => ({ type: 'host', host: game.value.hostId }), 
   }
 })
 
+function sendPrize() {
+  room.send({ type: 'prize', total: pot.value, split: settings.value.split })
+}
+
 watch(() => settings.value.smirk, smirk => smirk && room.send({ type: 'smirk', smirk }))
-watchDebounced(pot, total => room.send({ type: 'prize', total }), { debounce: 500 })
+watchDebounced([
+  pot,
+  () => settings.value.split,
+], sendPrize, { debounce: 500, deep: true })
 
 // Leaving through the app ends the game; closing or reloading the tab doesn't, so the board can resume it
 onBeforeUnmount(() => {
@@ -285,20 +303,28 @@ function extractNumber() {
         <UFormField v-else :label="$t('board.prize')">
           <UInputNumber v-model="settings.totalPrize" :min="0.1" :step="0.1" class="w-full" />
         </UFormField>
-        <dl v-if="pot > 0" class="divide-y divide-default text-sm">
-          <div v-for="(value, name) in splittedPrize" :key="name" class="flex justify-between py-1.5">
-            <dt class="text-muted">
-              <span class="capitalize">{{ name }}</span>
-              <span v-for="(w, i) in wonPrizes[name]" :key="i" class="block text-xs font-medium text-highlighted">
-                <UIcon name="i-tabler-trophy" class="size-3.5 align-[-2px] text-primary" />
-                {{ w.name }}<template v-if="wonPrizes[name].length > 1"> · {{ $n(w.amount, 'currency') }}</template>
-              </span>
-            </dt>
-            <dd class="font-medium tabular-nums">
-              {{ $n(value, 'currency') }}
-            </dd>
-          </div>
+        <USwitch v-model="customSplit" :label="$t('board.customSplit')" />
+        <dl v-if="pot > 0 || settings.split" class="divide-y divide-default text-sm">
+          <template v-for="(value, name) in splittedPrize" :key="name">
+            <div v-if="settings.split || isPrizeOn(name)" class="flex items-center justify-between gap-2 py-1.5">
+              <dt class="text-muted">
+                <span class="capitalize">{{ name }}</span>
+                <span v-for="(w, i) in wonPrizes[name]" :key="i" class="block text-xs font-medium text-highlighted">
+                  <UIcon name="i-tabler-trophy" class="size-3.5 align-[-2px] text-primary" />
+                  {{ w.name }}<template v-if="wonPrizes[name].length > 1"> · {{ $n(w.amount, 'currency') }}</template>
+                </span>
+              </dt>
+              <dd class="flex items-center gap-2">
+                <UInputNumber v-if="settings.split" v-model="settings.split[name]" :min="0" :max="100" size="xs" class="w-20"
+                              :format-options="{ style: 'unit', unit: 'percent' }" :aria-label="$t('board.share', { prize: name })" />
+                <span class="font-medium tabular-nums">{{ $n(value, 'currency') }}</span>
+              </dd>
+            </div>
+          </template>
         </dl>
+        <p v-if="splitTotal !== 100" class="text-xs text-warning">
+          {{ $t('board.splitTotal', [splitTotal]) }}
+        </p>
         <div class="flex flex-col gap-2 border-t border-default pt-4">
           <p class="flex justify-between gap-2 text-sm">
             <span class="font-medium text-highlighted">{{ $t('board.players', [players.length], players.length) }}</span>

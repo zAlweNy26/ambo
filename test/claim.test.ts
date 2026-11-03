@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest'
-import { bestPrize, hasPrize, isPrizeClosed } from '../shared/utils/claim'
+import { DEFAULT_SPLIT } from '../app/utils/prize'
+import { bestPrize, claimablePrize, hasPrize, isPrizeClosed, isPrizeOn } from '../shared/utils/claim'
 
 // Same sample cartella as the home page
 const card = [
@@ -49,5 +50,38 @@ describe('isPrizeClosed', () => {
     expect(isPrizeClosed('terna', claims, 11)).toBe(true)
     expect(isPrizeClosed('ambo', claims, 11)).toBe(true)
     expect(isPrizeClosed('quaterna', claims, 11)).toBe(false)
+  })
+})
+
+describe('tombolino and prizes not played', () => {
+  const noQuaterna = { ...DEFAULT_SPLIT, quaterna: 0 }
+  const withTombolino = { ...DEFAULT_SPLIT, tombolino: 10 }
+
+  it('plays tombolino only with a custom split that gives it a share', () => {
+    expect(isPrizeOn('tombolino')).toBe(false)
+    expect(isPrizeOn('quaterna', noQuaterna)).toBe(false)
+    expect(isPrizeOn('tombolino', withTombolino)).toBe(true)
+    expect(hasPrize(card, all, 'tombolino')).toBe(true)
+    expect(hasPrize(card, all.slice(0, 14), 'tombolino')).toBe(false)
+  })
+
+  it('skips a prize not played, but never a smaller one on a row already claimed', () => {
+    const row = [4, 21, 43, 62]
+    expect(claimablePrize(card, row, row, [], [])).toBe('quaterna')
+    expect(claimablePrize(card, row, row, [], [], noQuaterna)).toBe('terna')
+    expect(claimablePrize(card, row, row, [], ['quaterna'])).toBeUndefined()
+  })
+
+  it('opens tombolino after the tombola draw, not for the tombola winner', () => {
+    const tombola = [
+      { prize: 'tombola' as const, draw: all.length - 1 },
+    ]
+    expect(claimablePrize(card, all, all, tombola, [], withTombolino)).toBe('tombolino')
+    expect(claimablePrize(card, all, all, tombola, ['tombola'], withTombolino)).toBeUndefined()
+    expect(claimablePrize(card, all, all, tombola, [])).toBeUndefined() // closed, and no tombolino played
+    // Same draw as the tombola: a tie for the tombola itself
+    expect(claimablePrize(card, all, all, [
+      { prize: 'tombola', draw: all.length },
+    ], [], withTombolino)).toBe('tombola')
   })
 })

@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { allocate, prizeWinners, splitPrize } from '../app/utils/prize'
+import { allocate, DEFAULT_SPLIT, prizeWinners, splitPrize } from '../app/utils/prize'
 
 describe('allocate', () => {
   it('gives leftover units to the first shares', () => {
@@ -88,6 +88,39 @@ describe('splitPrize', () => {
     const prizes = splitPrize(total)
     for (const key of Object.keys(expected) as (keyof typeof expected)[])
       expect(prizes[key]).toBeCloseTo(expected[key], 10)
+  })
+})
+
+describe('splitPrize with a custom split', () => {
+  it('splits the pool by the host\'s shares, scaled to the whole pool', () => {
+    expect(splitPrize(10, { ...DEFAULT_SPLIT, quaterna: 0, tombolino: 15 })).toEqual({
+      ambo: 0.5,
+      terna: 1,
+      quaterna: 0,
+      cinquina: 3,
+      tombola: 4,
+      tombolino: 1.5,
+    })
+    expect(splitPrize(1, {
+      ...DEFAULT_SPLIT,
+      ambo: 0,
+      terna: 0,
+      quaterna: 0,
+      cinquina: 0,
+      tombola: 1,
+    }).tombola).toBe(1)
+    expect(Object.values(splitPrize(5, {
+      ...DEFAULT_SPLIT,
+      ambo: 0,
+      terna: 0,
+      quaterna: 0,
+      cinquina: 0,
+      tombola: 0,
+    }))).toEqual([0, 0, 0, 0, 0, 0])
+  })
+
+  it('leaves tombolino out of the default ladder', () => {
+    expect(splitPrize(10).tombolino).toBe(0)
   })
 })
 

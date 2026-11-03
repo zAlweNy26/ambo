@@ -33,7 +33,10 @@
     "guest": "Invité",
     "perCard": "Cagnotte selon les cartons vendus",
     "price": "Prix par carton",
-    "pot": "{n} carton vendu · {total} en jeu | {n} cartons vendus · {total} en jeu"
+    "pot": "{n} carton vendu · {total} en jeu | {n} cartons vendus · {total} en jeu",
+    "customSplit": "Répartition personnalisée",
+    "share": "Part du prix {prize}",
+    "splitTotal": "Les parts font {0} %, les montants sont donc ajustés à la cagnotte. Mettez un prix à 0 % pour ne pas le jouer."
   },
   "button": {
     "backHome": "Retour à l’@:header.home",

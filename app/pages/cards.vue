@@ -16,7 +16,7 @@ const amount = useRouteQuery('n', 1, {
   transform: v => Math.min(Math.max(Number(v) || 1, 1), 6),
 })
 
-const extractions = ref<number[]>([]), winners = ref<Winner[]>([]), prize = ref(0), smirk = ref<Smorfia>()
+const extractions = ref<number[]>([]), winners = ref<Winner[]>([]), prize = ref(0), split = ref<Split>(), smirk = ref<Smorfia>()
 
 // The room deals the cartelle and checks claims against them; this copy shows them at once after a reload.
 // Marks and claims only live on the phone, one game at a time.
@@ -62,6 +62,7 @@ const room = useRoom(gameId, hello, (message) => {
       extractions.value = message.extractions
       winners.value = message.winners
       prize.value = message.prize
+      split.value = message.split
       smirk.value = message.smirk
       // New cards (first join, another amount before the first draw, a new round) start marks and claims over
       if (message.cards && JSON.stringify(message.cards) !== JSON.stringify(saved.value.cards)) {
@@ -85,6 +86,7 @@ const room = useRoom(gameId, hello, (message) => {
       break
     case 'prize':
       prize.value = message.total
+      split.value = message.split
       break
     case 'smirk':
       smirk.value = message.smirk
@@ -130,7 +132,7 @@ const room = useRoom(gameId, hello, (message) => {
 })
 
 // Only the prizes someone won, biggest first, with each winner's share
-const wonPrizes = computed(() => Object.entries(prizeWinners(prize.value, winners.value)).filter(([, ws]) => ws.length).reverse())
+const wonPrizes = computed(() => Object.entries(prizeWinners(prize.value, winners.value, split.value)).filter(([, ws]) => ws.length).reverse())
 
 const lastExtractions = computed(() => extractions.value.slice(-5))
 // The host's smorfia, for the latest number
@@ -171,27 +173,22 @@ watchImmediate([extractions, autoMark], () => {
   }
 })
 
-// The prize each cartella can claim now: its best row (or full card), unless that prize is gone or already ours
-const claimable = computed(() => cards.value.map((card, ci) => {
-  const best = bestPrize(card, signedNumbers.value[ci] ?? [], extractions.value)
-  // Same rule as the room: someone else's win on this very draw is a tie, still claimable
-  const gone = !best || saved.value.claimed.includes(best.prize)
-    || isPrizeClosed(best.prize, winners.value, extractions.value.length)
-  return gone ? undefined : best
-}))
+// The prize each cartella can claim now, by the room's rules: someone else's win on this very draw is a tie, still claimable
+const claimable = computed(() => cards.value.map((card, ci) =>
+  claimablePrize(card, signedNumbers.value[ci] ?? [], extractions.value, winners.value, saved.value.claimed, split.value)))
 
 const nameOpen = ref(false), nameDraft = ref(''), pendingCard = ref(0)
 
 // With auto-mark a prize can arrive unnoticed: buzz and offer the claim once per new prize on a cartella
-watch(claimable, (now, before) => now.forEach((best, ci) => {
-  if (!best || best.prize === before[ci]?.prize) return
+watch(claimable, (now, before) => now.forEach((prize, ci) => {
+  if (!prize || prize === before[ci]) return
   navigator.vibrate?.([100, 50, 100])
   toast.add({
-    title: t('claim.ready', { card: ci + 1, prize: best.prize }),
+    title: t('claim.ready', { card: ci + 1, prize }),
     icon: 'i-tabler-trophy',
     actions: [
       {
-        label: t('claim.submit', { prize: best.prize }),
+        label: t('claim.submit', { prize }),
         onClick: () => claim(ci),
       },
     ],
@@ -213,12 +210,12 @@ function confirmName() {
 }
 
 function sendClaim() {
-  const best = claimable.value[pendingCard.value]
-  if (best) {
+  const prize = claimable.value[pendingCard.value]
+  if (prize) {
     room.send({
       type: 'claim',
       card: pendingCard.value,
-      prize: best.prize,
+      prize,
       name: playerName.value,
     })
   }
@@ -292,7 +289,7 @@ function sendClaim() {
           <span class="font-medium tabular-nums">#{{ ci + 1 }}</span>
           <UButton v-if="claimable[ci]" size="xs" color="neutral" icon="i-tabler-trophy"
                    class="bg-white font-bold capitalize text-tombola-700 hover:bg-white/90 motion-safe:animate-pulse"
-                   :label="`${claimable[ci].prize}!`" @click="claim(ci)" />
+                   :label="`${claimable[ci]}!`" @click="claim(ci)" />
           <span class="tabular-nums text-white">{{ signedNumbers[ci]?.length ?? 0 }}/15</span>
         </div>
         <div class="grid select-none grid-cols-9">
@@ -319,7 +316,7 @@ function sendClaim() {
             <UInput v-model="nameDraft" autofocus maxlength="24" autocomplete="given-name" class="w-full" />
           </UFormField>
           <UButton type="submit" block size="lg" icon="i-tabler-trophy" :disabled="!nameDraft.trim()"
-                   :label="$t('claim.submit', { prize: claimable[pendingCard]?.prize ?? '' })" />
+                   :label="$t('claim.submit', { prize: claimable[pendingCard] ?? '' })" />
         </form>
       </template>
     </UModal>

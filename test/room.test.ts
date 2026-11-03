@@ -1,5 +1,6 @@
 import type { Connection, RoomHost, RoomState } from '../server/room/core'
 import type { ServerMessage } from '../shared/types/room'
+import type { Prize } from '../shared/utils/claim'
 import { describe, expect, it } from 'vitest'
 import { createRoom, dispatch, handle, parseMessage } from '../server/room/core'
 
@@ -204,6 +205,37 @@ describe('handle', () => {
         { name: 'Maria', cards: 3 },
       ],
     })
+  })
+
+  it('rejects prizes not played, and tombolino before the tombola or for its winner', () => {
+    const state = room()
+    const all = CARD.filter(n => n !== 0)
+    const claim = (player: string, prize: Prize) => handle(state, { player }, {
+      type: 'claim',
+      card: 0,
+      prize,
+      name: 'x',
+    }).reply[0]
+    handle(state, { host: true }, {
+      type: 'prize',
+      total: 10,
+      split: {
+        ambo: 0,
+        terna: 10,
+        quaterna: 10,
+        cinquina: 20,
+        tombola: 40,
+        tombolino: 20,
+      },
+    })
+    state.extractions.push(21, 43)
+    expect(claim(P1, 'ambo')).toMatchObject({ ok: false, reason: 'invalid' })
+    state.extractions = [...all]
+    expect(claim(P1, 'tombolino')).toMatchObject({ ok: false, reason: 'invalid' })
+    expect(claim(P1, 'tombola')).toMatchObject({ ok: true })
+    state.extractions.push(1)
+    expect(claim(P1, 'tombolino')).toMatchObject({ ok: false, reason: 'invalid' })
+    expect(claim(P2, 'tombolino')).toMatchObject({ ok: true })
   })
 
   it('rejects malformed messages', () => {

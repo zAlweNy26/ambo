@@ -97,7 +97,10 @@
     "guest": "Guest",
     "perCard": "Pool from cards sold",
     "price": "Price per card",
-    "pot": "{n} card sold · {total} to win | {n} cards sold · {total} to win"
+    "pot": "{n} card sold · {total} to win | {n} cards sold · {total} to win",
+    "customSplit": "Custom split",
+    "share": "{prize} share",
+    "splitTotal": "Shares add up to {0}%, so amounts are scaled to the pool. Set a prize to 0% to skip it."
   },
   "cards": {
     "autoMark": "Mark drawn numbers automatically",
