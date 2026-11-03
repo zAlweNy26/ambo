@@ -1,0 +1,25 @@
+name: PageSpeed Insights
+on:
+  # After every successful deploy
+  workflow_run:
+    workflows:
+      - Deploy to Cloudflare Worker
+    types:
+      - completed
+  # On demand, without a deploy: gh workflow run pagespeed.yml
+  workflow_dispatch:
+
+jobs:
+  report:
+    name: PageSpeed Insights metrics
+    if: github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: lowlighter/metrics@latest
+        with:
+          filename: pagespeed.svg
+          token: NOT_NEEDED
+          base: ''
+          plugin_pagespeed: yes
+          plugin_pagespeed_token: ${{ secrets.PAGESPEED_TOKEN }}
+          plugin_pagespeed_url: https://ambo.danyalwe.me
