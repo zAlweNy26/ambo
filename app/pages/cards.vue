@@ -170,6 +170,22 @@ const claimable = computed(() => cards.value.map((card, ci) => {
 
 const nameOpen = ref(false), nameDraft = ref(''), pendingCard = ref(0)
 
+// With auto-mark a prize can arrive unnoticed: buzz and offer the claim once per new prize on a cartella
+watch(claimable, (now, before) => now.forEach((best, ci) => {
+  if (!best || best.prize === before[ci]?.prize) return
+  navigator.vibrate?.([100, 50, 100])
+  toast.add({
+    title: t('claim.ready', { card: ci + 1, prize: best.prize }),
+    icon: 'i-tabler-trophy',
+    actions: [
+      {
+        label: t('claim.submit', { prize: best.prize }),
+        onClick: () => claim(ci),
+      },
+    ],
+  })
+}))
+
 function claim(ci: number) {
   pendingCard.value = ci
   if (playerName.value) return sendClaim()
@@ -263,7 +279,7 @@ function sendClaim() {
         <div class="flex h-10 items-center justify-between bg-primary px-4 text-xs text-white">
           <span class="font-medium tabular-nums">#{{ ci + 1 }}</span>
           <UButton v-if="claimable[ci]" size="xs" color="neutral" icon="i-tabler-trophy"
-                   class="bg-white font-bold capitalize text-tombola-700 hover:bg-white/90"
+                   class="bg-white font-bold capitalize text-tombola-700 hover:bg-white/90 motion-safe:animate-pulse"
                    :label="`${claimable[ci].prize}!`" @click="claim(ci)" />
           <span class="tabular-nums text-white">{{ signedNumbers[ci]?.length ?? 0 }}/15</span>
         </div>

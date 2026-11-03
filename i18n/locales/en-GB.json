@@ -128,6 +128,7 @@
     "won": "You won {prize}!",
     "closed": "{prize} has already been won.",
     "invalid": "This cartella doesn’t have {prize} yet.",
-    "announce": "{name} wins {prize}!"
+    "announce": "{name} wins {prize}!",
+    "ready": "Card #{card} has {prize}!"
   }
 }

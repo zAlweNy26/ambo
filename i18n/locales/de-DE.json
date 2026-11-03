@@ -128,6 +128,7 @@
     "won": "Du hast {prize} gewonnen!",
     "closed": "{prize} wurde schon gewonnen.",
     "invalid": "Diese Karte hat {prize} noch nicht.",
-    "announce": "{name} gewinnt {prize}!"
+    "announce": "{name} gewinnt {prize}!",
+    "ready": "Karte #{card} hat {prize}!"
   }
 }
