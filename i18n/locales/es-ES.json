@@ -36,7 +36,9 @@
     "pot": "{n} cartón vendido · {total} en juego | {n} cartones vendidos · {total} en juego",
     "customSplit": "Reparto personalizado",
     "share": "Parte de {prize}",
-    "splitTotal": "Las partes suman el {0}%, así que los importes se ajustan al bote. Pon un premio a 0% para no jugarlo."
+    "splitTotal": "Las partes suman el {0}%, así que los importes se ajustan al bote. Pon un premio a 0% para no jugarlo.",
+    "autoDraw": "Extracción automática",
+    "drawEvery": "Segundos entre extracciones"
   },
   "button": {
     "backHome": "Volver a @:header.home",

@@ -14,6 +14,8 @@ const settings = useLocalStorage('board:settings', {
   // Custom shares per prize, in percent; a prize at 0 isn't played. Missing means the default ladder, without tombolino
   split: undefined as Split | undefined,
   autoAnnounce: false,
+  // Seconds between automatic draws
+  drawEvery: 10,
 }, { mergeDefaults: true })
 
 const game = ref({ gameId: '', hostId: '' })
@@ -199,9 +201,11 @@ function newRound() {
   room.send({ type: 'round' })
 }
 
-// Resolves when the room broadcasts the number, so the button spins until every phone has it too
+// Resolves when the room broadcasts the number, so the button spins until every phone has it too.
+// A draw still in flight is shared, so a click during an automatic draw can't send two.
+let drawing: Promise<void> | undefined
 function extractNumber() {
-  return new Promise<void>((resolve) => {
+  return drawing ??= new Promise<void>((resolve) => {
     const timeout = setTimeout(() => {
       drawDone = undefined
       toast.add({
@@ -217,8 +221,20 @@ function extractNumber() {
       resolve()
     }
     room.send({ type: 'draw' })
-  })
+  }).finally(() => drawing = undefined)
 }
+
+const canDraw = computed(() => remaining.value > 0 && !!settings.value.smirk && !!gameId.value)
+// Not kept across reloads, so a reopened board never starts drawing by itself
+const autoDraw = ref(false)
+// A tick while the announcer still speaks is skipped, so every number is heard in full
+const { pause, resume } = useIntervalFn(() => {
+  if (!isPlaying.value) extractNumber()
+}, () => settings.value.drawEvery * 1000, { immediate: false })
+watch(autoDraw, on => on
+  ? resume()
+  : pause())
+watch(canDraw, ok => ok || (autoDraw.value = false))
 </script>
 
 <template>
@@ -268,8 +284,13 @@ function extractNumber() {
             </p>
           </template>
         </div>
-        <UButton icon="i-tabler-arrow-big-down-lines" :disabled="remaining === 0 || !settings.smirk || !gameId" size="xl" block loadingAuto
+        <UButton icon="i-tabler-arrow-big-down-lines" :disabled="!canDraw" size="xl" block loadingAuto
                  :label="$t('board.draw')" @click="extractNumber" />
+        <div class="flex w-full items-center justify-between gap-3">
+          <USwitch v-model="autoDraw" :disabled="!canDraw" :label="$t('board.autoDraw')" />
+          <UInputNumber v-if="autoDraw" v-model="settings.drawEvery" :min="3" :max="120" size="sm" class="w-24 shrink-0"
+                        :format-options="{ style: 'unit', unit: 'second' }" :aria-label="$t('board.drawEvery')" />
+        </div>
         <UModal v-model:open="roundOpen" :title="$t('round.title')" :description="$t('round.description')"
                 :ui="{ footer: 'justify-between gap-8', content: 'sm:max-w-sm' }">
           <UButton icon="i-tabler-refresh" color="neutral" variant="outline" block :disabled="!extractedNumbers.length"

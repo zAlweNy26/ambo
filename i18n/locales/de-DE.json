@@ -36,7 +36,9 @@
     "pot": "{n} Karte verkauft · {total} im Topf | {n} Karten verkauft · {total} im Topf",
     "customSplit": "Eigene Aufteilung",
     "share": "Anteil {prize}",
-    "splitTotal": "Die Anteile ergeben {0} %, die Beträge werden auf den Topf umgerechnet. Setze einen Gewinn auf 0 %, um ihn auszulassen."
+    "splitTotal": "Die Anteile ergeben {0} %, die Beträge werden auf den Topf umgerechnet. Setze einen Gewinn auf 0 %, um ihn auszulassen.",
+    "autoDraw": "Automatisch ziehen",
+    "drawEvery": "Sekunden zwischen den Ziehungen"
   },
   "button": {
     "backHome": "Zurück zur @:header.home",

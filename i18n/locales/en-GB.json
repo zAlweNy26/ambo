@@ -100,7 +100,9 @@
     "pot": "{n} card sold · {total} to win | {n} cards sold · {total} to win",
     "customSplit": "Custom split",
     "share": "{prize} share",
-    "splitTotal": "Shares add up to {0}%, so amounts are scaled to the pool. Set a prize to 0% to skip it."
+    "splitTotal": "Shares add up to {0}%, so amounts are scaled to the pool. Set a prize to 0% to skip it.",
+    "autoDraw": "Automatic draw",
+    "drawEvery": "Seconds between draws"
   },
   "cards": {
     "autoMark": "Mark drawn numbers automatically",
