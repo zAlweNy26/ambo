@@ -222,23 +222,6 @@ const myId = computed(() => shortId(player.value))
       </p>
     </div>
 
-    <div v-if="lastExtractions.length > 0" class="flex flex-col items-center gap-3" aria-live="polite">
-      <p class="text-sm text-muted">
-        {{ $t('board.extractions', [lastExtractions.length], lastExtractions.length) }}
-      </p>
-      <div v-auto-animate class="flex flex-row-reverse items-center justify-center gap-3">
-        <span v-for="(num, i) in lastExtractions" :key="num" class="numero"
-              :class="i === lastExtractions.length - 1 ? 'size-16 text-2xl' : 'size-11 text-base'"
-              :data-state="i === lastExtractions.length - 1 ? 'latest' : 'on'">
-          {{ num }}
-        </span>
-      </div>
-      <p v-if="meaning" class="text-center text-balance">
-        <span class="block font-semibold text-highlighted">{{ meaning.original }}</span>
-        <span class="text-sm text-muted">{{ meaning.translated }}</span>
-      </p>
-    </div>
-
     <div v-if="wonPrizes.length" class="panel w-full max-w-sm px-4 py-2">
       <p class="py-1.5 text-sm font-medium text-highlighted">
         {{ $t('cards.winners') }}
@@ -257,6 +240,23 @@ const myId = computed(() => shortId(player.value))
           </dd>
         </div>
       </dl>
+    </div>
+
+    <div v-if="lastExtractions.length > 0" class="flex flex-col items-center gap-3" aria-live="polite">
+      <p class="text-sm text-muted">
+        {{ $t('board.extractions', [lastExtractions.length], lastExtractions.length) }}
+      </p>
+      <div v-auto-animate class="flex flex-row-reverse items-center justify-center gap-3">
+        <span v-for="(num, i) in lastExtractions" :key="num" class="numero"
+              :class="i === lastExtractions.length - 1 ? 'size-16 text-2xl' : 'size-11 text-base'"
+              :data-state="i === lastExtractions.length - 1 ? 'latest' : 'on'">
+          {{ num }}
+        </span>
+      </div>
+      <p v-if="meaning" class="text-center text-balance">
+        <span class="block font-semibold text-highlighted">{{ meaning.original }}</span>
+        <span class="text-sm text-muted">{{ meaning.translated }}</span>
+      </p>
     </div>
 
     <div class="flex w-full max-w-sm flex-col gap-1.5">
