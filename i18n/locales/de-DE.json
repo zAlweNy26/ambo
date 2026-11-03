@@ -50,7 +50,8 @@
     "search": "Zahl suchen",
     "title": "Mit wie vielen Karten willst du spielen?",
     "winners": "Gewinner",
-    "nameHint": "Optional, erscheint auf dem Tabellone"
+    "nameHint": "Optional, erscheint auf dem Tabellone",
+    "announce": "Jede Ziehung ansagen"
   },
   "contacts": {
     "role": "Projektleiter\nFull-Stack-Entwickler",

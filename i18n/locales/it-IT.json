@@ -107,7 +107,8 @@
     "found": "Numero {0} trovato e segnato",
     "notFound": "Numero {0} non trovato",
     "winners": "Vincitori",
-    "nameHint": "Facoltativo, compare sul tabellone"
+    "nameHint": "Facoltativo, compare sul tabellone",
+    "announce": "Annuncia ogni estrazione"
   },
   "pwa": {
     "installTitle": "Vuoi installarla come app?",

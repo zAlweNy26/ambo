@@ -43,6 +43,9 @@ function goHome(title: string, description?: string) {
 }
 
 const playerName = useLocalStorage('player:name', '')
+// For players who can't keep an eye on the board: a buzz, and the number read aloud where the phone has a voice
+const announce = useLocalStorage('cards:announce', false)
+const { isSupported: isSpeechSupported, say } = useVoice()
 
 const room = useRoom(gameId, () => ({
   type: 'join',
@@ -66,6 +69,10 @@ const room = useRoom(gameId, () => ({
       break
     case 'draw':
       extractions.value = [...extractions.value, message.number]
+      if (announce.value) {
+        navigator.vibrate?.(200)
+        if (isSpeechSupported.value) say(String(message.number))
+      }
       break
     case 'winners':
       winners.value = message.winners
@@ -238,6 +245,7 @@ function sendClaim() {
         <strong>{{ searchNumber }}</strong>
       </i18n-t>
       <USwitch v-model="autoMark" :label="$t('cards.autoMark')" class="mt-2 self-center" />
+      <USwitch v-model="announce" :label="$t('cards.announce')" class="self-center" />
     </div>
 
     <div class="grid w-full justify-items-center gap-5 lg:grid-cols-2">

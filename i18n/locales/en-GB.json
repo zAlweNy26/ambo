@@ -107,7 +107,8 @@
     "found": "Number {0} found and marked",
     "notFound": "Number {0} not found",
     "winners": "Winners",
-    "nameHint": "Optional, shown on the board"
+    "nameHint": "Optional, shown on the board",
+    "announce": "Announce each draw"
   },
   "pwa": {
     "installTitle": "Do you want to install it as an app?",

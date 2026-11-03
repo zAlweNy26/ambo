@@ -50,7 +50,8 @@
     "search": "Buscar número",
     "title": "¿Con cuántos cartones quieres jugar?",
     "winners": "Ganadores",
-    "nameHint": "Opcional, aparece en el tablero"
+    "nameHint": "Opcional, aparece en el tablero",
+    "announce": "Anunciar cada extracción"
   },
   "contacts": {
     "role": "Jefe de proyecto\nDesarrollador full-stack",

@@ -29,7 +29,7 @@ const settings = useLocalStorage('board:settings', {
 
 const game = ref({ gameId: '', hostId: '' })
 const gameId = computed(() => game.value.gameId)
-const extractedNumbers = ref<number[]>([]), currentNumber = ref<number>(), speakText = ref<string>('')
+const extractedNumbers = ref<number[]>([]), currentNumber = ref<number>()
 
 async function newGame() {
   const { gameId: id, hostId } = await $fetch('/api/game/create', { method: 'POST' })
@@ -67,28 +67,13 @@ const smirkOptions = [
   { label: 'Livornese', value: 'livornese' },
 ]
 
-const { currentLocale } = storeToRefs(useSettingsStore())
 const toast = useToast()
 const { t } = useI18n()
 const { title } = useAppConfig()
 const { copy, copied } = useClipboard()
 const { share, isSupported: isShareSupported } = useShare()
 
-const { isPlaying, isSupported: hasSynth, speak, stop } = useSpeechSynthesis(speakText, {
-  lang: () => currentLocale.value.language ?? currentLocale.value.code,
-  pitch: 1,
-  rate: 1,
-  volume: 1,
-})
-
-// Chromium on Linux has no voices without --enable-speech-dispatcher and fails silently: hide the announcer there
-const hasVoices = ref(false)
-if (window.speechSynthesis) {
-  const checkVoices = () => hasVoices.value = speechSynthesis.getVoices().length > 0
-  checkVoices()
-  useEventListener(speechSynthesis, 'voiceschanged', checkVoices)
-}
-const isSpeechSupported = computed(() => hasSynth.value && hasVoices.value)
+const { isSupported: isSpeechSupported, isPlaying, say, stop } = useVoice()
 
 const remaining = computed(() => 90 - extractedNumbers.value.length)
 
@@ -143,9 +128,7 @@ async function shareGameId() {
 function speechText() {
   if (!currentSmirk.value) return
   const { number, original, translated } = currentSmirk.value
-  speakText.value = `${number}. ${original}. ${translated}.`
-  if (isPlaying.value) stop()
-  setTimeout(speak, 250)
+  say(`${number}. ${original}. ${translated}.`)
 }
 
 const winners = ref<Winner[]>([]), players = ref<Player[]>([])
@@ -204,11 +187,7 @@ function announceWinner({ name, prize }: Winner) {
     icon: 'i-tabler-trophy',
     duration: 8000,
   })
-  if (settings.value.autoAnnounce && isSpeechSupported.value) {
-    speakText.value = title
-    if (isPlaying.value) stop()
-    setTimeout(speak, 250)
-  }
+  if (settings.value.autoAnnounce && isSpeechSupported.value) say(title)
 }
 
 // Resolves when the room broadcasts the number, so the button spins until every phone has it too

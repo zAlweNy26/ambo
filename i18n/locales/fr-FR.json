@@ -50,7 +50,8 @@
     "search": "Chercher le numéro",
     "title": "Avec combien de cartons voulez-vous jouer ?",
     "winners": "Gagnants",
-    "nameHint": "Facultatif, affiché sur le tableau"
+    "nameHint": "Facultatif, affiché sur le tableau",
+    "announce": "Annoncer chaque tirage"
   },
   "contacts": {
     "role": "Chef de projet\nDéveloppeur full-stack",
