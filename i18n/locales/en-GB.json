@@ -94,7 +94,6 @@
     "draw": "Draw a number",
     "extractions": "Last draw | Last {0} draws",
     "players": "{0} player | {0} players",
-    "guest": "Guest",
     "perCard": "Pool from cards sold",
     "price": "Price per card",
     "pot": "{n} card sold · {total} to win | {n} cards sold · {total} to win",
@@ -113,8 +112,8 @@
     "found": "Number {0} found and marked",
     "notFound": "Number {0} not found",
     "winners": "Winners",
-    "nameHint": "Optional, shown on the board",
-    "announce": "Announce each draw"
+    "announce": "Announce each draw",
+    "you": "Your player ID"
   },
   "pwa": {
     "installTitle": "Do you want to install it as an app?",
@@ -127,14 +126,11 @@
     "drawFailed": "The number was not saved. Draw again."
   },
   "claim": {
-    "title": "Your name",
-    "description": "The board shows it next to the prize.",
-    "name": "Name",
     "submit": "Claim {prize}!",
     "won": "You won {prize}!",
     "closed": "{prize} has already been won.",
     "invalid": "This cartella doesn’t have {prize} yet.",
-    "announce": "{name} wins {prize}!",
+    "announce": "Player {player} wins {prize}!",
     "ready": "Card #{card} has {prize}!"
   },
   "round": {

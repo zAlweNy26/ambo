@@ -58,11 +58,11 @@ export function splitPrize(totalPrize: number, split?: Split): Prizes {
 export function prizeWinners(totalPrize: number, winners: Winner[], split?: Split) {
   const prizes = splitPrize(totalPrize, split)
   return Object.fromEntries(Object.entries(prizes).map(([prize, amount]) => {
-    const names = winners.filter(w => w.prize === prize).map(w => w.name)
-    const shares = allocate(Math.round(amount * 10), names.map(() => 1))
+    const players = winners.filter(w => w.prize === prize).map(w => w.player)
+    const shares = allocate(Math.round(amount * 10), players.map(() => 1))
     return [
       prize,
-      names.map((name, i) => ({ name, amount: shares[i]! / 10 })),
+      players.map((player, i) => ({ player, amount: shares[i]! / 10 })),
     ]
-  })) as Record<keyof Prizes, { name: string, amount: number }[]>
+  })) as Record<keyof Prizes, { player: string, amount: number }[]>
 }

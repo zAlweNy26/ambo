@@ -7,7 +7,7 @@
 3. We reserve the right to modify or discontinue the Site at any time, with or without notice.
 4. The Site does not provide any form of monetary exchange or prizes, therefore it is not subject to gambling regulations.
 5. The Site does not have any user registration method, thus it cannot trace players' identities in any way. No personal data is collected during the use of the Site.
-6. Numbers are drawn and cartelle dealt at random by the Site's servers. While a game is open, the servers keep its code, the drawn numbers, the cartelle dealt to each player and the name a player types when claiming a prize; all of it is deleted when the game ends or after 24 hours. Anonymous statistics (number of players, numbers drawn, time of the last draw) are kept. None of this data identifies a person.
+6. Numbers are drawn and cartelle dealt at random by the Site's servers. While a game is open, the servers keep its code, the drawn numbers, the cartelle dealt to each player and the prizes they claimed; all of it is deleted when the game ends or after 24 hours. Anonymous statistics (number of players, numbers drawn, time of the last draw) are kept. None of this data identifies a person.
 
 ## Intellectual Property
 

@@ -1,20 +1,20 @@
 import type { Prize, Split, Winner } from '#shared/utils/claim'
 import type { Smorfia } from '#shared/utils/smorfia'
 
-// One player who joined, as the board lists them; name is '' until they give one
+// One player who joined, as the board lists them, by short ID
 export interface Player {
-  name: string
+  id: string
   cards: number
 }
 
 // What the board and the phones send to a game room over its WebSocket (/room/<id>)
 export type ClientMessage
   = | { type: 'host', host: string }
-    | { type: 'join', player: string, cards: number, name?: string }
+    | { type: 'join', player: string, cards: number }
     | { type: 'draw' }
     | { type: 'prize', total: number, split?: Split }
     | { type: 'smirk', smirk: Smorfia }
-    | { type: 'claim', card: number, prize: Prize, name: string }
+    | { type: 'claim', card: number, prize: Prize }
     | { type: 'round' }
     | { type: 'close' }
 

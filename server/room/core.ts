@@ -4,6 +4,7 @@ import type { Smorfia } from '#shared/utils/smorfia'
 import { z } from 'zod'
 import { generateCartella } from '#shared/utils/cartella'
 import { hasPrize, isPrizeClosed, isPrizeOn, isTombolinoOpen, PRIZES } from '#shared/utils/claim'
+import { shortId } from '#shared/utils/player'
 import { SMORFIE } from '#shared/utils/smorfia'
 
 // The rules of one live game, with no Cloudflare code: the Durable Object (production) and the in-memory
@@ -15,7 +16,6 @@ export const MAX_PLAYERS = 200
 export interface Claim {
   prize: Prize
   player: string
-  name: string
   // How many numbers were drawn when it was claimed
   draw: number
 }
@@ -27,8 +27,6 @@ export interface RoomState {
   extractions: number[]
   // Cartelle the server dealt, per player ID: claims are checked against these
   players: Record<string, number[][]>
-  // Players' names, per player ID, from their join or claim; missing in rooms saved before it existed
-  names?: Record<string, string>
   claims: Claim[]
   // The host's prize pool in euro, so phones can show what each winner takes; missing in rooms saved before it existed
   prize?: number
@@ -63,7 +61,6 @@ const messageSchema = z.discriminatedUnion('type', [
     type: z.literal('join'),
     player: z.uuid(),
     cards: z.int().min(1).max(6),
-    name: z.string().trim().max(24).optional(),
   }),
   z.object({
     type: z.literal('draw'),
@@ -81,7 +78,6 @@ const messageSchema = z.discriminatedUnion('type', [
     type: z.literal('claim'),
     card: z.int().min(0).max(5),
     prize: z.enum(PRIZES),
-    name: z.string().trim().min(1).max(24),
   }),
   z.object({
     type: z.literal('round'),
@@ -111,21 +107,20 @@ export function createRoom(id: string, host: string, now = Date.now()): RoomStat
   }
 }
 
-export const winnersOf = (state: RoomState): Winner[] => state.claims.map(({ prize, name, draw }) => ({ prize, name, draw }))
-
-// Who joined, without their player IDs: those are the keys to their cartelle
-export function playersOf(state: RoomState): Player[] {
-  return Object.entries(state.players).map(([id, cards]) => ({
-    name: state.names?.[id] ?? '',
-    cards: cards.length,
+// Players appear by short ID only: the full one is the key to their cartelle
+export function winnersOf(state: RoomState): Winner[] {
+  return state.claims.map(({ prize, player, draw }) => ({
+    prize,
+    player: shortId(player),
+    draw,
   }))
 }
 
-// Remembers a player's name; true if it changed
-function rename(state: RoomState, player: string, name: string | undefined) {
-  if (!name || state.names?.[player] === name) return false
-  state.names = { ...state.names, [player]: name }
-  return true
+export function playersOf(state: RoomState): Player[] {
+  return Object.entries(state.players).map(([id, cards]) => ({
+    id: shortId(id),
+    cards: cards.length,
+  }))
 }
 
 const cryptoRandom = () => crypto.getRandomValues(new Uint32Array(1))[0]! / 2 ** 32
@@ -163,7 +158,6 @@ export function handle(state: RoomState, session: Session, msg: ClientMessage, r
         cards = Array.from({ length: msg.cards }, generateCartella)
         state.players[msg.player] = cards
       }
-      const changed = rename(state, msg.player, msg.name) || deal
       return {
         reply: [
           {
@@ -172,7 +166,7 @@ export function handle(state: RoomState, session: Session, msg: ClientMessage, r
             cards,
           },
         ],
-        broadcast: changed
+        broadcast: deal
           ? [
               {
                 type: 'players',
@@ -181,7 +175,7 @@ export function handle(state: RoomState, session: Session, msg: ClientMessage, r
             ]
           : [],
         session: { player: msg.player },
-        changed,
+        changed: deal,
       }
     }
 
@@ -222,7 +216,7 @@ export function handle(state: RoomState, session: Session, msg: ClientMessage, r
       }
 
     case 'claim': {
-      const { prize, name } = msg
+      const { prize } = msg
       const card = session.player ? state.players[session.player]?.[msg.card] : undefined
       const won = state.claims.filter(c => c.player === session.player).map(c => c.prize)
       const draw = state.extractions.length
@@ -247,7 +241,6 @@ export function handle(state: RoomState, session: Session, msg: ClientMessage, r
       state.claims.push({
         prize,
         player: session.player!,
-        name,
         draw,
       })
       return {
@@ -259,20 +252,12 @@ export function handle(state: RoomState, session: Session, msg: ClientMessage, r
             type: 'winners',
             winners: winnersOf(state),
           },
-          ...(rename(state, session.player!, name)
-            ? [
-                {
-                  type: 'players',
-                  players: playersOf(state),
-                } as const,
-              ]
-            : []),
         ],
         changed: true,
       }
     }
 
-    // Same room, same players and names: draws and prizes start over, and every phone rejoins for new cartelle
+    // Same room, same players: draws and prizes start over, and every phone rejoins for new cartelle
     case 'round':
       if (!session.host) return forbidden
       state.extractions = []

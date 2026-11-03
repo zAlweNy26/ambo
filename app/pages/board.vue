@@ -184,8 +184,8 @@ onBeforeUnmount(() => {
   hosted.value = { gameId: '', hostId: '' }
 })
 
-function announceWinner({ name, prize }: Winner) {
-  const title = t('claim.announce', { name, prize })
+function announceWinner({ player, prize }: Winner) {
+  const title = t('claim.announce', { player, prize })
   toast.add({
     title,
     color: 'success',
@@ -332,7 +332,7 @@ watch(canDraw, ok => ok || (autoDraw.value = false))
                 <span class="capitalize">{{ name }}</span>
                 <span v-for="(w, i) in wonPrizes[name]" :key="i" class="block text-xs font-medium text-highlighted">
                   <UIcon name="i-tabler-trophy" class="size-3.5 align-[-2px] text-primary" />
-                  {{ w.name }}<template v-if="wonPrizes[name].length > 1"> · {{ $n(w.amount, 'currency') }}</template>
+                  {{ w.player }}<template v-if="wonPrizes[name].length > 1"> · {{ $n(w.amount, 'currency') }}</template>
                 </span>
               </dt>
               <dd class="flex items-center gap-2">
@@ -353,7 +353,7 @@ watch(canDraw, ok => ok || (autoDraw.value = false))
           </p>
           <div v-if="players.length" class="flex flex-wrap gap-1.5">
             <UBadge v-for="(p, i) in players" :key="i" color="neutral" variant="soft">
-              {{ p.name || $t('board.guest') }}
+              <span class="tabular-nums">{{ p.id }}</span>
               <span class="text-dimmed tabular-nums">×{{ p.cards }}</span>
             </UBadge>
           </div>

@@ -30,7 +30,6 @@
     "prize": "Reparto del premio",
     "smirk": "Elige una smorfia",
     "players": "{0} jugador | {0} jugadores",
-    "guest": "Invitado",
     "perCard": "Bote según los cartones vendidos",
     "price": "Precio por cartón",
     "pot": "{n} cartón vendido · {total} en juego | {n} cartones vendidos · {total} en juego",
@@ -56,8 +55,8 @@
     "search": "Buscar número",
     "title": "¿Con cuántos cartones quieres jugar?",
     "winners": "Ganadores",
-    "nameHint": "Opcional, aparece en el tablero",
-    "announce": "Anunciar cada extracción"
+    "announce": "Anunciar cada extracción",
+    "you": "Tu ID de jugador"
   },
   "contacts": {
     "role": "Jefe de proyecto\nDesarrollador full-stack",
@@ -127,14 +126,11 @@
     "toggle": "Cambiar tema"
   },
   "claim": {
-    "title": "Tu nombre",
-    "description": "El tablero lo muestra junto al premio.",
-    "name": "Nombre",
     "submit": "¡Canto {prize}!",
     "won": "¡Has ganado {prize}!",
     "closed": "{prize} ya se ha ganado.",
     "invalid": "Este cartón aún no tiene {prize}.",
-    "announce": "¡{name} gana {prize}!",
+    "announce": "¡El jugador {player} gana {prize}!",
     "ready": "¡El cartón #{card} tiene {prize}!"
   },
   "round": {

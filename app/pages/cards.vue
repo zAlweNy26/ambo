@@ -42,7 +42,6 @@ function goHome(title: string, description?: string) {
   toast.add({ title, description, color: 'error' })
 }
 
-const playerName = useLocalStorage('player:name', '')
 // For players who can't keep an eye on the board: a buzz, and the number read aloud where the phone has a voice
 const announce = useLocalStorage('cards:announce', false)
 const { isSupported: isSpeechSupported, say } = useVoice()
@@ -52,7 +51,6 @@ function hello(): ClientMessage {
     type: 'join',
     player: player.value,
     cards: amount.value,
-    name: playerName.value || undefined,
   }
 }
 
@@ -177,8 +175,6 @@ watchImmediate([extractions, autoMark], () => {
 const claimable = computed(() => cards.value.map((card, ci) =>
   claimablePrize(card, signedNumbers.value[ci] ?? [], extractions.value, winners.value, saved.value.claimed, split.value)))
 
-const nameOpen = ref(false), nameDraft = ref(''), pendingCard = ref(0)
-
 // With auto-mark a prize can arrive unnoticed: buzz and offer the claim once per new prize on a cartella
 watch(claimable, (now, before) => now.forEach((prize, ci) => {
   if (!prize || prize === before[ci]) return
@@ -195,31 +191,13 @@ watch(claimable, (now, before) => now.forEach((prize, ci) => {
   })
 }))
 
-function claim(ci: number) {
-  pendingCard.value = ci
-  if (playerName.value) return sendClaim()
-  nameDraft.value = ''
-  nameOpen.value = true
+function claim(card: number) {
+  const prize = claimable.value[card]
+  if (prize) room.send({ type: 'claim', card, prize })
 }
 
-function confirmName() {
-  if (!nameDraft.value.trim()) return
-  playerName.value = nameDraft.value.trim()
-  nameOpen.value = false
-  sendClaim()
-}
-
-function sendClaim() {
-  const prize = claimable.value[pendingCard.value]
-  if (prize) {
-    room.send({
-      type: 'claim',
-      card: pendingCard.value,
-      prize,
-      name: playerName.value,
-    })
-  }
-}
+// How the board and the winners list show this player
+const myId = computed(() => shortId(player.value))
 </script>
 
 <template>
@@ -231,6 +209,10 @@ function sendClaim() {
         </i18n-t>
       </template>
     </GameHeader>
+
+    <p class="-mt-3 text-sm text-muted">
+      {{ $t('cards.you') }} <span class="font-semibold tracking-wide text-highlighted tabular-nums">{{ myId }}</span>
+    </p>
 
     <div v-if="lastExtractions.length > 0" class="flex flex-col items-center gap-3" aria-live="polite">
       <p class="text-sm text-muted">
@@ -261,7 +243,7 @@ function sendClaim() {
           <dd class="text-end">
             <span v-for="(w, i) in ws" :key="i" class="block">
               <UIcon name="i-tabler-trophy" class="size-3.5 align-[-2px] text-primary" />
-              <span class="font-medium text-highlighted">{{ w.name }}</span>
+              <span class="font-medium tabular-nums" :class="w.player === myId ? 'text-primary' : 'text-highlighted'">{{ w.player }}</span>
               <span v-if="prize > 0" class="tabular-nums text-muted"> · {{ $n(w.amount, 'currency') }}</span>
             </span>
           </dd>
@@ -308,17 +290,5 @@ function sendClaim() {
         </div>
       </div>
     </div>
-
-    <UModal v-model:open="nameOpen" :title="$t('claim.title')" :description="$t('claim.description')" :ui="{ content: 'sm:max-w-sm' }">
-      <template #body>
-        <form class="flex flex-col gap-4" @submit.prevent="confirmName">
-          <UFormField :label="$t('claim.name')" required>
-            <UInput v-model="nameDraft" autofocus maxlength="24" autocomplete="given-name" class="w-full" />
-          </UFormField>
-          <UButton type="submit" block size="lg" icon="i-tabler-trophy" :disabled="!nameDraft.trim()"
-                   :label="$t('claim.submit', { prize: claimable[pendingCard] ?? '' })" />
-        </form>
-      </template>
-    </UModal>
   </section>
 </template>

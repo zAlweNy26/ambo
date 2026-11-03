@@ -127,12 +127,12 @@ describe('splitPrize with a custom split', () => {
 describe('prizeWinners', () => {
   it('splits a prize won on the same draw', () => {
     const won = prizeWinners(10, [
-      { prize: 'ambo', name: 'Ada', draw: 3 },
-      { prize: 'ambo', name: 'Bea', draw: 3 },
+      { prize: 'ambo', player: 'a1a1a1', draw: 3 },
+      { prize: 'ambo', player: 'b2b2b2', draw: 3 },
     ])
     expect(won.ambo).toEqual([
-      { name: 'Ada', amount: 0.3 },
-      { name: 'Bea', amount: 0.3 },
+      { player: 'a1a1a1', amount: 0.3 },
+      { player: 'b2b2b2', amount: 0.3 },
     ])
     expect(won.tombola).toEqual([])
   })

@@ -40,7 +40,7 @@ export class GameRoom extends DurableObject<Env> {
     if (this.state) return false
     this.state = createRoom(id, host)
     await this.ctx.storage.put('state', this.state)
-    // Cards and players' names are kept for a day at most
+    // Cards and claims are kept for a day at most
     await this.ctx.storage.setAlarm(this.state.createdAt + ROOM_TTL)
     return true
   }

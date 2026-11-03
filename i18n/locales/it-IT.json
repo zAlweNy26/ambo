@@ -94,7 +94,6 @@
     "draw": "Estrai un numero",
     "extractions": "Ultima estrazione | Ultime {0} estrazioni",
     "players": "{0} giocatore | {0} giocatori",
-    "guest": "Ospite",
     "perCard": "Montepremi dalle cartelle vendute",
     "price": "Prezzo per cartella",
     "pot": "{n} cartella venduta · {total} in palio | {n} cartelle vendute · {total} in palio",
@@ -113,8 +112,8 @@
     "found": "Numero {0} trovato e segnato",
     "notFound": "Numero {0} non trovato",
     "winners": "Vincitori",
-    "nameHint": "Facoltativo, compare sul tabellone",
-    "announce": "Annuncia ogni estrazione"
+    "announce": "Annuncia ogni estrazione",
+    "you": "Il tuo ID giocatore"
   },
   "pwa": {
     "installTitle": "Vuoi installarla come app?",
@@ -127,14 +126,11 @@
     "drawFailed": "Il numero non è stato salvato. Estrai di nuovo."
   },
   "claim": {
-    "title": "Il tuo nome",
-    "description": "Il tabellone lo mostra accanto al premio.",
-    "name": "Nome",
     "submit": "Ho fatto {prize}!",
     "won": "Hai fatto {prize}!",
     "closed": "{prize} è già stato vinto.",
     "invalid": "Questa cartella non ha ancora {prize}.",
-    "announce": "{name} ha fatto {prize}!",
+    "announce": "Il giocatore {player} ha fatto {prize}!",
     "ready": "La cartella #{card} ha fatto {prize}!"
   },
   "round": {

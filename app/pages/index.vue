@@ -7,8 +7,6 @@ const gameId = useRouteQuery<string>('id', '')
 // Codes are lowercase hex: forgive capitals and spaces from pasting
 const code = computed(() => gameId.value.trim().toLowerCase())
 const valid = computed(() => /^[0-9a-f]{8}$/.test(code.value))
-// Optional: the board lists it, and claims use it without asking again
-const playerName = useLocalStorage('player:name', '')
 
 // The cards page sends players back here if the room answers that the game doesn't exist
 async function joinGame(cards: number) {
@@ -61,9 +59,6 @@ const today = napoletana[dayOfYear % napoletana.length]!
               <UFormField class="col-span-2" size="xl" :label="$t('game.id')" required>
                 <UInput v-model="gameId" :placeholder="$t('game.id')" icon="i-tabler-lock-password" class="w-full"
                         :ui="{ base: 'tracking-wider tabular-nums' }" />
-              </UFormField>
-              <UFormField class="col-span-2" size="xl" :label="$t('claim.title')" :hint="$t('cards.nameHint')">
-                <UInput v-model.trim="playerName" maxlength="24" autocomplete="given-name" icon="i-tabler-user" class="w-full" />
               </UFormField>
               <UButton v-for="n in 6" :key="n" :disabled="!valid" :label="$t('cards.quantity', [n], n)"
                        block size="lg" :color="!valid ? 'neutral' : 'primary'" :variant="!valid ? 'outline' : 'solid'"

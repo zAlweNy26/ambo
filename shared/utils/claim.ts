@@ -30,7 +30,8 @@ export function isPrizeOn(prize: Prize, split?: Split) {
 
 export interface Winner {
   prize: Prize
-  name: string
+  // The winner's short ID
+  player: string
   // How many numbers were drawn when it was claimed: others can still tie until the next draw
   draw: number
 }

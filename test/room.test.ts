@@ -5,8 +5,8 @@ import { describe, expect, it } from 'vitest'
 import { createRoom, dispatch, handle, parseMessage } from '#server/room/core'
 
 const HOST = '00000000-0000-4000-8000-000000000001'
-const P1 = '00000000-0000-4000-8000-000000000002'
-const P2 = '00000000-0000-4000-8000-000000000003'
+const P1 = 'a1a1a1a1-0000-4000-8000-000000000002'
+const P2 = 'b2b2b2b2-0000-4000-8000-000000000003'
 
 // Same sample cartella as the home page; row 1 is 4 21 43 62 85
 const CARD = [
@@ -74,51 +74,26 @@ describe('handle', () => {
     expect(state.players[P1]).toHaveLength(3)
   })
 
-  it('lists players by name and cartelle, never by player ID', () => {
+  it('lists players by short ID and cartelle, never by full player ID', () => {
     const state = createRoom('abcd1234', HOST)
-    const join = handle(state, {}, {
-      type: 'join',
-      player: P1,
-      cards: 2,
-      name: 'Maria',
-    })
-    expect(join.broadcast).toEqual([
+    expect(handle(state, {}, { type: 'join', player: P1, cards: 2 }).broadcast).toEqual([
       {
         type: 'players',
         players: [
-          { name: 'Maria', cards: 2 },
+          { id: 'a1a1a1', cards: 2 },
         ],
       },
     ])
-    expect(handle(state, {}, {
-      type: 'join',
-      player: P1,
-      cards: 2,
-      name: 'Maria',
-    }).broadcast).toEqual([])
+    expect(handle(state, {}, { type: 'join', player: P1, cards: 2 }).broadcast).toEqual([])
     handle(state, {}, { type: 'join', player: P2, cards: 1 })
-    expect(handle(state, {}, { type: 'host', host: HOST }).reply[0]).toMatchObject({
+    const host = handle(state, {}, { type: 'host', host: HOST })
+    expect(host.reply[0]).toMatchObject({
       players: [
-        { name: 'Maria', cards: 2 },
-        { name: '', cards: 1 },
+        { id: 'a1a1a1', cards: 2 },
+        { id: 'b2b2b2', cards: 1 },
       ],
     })
-    state.players[P2] = [CARD]
-    state.extractions.push(21, 43)
-    const claim = handle(state, { player: P2 }, {
-      type: 'claim',
-      card: 0,
-      prize: 'ambo',
-      name: 'Luca',
-    })
-    expect(claim.broadcast[1]).toEqual({
-      type: 'players',
-      players: [
-        { name: 'Maria', cards: 2 },
-        { name: 'Luca', cards: 1 },
-      ],
-    })
-    expect(JSON.stringify(claim)).not.toContain(P2)
+    expect(JSON.stringify(host)).not.toContain(P1)
   })
 
   it('checks claims against the dealt card and shares a prize won on the same draw', () => {
@@ -127,9 +102,6 @@ describe('handle', () => {
       type: 'claim',
       card: 0,
       prize: 'ambo',
-      name: player === P1
-        ? 'Maria'
-        : 'Luca',
     })
     expect(claim(P1).reply[0]).toEqual({
       type: 'claim',
@@ -142,15 +114,14 @@ describe('handle', () => {
     expect(claim(P2).broadcast[0]).toEqual({
       type: 'winners',
       winners: [
-        { prize: 'ambo', name: 'Maria', draw: 2 },
-        { prize: 'ambo', name: 'Luca', draw: 2 },
+        { prize: 'ambo', player: 'a1a1a1', draw: 2 },
+        { prize: 'ambo', player: 'b2b2b2', draw: 2 },
       ],
     })
     expect(handle(state, { player: P1 }, {
       type: 'claim',
       card: 1,
       prize: 'ambo',
-      name: 'x',
     }).reply[0]).toMatchObject({ ok: false, reason: 'invalid' })
   })
 
@@ -161,32 +132,27 @@ describe('handle', () => {
       type: 'claim',
       card: 0,
       prize: 'terna',
-      name: 'Maria',
     })
     state.extractions.push(62)
     expect(handle(state, { player: P2 }, {
       type: 'claim',
       card: 0,
       prize: 'ambo',
-      name: 'Luca',
     }).reply[0]).toMatchObject({ ok: false, reason: 'closed' })
     expect(handle(state, { player: P2 }, {
       type: 'claim',
       card: 0,
       prize: 'quaterna',
-      name: 'Luca',
     }).reply[0]).toMatchObject({ ok: true })
   })
 
-  it('starts a new round: same players and names, new cartelle, no draws or prizes', () => {
+  it('starts a new round: new cartelle, no draws or prizes', () => {
     const state = room()
-    state.names = { [P1]: 'Maria' }
     state.extractions.push(21, 43)
     handle(state, { player: P1 }, {
       type: 'claim',
       card: 0,
       prize: 'ambo',
-      name: 'Maria',
     })
     expect(handle(state, { player: P1 }, { type: 'round' }).reply[0]).toEqual({ type: 'error', reason: 'forbidden' })
     expect(handle(state, { host: true }, { type: 'round' }).broadcast).toEqual([
@@ -196,13 +162,12 @@ describe('handle', () => {
       extractions: [],
       claims: [],
       players: {},
-      names: { [P1]: 'Maria' },
     })
     const rejoin = handle(state, {}, { type: 'join', player: P1, cards: 3 })
     expect(rejoin.reply[0]).toMatchObject({
       winners: [],
       players: [
-        { name: 'Maria', cards: 3 },
+        { id: 'a1a1a1', cards: 3 },
       ],
     })
   })
@@ -214,7 +179,6 @@ describe('handle', () => {
       type: 'claim',
       card: 0,
       prize,
-      name: 'x',
     }).reply[0]
     handle(state, { host: true }, {
       type: 'prize',
@@ -241,7 +205,7 @@ describe('handle', () => {
   it('rejects malformed messages', () => {
     expect(parseMessage('{"type":"draw"}')).toEqual({ type: 'draw' })
     expect(parseMessage('{"type":"join","player":"x","cards":2}')).toBeUndefined()
-    expect(parseMessage('{"type":"claim","card":0,"prize":"ambo","name":"   "}')).toBeUndefined()
+    expect(parseMessage('{"type":"claim","card":9,"prize":"ambo"}')).toBeUndefined()
     expect(parseMessage('ping')).toBeUndefined()
   })
 })

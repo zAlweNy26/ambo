@@ -30,7 +30,6 @@
     "prize": "Gewinnverteilung",
     "smirk": "Smorfia wählen",
     "players": "{0} Spieler | {0} Spieler",
-    "guest": "Gast",
     "perCard": "Topf aus verkauften Karten",
     "price": "Preis pro Karte",
     "pot": "{n} Karte verkauft · {total} im Topf | {n} Karten verkauft · {total} im Topf",
@@ -56,8 +55,8 @@
     "search": "Zahl suchen",
     "title": "Mit wie vielen Karten willst du spielen?",
     "winners": "Gewinner",
-    "nameHint": "Optional, erscheint auf dem Tabellone",
-    "announce": "Jede Ziehung ansagen"
+    "announce": "Jede Ziehung ansagen",
+    "you": "Deine Spieler-ID"
   },
   "contacts": {
     "role": "Projektleiter\nFull-Stack-Entwickler",
@@ -127,14 +126,11 @@
     "toggle": "Design wechseln"
   },
   "claim": {
-    "title": "Dein Name",
-    "description": "Das Tabellone zeigt ihn neben dem Gewinn.",
-    "name": "Name",
     "submit": "{prize} melden!",
     "won": "Du hast {prize} gewonnen!",
     "closed": "{prize} wurde schon gewonnen.",
     "invalid": "Diese Karte hat {prize} noch nicht.",
-    "announce": "{name} gewinnt {prize}!",
+    "announce": "Spieler {player} gewinnt {prize}!",
     "ready": "Karte #{card} hat {prize}!"
   },
   "round": {

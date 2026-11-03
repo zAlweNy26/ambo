@@ -30,7 +30,6 @@
     "prize": "Répartition des gains",
     "smirk": "Choisissez une smorfia",
     "players": "{0} joueur | {0} joueurs",
-    "guest": "Invité",
     "perCard": "Cagnotte selon les cartons vendus",
     "price": "Prix par carton",
     "pot": "{n} carton vendu · {total} en jeu | {n} cartons vendus · {total} en jeu",
@@ -56,8 +55,8 @@
     "search": "Chercher le numéro",
     "title": "Avec combien de cartons voulez-vous jouer ?",
     "winners": "Gagnants",
-    "nameHint": "Facultatif, affiché sur le tableau",
-    "announce": "Annoncer chaque tirage"
+    "announce": "Annoncer chaque tirage",
+    "you": "Votre ID de joueur"
   },
   "contacts": {
     "role": "Chef de projet\nDéveloppeur full-stack",
@@ -127,14 +126,11 @@
     "toggle": "Changer de thème"
   },
   "claim": {
-    "title": "Votre nom",
-    "description": "Le tableau l’affiche à côté du gain.",
-    "name": "Nom",
     "submit": "Annoncer {prize} !",
     "won": "Vous avez gagné {prize} !",
     "closed": "{prize} a déjà été gagné.",
     "invalid": "Ce carton n’a pas encore {prize}.",
-    "announce": "{name} gagne {prize} !",
+    "announce": "Le joueur {player} gagne {prize} !",
     "ready": "Le carton #{card} a fait {prize} !"
   },
   "round": {
