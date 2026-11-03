@@ -16,7 +16,7 @@ const amount = useRouteQuery('n', 1, {
   transform: v => Math.min(Math.max(Number(v) || 1, 1), 6),
 })
 
-const extractions = ref<number[]>([]), winners = ref<Winner[]>([]), prize = ref(0)
+const extractions = ref<number[]>([]), winners = ref<Winner[]>([]), prize = ref(0), smirk = ref<Smorfia>()
 
 // The room deals the cartelle and checks claims against them; this copy shows them at once after a reload.
 // Marks and claims only live on the phone, one game at a time.
@@ -58,6 +58,7 @@ const room = useRoom(gameId, () => ({
       extractions.value = message.extractions
       winners.value = message.winners
       prize.value = message.prize
+      smirk.value = message.smirk
       // New cards (first join, or another amount before the first draw) start the marks over
       if (message.cards && JSON.stringify(message.cards) !== JSON.stringify(saved.value.cards)) {
         saved.value = {
@@ -79,6 +80,9 @@ const room = useRoom(gameId, () => ({
       break
     case 'prize':
       prize.value = message.total
+      break
+    case 'smirk':
+      smirk.value = message.smirk
       break
     case 'claim':
       if (message.ok) {
@@ -117,6 +121,8 @@ const room = useRoom(gameId, () => ({
 const wonPrizes = computed(() => Object.entries(prizeWinners(prize.value, winners.value)).filter(([, ws]) => ws.length).reverse())
 
 const lastExtractions = computed(() => extractions.value.slice(-5))
+// The host's smorfia, for the latest number
+const meaning = useSmorfia(smirk, () => extractions.value.at(-1))
 
 const searchNumber = ref(1), numberFound = ref<boolean>()
 
@@ -212,6 +218,10 @@ function sendClaim() {
           {{ num }}
         </span>
       </div>
+      <p v-if="meaning" class="text-center text-balance">
+        <span class="block font-semibold text-highlighted">{{ meaning.original }}</span>
+        <span class="text-sm text-muted">{{ meaning.translated }}</span>
+      </p>
     </div>
 
     <div v-if="wonPrizes.length" class="panel w-full max-w-sm px-4 py-2">

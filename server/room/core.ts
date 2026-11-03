@@ -1,8 +1,10 @@
 import type { ClientMessage, Player, ServerMessage } from '../../shared/types/room'
 import type { Prize, Winner } from '../../shared/utils/claim'
+import type { Smorfia } from '../../shared/utils/smorfia'
 import { z } from 'zod'
 import { generateCartella } from '../../shared/utils/cartella'
 import { hasPrize, isPrizeClosed, PRIZES } from '../../shared/utils/claim'
+import { SMORFIE } from '../../shared/utils/smorfia'
 
 // The rules of one live game, with no Cloudflare code: the Durable Object (production) and the in-memory
 // room (`bun run dev`) both feed messages through `dispatch`, so they behave the same.
@@ -30,6 +32,8 @@ export interface RoomState {
   claims: Claim[]
   // The host's prize pool in euro, so phones can show what each winner takes; missing in rooms saved before it existed
   prize?: number
+  // The host's smorfia, so phones can show the meaning of each number
+  smirk?: Smorfia
 }
 
 // Who is on the other end of one socket, set by its first host/join message
@@ -65,6 +69,10 @@ const messageSchema = z.discriminatedUnion('type', [
   z.object({
     type: z.literal('prize'),
     total: z.number().min(0).max(1_000_000),
+  }),
+  z.object({
+    type: z.literal('smirk'),
+    smirk: z.enum(SMORFIE),
   }),
   z.object({
     type: z.literal('claim'),
@@ -126,6 +134,7 @@ export function handle(state: RoomState, session: Session, msg: ClientMessage, r
     winners: winnersOf(state),
     prize: state.prize ?? 0,
     players: playersOf(state),
+    smirk: state.smirk,
   })
   switch (msg.type) {
     case 'host':
@@ -192,6 +201,15 @@ export function handle(state: RoomState, session: Session, msg: ClientMessage, r
         broadcast: [
           { type: 'prize', total: msg.total },
         ],
+        changed: true,
+      }
+
+    case 'smirk':
+      if (!session.host) return forbidden
+      state.smirk = msg.smirk
+      return {
+        reply: [],
+        broadcast: [msg],
         changed: true,
       }
 

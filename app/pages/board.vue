@@ -1,25 +1,12 @@
 <script lang="ts" setup>
 import { renderSVG } from 'uqr'
-import livornese from '~/assets/livornese.json'
-import napoletana from '~/assets/napoletana.json'
-import piemontese from '~/assets/piemontese.json'
-import romana from '~/assets/romana.json'
-import trapanese from '~/assets/trapanese.json'
-
-const smirks = {
-  napoletana,
-  trapanese,
-  romana,
-  piemontese,
-  livornese,
-}
 
 const route = useRoute(), router = useRouter()
 
 // The hosted game and the host's choices survive a reload or crash; the settings carry over to the next game
 const hosted = useLocalStorage('board:game', { gameId: '', hostId: '' })
 const settings = useLocalStorage('board:settings', {
-  smirk: undefined as keyof typeof smirks | undefined,
+  smirk: undefined as Smorfia | undefined,
   totalPrize: 0.1,
   // The pool can instead be the price of a cartella times the cartelle sold, as with a real box
   perCard: false,
@@ -59,13 +46,10 @@ const cards = Array.from({ length: 6 }).map((_, i) => {
   return card
 })
 
-const smirkOptions = [
-  { label: 'Napoletana', value: 'napoletana' },
-  { label: 'Trapanese', value: 'trapanese' },
-  { label: 'Romana', value: 'romana' },
-  { label: 'Piemontese', value: 'piemontese' },
-  { label: 'Livornese', value: 'livornese' },
-]
+const smirkOptions = SMORFIE.map(value => ({
+  label: _Capitalize(value),
+  value,
+}))
 
 const toast = useToast()
 const { t } = useI18n()
@@ -77,14 +61,7 @@ const { isSupported: isSpeechSupported, isPlaying, say, stop } = useVoice()
 
 const remaining = computed(() => 90 - extractedNumbers.value.length)
 
-const currentSmirk = computed(() => {
-  const number = currentNumber.value
-  const smirk = settings.value.smirk
-  if (!smirk || !number) return
-  const smirkData = smirks[smirk]
-  const smirkNumber = smirkData.find(({ number: n }) => n === number)
-  return smirkNumber
-})
+const currentSmirk = useSmorfia(() => settings.value.smirk, currentNumber)
 
 watchDeep(currentSmirk, () => {
   if (isPlaying.value) stop()
@@ -151,6 +128,7 @@ const room = useRoom(gameId, () => ({ type: 'host', host: game.value.hostId }), 
       players.value = message.players
       // The room keeps the pool for the phones; the host's own setting wins
       if (message.prize !== pot.value) room.send({ type: 'prize', total: pot.value })
+      if (settings.value.smirk && message.smirk !== settings.value.smirk) room.send({ type: 'smirk', smirk: settings.value.smirk })
       break
     case 'draw':
       extractedNumbers.value = [...extractedNumbers.value, message.number]
@@ -170,6 +148,7 @@ const room = useRoom(gameId, () => ({ type: 'host', host: game.value.hostId }), 
   }
 })
 
+watch(() => settings.value.smirk, smirk => smirk && room.send({ type: 'smirk', smirk }))
 watchDebounced(pot, total => room.send({ type: 'prize', total }), { debounce: 500 })
 
 // Leaving through the app ends the game; closing or reloading the tab doesn't, so the board can resume it
