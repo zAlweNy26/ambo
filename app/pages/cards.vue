@@ -42,7 +42,14 @@ function goHome(title: string, description?: string) {
   toast.add({ title, description, color: 'error' })
 }
 
-const room = useRoom(gameId, () => ({ type: 'join', player: player.value, cards: amount.value }), (message) => {
+const playerName = useLocalStorage('player:name', '')
+
+const room = useRoom(gameId, () => ({
+  type: 'join',
+  player: player.value,
+  cards: amount.value,
+  name: playerName.value || undefined,
+}), (message) => {
   switch (message.type) {
     case 'state':
       extractions.value = message.extractions
@@ -148,7 +155,6 @@ const claimable = computed(() => cards.value.map((card, ci) => {
   return gone ? undefined : best
 }))
 
-const playerName = useLocalStorage('player:name', '')
 const nameOpen = ref(false), nameDraft = ref(''), pendingCard = ref(0)
 
 function claim(ci: number) {

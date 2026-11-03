@@ -1,4 +1,4 @@
-import type { ClientMessage, ServerMessage } from '../../shared/types/room'
+import type { ClientMessage, Player, ServerMessage } from '../../shared/types/room'
 import type { Prize, Winner } from '../../shared/utils/claim'
 import { z } from 'zod'
 import { generateCartella } from '../../shared/utils/cartella'
@@ -25,6 +25,8 @@ export interface RoomState {
   extractions: number[]
   // Cartelle the server dealt, per player ID: claims are checked against these
   players: Record<string, number[][]>
+  // Players' names, per player ID, from their join or claim; missing in rooms saved before it existed
+  names?: Record<string, string>
   claims: Claim[]
   // The host's prize pool in euro, so phones can show what each winner takes; missing in rooms saved before it existed
   prize?: number
@@ -55,6 +57,7 @@ const messageSchema = z.discriminatedUnion('type', [
     type: z.literal('join'),
     player: z.uuid(),
     cards: z.int().min(1).max(6),
+    name: z.string().trim().max(24).optional(),
   }),
   z.object({
     type: z.literal('draw'),
@@ -96,22 +99,42 @@ export function createRoom(id: string, host: string, now = Date.now()): RoomStat
 
 export const winnersOf = (state: RoomState): Winner[] => state.claims.map(({ prize, name, draw }) => ({ prize, name, draw }))
 
+// Who joined, without their player IDs: those are the keys to their cartelle
+export function playersOf(state: RoomState): Player[] {
+  return Object.entries(state.players).map(([id, cards]) => ({
+    name: state.names?.[id] ?? '',
+    cards: cards.length,
+  }))
+}
+
+// Remembers a player's name; true if it changed
+function rename(state: RoomState, player: string, name: string | undefined) {
+  if (!name || state.names?.[player] === name) return false
+  state.names = { ...state.names, [player]: name }
+  return true
+}
+
 const cryptoRandom = () => crypto.getRandomValues(new Uint32Array(1))[0]! / 2 ** 32
 
 const only = (...reply: ServerMessage[]): Outcome => ({ reply, broadcast: [] })
 const forbidden = only({ type: 'error', reason: 'forbidden' })
 
 export function handle(state: RoomState, session: Session, msg: ClientMessage, random = cryptoRandom): Outcome {
-  const snapshot = {
+  // Built after the message changed the state
+  const snapshot = () => ({
     extractions: state.extractions,
     winners: winnersOf(state),
     prize: state.prize ?? 0,
-  }
+    players: playersOf(state),
+  })
   switch (msg.type) {
     case 'host':
       if (msg.host !== state.host) return forbidden
       return {
-        ...only({ type: 'state', ...snapshot }),
+        ...only({
+          type: 'state',
+          ...snapshot(),
+        }),
         session: { host: true },
       }
 
@@ -124,10 +147,25 @@ export function handle(state: RoomState, session: Session, msg: ClientMessage, r
         cards = Array.from({ length: msg.cards }, generateCartella)
         state.players[msg.player] = cards
       }
+      const changed = rename(state, msg.player, msg.name) || deal
       return {
-        ...only({ type: 'state', ...snapshot, cards }),
+        reply: [
+          {
+            type: 'state',
+            ...snapshot(),
+            cards,
+          },
+        ],
+        broadcast: changed
+          ? [
+              {
+                type: 'players',
+                players: playersOf(state),
+              },
+            ]
+          : [],
         session: { player: msg.player },
-        changed: deal,
+        changed,
       }
     }
 
@@ -193,6 +231,14 @@ export function handle(state: RoomState, session: Session, msg: ClientMessage, r
             type: 'winners',
             winners: winnersOf(state),
           },
+          ...(rename(state, session.player!, name)
+            ? [
+                {
+                  type: 'players',
+                  players: playersOf(state),
+                } as const,
+              ]
+            : []),
         ],
         changed: true,
       }

@@ -147,7 +147,8 @@ function speechText() {
   setTimeout(speak, 250)
 }
 
-const winners = ref<Winner[]>([])
+const winners = ref<Winner[]>([]), players = ref<Player[]>([])
+const cartelle = computed(() => players.value.reduce((sum, p) => sum + p.cards, 0))
 const wonPrizes = computed(() => prizeWinners(settings.value.totalPrize, winners.value))
 
 let drawDone: (() => void) | undefined
@@ -158,6 +159,7 @@ const room = useRoom(gameId, () => ({ type: 'host', host: game.value.hostId }), 
       extractedNumbers.value = message.extractions
       currentNumber.value ??= message.extractions.at(-1)
       winners.value = message.winners
+      players.value = message.players
       // The room keeps the pool for the phones; the host's own setting wins
       if (message.prize !== settings.value.totalPrize) room.send({ type: 'prize', total: settings.value.totalPrize })
       break
@@ -169,6 +171,9 @@ const room = useRoom(gameId, () => ({ type: 'host', host: game.value.hostId }), 
     case 'winners':
       message.winners.slice(winners.value.length).forEach(announceWinner)
       winners.value = message.winners
+      break
+    case 'players':
+      players.value = message.players
       break
     case 'error':
       // The hosted game expired (a day) or isn't ours: start a new one
@@ -304,6 +309,18 @@ function extractNumber() {
             </dd>
           </div>
         </dl>
+        <div class="flex flex-col gap-2 border-t border-default pt-4">
+          <p class="flex justify-between gap-2 text-sm">
+            <span class="font-medium text-highlighted">{{ $t('board.players', [players.length], players.length) }}</span>
+            <span class="text-muted tabular-nums">{{ $t('cards.quantity', [cartelle], cartelle) }}</span>
+          </p>
+          <div v-if="players.length" class="flex flex-wrap gap-1.5">
+            <UBadge v-for="(p, i) in players" :key="i" color="neutral" variant="soft">
+              {{ p.name || $t('board.guest') }}
+              <span class="text-dimmed tabular-nums">×{{ p.cards }}</span>
+            </UBadge>
+          </div>
+        </div>
       </div>
     </div>
   </section>

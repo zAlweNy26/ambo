@@ -27,7 +27,9 @@
     "draw": "Tirer un numéro",
     "extractions": "Dernier numéro tiré | {0} derniers numéros tirés",
     "prize": "Répartition des gains",
-    "smirk": "Choisissez une smorfia"
+    "smirk": "Choisissez une smorfia",
+    "players": "{0} joueur | {0} joueurs",
+    "guest": "Invité"
   },
   "button": {
     "backHome": "Retour à l’@:header.home",
@@ -44,7 +46,8 @@
     "quantity": "{0} carton | {0} cartons",
     "search": "Chercher le numéro",
     "title": "Avec combien de cartons voulez-vous jouer ?",
-    "winners": "Gagnants"
+    "winners": "Gagnants",
+    "nameHint": "Facultatif, affiché sur le tableau"
   },
   "contacts": {
     "role": "Chef de projet\nDéveloppeur full-stack",

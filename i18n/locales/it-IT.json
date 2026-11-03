@@ -91,7 +91,9 @@
     "smirk": "Scegli una smorfia",
     "announcer": "Annunciatore automatico",
     "draw": "Estrai un numero",
-    "extractions": "Ultima estrazione | Ultime {0} estrazioni"
+    "extractions": "Ultima estrazione | Ultime {0} estrazioni",
+    "players": "{0} giocatore | {0} giocatori",
+    "guest": "Ospite"
   },
   "cards": {
     "autoMark": "Segna in automatico i numeri estratti",
@@ -101,7 +103,8 @@
     "search": "Cerca il numero",
     "found": "Numero {0} trovato e segnato",
     "notFound": "Numero {0} non trovato",
-    "winners": "Vincitori"
+    "winners": "Vincitori",
+    "nameHint": "Facoltativo, compare sul tabellone"
   },
   "pwa": {
     "installTitle": "Vuoi installarla come app?",

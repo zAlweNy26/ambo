@@ -1,9 +1,15 @@
 import type { Prize, Winner } from '../utils/claim'
 
+// One player who joined, as the board lists them; name is '' until they give one
+export interface Player {
+  name: string
+  cards: number
+}
+
 // What the board and the phones send to a game room over its WebSocket (/room/<id>)
 export type ClientMessage
   = | { type: 'host', host: string }
-    | { type: 'join', player: string, cards: number }
+    | { type: 'join', player: string, cards: number, name?: string }
     | { type: 'draw' }
     | { type: 'prize', total: number }
     | { type: 'claim', card: number, prize: Prize, name: string }
@@ -11,7 +17,8 @@ export type ClientMessage
 
 // What a game room sends back; `state` answers host/join and repeats after every reconnect
 export type ServerMessage
-  = | { type: 'state', extractions: number[], winners: Winner[], prize: number, cards?: number[][] }
+  = | { type: 'state', extractions: number[], winners: Winner[], prize: number, players: Player[], cards?: number[][] }
+    | { type: 'players', players: Player[] }
     | { type: 'draw', number: number }
     | { type: 'winners', winners: Winner[] }
     | { type: 'prize', total: number }

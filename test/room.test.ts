@@ -63,6 +63,53 @@ describe('handle', () => {
     expect(state.players[P1]).toHaveLength(3)
   })
 
+  it('lists players by name and cartelle, never by player ID', () => {
+    const state = createRoom('abcd1234', HOST)
+    const join = handle(state, {}, {
+      type: 'join',
+      player: P1,
+      cards: 2,
+      name: 'Maria',
+    })
+    expect(join.broadcast).toEqual([
+      {
+        type: 'players',
+        players: [
+          { name: 'Maria', cards: 2 },
+        ],
+      },
+    ])
+    expect(handle(state, {}, {
+      type: 'join',
+      player: P1,
+      cards: 2,
+      name: 'Maria',
+    }).broadcast).toEqual([])
+    handle(state, {}, { type: 'join', player: P2, cards: 1 })
+    expect(handle(state, {}, { type: 'host', host: HOST }).reply[0]).toMatchObject({
+      players: [
+        { name: 'Maria', cards: 2 },
+        { name: '', cards: 1 },
+      ],
+    })
+    state.players[P2] = [CARD]
+    state.extractions.push(21, 43)
+    const claim = handle(state, { player: P2 }, {
+      type: 'claim',
+      card: 0,
+      prize: 'ambo',
+      name: 'Luca',
+    })
+    expect(claim.broadcast[1]).toEqual({
+      type: 'players',
+      players: [
+        { name: 'Maria', cards: 2 },
+        { name: 'Luca', cards: 1 },
+      ],
+    })
+    expect(JSON.stringify(claim)).not.toContain(P2)
+  })
+
   it('checks claims against the dealt card and shares a prize won on the same draw', () => {
     const state = room()
     const claim = (player: string) => handle(state, { player }, {

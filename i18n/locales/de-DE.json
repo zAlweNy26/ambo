@@ -27,7 +27,9 @@
     "draw": "Zahl ziehen",
     "extractions": "Zuletzt gezogene Zahl | Letzte {0} gezogene Zahlen",
     "prize": "Gewinnverteilung",
-    "smirk": "Smorfia wählen"
+    "smirk": "Smorfia wählen",
+    "players": "{0} Spieler | {0} Spieler",
+    "guest": "Gast"
   },
   "button": {
     "backHome": "Zurück zur @:header.home",
@@ -44,7 +46,8 @@
     "quantity": "{0} Karte | {0} Karten",
     "search": "Zahl suchen",
     "title": "Mit wie vielen Karten willst du spielen?",
-    "winners": "Gewinner"
+    "winners": "Gewinner",
+    "nameHint": "Optional, erscheint auf dem Tabellone"
   },
   "contacts": {
     "role": "Projektleiter\nFull-Stack-Entwickler",
