@@ -8,5 +8,6 @@ export function useRooms(event: H3Event) {
   const rooms = (event.context.cloudflare.env as Env).ROOMS
   return {
     init: (id: string, host: string) => rooms.get(rooms.idFromName(id)).init(id, host),
+    info: (id: string) => rooms.get(rooms.idFromName(id)).info(),
   }
 }

@@ -45,6 +45,11 @@ export class GameRoom extends DurableObject<Env> {
     return true
   }
 
+  // What the join form shows before a player joins; undefined when the game doesn't exist
+  info() {
+    return this.state && { price: this.state.price }
+  }
+
   async fetch(request: Request) {
     if (request.headers.get('upgrade') !== 'websocket') return new Response('Expected a WebSocket', { status: 426 })
     const { 0: client, 1: server } = new WebSocketPair()

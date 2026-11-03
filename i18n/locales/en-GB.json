@@ -114,6 +114,7 @@
     "winners": "Winners",
     "you": "Your player ID",
     "cost": "{total} to pay · {price} per card",
+    "priceEach": "Each card costs {price}",
     "vibrate": "Vibrate on each draw"
   },
   "pwa": {

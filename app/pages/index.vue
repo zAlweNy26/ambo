@@ -7,6 +7,10 @@ const gameId = useRouteQuery<string>('id', '')
 // Codes are lowercase hex: forgive capitals and spaces from pasting
 const code = computed(() => gameId.value.trim().toLowerCase())
 const valid = computed(() => /^[0-9a-f]{8}$/.test(code.value))
+// The host's price per cartella, so players know what they'll pay before choosing how many
+const price = computedAsync(async () => valid.value
+  ? (await $fetch<{ price?: number }>(`/api/game/${code.value}`).catch(() => undefined))?.price
+  : undefined)
 
 // The cards page sends players back here if the room answers that the game doesn't exist
 async function joinGame(cards: number) {
@@ -56,7 +60,8 @@ const today = napoletana[dayOfYear % napoletana.length]!
           }" :defaultOpen="!!gameId">
             <UButton :label="$t('header.cards')" block icon="i-tabler-cards" size="xl" color="neutral" variant="outline" />
             <template #body>
-              <UFormField class="col-span-2" size="xl" :label="$t('game.id')" required>
+              <UFormField class="col-span-2" size="xl" :label="$t('game.id')" required
+                          :help="price ? $t('cards.priceEach', { price: $n(price, 'currency') }) : undefined">
                 <UInput v-model="gameId" :placeholder="$t('game.id')" icon="i-tabler-lock-password" class="w-full"
                         :ui="{ base: 'tracking-wider tabular-nums' }" />
               </UFormField>

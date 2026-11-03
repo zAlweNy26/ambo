@@ -24,6 +24,8 @@ interface DurableObjectState {
 interface DurableObjectStub<T> {
   fetch: (request: unknown) => Promise<Response>
   init: T extends { init: (...args: infer A) => infer R } ? (...args: A) => R : never
+  // RPC makes every call async
+  info: T extends { info: () => infer R } ? () => Promise<R> : never
 }
 
 interface DurableObjectNamespace<T> {

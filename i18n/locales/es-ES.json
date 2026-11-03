@@ -57,6 +57,7 @@
     "winners": "Ganadores",
     "you": "Tu ID de jugador",
     "cost": "{total} a pagar · {price} por cartón",
+    "priceEach": "Cada cartón cuesta {price}",
     "vibrate": "Vibrar en cada extracción"
   },
   "contacts": {

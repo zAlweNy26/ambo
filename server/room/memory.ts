@@ -25,6 +25,10 @@ export const memoryRooms = {
     room.state = createRoom(id, host)
     return true
   },
+  async info(id: string) {
+    const state = rooms.get(id)?.state
+    return state && { price: state.price }
+  },
 }
 
 export function peerConnection(peer: Peer): Connection {

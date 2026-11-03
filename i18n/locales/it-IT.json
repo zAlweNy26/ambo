@@ -114,6 +114,7 @@
     "winners": "Vincitori",
     "you": "Il tuo ID giocatore",
     "cost": "{total} da pagare · {price} a cartella",
+    "priceEach": "Ogni cartella costa {price}",
     "vibrate": "Vibra a ogni estrazione"
   },
   "pwa": {

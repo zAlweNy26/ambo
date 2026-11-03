@@ -57,6 +57,7 @@
     "winners": "Gewinner",
     "you": "Deine Spieler-ID",
     "cost": "{total} zu zahlen · {price} pro Karte",
+    "priceEach": "Jede Karte kostet {price}",
     "vibrate": "Bei jeder Ziehung vibrieren"
   },
   "contacts": {
