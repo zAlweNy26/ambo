@@ -33,13 +33,13 @@ useHead({
 useSeoMeta({
   title: seoTitle,
   description: () => t('home.subtitle'),
-  ogTitle: seoTitle,
-  ogImage: '/maskable-icon-512x512.png',
+  ogTitle: () => seoTitle.value || title,
+  ogImage: '/og-image.png',
   ogDescription: () => t('home.subtitle'),
-  twitterTitle: seoTitle,
+  twitterTitle: () => seoTitle.value || title,
   twitterDescription: () => t('home.subtitle'),
-  twitterImage: '/maskable-icon-512x512.png',
-  twitterCard: 'summary',
+  twitterImage: '/og-image.png',
+  twitterCard: 'summary_large_image',
 })
 
 const head = useLocaleHead({

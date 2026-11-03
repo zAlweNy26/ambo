@@ -59,6 +59,21 @@ export default defineNuxtConfig({
   },
 
   app: {
+    // ssr: false serves an empty shell and social crawlers don't run JS: share tags must be static here.
+    // useSeoMeta in layouts/default.vue still refines them in the browser (Google renders JS).
+    head: {
+      title: 'Ambo!',
+      meta: [
+        { name: 'description', content: 'An application to play tombola online quickly and easily.' },
+        { property: 'og:title', content: 'Ambo!' },
+        { property: 'og:description', content: 'An application to play tombola online quickly and easily.' },
+        { property: 'og:image', content: 'https://ambo.danyalwe.me/og-image.png' },
+        { property: 'og:image:width', content: '1200' },
+        { property: 'og:image:height', content: '630' },
+        { property: 'og:image:alt', content: 'Ambo! logo and a tombola cartella with an ambo marked' },
+        { name: 'twitter:card', content: 'summary_large_image' },
+      ],
+    },
     pageTransition: {
       name: 'page',
       mode: 'out-in',
@@ -221,6 +236,8 @@ export default defineNuxtConfig({
     },
     workbox: {
       globPatterns: ['**/*.{js,css,html,png,svg,ico}'],
+      // Share card for crawlers only, not worth precaching on players' phones
+      globIgnores: ['og-image.png'],
     },
     client: {
       installPrompt: true,
