@@ -243,6 +243,17 @@ describe('dispatch', () => {
     expect(sent.b!.at(-1)).toEqual({ type: 'closed' })
   })
 
+  it('still writes stats for a game closed right after a new round', async () => {
+    const { host, conns, calls } = fake(room())
+    await dispatch(host, conns[0]!, JSON.stringify({ type: 'host', host: HOST }))
+    await dispatch(host, conns[0]!, '{"type":"draw"}')
+    await dispatch(host, conns[0]!, '{"type":"draw"}')
+    await dispatch(host, conns[0]!, '{"type":"round"}')
+    await dispatch(host, conns[0]!, '{"type":"close"}')
+    expect(host.state?.drawn).toBe(2)
+    expect(calls).toContain('stats')
+  })
+
   it('skips stats for a game closed before any draw', async () => {
     const { host, conns, calls } = fake(room())
     await dispatch(host, conns[0]!, JSON.stringify({ type: 'host', host: HOST }))

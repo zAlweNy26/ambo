@@ -25,6 +25,8 @@ export interface RoomState {
   host: string
   createdAt: number
   extractions: number[]
+  // Numbers drawn in every round of this game, for the stats; missing in rooms saved before it existed
+  drawn?: number
   // Cartelle the server dealt, per player ID: claims are checked against these
   players: Record<string, number[][]>
   claims: Claim[]
@@ -185,6 +187,7 @@ export function handle(state: RoomState, session: Session, msg: ClientMessage, r
       if (!left.length) return only()
       const number = left[Math.floor(random() * left.length)]!
       state.extractions.push(number)
+      state.drawn = (state.drawn ?? 0) + 1
       return {
         reply: [],
         broadcast: [
@@ -315,9 +318,11 @@ export async function dispatch(room: RoomHost, conn: Connection, raw: string) {
   }
 }
 
+export const drawnIn = (state: RoomState) => state.drawn ?? state.extractions.length
+
 // Stats are written once, when the host closes the game or its alarm expires it, not at every draw: a draw then
-// doesn't wait on D1, which is most of a Durable Object's billed time. Games with no draw aren't counted.
+// doesn't wait on D1, which is most of a Durable Object's billed time. Games with no draw in any round aren't counted.
 export async function saveFinalStats(room: RoomHost) {
   // Best effort: a D1 hiccup must not stop the game from closing
-  if (room.state?.extractions.length) await room.stats().catch(error => console.error(error))
+  if (room.state && drawnIn(room.state)) await room.stats().catch(error => console.error(error))
 }
