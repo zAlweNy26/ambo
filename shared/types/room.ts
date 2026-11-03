@@ -15,6 +15,7 @@ export type ClientMessage
     | { type: 'prize', total: number }
     | { type: 'smirk', smirk: Smorfia }
     | { type: 'claim', card: number, prize: Prize, name: string }
+    | { type: 'round' }
     | { type: 'close' }
 
 // What a game room sends back; `state` answers host/join and repeats after every reconnect
@@ -28,4 +29,5 @@ export type ServerMessage
     | { type: 'claim', prize: Prize, ok: true }
     | { type: 'claim', prize: Prize, ok: false, reason: 'closed' | 'invalid' }
     | { type: 'error', reason: 'not-found' | 'forbidden' | 'full' }
+    | { type: 'round' }
     | { type: 'closed' }

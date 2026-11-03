@@ -47,24 +47,29 @@ const playerName = useLocalStorage('player:name', '')
 const announce = useLocalStorage('cards:announce', false)
 const { isSupported: isSpeechSupported, say } = useVoice()
 
-const room = useRoom(gameId, () => ({
-  type: 'join',
-  player: player.value,
-  cards: amount.value,
-  name: playerName.value || undefined,
-}), (message) => {
+function hello(): ClientMessage {
+  return {
+    type: 'join',
+    player: player.value,
+    cards: amount.value,
+    name: playerName.value || undefined,
+  }
+}
+
+const room = useRoom(gameId, hello, (message) => {
   switch (message.type) {
     case 'state':
       extractions.value = message.extractions
       winners.value = message.winners
       prize.value = message.prize
       smirk.value = message.smirk
-      // New cards (first join, or another amount before the first draw) start the marks over
+      // New cards (first join, another amount before the first draw, a new round) start marks and claims over
       if (message.cards && JSON.stringify(message.cards) !== JSON.stringify(saved.value.cards)) {
         saved.value = {
           ...saved.value,
           cards: message.cards,
           marked: message.cards.map(() => []),
+          claimed: [],
         }
       }
       break
@@ -100,6 +105,13 @@ const room = useRoom(gameId, () => ({
         })
       }
 
+      break
+    case 'round':
+      room.send(hello())
+      toast.add({
+        title: t('game.round'),
+        icon: 'i-tabler-refresh',
+      })
       break
     case 'closed':
       room.close()

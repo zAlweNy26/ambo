@@ -142,6 +142,12 @@ const room = useRoom(gameId, () => ({ type: 'host', host: game.value.hostId }), 
     case 'players':
       players.value = message.players
       break
+    case 'round':
+      extractedNumbers.value = []
+      currentNumber.value = undefined
+      winners.value = []
+      players.value = []
+      break
     case 'error':
       // The hosted game expired (a day) or isn't ours: start a new one
       if (message.reason !== 'full') newGame()
@@ -167,6 +173,12 @@ function announceWinner({ name, prize }: Winner) {
     duration: 8000,
   })
   if (settings.value.autoAnnounce && isSpeechSupported.value) say(title)
+}
+
+const roundOpen = ref(false)
+function newRound() {
+  roundOpen.value = false
+  room.send({ type: 'round' })
 }
 
 // Resolves when the room broadcasts the number, so the button spins until every phone has it too
@@ -240,6 +252,15 @@ function extractNumber() {
         </div>
         <UButton icon="i-tabler-arrow-big-down-lines" :disabled="remaining === 0 || !settings.smirk || !gameId" size="xl" block loadingAuto
                  :label="$t('board.draw')" @click="extractNumber" />
+        <UModal v-model:open="roundOpen" :title="$t('round.title')" :description="$t('round.description')"
+                :ui="{ footer: 'justify-between gap-8', content: 'sm:max-w-sm' }">
+          <UButton icon="i-tabler-refresh" color="neutral" variant="outline" block :disabled="!extractedNumbers.length"
+                   :label="$t('round.start')" />
+          <template #footer>
+            <UButton :label="$t('button.cancel')" color="neutral" variant="subtle" @click="roundOpen = false" />
+            <UButton :label="$t('round.start')" icon="i-tabler-refresh" @click="newRound()" />
+          </template>
+        </UModal>
       </div>
 
       <div class="panel grid select-none border-[var(--print-line)] sm:grid-cols-2 lg:row-span-2 xl:row-span-1">

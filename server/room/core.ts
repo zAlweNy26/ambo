@@ -81,6 +81,9 @@ const messageSchema = z.discriminatedUnion('type', [
     name: z.string().trim().min(1).max(24),
   }),
   z.object({
+    type: z.literal('round'),
+  }),
+  z.object({
     type: z.literal('close'),
   }),
 ])
@@ -261,6 +264,20 @@ export function handle(state: RoomState, session: Session, msg: ClientMessage, r
         changed: true,
       }
     }
+
+    // Same room, same players and names: draws and prizes start over, and every phone rejoins for new cartelle
+    case 'round':
+      if (!session.host) return forbidden
+      state.extractions = []
+      state.claims = []
+      state.players = {}
+      return {
+        reply: [],
+        broadcast: [
+          { type: 'round' },
+        ],
+        changed: true,
+      }
 
     case 'close':
       if (!session.host) return forbidden

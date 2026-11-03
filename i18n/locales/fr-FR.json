@@ -13,7 +13,8 @@
     "title": "{0} – {1} numéros restants",
     "confirmation": "Voulez-vous vraiment quitter ? Vous perdrez la partie.",
     "closed": "L’hôte a terminé la partie.",
-    "full": "Cette partie est complète."
+    "full": "Cette partie est complète.",
+    "round": "Nouvelle manche ! Voici vos nouveaux cartons."
   },
   "aria": {
     "copy": "Copier",
@@ -130,5 +131,10 @@
     "invalid": "Ce carton n’a pas encore {prize}.",
     "announce": "{name} gagne {prize} !",
     "ready": "Le carton #{card} a fait {prize} !"
+  },
+  "round": {
+    "start": "Nouvelle manche",
+    "title": "Commencer une nouvelle manche ?",
+    "description": "Les tirages et les gains repartent de zéro, et chaque joueur reçoit de nouveaux cartons. L’ID de la partie reste le même."
   }
 }

@@ -13,7 +13,8 @@
     "title": "{0} – {1} números restantes",
     "confirmation": "¿Seguro que quieres salir? Perderás la partida.",
     "closed": "El anfitrión ha terminado la partida.",
-    "full": "Esta partida está completa."
+    "full": "Esta partida está completa.",
+    "round": "¡Nueva ronda! Aquí tienes tus cartones nuevos."
   },
   "aria": {
     "copy": "Copiar",
@@ -130,5 +131,10 @@
     "invalid": "Este cartón aún no tiene {prize}.",
     "announce": "¡{name} gana {prize}!",
     "ready": "¡El cartón #{card} tiene {prize}!"
+  },
+  "round": {
+    "start": "Nueva ronda",
+    "title": "¿Empezar una nueva ronda?",
+    "description": "Las extracciones y los premios empiezan de cero y cada jugador recibe cartones nuevos. El ID de la partida no cambia."
   }
 }

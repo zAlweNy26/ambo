@@ -82,7 +82,8 @@
     },
     "confirmation": "Sei sicuro di voler uscire? Perderai tutto.",
     "closed": "Chi tiene il tabellone ha chiuso la partita.",
-    "full": "Questa partita è al completo."
+    "full": "Questa partita è al completo.",
+    "round": "Nuovo giro! Ecco le tue nuove cartelle."
   },
   "board": {
     "qr": "Inquadra per partecipare",
@@ -130,5 +131,10 @@
     "invalid": "Questa cartella non ha ancora {prize}.",
     "announce": "{name} ha fatto {prize}!",
     "ready": "La cartella #{card} ha fatto {prize}!"
+  },
+  "round": {
+    "start": "Nuovo giro",
+    "title": "Iniziare un nuovo giro?",
+    "description": "Estrazioni e premi ripartono da zero e ogni giocatore riceve nuove cartelle. L'ID partita resta lo stesso."
   }
 }

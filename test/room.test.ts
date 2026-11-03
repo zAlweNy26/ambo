@@ -177,6 +177,35 @@ describe('handle', () => {
     }).reply[0]).toMatchObject({ ok: true })
   })
 
+  it('starts a new round: same players and names, new cartelle, no draws or prizes', () => {
+    const state = room()
+    state.names = { [P1]: 'Maria' }
+    state.extractions.push(21, 43)
+    handle(state, { player: P1 }, {
+      type: 'claim',
+      card: 0,
+      prize: 'ambo',
+      name: 'Maria',
+    })
+    expect(handle(state, { player: P1 }, { type: 'round' }).reply[0]).toEqual({ type: 'error', reason: 'forbidden' })
+    expect(handle(state, { host: true }, { type: 'round' }).broadcast).toEqual([
+      { type: 'round' },
+    ])
+    expect(state).toMatchObject({
+      extractions: [],
+      claims: [],
+      players: {},
+      names: { [P1]: 'Maria' },
+    })
+    const rejoin = handle(state, {}, { type: 'join', player: P1, cards: 3 })
+    expect(rejoin.reply[0]).toMatchObject({
+      winners: [],
+      players: [
+        { name: 'Maria', cards: 3 },
+      ],
+    })
+  })
+
   it('rejects malformed messages', () => {
     expect(parseMessage('{"type":"draw"}')).toEqual({ type: 'draw' })
     expect(parseMessage('{"type":"join","player":"x","cards":2}')).toBeUndefined()

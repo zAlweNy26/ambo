@@ -82,7 +82,8 @@
     "description": "Share this ID with your friends to allow them to join this game!",
     "confirmation": "Are you sure you want to leave? You will lose everything.",
     "closed": "The host ended the game.",
-    "full": "This game is full."
+    "full": "This game is full.",
+    "round": "New round! Here are your new cards."
   },
   "board": {
     "qr": "Scan to join",
@@ -130,5 +131,10 @@
     "invalid": "This cartella doesn’t have {prize} yet.",
     "announce": "{name} wins {prize}!",
     "ready": "Card #{card} has {prize}!"
+  },
+  "round": {
+    "start": "New round",
+    "title": "Start a new round?",
+    "description": "Draws and prizes start over, and every player gets new cards. The game ID stays the same."
   }
 }
