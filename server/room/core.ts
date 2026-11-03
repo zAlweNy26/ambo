@@ -3,7 +3,7 @@ import type { Prize, Split, Winner } from '#shared/utils/claim'
 import type { Smorfia } from '#shared/utils/smorfia'
 import { z } from 'zod'
 import { generateCartella } from '#shared/utils/cartella'
-import { hasPrize, isPrizeClosed, isPrizeOn, isTombolinoOpen, PRIZES } from '#shared/utils/claim'
+import { earnedSince, isPrizeClosed, isPrizeOn, isTombolinoOpen, PRIZES } from '#shared/utils/claim'
 import { shortId } from '#shared/utils/player'
 import { SMORFIE } from '#shared/utils/smorfia'
 
@@ -18,6 +18,8 @@ export interface Claim {
   player: string
   // How many numbers were drawn when it was claimed
   draw: number
+  // How many numbers were drawn when the claimed cartella earned it; missing in rooms saved before it existed
+  since?: number
 }
 
 export interface RoomState {
@@ -114,10 +116,11 @@ export function createRoom(id: string, host: string, now = Date.now()): RoomStat
 
 // Players appear by short ID only: the full one is the key to their cartelle
 export function winnersOf(state: RoomState): Winner[] {
-  return state.claims.map(({ prize, player, draw }) => ({
+  return state.claims.map(({ prize, player, draw, since }) => ({
     prize,
     player: shortId(player),
     draw,
+    since,
   }))
 }
 
@@ -233,7 +236,8 @@ export function handle(state: RoomState, session: Session, msg: ClientMessage, r
       const card = session.player ? state.players[session.player]?.[msg.card] : undefined
       const won = state.claims.filter(c => c.player === session.player).map(c => c.prize)
       const draw = state.extractions.length
-      if (!card || !hasPrize(card, state.extractions, prize) || !isPrizeOn(prize, state.split)
+      const since = card && earnedSince(card, state.extractions, prize)
+      if (!card || since === undefined || !isPrizeOn(prize, state.split)
         || (prize === 'tombolino' && !isTombolinoOpen(state.claims, draw, won))) {
         return only({
           type: 'claim',
@@ -242,7 +246,7 @@ export function handle(state: RoomState, session: Session, msg: ClientMessage, r
           reason: 'invalid',
         })
       }
-      if (isPrizeClosed(prize, state.claims, draw)) {
+      if (isPrizeClosed(prize, state.claims, draw, since)) {
         return only({
           type: 'claim',
           prize,
@@ -255,6 +259,7 @@ export function handle(state: RoomState, session: Session, msg: ClientMessage, r
         prize,
         player: session.player!,
         draw,
+        since,
       })
       return {
         reply: [

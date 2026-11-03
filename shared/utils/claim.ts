@@ -34,6 +34,8 @@ export interface Winner {
   player: string
   // How many numbers were drawn when it was claimed: others can still tie until the next draw
   draw: number
+  // How many numbers were drawn when the winning cartella earned it; missing in claims saved before it existed
+  since?: number
 }
 
 // The biggest prize one cartella (27 cells, 0 = blank) has earned with numbers that are both marked and drawn
@@ -62,27 +64,34 @@ export function hasPrize(card: number[], drawn: number[], prize: Prize) {
   return !!best && PRIZES.indexOf(best.prize) >= PRIZES.indexOf(need)
 }
 
-// A prize is closed once it, or a bigger one, was claimed on an earlier draw; claims on the same draw share it
-export function isPrizeClosed(prize: Prize, claims: { prize: Prize, draw: number }[], draw: number) {
-  return claims.some(c => PRIZES.indexOf(c.prize) >= PRIZES.indexOf(prize) && c.draw < draw)
+// How many numbers had been drawn when a dealt cartella first earned the prize; undefined if it hasn't yet
+export function earnedSince(card: number[], drawn: number[], prize: Prize) {
+  for (let k = 0; k <= drawn.length; k++)
+    if (hasPrize(card, drawn.slice(0, k), prize)) return k
 }
 
-// Whether a player may claim tombolino: the tombola was won on an earlier draw, and not by them.
+// A prize is closed once it, or a bigger one, was claimed on an earlier draw; claims on the same draw share it. A late
+// claim doesn't open it to numbers drawn since: a cartella that earned it after the claimed one did can't share it.
+export function isPrizeClosed(prize: Prize, claims: { prize: Prize, draw: number, since?: number }[], draw: number, since = draw) {
+  return claims.some(c => PRIZES.indexOf(c.prize) >= PRIZES.indexOf(prize) && (c.draw < draw || (c.since ?? c.draw) < since))
+}
+
+// Whether a player may claim tombolino: the tombola was won before this draw, and not by them.
 // shortcut: barred per player, not per cartella, like every other prize; track cards if players ask for both.
-export function isTombolinoOpen(claims: { prize: Prize, draw: number }[], draw: number, won: Prize[]) {
+export function isTombolinoOpen(claims: { prize: Prize, draw: number, since?: number }[], draw: number, won: Prize[]) {
   return isPrizeClosed('tombola', claims, draw) && !won.includes('tombola')
 }
 
 // The prize a cartella can claim now: the biggest one played that its marked and drawn numbers earn, unless that one is
 // closed or already the player's (a smaller one would be the same row twice). Prizes not played are skipped.
-export function claimablePrize(card: number[], marked: number[], drawn: number[], claims: { prize: Prize, draw: number }[], won: Prize[], split?: Split) {
+export function claimablePrize(card: number[], marked: number[], drawn: number[], claims: { prize: Prize, draw: number, since?: number }[], won: Prize[], split?: Split) {
   const best = bestPrize(card, marked, drawn)
   if (!best) return
   const draw = drawn.length
   const earned: Prize[] = PRIZES.slice(0, PRIZES.indexOf(best.prize) + 1)
   if (best.prize === 'tombola' && isTombolinoOpen(claims, draw, won)) earned.push('tombolino')
   const prize = earned.findLast(p => isPrizeOn(p, split))
-  return prize && !won.includes(prize) && !isPrizeClosed(prize, claims, draw)
+  return prize && !won.includes(prize) && !isPrizeClosed(prize, claims, draw, earnedSince(card, drawn, prize))
     ? prize
     : undefined
 }

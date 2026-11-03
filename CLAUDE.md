@@ -38,7 +38,7 @@ Package manager is **bun**.
 - **Game flow:**
   1. `pages/board.vue` calls `POST /api/game/create`. It returns the 8-hex game ID and a secret host ID, kept in localStorage, so `/board?id=…` resumes after a reload. The board joins the room as host, sends `draw` (the room picks the number), and sends `close` when leaving through the app.
   2. Players use `pages/cards.vue`. They join with a per-device player ID and a number of cards. The room deals cartelle once, and allows a different number only before the first draw. The page keeps a copy, plus marks and claims, in localStorage.
-  3. Claims are checked against the player's dealt cartella (`hasPrize`) with the shared rules in `shared/utils/claim.ts`. A prize closes once it or a bigger one was won on an earlier draw. Claims on the same draw tie, and the board splits the amount with `allocate()`.
+  3. Claims are checked against the player's dealt cartella (`hasPrize`) with the shared rules in `shared/utils/claim.ts`. A prize closes once it or a bigger one was won on an earlier draw. Claims on the same draw tie, and the board splits the amount with `allocate()`, but a late claim doesn't let in cartelle that earned the prize after the claimed one did (`earnedSince`, kept as each claim's `since`).
   4. There is no join check: the cards page opens the socket, and the room answers `not-found` if the game is gone. The message types are in `shared/types/room.ts`. The client side is `app/composables/useRoom.ts`, which reconnects, sends heartbeats, and says hello again on every reconnect.
 - **Smorfia:** the regional number meanings are static JSON in `app/assets/*.json` (`{ number, original, translated }`). The board optionally reads them aloud with `useSpeechSynthesis`.
 - **Auto-imports:**

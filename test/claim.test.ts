@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { bestPrize, claimablePrize, hasPrize, isPrizeClosed, isPrizeOn } from '#shared/utils/claim'
+import { bestPrize, claimablePrize, earnedSince, hasPrize, isPrizeClosed, isPrizeOn } from '#shared/utils/claim'
 import { DEFAULT_SPLIT } from '~/utils/prize'
 
 // Same sample cartella as the home page
@@ -50,6 +50,23 @@ describe('isPrizeClosed', () => {
     expect(isPrizeClosed('terna', claims, 11)).toBe(true)
     expect(isPrizeClosed('ambo', claims, 11)).toBe(true)
     expect(isPrizeClosed('quaterna', claims, 11)).toBe(false)
+  })
+
+  it('stays closed on the same draw to a cartella that earned the prize after the claimed one', () => {
+    const late = [
+      { prize: 'ambo' as const, draw: 12, since: 10 },
+    ]
+    expect(isPrizeClosed('ambo', late, 12, 12)).toBe(true)
+    expect(isPrizeClosed('ambo', late, 12, 10)).toBe(false)
+    expect(earnedSince(card, [21, 7, 43], 'ambo')).toBe(3)
+    expect(earnedSince(card, [21], 'ambo')).toBeUndefined()
+    // The phone hides the claim button too: this cartella's ambo came with the third number, the claimed one with the second
+    expect(claimablePrize(card, [21, 43], [7, 21, 43], [
+      { prize: 'ambo', draw: 3, since: 2 },
+    ], [])).toBeUndefined()
+    expect(claimablePrize(card, [21, 43], [21, 43, 7], [
+      { prize: 'ambo', draw: 3, since: 2 },
+    ], [])).toBe('ambo')
   })
 })
 

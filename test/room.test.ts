@@ -124,8 +124,18 @@ describe('handle', () => {
     expect(claim(P2).broadcast[0]).toEqual({
       type: 'winners',
       winners: [
-        { prize: 'ambo', player: 'a1a1a1', draw: 2 },
-        { prize: 'ambo', player: 'b2b2b2', draw: 2 },
+        {
+          prize: 'ambo',
+          player: 'a1a1a1',
+          draw: 2,
+          since: 2,
+        },
+        {
+          prize: 'ambo',
+          player: 'b2b2b2',
+          draw: 2,
+          since: 2,
+        },
       ],
     })
     expect(handle(state, { player: P1 }, {
@@ -154,6 +164,32 @@ describe('handle', () => {
       card: 0,
       prize: 'quaterna',
     }).reply[0]).toMatchObject({ ok: true })
+  })
+
+  it('keeps a late claim from letting numbers drawn since then share the prize', () => {
+    // Row 1 has 43 and 50 but not 21: an ambo only with the third number
+    const later = [
+      1, 0, 0, 0, 43, 50, 61, 71, 0,
+      0, 12, 0, 35, 0, 0, 67, 0, 89,
+      7, 0, 29, 0, 0, 57, 0, 75, 86,
+    ]
+    const claim = (state: RoomState, player: string) => handle(state, { player }, {
+      type: 'claim',
+      card: 0,
+      prize: 'ambo',
+    }).reply[0]
+    const state = room()
+    state.players[P2] = [later]
+    // P1 had the ambo after 2 draws but claims it after the third, the draw that gives P2 theirs
+    state.extractions.push(21, 43, 50)
+    expect(claim(state, P1)).toMatchObject({ ok: true })
+    expect(claim(state, P2)).toMatchObject({ ok: false, reason: 'closed' })
+    // The other way round, the cartella that earned it first may still share it on the same draw
+    const other = room()
+    other.players[P2] = [later]
+    other.extractions.push(21, 43, 50)
+    expect(claim(other, P2)).toMatchObject({ ok: true })
+    expect(claim(other, P1)).toMatchObject({ ok: true })
   })
 
   it('starts a new round: new cartelle, no draws or prizes', () => {
