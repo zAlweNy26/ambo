@@ -16,7 +16,7 @@ export default defineConfig({
     // Declared, not left to the dashboard: Void only republishes routes it knows
     routes: [
       {
-        pattern: 'ambo.danyalwe.me',
+        pattern: 'amboo.win',
         custom_domain: true,
       },
     ],
@@ -47,7 +47,7 @@ export default defineConfig({
       },
     ],
     vars: {
-      NUXT_PUBLIC_I18N_BASE_URL: 'https://ambo.danyalwe.me',
+      NUXT_PUBLIC_I18N_BASE_URL: 'https://amboo.win',
     },
   },
 })

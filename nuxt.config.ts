@@ -67,7 +67,7 @@ export default defineNuxtConfig({
         { name: 'description', content: 'An application to play tombola online quickly and easily.' },
         { property: 'og:title', content: 'Ambo!' },
         { property: 'og:description', content: 'An application to play tombola online quickly and easily.' },
-        { property: 'og:image', content: 'https://ambo.danyalwe.me/og-image.png' },
+        { property: 'og:image', content: 'https://amboo.win/og-image.png' },
         { property: 'og:image:width', content: '1200' },
         { property: 'og:image:height', content: '630' },
         { property: 'og:image:alt', content: 'Ambo! logo and a tombola cartella with an ambo marked' },
@@ -106,7 +106,7 @@ export default defineNuxtConfig({
   },
 
   site: {
-    url: 'https://ambo.danyalwe.me',
+    url: 'https://amboo.win',
     name: 'Ambo!',
   },
 
