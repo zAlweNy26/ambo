@@ -2,7 +2,7 @@ import type { ClientMessage, Player, ServerMessage } from '#shared/types/room'
 import type { Prize, Split, Winner } from '#shared/utils/claim'
 import type { Smorfia } from '#shared/utils/smorfia'
 import { z } from 'zod'
-import { generateCartella } from '#shared/utils/cartella'
+import { generateCartella, TABELLONE, TABELLONE_ID } from '#shared/utils/cartella'
 import { earnedSince, isPrizeClosed, isPrizeOn, isTombolinoOpen, PRIZES } from '#shared/utils/claim'
 import { shortId } from '#shared/utils/player'
 import { SMORFIE } from '#shared/utils/smorfia'
@@ -118,7 +118,9 @@ export function createRoom(id: string, host: string, now = Date.now()): RoomStat
 export function winnersOf(state: RoomState): Winner[] {
   return state.claims.map(({ prize, player, draw, since }) => ({
     prize,
-    player: shortId(player),
+    player: player === TABELLONE_ID
+      ? player
+      : shortId(player),
     draw,
     since,
   }))
@@ -233,8 +235,16 @@ export function handle(state: RoomState, session: Session, msg: ClientMessage, r
 
     case 'claim': {
       const { prize } = msg
-      const card = session.player ? state.players[session.player]?.[msg.card] : undefined
-      const won = state.claims.filter(c => c.player === session.player).map(c => c.prize)
+      // The host claims for the tabellone, which plays like one player with 6 cartelle
+      const who = session.host
+        ? TABELLONE_ID
+        : session.player
+      const card = session.host
+        ? TABELLONE[msg.card]
+        : who
+          ? state.players[who]?.[msg.card]
+          : undefined
+      const won = state.claims.filter(c => c.player === who).map(c => c.prize)
       const draw = state.extractions.length
       const since = card && earnedSince(card, state.extractions, prize)
       if (!card || since === undefined || !isPrizeOn(prize, state.split)
@@ -257,7 +267,7 @@ export function handle(state: RoomState, session: Session, msg: ClientMessage, r
       if (won.includes(prize)) return only({ type: 'claim', prize, ok: true })
       state.claims.push({
         prize,
-        player: session.player!,
+        player: who!,
         draw,
         since,
       })

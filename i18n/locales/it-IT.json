@@ -94,6 +94,7 @@
     "draw": "Estrai un numero",
     "extractions": "Ultima estrazione | Ultime {0} estrazioni",
     "players": "{0} giocatore | {0} giocatori",
+    "playBoard": "Gioco anch’io col tabellone",
     "perCard": "Montepremi dalle cartelle vendute",
     "price": "Prezzo per cartella",
     "pot": "{n} cartella venduta · {total} in palio | {n} cartelle vendute · {total} in palio",
@@ -133,6 +134,7 @@
     "closed": "{prize} è già stato vinto.",
     "invalid": "Questa cartella non ha ancora {prize}.",
     "announce": "Il giocatore {player} ha fatto {prize}!",
+    "board": "Il tabellone ha fatto {prize}!",
     "ready": "La cartella #{card} ha fatto {prize}!"
   },
   "round": {

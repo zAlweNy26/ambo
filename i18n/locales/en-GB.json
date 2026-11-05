@@ -94,6 +94,7 @@
     "draw": "Draw a number",
     "extractions": "Last draw | Last {0} draws",
     "players": "{0} player | {0} players",
+    "playBoard": "I play the board too",
     "perCard": "Pool from cards sold",
     "price": "Price per card",
     "pot": "{n} card sold · {total} to win | {n} cards sold · {total} to win",
@@ -133,6 +134,7 @@
     "closed": "{prize} has already been won.",
     "invalid": "This cartella doesn’t have {prize} yet.",
     "announce": "Player {player} wins {prize}!",
+    "board": "The board wins {prize}!",
     "ready": "Card #{card} has {prize}!"
   },
   "round": {

@@ -11,6 +11,8 @@ const settings = useLocalStorage('board:settings', {
   // The pool can instead be the price of a cartella times the cartelle sold, as with a real box
   perCard: false,
   price: 0.5,
+  // The host plays the tabellone as 6 cartelle: it pays into a pool from cartelle sold and wins like a player
+  playBoard: true,
   // Custom shares per prize, in percent; a prize at 0 isn't played. Missing means the default ladder, without tombolino
   split: undefined as Split | undefined,
   autoAnnounce: false,
@@ -37,18 +39,7 @@ onMounted(() => {
   else newGame()
 })
 
-const cards = Array.from({ length: 6 }).map((_, i) => {
-  let up = -5
-  const card = Array.from({ length: 15 }).map((_, j) => {
-    up += j % 5
-      ? 0
-      : 5
-    return (j + 1) + (i * 15) + up - (i % 2
-      ? 10
-      : 0)
-  })
-  return card
-})
+const cards = TABELLONE.map(card => card.filter(Boolean))
 
 const smirkOptions = SMORFIE.map(value => ({
   label: _Capitalize(value),
@@ -114,9 +105,12 @@ function speechText() {
 
 const winners = ref<Winner[]>([]), players = ref<Player[]>([])
 const cartelle = computed(() => players.value.reduce((sum, p) => sum + p.cards, 0))
+const sold = computed(() => cartelle.value + (settings.value.playBoard
+  ? TABELLONE.length
+  : 0))
 // shortcut: cartelle dealt after the first draw still raise the pool, and amounts already won with it
 const pot = computed(() => settings.value.perCard
-  ? Math.round(settings.value.price * cartelle.value * 10) / 10
+  ? Math.round(settings.value.price * sold.value * 10) / 10
   : settings.value.totalPrize)
 // Sent to the phones only while the pool comes from it
 const price = computed(() => settings.value.perCard
@@ -146,11 +140,13 @@ const room = useRoom(gameId, () => ({ type: 'host', host: game.value.hostId }), 
       // The room keeps the pool for the phones; the host's own setting wins
       if (message.prize !== pot.value || !isEqual(message.split, settings.value.split) || message.price !== price.value) sendPrize()
       if (settings.value.smirk && message.smirk !== settings.value.smirk) room.send({ type: 'smirk', smirk: settings.value.smirk })
+      claimTabellone()
       break
     case 'draw':
       extractedNumbers.value = [...extractedNumbers.value, message.number]
       currentNumber.value = message.number
       drawDone?.()
+      claimTabellone()
       break
     case 'winners':
       message.winners.slice(winners.value.length).forEach(announceWinner)
@@ -171,6 +167,16 @@ const room = useRoom(gameId, () => ({ type: 'host', host: game.value.hostId }), 
   }
 })
 
+// Every drawn number is marked on the tabellone, so the board claims for it as soon as one of its cartelle earns a prize
+function claimTabellone() {
+  if (!settings.value.playBoard) return
+  const won = winners.value.filter(w => w.player === TABELLONE_ID).map(w => w.prize)
+  TABELLONE.forEach((card, i) => {
+    const prize = claimablePrize(card, extractedNumbers.value, extractedNumbers.value, winners.value, won, settings.value.split)
+    if (prize) room.send({ type: 'claim', card: i, prize })
+  })
+}
+
 function sendPrize() {
   room.send({
     type: 'prize',
@@ -181,6 +187,7 @@ function sendPrize() {
 }
 
 watch(() => settings.value.smirk, smirk => smirk && room.send({ type: 'smirk', smirk }))
+watch(() => settings.value.playBoard, claimTabellone)
 watchDebounced([
   pot,
   price,
@@ -195,7 +202,9 @@ onBeforeUnmount(() => {
 })
 
 function announceWinner({ player, prize }: Winner) {
-  const title = t('claim.announce', { player, prize })
+  const title = player === TABELLONE_ID
+    ? t('claim.board', { prize })
+    : t('claim.announce', { player, prize })
   toast.add({
     title,
     color: 'success',
@@ -326,9 +335,10 @@ watch(canDraw, ok => ok || (autoDraw.value = false))
         <USelect v-model="settings.smirk" :placeholder="$t('board.smirk')" class="w-full"
                  :aria-label="$t('board.smirk')" :items="smirkOptions" />
         <USwitch v-if="isSpeechSupported" v-model="settings.autoAnnounce" :disabled="!settings.smirk" :label="$t('board.announcer')" />
+        <USwitch v-model="settings.playBoard" :label="$t('board.playBoard')" />
         <USwitch v-model="settings.perCard" :label="$t('board.perCard')" />
         <UFormField v-if="settings.perCard" :label="$t('board.price')"
-                    :help="$t('board.pot', { n: cartelle, total: $n(pot, 'currency') }, cartelle)">
+                    :help="$t('board.pot', { n: sold, total: $n(pot, 'currency') }, sold)">
           <UInputNumber v-model="settings.price" :min="0.1" :step="0.1" class="w-full" />
         </UFormField>
         <UFormField v-else :label="$t('board.prize')">

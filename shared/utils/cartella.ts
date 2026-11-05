@@ -42,3 +42,19 @@ export function generateCartella(): number[] {
     if (card) return card.flat()
   }
 }
+
+// The host plays the tabellone as 6 cartelle of 15 numbers (1-5, 11-15, 21-25 for the first), each row padded with
+// blanks to a dealt cartella's 9 cells, so the same prize rules check it
+export const TABELLONE = Array.from({ length: 6 }, (_, i) => [0, 1, 2].flatMap((row) => {
+  const first = (Math.floor(i / 2) * 3 + row) * 10 + (i % 2) * 5 + 1
+  return [
+    ...Array.from({ length: 5 }, (_, n) => first + n),
+    0,
+    0,
+    0,
+    0,
+  ]
+}))
+// Who wins with the tabellone, shown as is in every language like the other game terms; never a player's short ID,
+// which is hex
+export const TABELLONE_ID = 'Tabellone'

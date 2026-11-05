@@ -30,6 +30,7 @@
     "prize": "Gewinnverteilung",
     "smirk": "Smorfia wählen",
     "players": "{0} Spieler | {0} Spieler",
+    "playBoard": "Ich spiele mit dem Tabellone mit",
     "perCard": "Topf aus verkauften Karten",
     "price": "Preis pro Karte",
     "pot": "{n} Karte verkauft · {total} im Topf | {n} Karten verkauft · {total} im Topf",
@@ -133,6 +134,7 @@
     "closed": "{prize} wurde schon gewonnen.",
     "invalid": "Diese Karte hat {prize} noch nicht.",
     "announce": "Spieler {player} gewinnt {prize}!",
+    "board": "Tabellone gewinnt {prize}!",
     "ready": "Karte #{card} hat {prize}!"
   },
   "round": {

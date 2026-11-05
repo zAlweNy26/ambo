@@ -30,6 +30,7 @@
     "prize": "Répartition des gains",
     "smirk": "Choisissez une smorfia",
     "players": "{0} joueur | {0} joueurs",
+    "playBoard": "Je joue aussi avec le tableau",
     "perCard": "Cagnotte selon les cartons vendus",
     "price": "Prix par carton",
     "pot": "{n} carton vendu · {total} en jeu | {n} cartons vendus · {total} en jeu",
@@ -133,6 +134,7 @@
     "closed": "{prize} a déjà été gagné.",
     "invalid": "Ce carton n’a pas encore {prize}.",
     "announce": "Le joueur {player} gagne {prize} !",
+    "board": "Le tableau gagne {prize} !",
     "ready": "Le carton #{card} a fait {prize} !"
   },
   "round": {

@@ -145,6 +145,33 @@ describe('handle', () => {
     }).reply[0]).toMatchObject({ ok: false, reason: 'invalid' })
   })
 
+  it('lets the host claim on the tabellone, which ties with players on the same draw', () => {
+    const state = room()
+    const claim = (session: { host?: boolean, player?: string }, card: number) => handle(state, session, {
+      type: 'claim',
+      card,
+      prize: 'ambo',
+    })
+    // The tabellone's first cartella has rows 1-5, 11-15 and 21-25: 22 and 4 fall in different rows
+    state.extractions.push(22, 4)
+    expect(claim({ host: true }, 0).reply[0]).toMatchObject({ ok: false, reason: 'invalid' })
+    // 21 completes P1's ambo (4 21) and the tabellone's (21 22) on the same draw
+    state.extractions.push(21)
+    expect(claim({ player: P1 }, 0).reply[0]).toMatchObject({ ok: true })
+    expect(claim({}, 0).reply[0]).toMatchObject({ ok: false, reason: 'invalid' })
+    expect(claim({ host: true }, 0).broadcast[0]).toMatchObject({
+      winners: [
+        { prize: 'ambo', player: 'a1a1a1' },
+        {
+          prize: 'ambo',
+          player: 'Tabellone',
+          draw: 3,
+          since: 3,
+        },
+      ],
+    })
+  })
+
   it('closes a prize, and the smaller ones, after the draw it was won on', () => {
     const state = room()
     state.extractions.push(4, 21, 43)
