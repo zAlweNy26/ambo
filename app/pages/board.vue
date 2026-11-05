@@ -201,7 +201,11 @@ onBeforeUnmount(() => {
   hosted.value = { gameId: '', hostId: '' }
 })
 
+// Not kept across reloads, so a reopened board never starts drawing by itself
+const autoDraw = ref(false)
 function announceWinner({ player, prize }: Winner) {
+  // The host checks the win before drawing on
+  autoDraw.value = false
   const title = player === TABELLONE_ID
     ? t('claim.board', { prize })
     : t('claim.announce', { player, prize })
@@ -209,7 +213,6 @@ function announceWinner({ player, prize }: Winner) {
     title,
     color: 'success',
     icon: 'i-tabler-trophy',
-    duration: 8000,
   })
   if (settings.value.autoAnnounce && isSpeechSupported.value) say(title)
 }
@@ -244,8 +247,6 @@ function extractNumber() {
 }
 
 const canDraw = computed(() => remaining.value > 0 && !!settings.value.smirk && !!gameId.value)
-// Not kept across reloads, so a reopened board never starts drawing by itself
-const autoDraw = ref(false)
 // A tick while the announcer still speaks is skipped, so every number is heard in full
 const { pause, resume } = useIntervalFn(() => {
   if (!isPlaying.value) extractNumber()

@@ -17,7 +17,7 @@ useHead({
 
 <template>
   <UApp :locale="locales[locale]" :tooltip="{ delayDuration: 300 }"
-        :toaster="{ duration: 2000, position: 'bottom-right' }">
+        :toaster="{ duration: 5000, position: 'bottom-right' }">
     <NuxtLayout name="default">
       <main class="flex grow flex-col px-4 py-3 md:p-4">
         <NuxtPage />
