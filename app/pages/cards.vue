@@ -152,8 +152,6 @@ const lastExtractions = computed(() => extractions.value.slice(-5))
 // The host's smorfia, for the latest number
 const meaning = useSmorfia(smirk, () => extractions.value.at(-1))
 
-const searchNumber = ref(1), numberFound = ref<boolean>()
-
 const remaining = computed(() => new Set(cards.value.flat().filter(r => r !== 0)).size - new Set(signedNumbers.value.flat()).size)
 
 function toggleNumber(card: number, num: number, force = false) {
@@ -164,16 +162,9 @@ function toggleNumber(card: number, num: number, force = false) {
   else signedNumbers.value[card]!.push(num)
 }
 
-function checkNumber(num: number, check = true) {
-  numberFound.value = undefined
-  const indexes = cards.value.flatMap((c, j) => c.map(n => n === num
-    ? j
-    : -1)).filter(v => v !== -1)
-  if (indexes.length === 0 && check) numberFound.value = false
-  else {
-    if (check) numberFound.value = true
-    for (const card of indexes) toggleNumber(card, num, check)
-  }
+// A number sits at most once per cartella, but can be on several
+function tapNumber(num: number) {
+  cards.value.forEach((c, j) => c.includes(num) && toggleNumber(j, num))
 }
 
 // Optional help for kids and grandparents: marks every drawn number, never unmarks; tapping still works
@@ -273,16 +264,7 @@ const myId = computed(() => shortId(player.value))
     </div>
 
     <div class="flex w-full max-w-sm flex-col gap-1.5">
-      <UFieldGroup class="w-full">
-        <UInputNumber v-model="searchNumber" size="lg" :min="1" :step="1" :max="90" class="grow"
-                      :aria-label="$t('cards.search')" @change="() => numberFound = undefined" />
-        <UButton icon="i-tabler-search" size="lg" color="neutral" variant="outline" :label="$t('cards.search')" @click="checkNumber(searchNumber)" />
-      </UFieldGroup>
-      <i18n-t v-if="numberFound !== undefined" class="text-center text-sm" :class="[numberFound ? 'text-success' : 'text-error']"
-              :keypath="`cards.${numberFound ? 'found' : 'notFound'}`" tag="p" role="status">
-        <strong>{{ searchNumber }}</strong>
-      </i18n-t>
-      <USwitch v-model="autoMark" :label="$t('cards.autoMark')" class="mt-2 self-center" />
+      <USwitch v-model="autoMark" :label="$t('cards.autoMark')" class="self-center" />
       <USwitch v-if="canVibrate" v-model="vibrate" :label="$t('cards.vibrate')" class="self-center" />
     </div>
 
@@ -311,7 +293,7 @@ const myId = computed(() => shortId(player.value))
                   ]"
                   :disabled="number === 0" :aria-pressed="number !== 0 ? signedNumbers[ci]?.includes(number) : undefined"
                   :data-state="signedNumbers[ci]?.includes(number) ? 'on' : undefined"
-                  @click="checkNumber(number, false)">
+                  @click="tapNumber(number)">
             {{ number !== 0 ? number : '' }}
           </button>
         </div>

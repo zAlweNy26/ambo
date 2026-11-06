@@ -50,10 +50,7 @@
   "cards": {
     "autoMark": "Marcar automáticamente los números sacados",
     "description": "Introduce el ID de la partida y elige con cuántos cartones quieres jugar.",
-    "found": "Número {0} encontrado y marcado",
-    "notFound": "El número {0} no está en tus cartones",
     "quantity": "{0} cartón | {0} cartones",
-    "search": "Buscar número",
     "title": "¿Con cuántos cartones quieres jugar?",
     "winners": "Ganadores",
     "you": "Tu ID de jugador",
