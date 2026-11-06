@@ -27,3 +27,4 @@ logs
 .void
 .void-wrangler.jsonc
 server/middleware/__void-dev-trigger.ts
+.cloudflare
