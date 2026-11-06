@@ -31,6 +31,8 @@ export interface RoomState {
   drawn?: number
   // Cartelle the server dealt, per player ID: claims are checked against these
   players: Record<string, number[][]>
+  // Cartelle from the last round, given back to players who rejoin; missing in rooms saved before it existed
+  previous?: Record<string, number[][]>
   claims: Claim[]
   // The host's prize pool in euro, so phones can show what each winner takes; missing in rooms saved before it existed
   prize?: number
@@ -67,6 +69,11 @@ const messageSchema = z.discriminatedUnion('type', [
     type: z.literal('join'),
     player: z.uuid(),
     cards: z.int().min(1).max(6),
+  }),
+  z.object({
+    type: z.literal('deal'),
+    card: z.int().min(0).max(5),
+    remove: z.literal(true).optional(),
   }),
   z.object({
     type: z.literal('draw'),
@@ -161,13 +168,18 @@ export function handle(state: RoomState, session: Session, msg: ClientMessage, r
       }
 
     case 'join': {
-      let cards = state.players[msg.player]
-      // Cards are dealt once; a different number of cards is only possible before the first draw
-      const deal = !cards || (cards.length !== msg.cards && state.extractions.length === 0)
+      const { player } = msg
+      const joined = state.players[player]
+      // Cards are dealt once, keeping last round's; before the first draw another number adds or drops cartelle at the end
+      let cards = joined ?? state.previous?.[player] ?? []
+      const deal = !joined || (cards.length !== msg.cards && state.extractions.length === 0)
       if (deal) {
-        if (!cards && Object.keys(state.players).length >= MAX_PLAYERS) return only({ type: 'error', reason: 'full' })
-        cards = Array.from({ length: msg.cards }, generateCartella)
-        state.players[msg.player] = cards
+        if (!joined && Object.keys(state.players).length >= MAX_PLAYERS) return only({ type: 'error', reason: 'full' })
+        cards = [
+          ...cards.slice(0, msg.cards),
+          ...Array.from({ length: msg.cards - cards.length }, generateCartella),
+        ]
+        state.players[player] = cards
       }
       return {
         reply: [
@@ -185,8 +197,35 @@ export function handle(state: RoomState, session: Session, msg: ClientMessage, r
               },
             ]
           : [],
-        session: { player: msg.player },
+        session: { player },
         changed: deal,
+      }
+    }
+
+    // Before the first draw a player swaps one cartella for a new one, adds one right after the last, or removes one
+    case 'deal': {
+      const cards = session.player && state.players[session.player]
+      // Ignored rather than refused: an error makes the phone drop the room
+      if (!cards || state.extractions.length || msg.card > cards.length) return only()
+      if (!msg.remove) cards[msg.card] = generateCartella()
+      // Everyone keeps at least one cartella
+      else if (msg.card < cards.length && cards.length > 1) cards.splice(msg.card, 1)
+      else return only()
+      return {
+        reply: [
+          {
+            type: 'state',
+            ...snapshot(),
+            cards,
+          },
+        ],
+        broadcast: [
+          {
+            type: 'players',
+            players: playersOf(state),
+          },
+        ],
+        changed: true,
       }
     }
 
@@ -285,11 +324,13 @@ export function handle(state: RoomState, session: Session, msg: ClientMessage, r
       }
     }
 
-    // Same room, same players: draws and prizes start over, and every phone rejoins for new cartelle
+    // Same room: draws and prizes start over, and every phone rejoins, getting its cartelle back to keep or change.
+    // Players who don't rejoin drop out of the list and the cartelle sold.
     case 'round':
       if (!session.host) return forbidden
       state.extractions = []
       state.claims = []
+      state.previous = state.players
       state.players = {}
       return {
         reply: [],

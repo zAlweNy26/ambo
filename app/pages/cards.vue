@@ -54,7 +54,8 @@ function hello(): ClientMessage {
   return {
     type: 'join',
     player: player.value,
-    cards: amount.value,
+    // As many as this phone holds, so a reconnect keeps the cartelle added or swapped here
+    cards: cards.value.length || amount.value,
   }
 }
 
@@ -74,6 +75,14 @@ const room = useRoom(gameId, hello, (message) => {
           cards: message.cards,
           marked: message.cards.map(() => []),
           claimed: [],
+        }
+      }
+      // A new round gives the same cartelle back, maybe while this phone was offline: keep only what still holds
+      else {
+        saved.value = {
+          ...saved.value,
+          marked: saved.value.marked.map(m => m.filter(n => message.extractions.includes(n))),
+          claimed: saved.value.claimed.filter(p => message.winners.some(w => w.prize === p && w.player === shortId(player.value))),
         }
       }
       break
@@ -131,6 +140,10 @@ const room = useRoom(gameId, hello, (message) => {
       else goHome(t('game.error.title'), t('game.error.description'))
   }
 })
+
+// Before the first draw (a new game or a new round) the room swaps a cartella for a new one, adds one at the end, or removes one
+const canDeal = computed(() => cards.value.length > 0 && !extractions.value.length)
+const deal = (card: number, remove?: true) => room.send({ type: 'deal', card, remove })
 
 // Only the prizes someone won, biggest first, with each winner's share
 const wonPrizes = computed(() => Object.entries(prizeWinners(prize.value, winners.value, split.value)).filter(([, ws]) => ws.length).reverse())
@@ -276,7 +289,13 @@ const myId = computed(() => shortId(player.value))
     <div class="grid w-full justify-items-center gap-5 lg:grid-cols-2">
       <div v-for="(card, ci) in cards" :key="ci" class="panel w-full max-w-xl overflow-hidden border-[var(--print-line)]">
         <div class="flex h-10 items-center justify-between bg-primary px-4 text-xs text-white">
-          <span class="font-medium tabular-nums">#{{ ci + 1 }}</span>
+          <span class="flex items-center gap-1 font-medium tabular-nums">
+            #{{ ci + 1 }}
+            <UButton v-if="canDeal" size="xs" color="neutral" variant="link" icon="i-tabler-refresh"
+                     class="text-white hover:text-white/80" :aria-label="$t('cards.redeal', [ci + 1])" @click="deal(ci)" />
+            <UButton v-if="canDeal && cards.length > 1" size="xs" color="neutral" variant="link" icon="i-tabler-trash"
+                     class="text-white hover:text-white/80" :aria-label="$t('cards.remove', [ci + 1])" @click="deal(ci, true)" />
+          </span>
           <UButton v-if="claimable[ci]" size="xs" color="neutral" icon="i-tabler-trophy"
                    class="bg-white font-bold capitalize text-tombola-700 hover:bg-white/90 motion-safe:animate-pulse"
                    :label="`${claimable[ci]}!`" @click="claim(ci)" />
@@ -297,6 +316,14 @@ const myId = computed(() => shortId(player.value))
           </button>
         </div>
       </div>
+    </div>
+
+    <div v-if="canDeal" class="flex flex-col items-center gap-1.5">
+      <UButton v-if="cards.length < 6" icon="i-tabler-plus" size="lg" color="neutral" variant="outline"
+               :label="$t('cards.add')" @click="deal(cards.length)" />
+      <p class="text-center text-sm text-muted">
+        {{ $t('cards.changeHint') }}
+      </p>
     </div>
   </section>
 </template>

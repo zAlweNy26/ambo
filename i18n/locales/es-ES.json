@@ -14,7 +14,7 @@
     "confirmation": "¿Seguro que quieres salir? Perderás la partida.",
     "closed": "El anfitrión ha terminado la partida.",
     "full": "Esta partida está completa.",
-    "round": "¡Nueva ronda! Aquí tienes tus cartones nuevos."
+    "round": "¡Nueva ronda! Quédate con tus cartones o cámbialos antes de la primera extracción."
   },
   "aria": {
     "copy": "Copiar",
@@ -59,7 +59,11 @@
     "you": "Tu ID de jugador",
     "cost": "{total} a pagar · {price} por cartón",
     "priceEach": "Cada cartón cuesta {price}",
-    "vibrate": "Vibrar en cada extracción"
+    "vibrate": "Vibrar en cada extracción",
+    "redeal": "Cambiar el cartón {0}",
+    "changeHint": "Puedes cambiarlos hasta que salga el primer número.",
+    "add": "Añadir un cartón",
+    "remove": "Quitar el cartón {0}"
   },
   "contacts": {
     "role": "Jefe de proyecto\nDesarrollador full-stack",
@@ -140,6 +144,6 @@
   "round": {
     "start": "Nueva ronda",
     "title": "¿Empezar una nueva ronda?",
-    "description": "Las extracciones y los premios empiezan de cero y cada jugador recibe cartones nuevos. El ID de la partida no cambia."
+    "description": "Las extracciones y los premios empiezan de cero. Cada jugador puede quedarse con sus cartones o cambiarlos antes de la primera extracción. El ID de la partida no cambia."
   }
 }

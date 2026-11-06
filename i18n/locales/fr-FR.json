@@ -14,7 +14,7 @@
     "confirmation": "Voulez-vous vraiment quitter ? Vous perdrez la partie.",
     "closed": "L’hôte a terminé la partie.",
     "full": "Cette partie est complète.",
-    "round": "Nouvelle manche ! Voici vos nouveaux cartons."
+    "round": "Nouvelle manche ! Gardez vos cartons ou changez-les avant le premier tirage."
   },
   "aria": {
     "copy": "Copier",
@@ -59,7 +59,11 @@
     "you": "Votre ID de joueur",
     "cost": "{total} à payer · {price} par carton",
     "priceEach": "Chaque carton coûte {price}",
-    "vibrate": "Vibrer à chaque tirage"
+    "vibrate": "Vibrer à chaque tirage",
+    "redeal": "Changer le carton {0}",
+    "changeHint": "Vous pouvez les changer jusqu’au premier numéro tiré.",
+    "add": "Ajouter un carton",
+    "remove": "Retirer le carton {0}"
   },
   "contacts": {
     "role": "Chef de projet\nDéveloppeur full-stack",
@@ -140,6 +144,6 @@
   "round": {
     "start": "Nouvelle manche",
     "title": "Commencer une nouvelle manche ?",
-    "description": "Les tirages et les gains repartent de zéro, et chaque joueur reçoit de nouveaux cartons. L’ID de la partie reste le même."
+    "description": "Les tirages et les gains repartent de zéro. Chaque joueur peut garder ses cartons ou les changer avant le premier tirage. L’ID de la partie reste le même."
   }
 }

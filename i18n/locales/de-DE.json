@@ -14,7 +14,7 @@
     "confirmation": "Willst du wirklich gehen? Das Spiel geht verloren.",
     "closed": "Der Gastgeber hat das Spiel beendet.",
     "full": "Dieses Spiel ist voll.",
-    "round": "Neue Runde! Hier sind deine neuen Karten."
+    "round": "Neue Runde! Behalte deine Karten oder tausche sie vor der ersten Ziehung."
   },
   "aria": {
     "copy": "Kopieren",
@@ -59,7 +59,11 @@
     "you": "Deine Spieler-ID",
     "cost": "{total} zu zahlen · {price} pro Karte",
     "priceEach": "Jede Karte kostet {price}",
-    "vibrate": "Bei jeder Ziehung vibrieren"
+    "vibrate": "Bei jeder Ziehung vibrieren",
+    "redeal": "Karte {0} tauschen",
+    "changeHint": "Du kannst sie bis zur ersten gezogenen Zahl ändern.",
+    "add": "Karte hinzufügen",
+    "remove": "Karte {0} entfernen"
   },
   "contacts": {
     "role": "Projektleiter\nFull-Stack-Entwickler",
@@ -140,6 +144,6 @@
   "round": {
     "start": "Neue Runde",
     "title": "Eine neue Runde starten?",
-    "description": "Ziehungen und Gewinne beginnen von vorn, und alle bekommen neue Karten. Die Spiel-ID bleibt gleich."
+    "description": "Ziehungen und Gewinne beginnen von vorn. Alle können ihre Karten behalten oder vor der ersten Ziehung tauschen. Die Spiel-ID bleibt gleich."
   }
 }

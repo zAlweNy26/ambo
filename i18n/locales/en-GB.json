@@ -83,7 +83,7 @@
     "confirmation": "Are you sure you want to leave? You will lose everything.",
     "closed": "The host ended the game.",
     "full": "This game is full.",
-    "round": "New round! Here are your new cards."
+    "round": "New round! Keep your cards or change them before the first draw."
   },
   "board": {
     "qr": "Scan to join",
@@ -116,7 +116,11 @@
     "you": "Your player ID",
     "cost": "{total} to pay · {price} per card",
     "priceEach": "Each card costs {price}",
-    "vibrate": "Vibrate on each draw"
+    "vibrate": "Vibrate on each draw",
+    "redeal": "Change card {0}",
+    "changeHint": "You can change them until the first number is drawn.",
+    "add": "Add a card",
+    "remove": "Remove card {0}"
   },
   "pwa": {
     "installTitle": "Do you want to install it as an app?",
@@ -140,6 +144,6 @@
   "round": {
     "start": "New round",
     "title": "Start a new round?",
-    "description": "Draws and prizes start over, and every player gets new cards. The game ID stays the same."
+    "description": "Draws and prizes start over. Every player can keep their cards or change them before the first draw. The game ID stays the same."
   }
 }

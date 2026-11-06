@@ -219,7 +219,7 @@ describe('handle', () => {
     expect(claim(other, P1)).toMatchObject({ ok: true })
   })
 
-  it('starts a new round: new cartelle, no draws or prizes', () => {
+  it('starts a new round: no draws or prizes, the same cartelle back to whoever rejoins', () => {
     const state = room()
     state.extractions.push(21, 43)
     handle(state, { player: P1 }, {
@@ -236,13 +236,78 @@ describe('handle', () => {
       claims: [],
       players: {},
     })
-    const rejoin = handle(state, {}, { type: 'join', player: P1, cards: 3 })
+    const rejoin = handle(state, {}, { type: 'join', player: P1, cards: 1 })
     expect(rejoin.reply[0]).toMatchObject({
       winners: [],
+      cards: [CARD],
       players: [
-        { id: 'a1a1a1', cards: 3 },
+        { id: 'a1a1a1', cards: 1 },
       ],
     })
+  })
+
+  it('keeps the cartelle a player has when they join asking for another number', () => {
+    const state = room()
+    handle(state, {}, { type: 'join', player: P1, cards: 3 })
+    expect(state.players[P1]).toHaveLength(3)
+    expect(state.players[P1]![0]).toEqual(CARD)
+    handle(state, {}, { type: 'join', player: P1, cards: 2 })
+    expect(state.players[P1]).toHaveLength(2)
+    expect(state.players[P1]![0]).toEqual(CARD)
+    // A rejoin after a round asking for more keeps last round's too
+    handle(state, { host: true }, { type: 'round' })
+    handle(state, {}, { type: 'join', player: P2, cards: 2 })
+    expect(state.players[P2]![0]).toEqual(CARD)
+  })
+
+  it('swaps or adds one cartella on request, only before the first draw', () => {
+    const state = room()
+    handle(state, {}, { type: 'join', player: P1, cards: 2 })
+    const second = state.players[P1]![1]
+    expect(handle(state, { player: P1 }, { type: 'deal', card: 0 }).changed).toBe(true)
+    expect(state.players[P1]![0]).not.toEqual(CARD)
+    expect(state.players[P1]![1]).toBe(second)
+    expect(handle(state, { player: P1 }, { type: 'deal', card: 2 }).broadcast).toEqual([
+      {
+        type: 'players',
+        players: [
+          { id: 'a1a1a1', cards: 3 },
+          { id: 'b2b2b2', cards: 1 },
+        ],
+      },
+    ])
+    const ignored = { reply: [], broadcast: [] }
+    // No gaps, no deal without a join
+    expect(handle(state, { player: P1 }, { type: 'deal', card: 4 })).toEqual(ignored)
+    expect(handle(state, {}, { type: 'deal', card: 0 })).toEqual(ignored)
+    state.extractions.push(21)
+    expect(handle(state, { player: P1 }, { type: 'deal', card: 0 })).toEqual(ignored)
+    expect(state.players[P1]).toHaveLength(3)
+  })
+
+  it('removes one cartella before the first draw, never the last one', () => {
+    const state = room()
+    handle(state, {}, { type: 'join', player: P1, cards: 3 })
+    const [, second, third] = state.players[P1]!
+    const ignored = { reply: [], broadcast: [] }
+    expect(handle(state, { player: P1 }, { type: 'deal', card: 3, remove: true })).toEqual(ignored)
+    expect(handle(state, { player: P1 }, { type: 'deal', card: 0, remove: true }).broadcast).toEqual([
+      {
+        type: 'players',
+        players: [
+          { id: 'a1a1a1', cards: 2 },
+          { id: 'b2b2b2', cards: 1 },
+        ],
+      },
+    ])
+    expect(state.players[P1]).toEqual([second, third])
+    handle(state, { player: P1 }, { type: 'deal', card: 1, remove: true })
+    expect(handle(state, { player: P1 }, { type: 'deal', card: 0, remove: true })).toEqual(ignored)
+    expect(state.players[P1]).toEqual([second])
+    handle(state, {}, { type: 'join', player: P1, cards: 1 })
+    state.players[P1]!.push(CARD)
+    state.extractions.push(21)
+    expect(handle(state, { player: P1 }, { type: 'deal', card: 0, remove: true })).toEqual(ignored)
   })
 
   it('rejects prizes not played, and tombolino before the tombola or for its winner', () => {

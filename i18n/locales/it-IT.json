@@ -83,7 +83,7 @@
     "confirmation": "Sei sicuro di voler uscire? Perderai tutto.",
     "closed": "Chi tiene il tabellone ha chiuso la partita.",
     "full": "Questa partita è al completo.",
-    "round": "Nuovo giro! Ecco le tue nuove cartelle."
+    "round": "Nuovo giro! Tieni le tue cartelle o cambiale prima della prima estrazione."
   },
   "board": {
     "qr": "Inquadra per partecipare",
@@ -116,7 +116,11 @@
     "you": "Il tuo ID giocatore",
     "cost": "{total} da pagare · {price} a cartella",
     "priceEach": "Ogni cartella costa {price}",
-    "vibrate": "Vibra a ogni estrazione"
+    "vibrate": "Vibra a ogni estrazione",
+    "redeal": "Cambia la cartella {0}",
+    "changeHint": "Puoi cambiarle fino alla prima estrazione.",
+    "add": "Aggiungi una cartella",
+    "remove": "Elimina la cartella {0}"
   },
   "pwa": {
     "installTitle": "Vuoi installarla come app?",
@@ -140,6 +144,6 @@
   "round": {
     "start": "Nuovo giro",
     "title": "Iniziare un nuovo giro?",
-    "description": "Estrazioni e premi ripartono da zero e ogni giocatore riceve nuove cartelle. L'ID partita resta lo stesso."
+    "description": "Estrazioni e premi ripartono da zero. Ogni giocatore può tenere le sue cartelle o cambiarle prima della prima estrazione. L'ID partita resta lo stesso."
   }
 }

@@ -11,6 +11,7 @@ export interface Player {
 export type ClientMessage
   = | { type: 'host', host: string }
     | { type: 'join', player: string, cards: number }
+    | { type: 'deal', card: number, remove?: true }
     | { type: 'draw' }
     | { type: 'prize', total: number, split?: Split, price?: number }
     | { type: 'smirk', smirk: Smorfia }
